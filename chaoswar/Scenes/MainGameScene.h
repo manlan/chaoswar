@@ -10,7 +10,13 @@
 #import "cocos2d.h"
 
 @interface MainGameScene : CCLayer {
-    
+    CCTMXTiledMap *tileMap;
+    CCTMXLayer *backGround;	
 }
+
+@property (nonatomic, retain) CCTMXTiledMap *tileMap;
+@property (nonatomic, retain) CCTMXLayer *backGround;
+
++(CCScene *) scene;
 
 @end

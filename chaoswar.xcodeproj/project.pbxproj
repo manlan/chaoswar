@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		045E89B2141E36340097B1EE /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E89AF141E36340097B1EE /* GameData.m */; };
+		045E89B3141E36340097B1EE /* SceneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E89B1141E36340097B1EE /* SceneManager.m */; };
+		045E89B6141E36BF0097B1EE /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E89B5141E36BF0097B1EE /* GameController.m */; };
 		04B93D3C141E310600EA4499 /* Bullet.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B93D3A141E310600EA4499 /* Bullet.m */; };
-		04B93D3D141E310600EA4499 /* PaxHeader in Resources */ = {isa = PBXBuildFile; fileRef = 04B93D3B141E310600EA4499 /* PaxHeader */; };
 		04B93D42141E312C00EA4499 /* Tower.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B93D40141E312C00EA4499 /* Tower.m */; };
-		04B93D43141E312C00EA4499 /* PaxHeader in Resources */ = {isa = PBXBuildFile; fileRef = 04B93D41141E312C00EA4499 /* PaxHeader */; };
 		04B93D47141E316D00EA4499 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B93D45141E316D00EA4499 /* Enemy.m */; };
-		04B93D48141E316D00EA4499 /* PaxHeader in Resources */ = {isa = PBXBuildFile; fileRef = 04B93D46141E316D00EA4499 /* PaxHeader */; };
 		04B93D4B141E318D00EA4499 /* Friendly.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B93D4A141E318D00EA4499 /* Friendly.m */; };
 		04BAEA871413B2E7006FD44B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BAEA861413B2E7006FD44B /* QuartzCore.framework */; };
 		04BAEA891413B2E7006FD44B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BAEA881413B2E7006FD44B /* OpenGLES.framework */; };
@@ -128,22 +128,22 @@
 		04BAEBE71413B2EA006FD44B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BAEBE61413B2EA006FD44B /* main.m */; };
 		04BAEBEA1413B2EA006FD44B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BAEBE91413B2EA006FD44B /* AppDelegate.m */; };
 		04BAEBED1413B2EB006FD44B /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BAEBEC1413B2EB006FD44B /* RootViewController.m */; };
-		04BAEBF01413B2EB006FD44B /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BAEBEF1413B2EB006FD44B /* HelloWorldLayer.m */; };
-		04BAEBFE1413B3F3006FD44B /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BAEBFC1413B3F3006FD44B /* MainMenuScene.m */; };
-		04BAEC021413B4E9006FD44B /* PointsSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BAEC011413B4E9006FD44B /* PointsSelectScene.m */; };
 		04BAEC051413B54F006FD44B /* MainGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BAEC041413B54F006FD44B /* MainGameScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		045E89AE141E36340097B1EE /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
+		045E89AF141E36340097B1EE /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
+		045E89B0141E36340097B1EE /* SceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneManager.h; sourceTree = "<group>"; };
+		045E89B1141E36340097B1EE /* SceneManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneManager.m; sourceTree = "<group>"; };
+		045E89B4141E36BF0097B1EE /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
+		045E89B5141E36BF0097B1EE /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
 		04B93D39141E310600EA4499 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		04B93D3A141E310600EA4499 /* Bullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bullet.m; sourceTree = "<group>"; };
-		04B93D3B141E310600EA4499 /* PaxHeader */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PaxHeader; sourceTree = "<group>"; };
 		04B93D3F141E312C00EA4499 /* Tower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tower.h; sourceTree = "<group>"; };
 		04B93D40141E312C00EA4499 /* Tower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tower.m; sourceTree = "<group>"; };
-		04B93D41141E312C00EA4499 /* PaxHeader */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PaxHeader; sourceTree = "<group>"; };
 		04B93D44141E316D00EA4499 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		04B93D45141E316D00EA4499 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
-		04B93D46141E316D00EA4499 /* PaxHeader */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PaxHeader; sourceTree = "<group>"; };
 		04B93D49141E318D00EA4499 /* Friendly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friendly.h; sourceTree = "<group>"; };
 		04B93D4A141E318D00EA4499 /* Friendly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friendly.m; sourceTree = "<group>"; };
 		04BAEA821413B2E7006FD44B /* chaoswar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chaoswar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -378,13 +378,7 @@
 		04BAEBE91413B2EA006FD44B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		04BAEBEB1413B2EA006FD44B /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		04BAEBEC1413B2EB006FD44B /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		04BAEBEE1413B2EB006FD44B /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		04BAEBEF1413B2EB006FD44B /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		04BAEBF11413B2EB006FD44B /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
-		04BAEBFB1413B3F3006FD44B /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuScene.h; sourceTree = "<group>"; };
-		04BAEBFC1413B3F3006FD44B /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
-		04BAEC001413B4E9006FD44B /* PointsSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsSelectScene.h; sourceTree = "<group>"; };
-		04BAEC011413B4E9006FD44B /* PointsSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsSelectScene.m; sourceTree = "<group>"; };
 		04BAEC031413B54E006FD44B /* MainGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGameScene.h; sourceTree = "<group>"; };
 		04BAEC041413B54F006FD44B /* MainGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainGameScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -459,8 +453,6 @@
 				04BAEBE91413B2EA006FD44B /* AppDelegate.m */,
 				04BAEBEB1413B2EA006FD44B /* RootViewController.h */,
 				04BAEBEC1413B2EB006FD44B /* RootViewController.m */,
-				04BAEBEE1413B2EB006FD44B /* HelloWorldLayer.h */,
-				04BAEBEF1413B2EB006FD44B /* HelloWorldLayer.m */,
 				04BAEBF11413B2EB006FD44B /* GameConfig.h */,
 				04BAEA971413B2E7006FD44B /* Resources */,
 				04BAEAAB1413B2E8006FD44B /* libs */,
@@ -801,6 +793,8 @@
 		04BAEBF81413B38F006FD44B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				045E89B4141E36BF0097B1EE /* GameController.h */,
+				045E89B5141E36BF0097B1EE /* GameController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -808,10 +802,6 @@
 		04BAEBF91413B38F006FD44B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				04BAEBFB1413B3F3006FD44B /* MainMenuScene.h */,
-				04BAEBFC1413B3F3006FD44B /* MainMenuScene.m */,
-				04BAEC001413B4E9006FD44B /* PointsSelectScene.h */,
-				04BAEC011413B4E9006FD44B /* PointsSelectScene.m */,
 				04BAEC031413B54E006FD44B /* MainGameScene.h */,
 				04BAEC041413B54F006FD44B /* MainGameScene.m */,
 			);
@@ -833,7 +823,6 @@
 			children = (
 				04B93D39141E310600EA4499 /* Bullet.h */,
 				04B93D3A141E310600EA4499 /* Bullet.m */,
-				04B93D3B141E310600EA4499 /* PaxHeader */,
 			);
 			path = Bullet;
 			sourceTree = "<group>";
@@ -843,7 +832,6 @@
 			children = (
 				04B93D3F141E312C00EA4499 /* Tower.h */,
 				04B93D40141E312C00EA4499 /* Tower.m */,
-				04B93D41141E312C00EA4499 /* PaxHeader */,
 			);
 			path = Tower;
 			sourceTree = "<group>";
@@ -855,7 +843,6 @@
 				04B93D45141E316D00EA4499 /* Enemy.m */,
 				04B93D49141E318D00EA4499 /* Friendly.h */,
 				04B93D4A141E318D00EA4499 /* Friendly.m */,
-				04B93D46141E316D00EA4499 /* PaxHeader */,
 			);
 			path = Units;
 			sourceTree = "<group>";
@@ -863,6 +850,10 @@
 		04BAEC091413B5F9006FD44B /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				045E89AE141E36340097B1EE /* GameData.h */,
+				045E89AF141E36340097B1EE /* GameData.m */,
+				045E89B0141E36340097B1EE /* SceneManager.h */,
+				045E89B1141E36340097B1EE /* SceneManager.m */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -923,9 +914,6 @@
 				04BAEAA51413B2E8006FD44B /* Icon.png in Resources */,
 				04BAEAA71413B2E8006FD44B /* Icon@2x.png in Resources */,
 				04BAEAAA1413B2E8006FD44B /* iTunesArtwork in Resources */,
-				04B93D3D141E310600EA4499 /* PaxHeader in Resources */,
-				04B93D43141E312C00EA4499 /* PaxHeader in Resources */,
-				04B93D48141E316D00EA4499 /* PaxHeader in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1033,14 +1021,14 @@
 				04BAEBE71413B2EA006FD44B /* main.m in Sources */,
 				04BAEBEA1413B2EA006FD44B /* AppDelegate.m in Sources */,
 				04BAEBED1413B2EB006FD44B /* RootViewController.m in Sources */,
-				04BAEBF01413B2EB006FD44B /* HelloWorldLayer.m in Sources */,
-				04BAEBFE1413B3F3006FD44B /* MainMenuScene.m in Sources */,
-				04BAEC021413B4E9006FD44B /* PointsSelectScene.m in Sources */,
 				04BAEC051413B54F006FD44B /* MainGameScene.m in Sources */,
 				04B93D3C141E310600EA4499 /* Bullet.m in Sources */,
 				04B93D42141E312C00EA4499 /* Tower.m in Sources */,
 				04B93D47141E316D00EA4499 /* Enemy.m in Sources */,
 				04B93D4B141E318D00EA4499 /* Friendly.m in Sources */,
+				045E89B2141E36340097B1EE /* GameData.m in Sources */,
+				045E89B3141E36340097B1EE /* SceneManager.m in Sources */,
+				045E89B6141E36BF0097B1EE /* GameController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
