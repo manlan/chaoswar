@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "SpriteDelegate.h"
 
-@interface Bullet : CCSprite {
-    
+@interface Bullet : CCSprite <BulletDelegate> {
+
 }
+
++ (id) bullet;
 
 @end

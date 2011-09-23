@@ -11,4 +11,18 @@
 
 @implementation Bullet
 
++ (id) bullet {
+    Bullet *bullet = nil;
+    if ((bullet = [[[super alloc] initWithFile:@"bullet.png"] autorelease])) {
+		
+    }
+    return bullet;
+    
+}
+
+- (void) dealloc
+{  
+    [super dealloc];
+}
+
 @end
