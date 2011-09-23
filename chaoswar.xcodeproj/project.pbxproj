@@ -9,17 +9,19 @@
 /* Begin PBXBuildFile section */
 		045E89B2141E36340097B1EE /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E89AF141E36340097B1EE /* GameData.m */; };
 		045E89B3141E36340097B1EE /* SceneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E89B1141E36340097B1EE /* SceneManager.m */; };
-		045E89B6141E36BF0097B1EE /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E89B5141E36BF0097B1EE /* GameController.m */; };
 		045E89BE141E379E0097B1EE /* GameBackgroundScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E89BC141E379E0097B1EE /* GameBackgroundScene.m */; };
 		045E89C2141E37B60097B1EE /* GameImfomationScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E89C1141E37B60097B1EE /* GameImfomationScene.m */; };
 		045E89C5141E37DF0097B1EE /* GameMagicScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E89C4141E37DF0097B1EE /* GameMagicScene.m */; };
 		045E89C8141E37ED0097B1EE /* GameControllerScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E89C7141E37ED0097B1EE /* GameControllerScene.m */; };
-		045E89CC141E3D9C0097B1EE /* Wave.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E89CA141E3D9C0097B1EE /* Wave.m */; };
+		04B5E39A142CE95400089068 /* map1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 04B5E398142CE95400089068 /* map1.tmx */; };
+		04B5E39B142CE95400089068 /* tmw_desert_spacing.png in Resources */ = {isa = PBXBuildFile; fileRef = 04B5E399142CE95400089068 /* tmw_desert_spacing.png */; };
+		04B5E3A9142CF0CE00089068 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5E3A8142CF0CE00089068 /* GameController.m */; };
+		04B5E3AC142CF10400089068 /* Wave.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5E3AB142CF10400089068 /* Wave.m */; };
+		04B5E3AF142CF11E00089068 /* WayPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5E3AE142CF11E00089068 /* WayPoint.m */; };
 		04B93D3C141E310600EA4499 /* Bullet.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B93D3A141E310600EA4499 /* Bullet.m */; };
 		04B93D42141E312C00EA4499 /* Tower.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B93D40141E312C00EA4499 /* Tower.m */; };
 		04B93D47141E316D00EA4499 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B93D45141E316D00EA4499 /* Enemy.m */; };
 		04B93D4B141E318D00EA4499 /* Friendly.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B93D4A141E318D00EA4499 /* Friendly.m */; };
-		04BAC250141F8FDE00023CB1 /* WayPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BAC24E141F8FDE00023CB1 /* WayPoint.m */; };
 		04BAEA871413B2E7006FD44B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BAEA861413B2E7006FD44B /* QuartzCore.framework */; };
 		04BAEA891413B2E7006FD44B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BAEA881413B2E7006FD44B /* OpenGLES.framework */; };
 		04BAEA8B1413B2E7006FD44B /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BAEA8A1413B2E7006FD44B /* OpenAL.framework */; };
@@ -142,8 +144,6 @@
 		045E89AF141E36340097B1EE /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
 		045E89B0141E36340097B1EE /* SceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneManager.h; sourceTree = "<group>"; };
 		045E89B1141E36340097B1EE /* SceneManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneManager.m; sourceTree = "<group>"; };
-		045E89B4141E36BF0097B1EE /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
-		045E89B5141E36BF0097B1EE /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
 		045E89BB141E379E0097B1EE /* GameBackgroundScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBackgroundScene.h; sourceTree = "<group>"; };
 		045E89BC141E379E0097B1EE /* GameBackgroundScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameBackgroundScene.m; sourceTree = "<group>"; };
 		045E89C0141E37B60097B1EE /* GameImfomationScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameImfomationScene.h; sourceTree = "<group>"; };
@@ -152,8 +152,15 @@
 		045E89C4141E37DF0097B1EE /* GameMagicScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameMagicScene.m; sourceTree = "<group>"; };
 		045E89C6141E37ED0097B1EE /* GameControllerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameControllerScene.h; sourceTree = "<group>"; };
 		045E89C7141E37ED0097B1EE /* GameControllerScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameControllerScene.m; sourceTree = "<group>"; };
-		045E89C9141E3D9C0097B1EE /* Wave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wave.h; sourceTree = "<group>"; };
-		045E89CA141E3D9C0097B1EE /* Wave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wave.m; sourceTree = "<group>"; };
+		04B5E398142CE95400089068 /* map1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map1.tmx; sourceTree = "<group>"; };
+		04B5E399142CE95400089068 /* tmw_desert_spacing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tmw_desert_spacing.png; sourceTree = "<group>"; };
+		04B5E3A7142CF0CE00089068 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
+		04B5E3A8142CF0CE00089068 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
+		04B5E3AA142CF10400089068 /* Wave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wave.h; sourceTree = "<group>"; };
+		04B5E3AB142CF10400089068 /* Wave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wave.m; sourceTree = "<group>"; };
+		04B5E3AD142CF11E00089068 /* WayPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WayPoint.h; sourceTree = "<group>"; };
+		04B5E3AE142CF11E00089068 /* WayPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WayPoint.m; sourceTree = "<group>"; };
+		04B5E3B1142CF56800089068 /* Pointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pointer.h; sourceTree = "<group>"; };
 		04B93D39141E310600EA4499 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		04B93D3A141E310600EA4499 /* Bullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bullet.m; sourceTree = "<group>"; };
 		04B93D3F141E312C00EA4499 /* Tower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tower.h; sourceTree = "<group>"; };
@@ -162,8 +169,6 @@
 		04B93D45141E316D00EA4499 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
 		04B93D49141E318D00EA4499 /* Friendly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friendly.h; sourceTree = "<group>"; };
 		04B93D4A141E318D00EA4499 /* Friendly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friendly.m; sourceTree = "<group>"; };
-		04BAC24D141F8FDE00023CB1 /* WayPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WayPoint.h; sourceTree = "<group>"; };
-		04BAC24E141F8FDE00023CB1 /* WayPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WayPoint.m; sourceTree = "<group>"; };
 		04BAEA821413B2E7006FD44B /* chaoswar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chaoswar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04BAEA861413B2E7006FD44B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		04BAEA881413B2E7006FD44B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -433,12 +438,22 @@
 			path = GameScenes;
 			sourceTree = "<group>";
 		};
-		04AFCE0C141DDF2100298743 /* aaa */ = {
+		04B5E397142CE95400089068 /* maps */ = {
 			isa = PBXGroup;
 			children = (
+				04B5E398142CE95400089068 /* map1.tmx */,
+				04B5E399142CE95400089068 /* tmw_desert_spacing.png */,
 			);
-			name = aaa;
-			path = Resources/aaa;
+			name = maps;
+			path = Resources/maps;
+			sourceTree = "<group>";
+		};
+		04B5E3B0142CF55B00089068 /* Pointers */ = {
+			isa = PBXGroup;
+			children = (
+				04B5E3B1142CF56800089068 /* Pointer.h */,
+			);
+			path = Pointers;
 			sourceTree = "<group>";
 		};
 		04BAEA771413B2E7006FD44B = {
@@ -495,7 +510,7 @@
 		04BAEA971413B2E7006FD44B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				04AFCE0C141DDF2100298743 /* aaa */,
+				04B5E397142CE95400089068 /* maps */,
 				04BAEA981413B2E7006FD44B /* Default.png */,
 				04BAEA9A1413B2E7006FD44B /* fps_images.png */,
 				04BAEA9C1413B2E8006FD44B /* Icon-72.png */,
@@ -824,12 +839,13 @@
 		04BAEBF81413B38F006FD44B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				045E89B4141E36BF0097B1EE /* GameController.h */,
-				045E89B5141E36BF0097B1EE /* GameController.m */,
-				045E89C9141E3D9C0097B1EE /* Wave.h */,
-				045E89CA141E3D9C0097B1EE /* Wave.m */,
-				04BAC24D141F8FDE00023CB1 /* WayPoint.h */,
-				04BAC24E141F8FDE00023CB1 /* WayPoint.m */,
+				04B5E3B0142CF55B00089068 /* Pointers */,
+				04B5E3A7142CF0CE00089068 /* GameController.h */,
+				04B5E3A8142CF0CE00089068 /* GameController.m */,
+				04B5E3AA142CF10400089068 /* Wave.h */,
+				04B5E3AB142CF10400089068 /* Wave.m */,
+				04B5E3AD142CF11E00089068 /* WayPoint.h */,
+				04B5E3AE142CF11E00089068 /* WayPoint.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -949,6 +965,8 @@
 				04BAEAA51413B2E8006FD44B /* Icon.png in Resources */,
 				04BAEAA71413B2E8006FD44B /* Icon@2x.png in Resources */,
 				04BAEAAA1413B2E8006FD44B /* iTunesArtwork in Resources */,
+				04B5E39A142CE95400089068 /* map1.tmx in Resources */,
+				04B5E39B142CE95400089068 /* tmw_desert_spacing.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1062,13 +1080,13 @@
 				04B93D4B141E318D00EA4499 /* Friendly.m in Sources */,
 				045E89B2141E36340097B1EE /* GameData.m in Sources */,
 				045E89B3141E36340097B1EE /* SceneManager.m in Sources */,
-				045E89B6141E36BF0097B1EE /* GameController.m in Sources */,
 				045E89BE141E379E0097B1EE /* GameBackgroundScene.m in Sources */,
 				045E89C2141E37B60097B1EE /* GameImfomationScene.m in Sources */,
 				045E89C5141E37DF0097B1EE /* GameMagicScene.m in Sources */,
 				045E89C8141E37ED0097B1EE /* GameControllerScene.m in Sources */,
-				045E89CC141E3D9C0097B1EE /* Wave.m in Sources */,
-				04BAC250141F8FDE00023CB1 /* WayPoint.m in Sources */,
+				04B5E3A9142CF0CE00089068 /* GameController.m in Sources */,
+				04B5E3AC142CF10400089068 /* Wave.m in Sources */,
+				04B5E3AF142CF11E00089068 /* WayPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,18 +14,16 @@
 
 @interface GameBackgroundScene : CCLayer {
     CCTMXTiledMap *map;
-    CCTMXLayer *background;		
+    CCTMXLayer *background;
+    int waveLevel;
 }
 
 @property (nonatomic, retain) CCTMXTiledMap *map;
 @property (nonatomic, retain) CCTMXLayer *background;	
+@property int waveLevel;
 
 + (id) scene;
 
-- (void) initGame;
-
-- (void) initWaypoint;
-- (void) initTower: (CGPoint)pos;
 - (BOOL) canBuildOnTilePosition:(CGPoint) pos;
 
 @end

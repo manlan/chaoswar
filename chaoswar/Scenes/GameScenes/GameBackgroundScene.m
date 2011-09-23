@@ -9,10 +9,15 @@
 #import "GameBackgroundScene.h"
 #import "GameController.h"
 
+#import "GameImfomationScene.h"
+#import "GameMagicScene.h"
+#import "GameControllerScene.h"
+
 @implementation GameBackgroundScene
 
 @synthesize map;
 @synthesize background;
+@synthesize waveLevel;
 
 +(id) scene
 {
@@ -38,16 +43,15 @@
 
 -(id) init {
     if((self = [super init])) {
-        //地图文件
-		self.map = [CCTMXTiledMap tiledMapWithTMXFile:@"TileMap.tmx"];
-        self.background = [self.map layerNamed:@"Background"];
+        //================读取地图文件=================
+		self.map = [CCTMXTiledMap tiledMapWithTMXFile:@"map1.tmx"];
+        self.background = [self.map layerNamed:@"background"];
 		self.background.anchorPoint = ccp(0, 0);
 		[self addChild:self.map z:0];
+        //==================初始化配置=================
         GameController *gc = [GameController getGameController];
-        //初始化路线，初始化流程
         [gc initController];
-		[self initGame];
-        [self schedule:@selector(update:)];
+        //================循环游戏逻辑=================
 		[self schedule:@selector(gameLogic:) interval:1.0];		
 		//self.currentLevel = 0;
 		self.position = ccp(-228, -122);
@@ -64,8 +68,7 @@
 //获取当前的敌人攻击队列
 - (Wave *)getCurrentWave {
 	GameController *gc = [GameController getGameController];
-	//Wave * wave = (Wave *) [gc.waves objectAtIndex: self.currentLevel];
-	Wave *wave = (Wave *) [gc.waveArray objectAtIndex: 1];
+	Wave *wave = (Wave *) [gc.waveArray objectAtIndex: self.waveLevel];
 	return wave;
 }
 
@@ -96,7 +99,7 @@
 	
 	int tileGid = [self.background tileGIDAt:towerLoc];
 	NSDictionary *dics = [self.map propertiesForGID:tileGid];
-	NSString *type = [dics valueForKey:@"buildable"];
+	NSString *type = [dics valueForKey:@"canbuild"];
 	if([type isEqualToString: @"1"]) {
 		return YES;
 	}
@@ -192,10 +195,6 @@
         lastTimeTargetAdded = now;
     }
 	
-}
-
-//
-- (void)update:(ccTime)dt {
     
 	GameController *gc = [GameController getGameController];
 	NSMutableArray *projectilesToDelete = [[NSMutableArray alloc] init];
@@ -222,9 +221,9 @@
                 //Enemy *creep = (Enemy*) enemy;
                 //creep.hp--;
 				
-//                if (creep.hp <= 0) {
-//                    [targetsToDelete addObject:target];
-//                }
+                //                if (creep.hp <= 0) {
+                //                    [targetsToDelete addObject:target];
+                //                }
                 break;
                 
 			}						
@@ -243,6 +242,11 @@
 		[self removeChild:bullet cleanup:YES];
 	}
 	[projectilesToDelete release];
+}
+
+//
+- (void)update:(ccTime)dt {
+    
 }
 
 
