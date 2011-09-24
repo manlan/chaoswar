@@ -11,7 +11,8 @@
 #import "AppDelegate.h"
 #import "GameConfig.h"
 #import "RootViewController.h"
-#import "GameBackgroundScene.h"
+#import "MainMenuSence.h"
+#import "SceneManager.h"
 
 @implementation AppDelegate
 
@@ -110,7 +111,7 @@
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [GameBackgroundScene scene]];
+    [[CCDirector sharedDirector] runWithScene: [SceneManager TransFade:0.6f layer:[MainMenuSence node]]];
 }
 
 

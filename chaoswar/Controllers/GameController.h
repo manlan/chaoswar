@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "cocos2d.h"
 #import "Pointer.h"
 
 @class GameBackgroundScene;
 @class GameImfomationScene;
 @class GameMagicScene;
 @class GameControllerScene;
+@class Wave;
 
 @interface GameController : NSObject {
     GameBackgroundScene *gameBackground;
@@ -27,6 +29,8 @@
     NSMutableArray *magicArray;
     NSMutableArray *frientlyArray;
 	UIPanGestureRecognizer *gestureRecognizer;
+    id<Pointer> *pt;
+    int waveLevel;
 }
 
 @property (nonatomic, retain) GameBackgroundScene *gameBackground;
@@ -41,9 +45,21 @@
 @property (nonatomic, retain) NSMutableArray *magicArray;
 @property (nonatomic, retain) NSMutableArray *frientlyArray;
 @property (nonatomic, retain) UIPanGestureRecognizer *gestureRecognizer;
+@property int waveLevel;
 
 + (GameController*) getGameController;
 
-- (void) initController:(id*)pointer;
+- (void) initController:(id<Pointer>*)pointer;
+
+//获取当前的敌人攻击队列
+- (Wave *)getCurrentWave;
+//获取下一的敌人攻击队列
+- (Wave *)getNextWave;
+
+- (void) deleteUnUseSprite:(CCLayer*)scene;
+
+- (void) showBuildButton;
+
+- (void) spriteInfo;
 
 @end

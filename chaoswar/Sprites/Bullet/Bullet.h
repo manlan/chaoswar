@@ -11,9 +11,16 @@
 #import "SpriteDelegate.h"
 
 @interface Bullet : CCSprite <BulletDelegate> {
-
+    int isdelete;
 }
 
-+ (id) bullet;
+@property int isdelete;
+
+@end
+
+
+@interface Bullet1 : Bullet {
+
+}
 
 @end

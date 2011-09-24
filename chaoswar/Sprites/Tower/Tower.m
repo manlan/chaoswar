@@ -16,6 +16,7 @@
 @synthesize bullet;
 @synthesize spriteRange;
 @synthesize bullets;
+@synthesize isdelete;
 
 - (Enemy*) getClosestEnemy {
 	Enemy *nextEnemy = nil;
@@ -40,85 +41,42 @@
 
 @implementation MachineGunTower
 
-+ (id)tower {
-	
-    MachineGunTower *tower = nil;
-    if ((tower = [[[super alloc] initWithFile:@"MachineGunTurret.png"] autorelease])) {
-		tower.range = 200;
+
++ (id) tower {
+    MachineGunTower *tower = [[[MachineGunTower alloc] initWithFile:@"bullet.png"] autorelease];
+    if (tower) {
+        tower.isdelete = 0;
+        tower.range = 200;
 		tower.enemy = nil;
-		[tower schedule:@selector(towerLogic:) interval:0.2];
     }
     return tower;
+    
 }
 
--(id) init
+- (BOOL) run
 {
-	if ((self=[super init]) ) {
-		//[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
-	}
-	return self;
+    [self schedule:@selector(startSearch:)];
+    return YES;
 }
 
-
-- (void) setClosestEnemy:(Enemy*)closestEnemy {
-	self.enemy = closestEnemy;
+//搜索敌人
+- (void) startSearch:(ccTime)dt {
+    enemy = [self getClosestEnemy];
+    if (enemy) {
+        [self unschedule:@selector(startSearch:)];
+        [self schedule:@selector(attact:)];
+    }
 }
 
--(void)towerLogic:(ccTime)dt {
-	
-	self.enemy = [self getClosestEnemy];
-	
-	if (self.enemy != nil) {
-		CGPoint shootVector = ccpSub(self.enemy.position, self.position);
-		CGFloat shootAngle = ccpToAngle(shootVector);
-		CGFloat cocosAngle = CC_RADIANS_TO_DEGREES(-1 * shootAngle);
-		
-		float rotateSpeed = 0.5 / M_PI; // 1/2 second to roate 180 degrees
-		float rotateDuration = fabs(shootAngle * rotateSpeed);    
-		
-		[self runAction:[CCSequence actions:
-						 [CCRotateTo actionWithDuration:rotateDuration angle:cocosAngle],
-						 [CCCallFunc actionWithTarget:self selector:@selector(finishFiring)],
-						 nil]];		
-	}
+//攻击敌人
+- (void) attact:(ccTime)dt {
+    [self unschedule:@selector(attact:)];
+    [self schedule:@selector(startSearch:)];
 }
 
--(void)creepMoveFinished:(id)sender {
-    
-	GameController *gc = [GameController getGameController];
-	
-	CCSprite *sprite = (CCSprite *)sender;
-	[self.parent removeChild:sprite cleanup:YES];
-	
-	[gc.enemyArray removeObject:sprite];
-	
-}
-
-- (void)finishFiring {
-	
-	GameController *gc = [GameController getGameController];
-	
-	self.bullet = [Bullet bullet];
-	self.bullet.position = self.position;
-	
-    [self.parent addChild:self.bullet z:1];
-    [gc.enemyArray addObject:self.bullet];
-    
-	ccTime delta = 1.0;
-	CGPoint shootVector = ccpSub(self.bullet.position, self.position);
-	CGPoint normalizedShootVector = ccpNormalize(shootVector);
-	CGPoint overshotVector = ccpMult(normalizedShootVector, 320);
-	CGPoint offscreenPoint = ccpAdd(self.position, overshotVector);
-	
-	[self.bullet runAction:[CCSequence actions:
-                                    [CCMoveTo actionWithDuration:delta position:offscreenPoint],
-                                    [CCCallFuncN actionWithTarget:self selector:@selector(creepMoveFinished:)],
-                                    nil]];
-	
-	self.bullet.tag = 2;		
-	
-    self.bullet = nil;
-    
+- (void) dealloc
+{  
+    [super dealloc];
 }
 
 @end

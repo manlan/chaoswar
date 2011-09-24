@@ -11,13 +11,14 @@
 
 @implementation Enemy
 
-@synthesize  maxHP;
-@synthesize  maxMP;
-@synthesize  currentHP;
-@synthesize  currentMP;
-@synthesize  moveSpeed;
-@synthesize  wayNum;
-@synthesize  wayPoint;
+@synthesize maxHP;
+@synthesize maxMP;
+@synthesize currentHP;
+@synthesize currentMP;
+@synthesize moveSpeed;
+@synthesize wayNum;
+@synthesize wayPoint;
+@synthesize isdelete;
 
 - (id) copyWithZone:(NSZone *)zone {
 	Enemy *copy = [[[self class] allocWithZone:zone] initWithEnemy:self];
@@ -67,9 +68,53 @@
 //        enemy.moveDuration = 4;
 //		enemy.curWaypoint = 0;
     }
-	[enemy schedule:@selector(enemyLogic:) interval:0.2];
     return enemy;
 }
+
+- (BOOL) run
+{
+    [self schedule:@selector(startMove:)];
+    return YES;
+}
+
+- (void) startMove:(ccTime)dt {
+    [self unschedule:@selector(startMove:)];
+    [self schedule:@selector(move:)];
+}
+
+- (void) move:(ccTime)dt {
+    //遇敌
+    if (1 == 1) {
+        [self unschedule:@selector(move:)];
+        [self schedule:@selector(startAttact:)];
+        return;
+    }
+    
+    return;
+}
+
+- (void) startAttact:(ccTime)dt {
+    [self unschedule:@selector(startAttact:)];
+    [self schedule:@selector(attact:)];
+}
+
+
+- (void) attact:(ccTime)dt {
+    //攻击敌人完毕
+    if (1 == 1) {
+        [self unschedule:@selector(attact:)];
+        [self schedule:@selector(startMove:)];
+        return;
+    }
+    
+    return;
+}
+
+- (void) dealloc
+{  
+    [super dealloc];
+}
+
 
 @end
 
@@ -85,5 +130,50 @@
 	[enemy schedule:@selector(enemyLogic:) interval:0.2];
     return enemy;
 }
+
+- (BOOL) run
+{
+    [self schedule:@selector(startMove:)];
+    return YES;
+}
+
+- (void) startMove:(ccTime)dt {
+    [self unschedule:@selector(startMove:)];
+    [self schedule:@selector(move:)];
+}
+
+- (void) move:(ccTime)dt {
+    //遇敌
+    if (1 == 1) {
+        [self unschedule:@selector(move:)];
+        [self schedule:@selector(startAttact:)];
+        return;
+    }
+    
+    return;
+}
+
+- (void) startAttact:(ccTime)dt {
+    [self unschedule:@selector(startAttact:)];
+    [self schedule:@selector(attact:)];
+}
+
+
+- (void) attact:(ccTime)dt {
+    //攻击敌人完毕
+    if (1 == 1) {
+        [self unschedule:@selector(attact:)];
+        [self schedule:@selector(startMove:)];
+        return;
+    }
+    
+    return;
+}
+
+- (void) dealloc
+{  
+    [super dealloc];
+}
+
 
 @end

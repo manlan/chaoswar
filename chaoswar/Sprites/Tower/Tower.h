@@ -19,8 +19,9 @@
     Bullet *bullet;
 	CCSprite *spriteRange;
 	NSMutableArray *bullets;
+    int isdelete;
 }
-
+@property int isdelete;
 @property (nonatomic, assign) int range;
 @property (nonatomic, retain) Enemy *enemy;
 @property (nonatomic, retain) Bullet *bullet;
@@ -34,12 +35,5 @@
 @interface MachineGunTower : Tower {
     
 }
-
-+ (id) tower;
-
-- (void) setClosestEnemy:(Enemy*)closestEnemy;
-- (void) towerLogic:(ccTime)dt;
-- (void) creepMoveFinished:(id)sender;
-- (void) finishFiring;
 
 @end

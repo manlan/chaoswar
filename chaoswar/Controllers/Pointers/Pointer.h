@@ -10,6 +10,18 @@
 
 @protocol Pointer <NSObject>
 
--(void) updateProjection;
+-(void) initEnemy:(NSMutableArray*)array;
+
+-(void) initTower:(NSMutableArray*)array;
+
+-(void) initWave:(NSMutableArray*)array;
+
+-(void) initBullety:(NSMutableArray*)array;
+
+-(void) initWayPoint:(NSMutableArray*)array;
+
+-(void) initMagic:(NSMutableArray*)array;
+
+-(void) initFriendly:(NSMutableArray*)array;
 
 @end

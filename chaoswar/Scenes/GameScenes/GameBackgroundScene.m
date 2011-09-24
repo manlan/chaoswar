@@ -12,6 +12,7 @@
 #import "GameImfomationScene.h"
 #import "GameMagicScene.h"
 #import "GameControllerScene.h"
+#import "Pointer1.h"
 
 @implementation GameBackgroundScene
 
@@ -46,42 +47,18 @@
         //================读取地图文件=================
 		self.map = [CCTMXTiledMap tiledMapWithTMXFile:@"map1.tmx"];
         self.background = [self.map layerNamed:@"background"];
-		self.background.anchorPoint = ccp(0, 0);
+		//self.background.anchorPoint = ccp(0, 0);
+        self.background.position = ccp(240, 160);
 		[self addChild:self.map z:0];
         //==================初始化配置=================
         GameController *gc = [GameController getGameController];
-        [gc initController];
+        [gc initController:[[Pointer1 alloc] init]];
         //================循环游戏逻辑=================
 		[self schedule:@selector(gameLogic:) interval:1.0];		
 		//self.currentLevel = 0;
 		self.position = ccp(-228, -122);
     }
     return self;
-}
-
-//初始化游戏
-- (void) initGame
-{
-
-}
-
-//获取当前的敌人攻击队列
-- (Wave *)getCurrentWave {
-	GameController *gc = [GameController getGameController];
-	Wave *wave = (Wave *) [gc.waveArray objectAtIndex: self.waveLevel];
-	return wave;
-}
-
-//获取下一的敌人攻击队列
-- (Wave *)getNextWave {
-	GameController *gc = [GameController getGameController];
-//	self.currentLevel++;
-//	
-//	if (self.currentLevel > 1)
-//		self.currentLevel = 0;
-    //Wave * wave = (Wave *) [gc.waves objectAtIndex:self.currentLevel];
-    Wave * wave = (Wave *) [gc.waveArray objectAtIndex:1];
-    return wave;
 }
 
 //地图块编号
@@ -185,9 +162,10 @@
 
 //游戏逻辑（循环）
 -(void)gameLogic:(ccTime)dt {
-	
-	//GameController *gc = [GameController getGameController];
-	Wave * wave = [self getCurrentWave];
+    
+	//增加敌军
+	GameController *gc = [GameController getGameController];
+	Wave * wave = [gc getCurrentWave];
 	static double lastTimeTargetAdded = 0;
     double now = [[NSDate date] timeIntervalSince1970];
     if(lastTimeTargetAdded == 0 || now - lastTimeTargetAdded >= wave.spawnRate) {
@@ -195,58 +173,8 @@
         lastTimeTargetAdded = now;
     }
 	
-    
-	GameController *gc = [GameController getGameController];
-	NSMutableArray *projectilesToDelete = [[NSMutableArray alloc] init];
-    
-	for (Bullet *bullet in gc.bulletArray) {
-		
-		CGRect projectileRect = CGRectMake(bullet.position.x - (bullet.contentSize.width/2), 
-										   bullet.position.y - (bullet.contentSize.height/2), 
-										   bullet.contentSize.width, 
-										   bullet.contentSize.height);
-        
-		NSMutableArray *targetsToDelete = [[NSMutableArray alloc] init];
-		
-		for (CCSprite *enemy in gc.enemyArray) {
-			CGRect targetRect = CGRectMake(enemy.position.x - (enemy.contentSize.width/2), 
-										   enemy.position.y - (enemy.contentSize.height/2), 
-										   enemy.contentSize.width, 
-										   enemy.contentSize.height);
-            
-			if (CGRectIntersectsRect(projectileRect, targetRect)) {
-                
-				[projectilesToDelete addObject:bullet];
-				
-                //Enemy *creep = (Enemy*) enemy;
-                //creep.hp--;
-				
-                //                if (creep.hp <= 0) {
-                //                    [targetsToDelete addObject:target];
-                //                }
-                break;
-                
-			}						
-		}
-		
-		for (CCSprite *target in targetsToDelete) {
-			[gc.enemyArray removeObject:target];
-			[self removeChild:target cleanup:YES];									
-		}
-		
-		[targetsToDelete release];
-	}
-	
-	for (CCSprite *bullet in projectilesToDelete) {
-		[gc.bulletArray removeObject:bullet];
-		[self removeChild:bullet cleanup:YES];
-	}
-	[projectilesToDelete release];
-}
-
-//
-- (void)update:(ccTime)dt {
-    
+    //删除无用信息
+    [gc deleteUnUseSprite:self];
 }
 
 
@@ -263,31 +191,46 @@
 - (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer {
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {    
-        
         CGPoint touchLocation = [recognizer locationInView:recognizer.view];
         touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
         touchLocation = [self convertToNodeSpace:touchLocation];                
-        
     } else if (recognizer.state == UIGestureRecognizerStateChanged) {    
-        
         CGPoint translation = [recognizer translationInView:recognizer.view];
         translation = ccp(translation.x, -translation.y);
         CGPoint newPos = ccpAdd(self.position, translation);
         self.position = [self boundLayerPos:newPos];  
         [recognizer setTranslation:CGPointZero inView:recognizer.view];    
-        
     } else if (recognizer.state == UIGestureRecognizerStateEnded) {
-        
 		float scrollDuration = 0.2;
 		CGPoint velocity = [recognizer velocityInView:recognizer.view];
 		CGPoint newPos = ccpAdd(self.position, ccpMult(ccp(velocity.x, velocity.y * -1), scrollDuration));
 		newPos = [self boundLayerPos:newPos];
-        
 		[self stopAllActions];
 		CCMoveTo *moveTo = [CCMoveTo actionWithDuration:scrollDuration position:newPos];            
 		[self runAction:[CCEaseOut actionWithAction:moveTo rate:1]];            
-        
     }        
+}
+
+- (BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+    CGPoint touchLocationInGameLayer = [self convertTouchToNodeSpace:touch];
+    BOOL isBuildable = [self canBuildOnTilePosition: touchLocationInGameLayer];
+    GameController *gc = [GameController getGameController];
+    if (isBuildable) {
+        //显示建造按钮
+        [gc showBuildButton];
+    } else {
+        //显示信息或者升级按钮
+        [gc spriteInfo];
+    }
+	return YES;
+}
+
+- (void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
+    
+}
+
+- (void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {  
+
 }
 
 // on "dealloc" you need to release all your retained objects

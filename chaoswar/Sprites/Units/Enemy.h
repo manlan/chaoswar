@@ -30,8 +30,9 @@
     int attact;
     //
     int defence;
+    int isdelete;
 }
-
+@property int isdelete;
 @property (nonatomic, assign) int maxHP;
 @property (nonatomic, assign) int maxMP;
 @property (nonatomic, assign) int currentHP;
@@ -50,14 +51,10 @@
     
 }
 
-+(id) enemy;
-
 @end
 
 @interface EnemyTwo : Enemy {
     
 }
-
-+(id) enemy;
 
 @end

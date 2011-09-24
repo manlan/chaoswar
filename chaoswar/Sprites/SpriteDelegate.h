@@ -9,27 +9,32 @@
 @protocol BulletDelegate <NSObject>
 @optional
 
--(BOOL) run;
+
++ (id) bullet;
+- (BOOL) run;
 
 @end
 
 @protocol TowerDelegate <NSObject>
 @optional
 
--(BOOL) run;
++ (id) tower;
+- (BOOL) run;
 
 @end
 
 @protocol EnemyDelegate <NSObject>
 @optional
 
--(BOOL) run;
++ (id) enemy;
+- (BOOL) run;
 
 @end
 
 @protocol FriendlyDelegate <NSObject>
 @optional
 
--(BOOL) run;
++ (id) friendly;
+- (BOOL) run;
 
 @end

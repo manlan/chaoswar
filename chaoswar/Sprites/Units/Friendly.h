@@ -11,7 +11,16 @@
 #import "SpriteDelegate.h"
 
 @interface Friendly : CCSprite <BulletDelegate> {
-    
+    int isdelete;
+}
+
+@property int isdelete;
+
+@end
+
+
+@interface Friendly1 : Friendly {
+
 }
 
 @end
