@@ -7,6 +7,57 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		043D5B8E14345EAC006061D8 /* enemy1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B5414345EAC006061D8 /* enemy1.plist */; };
+		043D5B8F14345EAC006061D8 /* enemy1.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B5514345EAC006061D8 /* enemy1.png */; };
+		043D5B9014345EAC006061D8 /* magic01.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B5714345EAC006061D8 /* magic01.png */; };
+		043D5B9114345EAC006061D8 /* magic02.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B5814345EAC006061D8 /* magic02.png */; };
+		043D5B9214345EAC006061D8 /* magic03.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B5914345EAC006061D8 /* magic03.png */; };
+		043D5B9314345EAC006061D8 /* magic04.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B5A14345EAC006061D8 /* magic04.png */; };
+		043D5B9414345EAC006061D8 /* magic05.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B5B14345EAC006061D8 /* magic05.png */; };
+		043D5B9514345EAC006061D8 /* magic06.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B5C14345EAC006061D8 /* magic06.png */; };
+		043D5B9614345EAC006061D8 /* magic07.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B5D14345EAC006061D8 /* magic07.png */; };
+		043D5B9714345EAC006061D8 /* magic08.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B5E14345EAC006061D8 /* magic08.png */; };
+		043D5B9814345EAC006061D8 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B6014345EAC006061D8 /* back.png */; };
+		043D5B9914345EAC006061D8 /* guanqia.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B6114345EAC006061D8 /* guanqia.png */; };
+		043D5B9A14345EAC006061D8 /* jinbi.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B6214345EAC006061D8 /* jinbi.png */; };
+		043D5B9B14345EAC006061D8 /* ArrowBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B6514345EAC006061D8 /* ArrowBullet.png */; };
+		043D5B9C14345EAC006061D8 /* ArrowTower1.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B6614345EAC006061D8 /* ArrowTower1.png */; };
+		043D5B9D14345EAC006061D8 /* ArrowTower2.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B6714345EAC006061D8 /* ArrowTower2.png */; };
+		043D5B9E14345EAC006061D8 /* ArrowTower3.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B6814345EAC006061D8 /* ArrowTower3.png */; };
+		043D5B9F14345EAC006061D8 /* ArrowTowerBuilding.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B6914345EAC006061D8 /* ArrowTowerBuilding.png */; };
+		043D5BA014345EAC006061D8 /* DefenceTower1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B6B14345EAC006061D8 /* DefenceTower1.plist */; };
+		043D5BA114345EAC006061D8 /* DefenceTower1.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B6C14345EAC006061D8 /* DefenceTower1.png */; };
+		043D5BA214345EAC006061D8 /* DefenceTower2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B6D14345EAC006061D8 /* DefenceTower2.plist */; };
+		043D5BA314345EAC006061D8 /* DefenceTower2.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B6E14345EAC006061D8 /* DefenceTower2.png */; };
+		043D5BA414345EAC006061D8 /* DefenceTower3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B6F14345EAC006061D8 /* DefenceTower3.plist */; };
+		043D5BA514345EAC006061D8 /* DefenceTower3.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B7014345EAC006061D8 /* DefenceTower3.png */; };
+		043D5BA614345EAC006061D8 /* DefenceTowerBuilding.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B7114345EAC006061D8 /* DefenceTowerBuilding.png */; };
+		043D5BA714345EAC006061D8 /* Friendly1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B7214345EAC006061D8 /* Friendly1.plist */; };
+		043D5BA814345EAC006061D8 /* Friendly1.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B7314345EAC006061D8 /* Friendly1.png */; };
+		043D5BA914345EAC006061D8 /* Friendly2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B7414345EAC006061D8 /* Friendly2.plist */; };
+		043D5BAA14345EAC006061D8 /* Friendly2.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B7514345EAC006061D8 /* Friendly2.png */; };
+		043D5BAB14345EAC006061D8 /* Friendly3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B7614345EAC006061D8 /* Friendly3.plist */; };
+		043D5BAC14345EAC006061D8 /* Friendly3.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B7714345EAC006061D8 /* Friendly3.png */; };
+		043D5BAD14345EAC006061D8 /* MagicBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B7914345EAC006061D8 /* MagicBullet.png */; };
+		043D5BAE14345EAC006061D8 /* MagicTower1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B7A14345EAC006061D8 /* MagicTower1.plist */; };
+		043D5BAF14345EAC006061D8 /* MagicTower1.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B7B14345EAC006061D8 /* MagicTower1.png */; };
+		043D5BB014345EAC006061D8 /* MagicTower2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B7C14345EAC006061D8 /* MagicTower2.plist */; };
+		043D5BB114345EAC006061D8 /* MagicTower2.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B7D14345EAC006061D8 /* MagicTower2.png */; };
+		043D5BB214345EAC006061D8 /* MagicTower3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B7E14345EAC006061D8 /* MagicTower3.plist */; };
+		043D5BB314345EAC006061D8 /* MagicTower3.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B7F14345EAC006061D8 /* MagicTower3.png */; };
+		043D5BB414345EAC006061D8 /* MagicTowerBuilding.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B8014345EAC006061D8 /* MagicTowerBuilding.png */; };
+		043D5BB514345EAC006061D8 /* TurretBullet1.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B8214345EAC006061D8 /* TurretBullet1.png */; };
+		043D5BB614345EAC006061D8 /* TurretBullet2.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B8314345EAC006061D8 /* TurretBullet2.png */; };
+		043D5BB714345EAC006061D8 /* TurretBullet3.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B8414345EAC006061D8 /* TurretBullet3.png */; };
+		043D5BB814345EAC006061D8 /* TurretBurst.plist in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B8514345EAC006061D8 /* TurretBurst.plist */; };
+		043D5BB914345EAC006061D8 /* TurretBurst.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B8614345EAC006061D8 /* TurretBurst.png */; };
+		043D5BBA14345EAC006061D8 /* TurretTower1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B8714345EAC006061D8 /* TurretTower1.plist */; };
+		043D5BBB14345EAC006061D8 /* TurretTower1.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B8814345EAC006061D8 /* TurretTower1.png */; };
+		043D5BBC14345EAC006061D8 /* TurretTower2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B8914345EAC006061D8 /* TurretTower2.plist */; };
+		043D5BBD14345EAC006061D8 /* TurretTower2.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B8A14345EAC006061D8 /* TurretTower2.png */; };
+		043D5BBE14345EAC006061D8 /* TurretTower3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B8B14345EAC006061D8 /* TurretTower3.plist */; };
+		043D5BBF14345EAC006061D8 /* TurretTower3.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B8C14345EAC006061D8 /* TurretTower3.png */; };
+		043D5BC014345EAC006061D8 /* TurretTowerBuilding.png in Resources */ = {isa = PBXBuildFile; fileRef = 043D5B8D14345EAC006061D8 /* TurretTowerBuilding.png */; };
 		045E89B2141E36340097B1EE /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E89AF141E36340097B1EE /* GameData.m */; };
 		045E89B3141E36340097B1EE /* SceneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E89B1141E36340097B1EE /* SceneManager.m */; };
 		045E89BE141E379E0097B1EE /* GameBackgroundScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E89BC141E379E0097B1EE /* GameBackgroundScene.m */; };
@@ -166,6 +217,57 @@
 
 /* Begin PBXFileReference section */
 		0404274D1427403E00FF48B8 /* SpriteDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteDelegate.h; sourceTree = "<group>"; };
+		043D5B5414345EAC006061D8 /* enemy1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = enemy1.plist; sourceTree = "<group>"; };
+		043D5B5514345EAC006061D8 /* enemy1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy1.png; sourceTree = "<group>"; };
+		043D5B5714345EAC006061D8 /* magic01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magic01.png; sourceTree = "<group>"; };
+		043D5B5814345EAC006061D8 /* magic02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magic02.png; sourceTree = "<group>"; };
+		043D5B5914345EAC006061D8 /* magic03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magic03.png; sourceTree = "<group>"; };
+		043D5B5A14345EAC006061D8 /* magic04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magic04.png; sourceTree = "<group>"; };
+		043D5B5B14345EAC006061D8 /* magic05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magic05.png; sourceTree = "<group>"; };
+		043D5B5C14345EAC006061D8 /* magic06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magic06.png; sourceTree = "<group>"; };
+		043D5B5D14345EAC006061D8 /* magic07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magic07.png; sourceTree = "<group>"; };
+		043D5B5E14345EAC006061D8 /* magic08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magic08.png; sourceTree = "<group>"; };
+		043D5B6014345EAC006061D8 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		043D5B6114345EAC006061D8 /* guanqia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guanqia.png; sourceTree = "<group>"; };
+		043D5B6214345EAC006061D8 /* jinbi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jinbi.png; sourceTree = "<group>"; };
+		043D5B6514345EAC006061D8 /* ArrowBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArrowBullet.png; sourceTree = "<group>"; };
+		043D5B6614345EAC006061D8 /* ArrowTower1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArrowTower1.png; sourceTree = "<group>"; };
+		043D5B6714345EAC006061D8 /* ArrowTower2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArrowTower2.png; sourceTree = "<group>"; };
+		043D5B6814345EAC006061D8 /* ArrowTower3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArrowTower3.png; sourceTree = "<group>"; };
+		043D5B6914345EAC006061D8 /* ArrowTowerBuilding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArrowTowerBuilding.png; sourceTree = "<group>"; };
+		043D5B6B14345EAC006061D8 /* DefenceTower1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefenceTower1.plist; sourceTree = "<group>"; };
+		043D5B6C14345EAC006061D8 /* DefenceTower1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefenceTower1.png; sourceTree = "<group>"; };
+		043D5B6D14345EAC006061D8 /* DefenceTower2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefenceTower2.plist; sourceTree = "<group>"; };
+		043D5B6E14345EAC006061D8 /* DefenceTower2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefenceTower2.png; sourceTree = "<group>"; };
+		043D5B6F14345EAC006061D8 /* DefenceTower3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefenceTower3.plist; sourceTree = "<group>"; };
+		043D5B7014345EAC006061D8 /* DefenceTower3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefenceTower3.png; sourceTree = "<group>"; };
+		043D5B7114345EAC006061D8 /* DefenceTowerBuilding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefenceTowerBuilding.png; sourceTree = "<group>"; };
+		043D5B7214345EAC006061D8 /* Friendly1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Friendly1.plist; sourceTree = "<group>"; };
+		043D5B7314345EAC006061D8 /* Friendly1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Friendly1.png; sourceTree = "<group>"; };
+		043D5B7414345EAC006061D8 /* Friendly2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Friendly2.plist; sourceTree = "<group>"; };
+		043D5B7514345EAC006061D8 /* Friendly2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Friendly2.png; sourceTree = "<group>"; };
+		043D5B7614345EAC006061D8 /* Friendly3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Friendly3.plist; sourceTree = "<group>"; };
+		043D5B7714345EAC006061D8 /* Friendly3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Friendly3.png; sourceTree = "<group>"; };
+		043D5B7914345EAC006061D8 /* MagicBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MagicBullet.png; sourceTree = "<group>"; };
+		043D5B7A14345EAC006061D8 /* MagicTower1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MagicTower1.plist; sourceTree = "<group>"; };
+		043D5B7B14345EAC006061D8 /* MagicTower1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MagicTower1.png; sourceTree = "<group>"; };
+		043D5B7C14345EAC006061D8 /* MagicTower2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MagicTower2.plist; sourceTree = "<group>"; };
+		043D5B7D14345EAC006061D8 /* MagicTower2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MagicTower2.png; sourceTree = "<group>"; };
+		043D5B7E14345EAC006061D8 /* MagicTower3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MagicTower3.plist; sourceTree = "<group>"; };
+		043D5B7F14345EAC006061D8 /* MagicTower3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MagicTower3.png; sourceTree = "<group>"; };
+		043D5B8014345EAC006061D8 /* MagicTowerBuilding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MagicTowerBuilding.png; sourceTree = "<group>"; };
+		043D5B8214345EAC006061D8 /* TurretBullet1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TurretBullet1.png; sourceTree = "<group>"; };
+		043D5B8314345EAC006061D8 /* TurretBullet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TurretBullet2.png; sourceTree = "<group>"; };
+		043D5B8414345EAC006061D8 /* TurretBullet3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TurretBullet3.png; sourceTree = "<group>"; };
+		043D5B8514345EAC006061D8 /* TurretBurst.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TurretBurst.plist; sourceTree = "<group>"; };
+		043D5B8614345EAC006061D8 /* TurretBurst.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TurretBurst.png; sourceTree = "<group>"; };
+		043D5B8714345EAC006061D8 /* TurretTower1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TurretTower1.plist; sourceTree = "<group>"; };
+		043D5B8814345EAC006061D8 /* TurretTower1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TurretTower1.png; sourceTree = "<group>"; };
+		043D5B8914345EAC006061D8 /* TurretTower2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TurretTower2.plist; sourceTree = "<group>"; };
+		043D5B8A14345EAC006061D8 /* TurretTower2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TurretTower2.png; sourceTree = "<group>"; };
+		043D5B8B14345EAC006061D8 /* TurretTower3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TurretTower3.plist; sourceTree = "<group>"; };
+		043D5B8C14345EAC006061D8 /* TurretTower3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TurretTower3.png; sourceTree = "<group>"; };
+		043D5B8D14345EAC006061D8 /* TurretTowerBuilding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TurretTowerBuilding.png; sourceTree = "<group>"; };
 		045E89AE141E36340097B1EE /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
 		045E89AF141E36340097B1EE /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
 		045E89B0141E36340097B1EE /* SceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneManager.h; sourceTree = "<group>"; };
@@ -479,6 +581,117 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		043D5B5314345EAB006061D8 /* Enemy */ = {
+			isa = PBXGroup;
+			children = (
+				043D5B5414345EAC006061D8 /* enemy1.plist */,
+				043D5B5514345EAC006061D8 /* enemy1.png */,
+			);
+			path = Enemy;
+			sourceTree = "<group>";
+		};
+		043D5B5614345EAC006061D8 /* Magic */ = {
+			isa = PBXGroup;
+			children = (
+				043D5B5714345EAC006061D8 /* magic01.png */,
+				043D5B5814345EAC006061D8 /* magic02.png */,
+				043D5B5914345EAC006061D8 /* magic03.png */,
+				043D5B5A14345EAC006061D8 /* magic04.png */,
+				043D5B5B14345EAC006061D8 /* magic05.png */,
+				043D5B5C14345EAC006061D8 /* magic06.png */,
+				043D5B5D14345EAC006061D8 /* magic07.png */,
+				043D5B5E14345EAC006061D8 /* magic08.png */,
+			);
+			path = Magic;
+			sourceTree = "<group>";
+		};
+		043D5B5F14345EAC006061D8 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				043D5B6014345EAC006061D8 /* back.png */,
+				043D5B6114345EAC006061D8 /* guanqia.png */,
+				043D5B6214345EAC006061D8 /* jinbi.png */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		043D5B6314345EAC006061D8 /* Tower */ = {
+			isa = PBXGroup;
+			children = (
+				043D5B6414345EAC006061D8 /* ArrowTower */,
+				043D5B6A14345EAC006061D8 /* DefenceTower */,
+				043D5B7814345EAC006061D8 /* MagicTower */,
+				043D5B8114345EAC006061D8 /* TurretTower */,
+			);
+			path = Tower;
+			sourceTree = "<group>";
+		};
+		043D5B6414345EAC006061D8 /* ArrowTower */ = {
+			isa = PBXGroup;
+			children = (
+				043D5B6514345EAC006061D8 /* ArrowBullet.png */,
+				043D5B6614345EAC006061D8 /* ArrowTower1.png */,
+				043D5B6714345EAC006061D8 /* ArrowTower2.png */,
+				043D5B6814345EAC006061D8 /* ArrowTower3.png */,
+				043D5B6914345EAC006061D8 /* ArrowTowerBuilding.png */,
+			);
+			path = ArrowTower;
+			sourceTree = "<group>";
+		};
+		043D5B6A14345EAC006061D8 /* DefenceTower */ = {
+			isa = PBXGroup;
+			children = (
+				043D5B6B14345EAC006061D8 /* DefenceTower1.plist */,
+				043D5B6C14345EAC006061D8 /* DefenceTower1.png */,
+				043D5B6D14345EAC006061D8 /* DefenceTower2.plist */,
+				043D5B6E14345EAC006061D8 /* DefenceTower2.png */,
+				043D5B6F14345EAC006061D8 /* DefenceTower3.plist */,
+				043D5B7014345EAC006061D8 /* DefenceTower3.png */,
+				043D5B7114345EAC006061D8 /* DefenceTowerBuilding.png */,
+				043D5B7214345EAC006061D8 /* Friendly1.plist */,
+				043D5B7314345EAC006061D8 /* Friendly1.png */,
+				043D5B7414345EAC006061D8 /* Friendly2.plist */,
+				043D5B7514345EAC006061D8 /* Friendly2.png */,
+				043D5B7614345EAC006061D8 /* Friendly3.plist */,
+				043D5B7714345EAC006061D8 /* Friendly3.png */,
+			);
+			path = DefenceTower;
+			sourceTree = "<group>";
+		};
+		043D5B7814345EAC006061D8 /* MagicTower */ = {
+			isa = PBXGroup;
+			children = (
+				043D5B7914345EAC006061D8 /* MagicBullet.png */,
+				043D5B7A14345EAC006061D8 /* MagicTower1.plist */,
+				043D5B7B14345EAC006061D8 /* MagicTower1.png */,
+				043D5B7C14345EAC006061D8 /* MagicTower2.plist */,
+				043D5B7D14345EAC006061D8 /* MagicTower2.png */,
+				043D5B7E14345EAC006061D8 /* MagicTower3.plist */,
+				043D5B7F14345EAC006061D8 /* MagicTower3.png */,
+				043D5B8014345EAC006061D8 /* MagicTowerBuilding.png */,
+			);
+			path = MagicTower;
+			sourceTree = "<group>";
+		};
+		043D5B8114345EAC006061D8 /* TurretTower */ = {
+			isa = PBXGroup;
+			children = (
+				043D5B8214345EAC006061D8 /* TurretBullet1.png */,
+				043D5B8314345EAC006061D8 /* TurretBullet2.png */,
+				043D5B8414345EAC006061D8 /* TurretBullet3.png */,
+				043D5B8514345EAC006061D8 /* TurretBurst.plist */,
+				043D5B8614345EAC006061D8 /* TurretBurst.png */,
+				043D5B8714345EAC006061D8 /* TurretTower1.plist */,
+				043D5B8814345EAC006061D8 /* TurretTower1.png */,
+				043D5B8914345EAC006061D8 /* TurretTower2.plist */,
+				043D5B8A14345EAC006061D8 /* TurretTower2.png */,
+				043D5B8B14345EAC006061D8 /* TurretTower3.plist */,
+				043D5B8C14345EAC006061D8 /* TurretTower3.png */,
+				043D5B8D14345EAC006061D8 /* TurretTowerBuilding.png */,
+			);
+			path = TurretTower;
+			sourceTree = "<group>";
+		};
 		045E89B7141E37410097B1EE /* GameScenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -497,6 +710,10 @@
 		04B40312142DB183005F35EE /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				043D5B5314345EAB006061D8 /* Enemy */,
+				043D5B5614345EAC006061D8 /* Magic */,
+				043D5B5F14345EAC006061D8 /* Other */,
+				043D5B6314345EAC006061D8 /* Tower */,
 				04B40341142DB195005F35EE /* number_fonts_small.png */,
 			);
 			name = Image;
@@ -1120,6 +1337,57 @@
 				04B40342142DB195005F35EE /* number_fonts_small.png in Resources */,
 				04B40346142DB1D0005F35EE /* map1.tmx in Resources */,
 				04B40347142DB1D0005F35EE /* tmw_desert_spacing.png in Resources */,
+				043D5B8E14345EAC006061D8 /* enemy1.plist in Resources */,
+				043D5B8F14345EAC006061D8 /* enemy1.png in Resources */,
+				043D5B9014345EAC006061D8 /* magic01.png in Resources */,
+				043D5B9114345EAC006061D8 /* magic02.png in Resources */,
+				043D5B9214345EAC006061D8 /* magic03.png in Resources */,
+				043D5B9314345EAC006061D8 /* magic04.png in Resources */,
+				043D5B9414345EAC006061D8 /* magic05.png in Resources */,
+				043D5B9514345EAC006061D8 /* magic06.png in Resources */,
+				043D5B9614345EAC006061D8 /* magic07.png in Resources */,
+				043D5B9714345EAC006061D8 /* magic08.png in Resources */,
+				043D5B9814345EAC006061D8 /* back.png in Resources */,
+				043D5B9914345EAC006061D8 /* guanqia.png in Resources */,
+				043D5B9A14345EAC006061D8 /* jinbi.png in Resources */,
+				043D5B9B14345EAC006061D8 /* ArrowBullet.png in Resources */,
+				043D5B9C14345EAC006061D8 /* ArrowTower1.png in Resources */,
+				043D5B9D14345EAC006061D8 /* ArrowTower2.png in Resources */,
+				043D5B9E14345EAC006061D8 /* ArrowTower3.png in Resources */,
+				043D5B9F14345EAC006061D8 /* ArrowTowerBuilding.png in Resources */,
+				043D5BA014345EAC006061D8 /* DefenceTower1.plist in Resources */,
+				043D5BA114345EAC006061D8 /* DefenceTower1.png in Resources */,
+				043D5BA214345EAC006061D8 /* DefenceTower2.plist in Resources */,
+				043D5BA314345EAC006061D8 /* DefenceTower2.png in Resources */,
+				043D5BA414345EAC006061D8 /* DefenceTower3.plist in Resources */,
+				043D5BA514345EAC006061D8 /* DefenceTower3.png in Resources */,
+				043D5BA614345EAC006061D8 /* DefenceTowerBuilding.png in Resources */,
+				043D5BA714345EAC006061D8 /* Friendly1.plist in Resources */,
+				043D5BA814345EAC006061D8 /* Friendly1.png in Resources */,
+				043D5BA914345EAC006061D8 /* Friendly2.plist in Resources */,
+				043D5BAA14345EAC006061D8 /* Friendly2.png in Resources */,
+				043D5BAB14345EAC006061D8 /* Friendly3.plist in Resources */,
+				043D5BAC14345EAC006061D8 /* Friendly3.png in Resources */,
+				043D5BAD14345EAC006061D8 /* MagicBullet.png in Resources */,
+				043D5BAE14345EAC006061D8 /* MagicTower1.plist in Resources */,
+				043D5BAF14345EAC006061D8 /* MagicTower1.png in Resources */,
+				043D5BB014345EAC006061D8 /* MagicTower2.plist in Resources */,
+				043D5BB114345EAC006061D8 /* MagicTower2.png in Resources */,
+				043D5BB214345EAC006061D8 /* MagicTower3.plist in Resources */,
+				043D5BB314345EAC006061D8 /* MagicTower3.png in Resources */,
+				043D5BB414345EAC006061D8 /* MagicTowerBuilding.png in Resources */,
+				043D5BB514345EAC006061D8 /* TurretBullet1.png in Resources */,
+				043D5BB614345EAC006061D8 /* TurretBullet2.png in Resources */,
+				043D5BB714345EAC006061D8 /* TurretBullet3.png in Resources */,
+				043D5BB814345EAC006061D8 /* TurretBurst.plist in Resources */,
+				043D5BB914345EAC006061D8 /* TurretBurst.png in Resources */,
+				043D5BBA14345EAC006061D8 /* TurretTower1.plist in Resources */,
+				043D5BBB14345EAC006061D8 /* TurretTower1.png in Resources */,
+				043D5BBC14345EAC006061D8 /* TurretTower2.plist in Resources */,
+				043D5BBD14345EAC006061D8 /* TurretTower2.png in Resources */,
+				043D5BBE14345EAC006061D8 /* TurretTower3.plist in Resources */,
+				043D5BBF14345EAC006061D8 /* TurretTower3.png in Resources */,
+				043D5BC014345EAC006061D8 /* TurretTowerBuilding.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

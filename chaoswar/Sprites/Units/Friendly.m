@@ -63,7 +63,6 @@
     [self schedule:@selector(attact:)];
 }
 
-
 - (void) attact:(ccTime)dt {
     //攻击敌人完毕
     if (1 == 1) {

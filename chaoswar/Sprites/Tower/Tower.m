@@ -70,6 +70,7 @@
 
 //攻击敌人
 - (void) attact:(ccTime)dt {
+    
     [self unschedule:@selector(attact:)];
     [self schedule:@selector(startSearch:)];
 }
