@@ -13,6 +13,7 @@
 #import "Friendly.h"
 #import "Wave.h"
 #import "WayPoint.h"
+#import "Pointer.h"
 
 @implementation GameController
 
@@ -24,10 +25,11 @@
 @synthesize towerArray;
 @synthesize waveArray;	
 @synthesize bulletArray;	
-@synthesize waypointArray;
+@synthesize waypointManager;
 @synthesize magicArray;
 @synthesize frientlyArray;
 @synthesize gestureRecognizer;
+@synthesize pt;
 @synthesize waveLevel;
 
 static GameController *_sharedController = nil;
@@ -40,22 +42,41 @@ static GameController *_sharedController = nil;
 	return _sharedController;
 }
 
-- (void) initController:(id<Pointer>*)pointer {
+- (id) init
+{
+	if ((self = [super init])) {
+        enemyArray = [[NSMutableArray alloc] init];
+        towerArray = [[NSMutableArray alloc] init];
+        waveArray = [[NSMutableArray alloc] init];
+        bulletArray = [[NSMutableArray alloc] init];
+        waypointManager = [[WayPointManager alloc] init];
+        magicArray = [[NSMutableArray alloc] init];
+        frientlyArray = [[NSMutableArray alloc] init];
+	}
+	return self;
+}
+
+- (void) initController:(Pointer*)pointer {
     pt = pointer;
     //=========初始化敌人
-    [pointer initEnemy:enemyArray];
+    [pt initEnemy:enemyArray];
     //=========初始化塔
-    [pointer initTower:towerArray];
+    [pt initTower:towerArray];
     //=========初始化出兵顺序
-    [pointer initWave:waveArray];
+    [pt initWave:waveArray];
     //=========初始化子弹
-    [pointer initBullety:bulletArray];
+    [pt initBullety:bulletArray];
     //=========初始化路线
-    [pointer initWayPoint:waypointArray];
+    [pt initWayPoint:waypointManager];
     //=========初始化魔法
-    [pointer initMagic:magicArray];
+    [pt initMagic:magicArray];
     //=========初始化友军
-    [pointer initFriendly:frientlyArray];
+    [pt initFriendly:frientlyArray];
+}
+
+- (void) start
+{
+
 }
 
 - (void) deleteUnUseSprite:(CCLayer*)scene
@@ -144,38 +165,35 @@ static GameController *_sharedController = nil;
     return wave;
 }
 
-- (id) init
-{
-	if ((self = [super init])) {
-        enemyArray = [[NSMutableArray alloc] init];
-        towerArray = [[NSMutableArray alloc] init];
-        waveArray = [[NSMutableArray alloc] init];
-        bulletArray = [[NSMutableArray alloc] init];
-        waypointArray = [[NSMutableArray alloc] init];
-        magicArray = [[NSMutableArray alloc] init];
-        frientlyArray = [[NSMutableArray alloc] init];
-	}
-	return self;
-}
-
 - (void)dealloc {
-    self.gameBackground = nil;
-	self.gameImfomation = nil;	
-	self.gameMagic = nil;
-    self.gameController = nil;
-	self.gestureRecognizer = nil;
+    [enemyArray removeAllObjects];
+    [towerArray removeAllObjects];
+    [waveArray removeAllObjects];
+    [bulletArray removeAllObjects];
+    [magicArray removeAllObjects];
+    [frientlyArray removeAllObjects];
+    [gameBackground release];
+	[gameImfomation release];	
+	[gameMagic release];
+    [gameController release];
+	[gestureRecognizer release];
     [enemyArray release];
     [towerArray release];
     [waveArray release];
     [bulletArray release];
-    [waypointArray release];
+    [waypointManager release];
     [magicArray release];
     [frientlyArray release];
+    gameBackground = nil;
+	gameImfomation = nil;	
+	gameMagic = nil;
+    gameController = nil;
+	gestureRecognizer = nil;
     enemyArray = nil;
     towerArray = nil;
     waveArray = nil;
     bulletArray = nil;
-    waypointArray = nil;
+    waypointManager = nil;
     magicArray = nil;
     frientlyArray = nil;
 	[super dealloc];

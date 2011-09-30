@@ -1,15 +1,15 @@
 //
-//  Pointer1.m
+//  Pointer.m
 //  chaoswar
 //
-//  Created by Mac on 11-9-24.
+//  Created by Mac on 11-9-30.
 //  Copyright 2011年 __MyCompanyName__. All rights reserved.
 //
 
-#import "Pointer1.h"
-#import "WayPointManager.h"
+#import "Pointer.h"
 
-@implementation Pointer1
+
+@implementation Pointer
 
 -(void) initEnemy:(NSMutableArray*)array
 {
@@ -33,8 +33,7 @@
 
 -(void) initWayPoint:(WayPointManager*)manager
 {
-    [manager removeAllWayPoint];
-    //[manager addWayPoint:0 wayPoint:nil];
+    //
 }
 
 -(void) initMagic:(NSMutableArray*)array

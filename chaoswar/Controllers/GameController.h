@@ -14,6 +14,7 @@
 @class GameImfomationScene;
 @class GameMagicScene;
 @class GameControllerScene;
+@class WayPointManager;
 @class Wave;
 
 @interface GameController : NSObject {
@@ -25,11 +26,11 @@
 	NSMutableArray *towerArray;
 	NSMutableArray *waveArray;	
 	NSMutableArray *bulletArray;	
-	NSMutableArray *waypointArray;
+	WayPointManager *waypointManager;
     NSMutableArray *magicArray;
     NSMutableArray *frientlyArray;
 	UIPanGestureRecognizer *gestureRecognizer;
-    id<Pointer> *pt;
+    Pointer *pt;
     int waveLevel;
 }
 
@@ -41,15 +42,18 @@
 @property (nonatomic, retain) NSMutableArray *towerArray;
 @property (nonatomic, retain) NSMutableArray *waveArray;	
 @property (nonatomic, retain) NSMutableArray *bulletArray;	
-@property (nonatomic, retain) NSMutableArray *waypointArray;
+@property (nonatomic, retain) WayPointManager *waypointManager;
 @property (nonatomic, retain) NSMutableArray *magicArray;
 @property (nonatomic, retain) NSMutableArray *frientlyArray;
 @property (nonatomic, retain) UIPanGestureRecognizer *gestureRecognizer;
+@property (nonatomic, retain) Pointer *pt;
 @property int waveLevel;
 
 + (GameController*) getGameController;
 
-- (void) initController:(id<Pointer>*)pointer;
+- (void) initController:(Pointer*)pointer;
+
+- (void) start;
 
 //获取当前的敌人攻击队列
 - (Wave *)getCurrentWave;

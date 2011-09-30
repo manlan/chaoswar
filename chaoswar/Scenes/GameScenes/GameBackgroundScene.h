@@ -13,16 +13,20 @@
 #import "Tower.h"
 
 @interface GameBackgroundScene : CCLayer {
-    CCTMXTiledMap *map;
-    CCTMXLayer *background;
+    CCSprite *background;
+    CCSprite *showground;
     int waveLevel;
+    int pointNum;
 }
 
-@property (nonatomic, retain) CCTMXTiledMap *map;
-@property (nonatomic, retain) CCTMXLayer *background;	
+@property (nonatomic, retain) CCSprite *background;
+@property (nonatomic, retain) CCSprite *showground;	
 @property int waveLevel;
+@property int pointNum;
 
-+ (id) scene;
++ (id) scene:(int)pn;
+
+- (void) initMap:(int)pn;
 
 - (BOOL) canBuildOnTilePosition:(CGPoint) pos;
 

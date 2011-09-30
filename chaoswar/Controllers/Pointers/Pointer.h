@@ -2,13 +2,17 @@
 //  Pointer.h
 //  chaoswar
 //
-//  Created by Mac on 11-9-24.
+//  Created by Mac on 11-9-30.
 //  Copyright 2011年 __MyCompanyName__. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "WayPointManager.h"
 
-@protocol Pointer <NSObject>
+@interface Pointer : NSObject {
+    
+}
+
 
 -(void) initEnemy:(NSMutableArray*)array;
 
@@ -18,7 +22,7 @@
 
 -(void) initBullety:(NSMutableArray*)array;
 
--(void) initWayPoint:(NSMutableArray*)array;
+-(void) initWayPoint:(WayPointManager*)manager;
 
 -(void) initMagic:(NSMutableArray*)array;
 

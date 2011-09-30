@@ -95,9 +95,8 @@
 
 -(void) goToMainGameSence:(id) sender 
 {
-    //CCMenuItemImage *button = sender;
-    //NSLog(@"%d",button.tag);
-    [[CCDirector sharedDirector] replaceScene: [SceneManager TransTurnOffTiles:0.56f scene:[GameBackgroundScene scene]]];
+    CCMenuItemImage *button = sender;
+    [[CCDirector sharedDirector] replaceScene: [SceneManager TransTurnOffTiles:0.56f scene:[GameBackgroundScene scene:button.tag]]];
 }
 
 -(void) goToMainMenuSence:(id) sender 

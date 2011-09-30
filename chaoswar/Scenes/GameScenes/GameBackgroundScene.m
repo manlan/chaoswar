@@ -16,15 +16,17 @@
 
 @implementation GameBackgroundScene
 
-@synthesize map;
 @synthesize background;
+@synthesize showground;
 @synthesize waveLevel;
+@synthesize pointNum;
 
-+(id) scene
++(id) scene:(int)pn
 {
 	CCScene *scene = [CCScene node];
     
 	GameBackgroundScene *gameBackgroundScene = [GameBackgroundScene node];
+    [gameBackgroundScene initMap:pn];
 	[scene addChild:gameBackgroundScene z:1];
     GameImfomationScene *gameImfomationScene = [GameImfomationScene node];
     [scene addChild:gameImfomationScene z:2];
@@ -38,77 +40,87 @@
     gc.gameImfomation = gameImfomationScene;
     gc.gameMagic = gameMagicScene;
     gc.gameController = gameControllerScene;
-
+    //==================初始化配置=================
+    switch (pn) {
+        case 1:
+            [gc initController:[[[Pointer1 alloc] init] autorelease]];
+            break;
+        default:
+            [gc initController:[[[Pointer1 alloc] init] autorelease]];
+            break;
+    }
+    [gc start];
 	return scene;
 }
 
--(id) init {
-    if((self = [super init])) {
-        //================读取地图文件=================
-		self.map = [CCTMXTiledMap tiledMapWithTMXFile:@"map1.tmx"];
-        self.background = [self.map layerNamed:@"background"];
-		//self.background.anchorPoint = ccp(0, 0);
-        self.background.position = ccp(240, 160);
-		[self addChild:self.map z:0];
-        //==================初始化配置=================
-        GameController *gc = [GameController getGameController];
-        [gc initController:[[Pointer1 alloc] init]];
-        //================循环游戏逻辑=================
-		[self schedule:@selector(gameLogic:) interval:1.0];		
-		//self.currentLevel = 0;
-		self.position = ccp(-228, -122);
-    }
-    return self;
+- (void) initMap:(int)pn
+{
+    self.pointNum = pn;
+    self.pointNum = 1;
+    //================读取地图文件=================
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    //背景，表示是否可以通过的
+    background = [CCSprite spriteWithFile:[NSString stringWithFormat:@"map%db.png", self.pointNum]];
+    background.position = CGPointMake(size.width /2 , size.height/2);
+    background.scale = 1;
+    [self addChild:background z:1];
+    //前景，显示用的
+    showground = [CCSprite spriteWithFile:[NSString stringWithFormat:@"map%ds.png", self.pointNum]];
+    showground.position = CGPointMake(size.width /2 , size.height/2);
+    showground.scale = 1;
+    [self addChild:showground z:2];
+    //================循环游戏逻辑=================
+    [self schedule:@selector(gameLogic:) interval:1.0];		
 }
 
 //地图块编号
 - (CGPoint) tileCoordForPosition:(CGPoint) position 
 {
-	int x = position.x / self.map.tileSize.width;
-	int y = ((self.map.mapSize.height * self.map.tileSize.height) - position.y) / self.map.tileSize.height;
-	return ccp(x,y);
+//	int x = position.x / self.map.tileSize.width;
+//	int y = ((self.map.mapSize.height * self.map.tileSize.height) - position.y) / self.map.tileSize.height;
+//	return ccp(x,y);
 }
 
 //判断是否允许建塔
 - (BOOL) canBuildOnTilePosition:(CGPoint) pos 
 {
-	CGPoint towerLoc = [self tileCoordForPosition: pos];
-	
-	int tileGid = [self.background tileGIDAt:towerLoc];
-	NSDictionary *dics = [self.map propertiesForGID:tileGid];
-	NSString *type = [dics valueForKey:@"canbuild"];
-	if([type isEqualToString: @"1"]) {
-		return YES;
-	}
+//	CGPoint towerLoc = [self tileCoordForPosition: pos];
+//	
+//	int tileGid = [self.background tileGIDAt:towerLoc];
+//	NSDictionary *dics = [self.map propertiesForGID:tileGid];
+//	NSString *type = [dics valueForKey:@"canbuild"];
+//	if([type isEqualToString: @"1"]) {
+//		return YES;
+//	}
 	return NO;
 }
 
 //建塔
 -(void)addTower: (CGPoint)pos {
 	GameController *gc = [GameController getGameController];
-	
-	Tower *tower = nil;
-	
-	CGPoint towerLoc = [self tileCoordForPosition: pos];
-	
-	int tileGid = [self.background tileGIDAt:towerLoc];
-	NSDictionary *props = [self.map propertiesForGID:tileGid];
-	NSString *type = [props valueForKey:@"buildable"];
-	
-	
-	NSLog(@"Buildable: %@", type);
-	if([type isEqualToString: @"1"]) {
-		tower = [MachineGunTower tower];
-		tower.position = ccp((towerLoc.x * 32) + 16, self.map.contentSize.height - (towerLoc.y * 32) - 16);
-		[self addChild:tower z:1];
-		
-		tower.tag = 1;
-		[gc.towerArray addObject:tower];
-		
-	} else {
-		NSLog(@"Tile Not Buildable");
-	}
-	
+//	
+//	Tower *tower = nil;
+//	
+//	CGPoint towerLoc = [self tileCoordForPosition: pos];
+//	
+//	int tileGid = [self.background tileGIDAt:towerLoc];
+//	NSDictionary *props = [self.map propertiesForGID:tileGid];
+//	NSString *type = [props valueForKey:@"buildable"];
+//	
+//	
+//	NSLog(@"Buildable: %@", type);
+//	if([type isEqualToString: @"1"]) {
+//		tower = [MachineGunTower tower];
+//		tower.position = ccp((towerLoc.x * 32) + 16, self.map.contentSize.height - (towerLoc.y * 32) - 16);
+//		[self addChild:tower z:1];
+//		
+//		tower.tag = 1;
+//		[gc.towerArray addObject:tower];
+//		
+//	} else {
+//		NSLog(@"Tile Not Buildable");
+//	}
+//	
 }
 
 //添加敌军
@@ -162,8 +174,7 @@
 
 //游戏逻辑（循环）
 -(void)gameLogic:(ccTime)dt {
-    
-	//增加敌军
+	//增加敌军＝＝＝＝暂时
 	GameController *gc = [GameController getGameController];
 	Wave * wave = [gc getCurrentWave];
 	static double lastTimeTargetAdded = 0;
@@ -182,9 +193,9 @@
     CGSize winSize = [CCDirector sharedDirector].winSize;
     CGPoint retval = newPos;
     retval.x = MIN(retval.x, 0);
-    retval.x = MAX(retval.x, -map.contentSize.width+winSize.width); 
+    //retval.x = MAX(retval.x, -map.contentSize.width+winSize.width); 
     retval.y = MIN(0, retval.y);
-    retval.y = MAX(-map.contentSize.height+winSize.height, retval.y); 
+    //retval.y = MAX(-map.contentSize.height+winSize.height, retval.y); 
     return retval;
 }
 

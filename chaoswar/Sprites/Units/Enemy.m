@@ -34,15 +34,15 @@
 }
 
 - (WayPoint*) getCurrentWaypoint{
-	GameController *gc = [GameController getGameController];
-	WayPoint *waypoint = (WayPoint*) [gc.waypointArray objectAtIndex:self.wayPoint];
-	return waypoint;
+//	GameController *gc = [GameController getGameController];
+//	WayPoint *waypoint = (WayPoint*) [gc.waypointArray objectAtIndex:self.wayPoint];
+//	return waypoint;
 }
 
 - (WayPoint*) getNextWaypoint{
-	GameController *gc = [GameController getGameController];
-	WayPoint *waypoint = (WayPoint*) [gc.waypointArray objectAtIndex:(self.wayPoint + 1)];
-	return waypoint;
+//	GameController *gc = [GameController getGameController];
+//	WayPoint *waypoint = (WayPoint*) [gc.waypointArray objectAtIndex:(self.wayPoint + 1)];
+//	return waypoint;
 }
 
 -(void) enemyLogic:(ccTime)dt {

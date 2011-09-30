@@ -89,7 +89,7 @@
 		04B4033F142DB183005F35EE /* updataBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 04B4032A142DB183005F35EE /* updataBg.png */; };
 		04B40340142DB183005F35EE /* UpdataList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04B4032B142DB183005F35EE /* UpdataList.plist */; };
 		04B40342142DB195005F35EE /* number_fonts_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 04B40341142DB195005F35EE /* number_fonts_small.png */; };
-		04B40346142DB1D0005F35EE /* map1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 04B40344142DB1D0005F35EE /* map1.tmx */; };
+		04B40346142DB1D0005F35EE /* map001.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 04B40344142DB1D0005F35EE /* map001.tmx */; };
 		04B40347142DB1D0005F35EE /* tmw_desert_spacing.png in Resources */ = {isa = PBXBuildFile; fileRef = 04B40345142DB1D0005F35EE /* tmw_desert_spacing.png */; };
 		04B5E3A9142CF0CE00089068 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5E3A8142CF0CE00089068 /* GameController.m */; };
 		04B5E3AC142CF10400089068 /* Wave.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5E3AB142CF10400089068 /* Wave.m */; };
@@ -213,6 +213,11 @@
 		04BAEBE71413B2EA006FD44B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BAEBE61413B2EA006FD44B /* main.m */; };
 		04BAEBEA1413B2EA006FD44B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BAEBE91413B2EA006FD44B /* AppDelegate.m */; };
 		04BAEBED1413B2EB006FD44B /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BAEBEC1413B2EB006FD44B /* RootViewController.m */; };
+		04C4A7A714345FC0009C83B4 /* WayPointManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4A7A614345FC0009C83B4 /* WayPointManager.m */; };
+		04DE3FF9143597E3008F301D /* Pointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE3FF8143597E3008F301D /* Pointer.m */; };
+		04DE3FFC1435A617008F301D /* map1b.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DE3FFA1435A617008F301D /* map1b.png */; };
+		04DE3FFD1435A617008F301D /* map1s.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DE3FFB1435A617008F301D /* map1s.png */; };
+		04DE3FFF1435A739008F301D /* emptyTower.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DE3FFE1435A739008F301D /* emptyTower.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -308,7 +313,7 @@
 		04B4032A142DB183005F35EE /* updataBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updataBg.png; sourceTree = "<group>"; };
 		04B4032B142DB183005F35EE /* UpdataList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UpdataList.plist; sourceTree = "<group>"; };
 		04B40341142DB195005F35EE /* number_fonts_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number_fonts_small.png; sourceTree = "<group>"; };
-		04B40344142DB1D0005F35EE /* map1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map1.tmx; sourceTree = "<group>"; };
+		04B40344142DB1D0005F35EE /* map001.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map001.tmx; sourceTree = "<group>"; };
 		04B40345142DB1D0005F35EE /* tmw_desert_spacing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tmw_desert_spacing.png; sourceTree = "<group>"; };
 		04B5E3A7142CF0CE00089068 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
 		04B5E3A8142CF0CE00089068 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
@@ -316,7 +321,6 @@
 		04B5E3AB142CF10400089068 /* Wave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wave.m; sourceTree = "<group>"; };
 		04B5E3AD142CF11E00089068 /* WayPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WayPoint.h; sourceTree = "<group>"; };
 		04B5E3AE142CF11E00089068 /* WayPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WayPoint.m; sourceTree = "<group>"; };
-		04B5E3B1142CF56800089068 /* Pointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pointer.h; sourceTree = "<group>"; };
 		04B5E3B4142CF68900089068 /* Pointer1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pointer1.h; sourceTree = "<group>"; };
 		04B5E3B5142CF68900089068 /* Pointer1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pointer1.m; sourceTree = "<group>"; };
 		04B93D39141E310600EA4499 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
@@ -560,6 +564,13 @@
 		04BAEBEB1413B2EA006FD44B /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		04BAEBEC1413B2EB006FD44B /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		04BAEBF11413B2EB006FD44B /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
+		04C4A7A514345FC0009C83B4 /* WayPointManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WayPointManager.h; sourceTree = "<group>"; };
+		04C4A7A614345FC0009C83B4 /* WayPointManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WayPointManager.m; sourceTree = "<group>"; };
+		04DE3FF7143597E3008F301D /* Pointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pointer.h; sourceTree = "<group>"; };
+		04DE3FF8143597E3008F301D /* Pointer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pointer.m; sourceTree = "<group>"; };
+		04DE3FFA1435A617008F301D /* map1b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map1b.png; sourceTree = "<group>"; };
+		04DE3FFB1435A617008F301D /* map1s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map1s.png; sourceTree = "<group>"; };
+		04DE3FFE1435A739008F301D /* emptyTower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emptyTower.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -618,6 +629,7 @@
 		043D5B6314345EAC006061D8 /* Tower */ = {
 			isa = PBXGroup;
 			children = (
+				04DE3FFE1435A739008F301D /* emptyTower.png */,
 				043D5B6414345EAC006061D8 /* ArrowTower */,
 				043D5B6A14345EAC006061D8 /* DefenceTower */,
 				043D5B7814345EAC006061D8 /* MagicTower */,
@@ -776,7 +788,9 @@
 		04B40343142DB1D0005F35EE /* Maps */ = {
 			isa = PBXGroup;
 			children = (
-				04B40344142DB1D0005F35EE /* map1.tmx */,
+				04DE3FFA1435A617008F301D /* map1b.png */,
+				04DE3FFB1435A617008F301D /* map1s.png */,
+				04B40344142DB1D0005F35EE /* map001.tmx */,
 				04B40345142DB1D0005F35EE /* tmw_desert_spacing.png */,
 			);
 			name = Maps;
@@ -786,7 +800,8 @@
 		04B5E3B0142CF55B00089068 /* Pointers */ = {
 			isa = PBXGroup;
 			children = (
-				04B5E3B1142CF56800089068 /* Pointer.h */,
+				04DE3FF7143597E3008F301D /* Pointer.h */,
+				04DE3FF8143597E3008F301D /* Pointer.m */,
 				04B5E3B4142CF68900089068 /* Pointer1.h */,
 				04B5E3B5142CF68900089068 /* Pointer1.m */,
 			);
@@ -851,10 +866,10 @@
 				04B40312142DB183005F35EE /* Image */,
 				04B40313142DB183005F35EE /* MainMenu */,
 				04B40318142DB183005F35EE /* Plist */,
-				04B4031A142DB183005F35EE /* SelectSence */,
 				04B40321142DB183005F35EE /* UpdataSence */,
-				04BAEA981413B2E7006FD44B /* Default.png */,
+				04B4031A142DB183005F35EE /* SelectSence */,
 				04BAEA9A1413B2E7006FD44B /* fps_images.png */,
+				04BAEA981413B2E7006FD44B /* Default.png */,
 				04BAEA9C1413B2E8006FD44B /* Icon-72.png */,
 				04BAEA9E1413B2E8006FD44B /* Icon-Small-50.png */,
 				04BAEAA01413B2E8006FD44B /* Icon-Small.png */,
@@ -1188,6 +1203,8 @@
 				04B5E3AB142CF10400089068 /* Wave.m */,
 				04B5E3AD142CF11E00089068 /* WayPoint.h */,
 				04B5E3AE142CF11E00089068 /* WayPoint.m */,
+				04C4A7A514345FC0009C83B4 /* WayPointManager.h */,
+				04C4A7A614345FC0009C83B4 /* WayPointManager.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1335,7 +1352,7 @@
 				04B4033F142DB183005F35EE /* updataBg.png in Resources */,
 				04B40340142DB183005F35EE /* UpdataList.plist in Resources */,
 				04B40342142DB195005F35EE /* number_fonts_small.png in Resources */,
-				04B40346142DB1D0005F35EE /* map1.tmx in Resources */,
+				04B40346142DB1D0005F35EE /* map001.tmx in Resources */,
 				04B40347142DB1D0005F35EE /* tmw_desert_spacing.png in Resources */,
 				043D5B8E14345EAC006061D8 /* enemy1.plist in Resources */,
 				043D5B8F14345EAC006061D8 /* enemy1.png in Resources */,
@@ -1388,6 +1405,9 @@
 				043D5BBE14345EAC006061D8 /* TurretTower3.plist in Resources */,
 				043D5BBF14345EAC006061D8 /* TurretTower3.png in Resources */,
 				043D5BC014345EAC006061D8 /* TurretTowerBuilding.png in Resources */,
+				04DE3FFC1435A617008F301D /* map1b.png in Resources */,
+				04DE3FFD1435A617008F301D /* map1s.png in Resources */,
+				04DE3FFF1435A739008F301D /* emptyTower.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1512,6 +1532,8 @@
 				04B4030E142DB0C3005F35EE /* MainMenuSence.m in Sources */,
 				04B4030F142DB0C3005F35EE /* SelectSence.m in Sources */,
 				04B40310142DB0C3005F35EE /* UpdataSence.m in Sources */,
+				04C4A7A714345FC0009C83B4 /* WayPointManager.m in Sources */,
+				04DE3FF9143597E3008F301D /* Pointer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

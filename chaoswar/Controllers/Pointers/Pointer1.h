@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Pointer.h"
 
-@interface Pointer1 : NSObject <Pointer> {
+@interface Pointer1 :Pointer {
     
 }
 
