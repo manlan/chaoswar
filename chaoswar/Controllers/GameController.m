@@ -134,20 +134,30 @@ static GameController *_sharedController = nil;
     [frientlyDeleteArray release];
 }
 
-- (void) showBuildButton {
-    
-}
+- (void) clickAllSprite:(CGPoint)point
+{
+    for (Enemy *en in self.enemyArray) {
+        if (en.isdelete == 0) {
+            if (CGRectContainsPoint(en.textureRect, point)) {
+                //[en onClick];
+            }
+        }
+	}
+    for (Tower *to in self.towerArray) {
+        if (to.isdelete == 0) {
+            if (CGRectContainsPoint(to.rect, point)) {
+                [to onClick];
+            }								
+		}
+	}
 
-- (void) spriteInfo {
-    
-}
-
-- (void)encodeWithCoder:(NSCoder *)coder {
-    
-}
-
-- (id)initWithCoder:(NSCoder *)coder {
-	return self;
+    for (Friendly *fr in self.frientlyArray) {
+        if (fr.isdelete == 0) {
+            if (CGRectContainsPoint(fr.accessibilityFrame, point)) {
+                //[fr onClick];
+            }
+        }
+    }
 }
 
 //获取当前的敌人攻击队列

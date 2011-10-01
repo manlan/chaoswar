@@ -238,16 +238,8 @@
 {
     CGPoint point = [self convertTouchToNodeSpace:[touches anyObject]];
     NSLog(@"click pos is (x:%f,y:%f)",point.x, point.y);
-
-    BOOL isBuildable = [self canBuildOnTilePosition: point];
     GameController *gc = [GameController getGameController];
-    if (isBuildable) {
-        //显示建造按钮
-        [gc showBuildButton];
-    } else {
-        //显示信息或者升级按钮
-        [gc spriteInfo];
-    }
+    [gc clickAllSprite:point];
 }
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event

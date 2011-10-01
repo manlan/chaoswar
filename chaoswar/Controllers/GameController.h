@@ -65,8 +65,6 @@
 
 - (void) deleteUnUseSprite:(CCLayer*)scene;
 
-- (void) showBuildButton;
-
-- (void) spriteInfo;
+- (void) clickAllSprite:(CGPoint)point;
 
 @end

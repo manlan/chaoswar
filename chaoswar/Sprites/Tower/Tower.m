@@ -12,22 +12,39 @@
 @implementation Tower
 
 @synthesize range;
-@synthesize enemy;
-@synthesize bullet;
-@synthesize spriteRange;
-@synthesize bullets;
 @synthesize isdelete;
+@synthesize enemy;
 
-- (Enemy*) getClosestEnemy {
++ (id) tower
+{
+    return nil;
+}
+
+- (BOOL) run
+{
+    return YES;
+}
+
+-(void) onClick
+{
+    NSLog(@"click EmptyTower showMenu");
+}
+
+- (CGRect)rect
+{
+    CGSize s = [self.texture contentSize];
+    CGRect r = CGRectMake(-s.width / 2, -s.height / 2, s.width, s.height);
+    return r;
+}
+
+- (Enemy*) searchClearEnemy {
 	Enemy *nextEnemy = nil;
 	double maxDistant = 99999;
 	GameController *gc = [GameController getGameController];
-	
-	for (CCSprite *enemy in gc.enemyArray) {	
-		Enemy *creep = (Enemy*) enemy;
-		double curDistance = ccpDistance(self.position, creep.position);
+	for (Enemy *e in gc.enemyArray) {	
+		double curDistance = ccpDistance(self.position, e.position);
 		if (curDistance < maxDistant) {
-			nextEnemy = creep;
+			nextEnemy = e;
 			maxDistant = curDistance;
 		}
 	}
@@ -37,22 +54,39 @@
 	return nil;
 }
 
+- (BOOL) canAttactEnemy
+{
+    if (enemy == nil) {
+        return NO;
+    }
+    
+    if (enemy.isdelete == YES) {
+        return NO;
+    }
+    
+    double distance = ccpDistance(self.position, self.enemy.position);
+    
+    if (distance <= self.range) {
+        return YES;
+    }
+	return NO;
+}
+
 @end
 
 @implementation EmptyTower
 
 + (id) tower {
-    EmptyTower *tower = [EmptyTower itemFromNormalImage:@"emptyTower.png" selectedImage:@"emptyTower.png" disabledImage:@"emptyTower.png" target:nil selector:@selector(showMenu:)];
+    EmptyTower *tower = [EmptyTower spriteWithFile:@"emptyTower.png"];
     if (tower) {
-        tower.isdelete = 0;
-        tower.range = 200;
+        tower.isdelete = NO;
+        tower.range = 0;
 		tower.enemy = nil;
     }
     return tower;
-    
 }
 
--(void) showMenu:(id) sender 
+-(void) onClick
 {
     NSLog(@"click EmptyTower showMenu");
 }
@@ -78,10 +112,15 @@
     return YES;
 }
 
+-(void) onClick
+{
+    NSLog(@"click EmptyTower showMenu");
+}
+
 //搜索敌人
 - (void) startSearch:(ccTime)dt {
-    enemy = [self getClosestEnemy];
-    if (enemy) {
+    enemy = [self searchClearEnemy];
+    if (enemy != nil && enemy.isdelete == NO) {
         [self unschedule:@selector(startSearch:)];
         [self schedule:@selector(attact:)];
     }
@@ -89,9 +128,17 @@
 
 //攻击敌人
 - (void) attact:(ccTime)dt {
-    
-    [self unschedule:@selector(attact:)];
-    [self schedule:@selector(startSearch:)];
+    if ([self canAttactEnemy] == YES) {
+        [self AttactEnemy];
+    } else {
+        [self unschedule:@selector(attact:)];
+        [self schedule:@selector(startSearch:)];
+    }
+}
+
+- (void) AttactEnemy
+{
+
 }
 
 - (void) dealloc
@@ -101,14 +148,13 @@
 
 @end
 
-
 @implementation ArrowTower1
 
 + (id) tower {
-    ArrowTower1 *tower = [ArrowTower1 itemFromNormalImage:@"ArrowTower1.png" selectedImage:@"ArrowTower1.png" disabledImage:@"ArrowTower1.png" target:nil selector:@selector(showMenu:)];
+    ArrowTower1 *tower =  [ArrowTower1 spriteWithFile:@"ArrowTower1.png"];
     if (tower) {
-        tower.isdelete = 0;
-        tower.range = 200;
+        tower.isdelete = NO;
+        tower.range = 100;
 		tower.enemy = nil;
     }
     return tower;
@@ -118,6 +164,11 @@
 -(void) showMenu:(id) sender 
 {
     NSLog(@"click ArrowTower1 showMenu");
+}
+
+- (void) AttactEnemy
+{
+    
 }
 
 - (void) dealloc

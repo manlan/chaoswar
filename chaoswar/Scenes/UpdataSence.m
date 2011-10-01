@@ -46,7 +46,7 @@
         
         //加载分数
         labelScore = [CCLabelTTF labelWithString:@"0" fontName:@"Georgia-Bold" fontSize:28];
-		labelScore.position = CGPointMake(385 ,280);
+		labelScore.position = CGPointMake(380 ,280);
 		labelScore.anchorPoint = CGPointMake(0 ,0.5);
         labelScore.color = ccc3(255, 204, 0);
 		[self addChild: labelScore z:2];
@@ -93,13 +93,13 @@
         }
         
         //加载返回按钮
-		btnBack = [[CCMenuItemImage alloc] initFromNormalImage:@"btnBack.png" selectedImage:@"btnBack.png" disabledImage:@"btnBack.png" target:self selector:@selector(goToSelectSence:)];		
+		btnBack = [[CCMenuItemImage alloc] initFromNormalImage:@"btnBack.png" selectedImage:@"btnBackDown.png" disabledImage:@"btnBack.png" target:self selector:@selector(goToSelectSence:)];		
         CCMenu *btnBackMenu = [CCMenu menuWithItems:btnBack, nil];
 		btnBackMenu.position = CGPointMake(420 , 50);
 		[self addChild:btnBackMenu z:2];
         
         //加载升级按钮
-        btnUpdata = [[CCMenuItemImage alloc] initFromNormalImage:@"btnUpdateLv.png" selectedImage:@"btnUpdateLv.png" disabledImage:@"btnUpdataHui.png" target:self selector:@selector(updataLevel:)];		
+        btnUpdata = [[CCMenuItemImage alloc] initFromNormalImage:@"btnUpdateLv.png" selectedImage:@"btnUpdateLvDown.png" disabledImage:@"btnUpdataHui.png" target:self selector:@selector(updataLevel:)];		
         CCMenu *btnUpdataMenu = [CCMenu menuWithItems:btnUpdata, nil];
 		btnUpdataMenu.position = CGPointMake(348 , 50);
         btnUpdata.visible = NO;
@@ -218,7 +218,7 @@
 		[self addChild:itemIcon z:2];
         //加载等级
         labelLevel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level:%d/3", level] fontName:@"Georgia-Bold" fontSize:22];
-		labelLevel.position = CGPointMake(310 ,95);
+		labelLevel.position = CGPointMake(315 ,95);
 		labelLevel.anchorPoint = CGPointMake(0 ,0.5);
         labelLevel.color = ccc3(255, 204, 0);
 		[self addChild: labelLevel z:2];
@@ -332,7 +332,7 @@
         
         //加载等级
         labelLevel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level:%d/3", level] fontName:@"Georgia-Bold" fontSize:22];
-		labelLevel.position = CGPointMake(310 ,95);
+		labelLevel.position = CGPointMake(315 ,95);
 		labelLevel.anchorPoint = CGPointMake(0 ,0.5);
         labelLevel.color = ccc3(255, 204, 0);
 		[self addChild: labelLevel z:2];
