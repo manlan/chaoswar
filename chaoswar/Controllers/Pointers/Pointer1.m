@@ -19,6 +19,10 @@
 -(void) initTower:(NSMutableArray*)array
 {
     [array removeAllObjects];
+    [self addTower:array tower:[EmptyTower tower] point:ccp(380, 220)];
+    [self addTower:array tower:[EmptyTower tower] point:ccp(380, 56)];
+    [self addTower:array tower:[EmptyTower tower] point:ccp(140, 220)];
+    [self addTower:array tower:[EmptyTower tower] point:ccp(200, 140)];
 }
 
 -(void) initWave:(NSMutableArray*)array

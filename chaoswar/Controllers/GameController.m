@@ -21,6 +21,7 @@
 @synthesize gameImfomation;	
 @synthesize gameMagic;
 @synthesize gameController;
+@synthesize gameHint;
 @synthesize enemyArray;
 @synthesize towerArray;
 @synthesize waveArray;	
@@ -176,6 +177,7 @@ static GameController *_sharedController = nil;
 	[gameImfomation release];	
 	[gameMagic release];
     [gameController release];
+    [gameHint release];
 	[gestureRecognizer release];
     [enemyArray release];
     [towerArray release];

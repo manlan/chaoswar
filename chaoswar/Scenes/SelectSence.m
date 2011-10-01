@@ -39,9 +39,9 @@
 		[self addChild:btnBackMenu z:2];
         
         //加载升级按钮
-		btnUpdata = [[CCMenuItemImage alloc] initFromNormalImage:@"btnUpdata.png" selectedImage:@"btnUpdata.png" disabledImage:@"btnUpdata.png" target:self selector:@selector(goToUpdataSence:)];		
+		btnUpdata = [[CCMenuItemImage alloc] initFromNormalImage:@"btnUpdate.png" selectedImage:@"btnUpdate.png" disabledImage:@"btnUpdate.png" target:self selector:@selector(goToUpdataSence:)];		
         CCMenu *btnUpdataMenu = [CCMenu menuWithItems:btnUpdata, nil];
-		btnUpdataMenu.position = CGPointMake(390 , 30);
+		btnUpdataMenu.position = CGPointMake(375 , 30);
 		[self addChild:btnUpdataMenu z:2];
         
         //加载关卡及分数
@@ -74,6 +74,7 @@
                 
                 
                 btnWaveStation = [[CCMenuItemImage alloc] initFromNormalImage:@"btnWaveStation.png" selectedImage:@"btnWaveStation.png" disabledImage:@"btnWaveStation.png" target:self  selector:@selector(goToMainGameSence:)];
+                btnWaveStation.scale = 1;
                 btnWaveStation.tag = [(NSNumber*)[wave objectForKey:@"id"] intValue];
                 CCMenu *btnWaveStationMenu = [CCMenu menuWithItems:btnWaveStation, nil];
                 btnWaveStationMenu.position = waveStationPo;
@@ -84,7 +85,13 @@
                 
                 for (int i=0; i < score; i++) {
                     waveScore = [CCSprite spriteWithFile:@"starLight.png"];
-                    waveScore.position = CGPointMake(waveStationPo.x - 15 + (i * 15), waveStationPo.y + 25);
+                    waveScore.position = CGPointMake(waveStationPo.x - 15 + (i * 15), waveStationPo.y + 35);
+                    [self addChild:waveScore z:2];
+                }
+                
+                for (int i=score; i < 3; i++) {
+                    waveScore = [CCSprite spriteWithFile:@"starLightHui.png"];
+                    waveScore.position = CGPointMake(waveStationPo.x - 15 + (i * 15), waveStationPo.y + 35);
                     [self addChild:waveScore z:2];
                 }
             }

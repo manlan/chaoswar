@@ -12,6 +12,7 @@
 #import "GameImfomationScene.h"
 #import "GameMagicScene.h"
 #import "GameControllerScene.h"
+#import "GameHintScene.h"
 #import "Pointer1.h"
 
 @implementation GameBackgroundScene
@@ -34,12 +35,15 @@
     [scene addChild:gameMagicScene z:3];
     GameControllerScene *gameControllerScene = [GameControllerScene node];
     [scene addChild:gameControllerScene z:4];
-
+    GameHintScene *gameHintScene = [GameHintScene node];
+    [scene addChild:gameHintScene z:5];
+    
 	GameController *gc = [GameController getGameController];
 	gc.gameBackground = gameBackgroundScene;
     gc.gameImfomation = gameImfomationScene;
     gc.gameMagic = gameMagicScene;
     gc.gameController = gameControllerScene;
+    gc.gameHint = gameHintScene;
     //==================初始化配置=================
     switch (pn) {
         case 1:
@@ -51,6 +55,14 @@
     }
     [gc start];
 	return scene;
+}
+
+-(id) init
+{
+	if( (self=[super init])) {
+        [self setIsTouchEnabled:YES];
+	}
+	return self;
 }
 
 - (void) initMap:(int)pn
@@ -222,9 +234,12 @@
     }        
 }
 
-- (BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-    CGPoint touchLocationInGameLayer = [self convertTouchToNodeSpace:touch];
-    BOOL isBuildable = [self canBuildOnTilePosition: touchLocationInGameLayer];
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    CGPoint point = [self convertTouchToNodeSpace:[touches anyObject]];
+    NSLog(@"click pos is (x:%f,y:%f)",point.x, point.y);
+
+    BOOL isBuildable = [self canBuildOnTilePosition: point];
     GameController *gc = [GameController getGameController];
     if (isBuildable) {
         //显示建造按钮
@@ -233,15 +248,18 @@
         //显示信息或者升级按钮
         [gc spriteInfo];
     }
-	return YES;
 }
 
-- (void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
-    
+- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    //    CGPoint point = [self convertTouchToNodeSpace:[touches anyObject]];
+    //	NSLog(@"ccTouchesMoved point: x=%.2f, y=%.2f", point.x, point.y);
 }
 
-- (void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {  
-
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    //    CGPoint point = [self convertTouchToNodeSpace:[touches anyObject]];
+    //	NSLog(@"ccTouchesEnded point: x=%.2f, y=%.2f", point.x, point.y);
 }
 
 // on "dealloc" you need to release all your retained objects

@@ -33,18 +33,42 @@
 		bgImg.scale = 1;
 		[self addChild:bgImg z:1];
         
+        //加载tip图片
+		tipImg = [CCSprite spriteWithFile:@"updataTip.png"];
+		tipImg.position = CGPointMake(170 , 70);
+		tipImg.scale = 1;
+		[self addChild:tipImg z:2];
+        
         //加载分数前缀
-		scoreTip = [CCSprite spriteWithFile:@"starLight.png"];
-		scoreTip.position = CGPointMake(375 , 260);
-		scoreTip.scale = 3;
+		scoreTip = [CCSprite spriteWithFile:@"jinBi.png"];
+		scoreTip.position = CGPointMake(360 , 280);
 		[self addChild:scoreTip z:2];
         
         //加载分数
         labelScore = [CCLabelTTF labelWithString:@"0" fontName:@"Georgia-Bold" fontSize:28];
-		labelScore.position = CGPointMake(400 ,260);
+		labelScore.position = CGPointMake(385 ,280);
 		labelScore.anchorPoint = CGPointMake(0 ,0.5);
         labelScore.color = ccc3(255, 204, 0);
 		[self addChild: labelScore z:2];
+        
+        //加载选中动画
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"XzSheet.plist"];
+		spritebatchXz = [CCSpriteBatchNode batchNodeWithFile:@"XzSheet.png"];
+		[self addChild:spritebatchXz z:3];
+		
+		NSMutableArray *animFramesXz = [NSMutableArray array];
+		for(int i = 1; i < 10; i++) {
+			CCSpriteFrame *frameXz = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"1%04d.png",i]];
+			if (i==1) {
+				spriteXz = [[CCSprite alloc] initWithSpriteFrame:frameXz];
+			}
+			[animFramesXz addObject:frameXz];
+		}
+		animationXz = [CCAnimation animationWithName:@"Xz" frames:animFramesXz];
+		[spritebatchXz addChild:spriteXz];
+		[spriteXz release];
+		spriteXz.position = ccp(65,230);
+		[spriteXz runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:1.5 animation:animationXz restoreOriginalFrame:NO] ]];
         
         //加载分数读取数据
         NSString *errorDesc = nil;
@@ -71,13 +95,13 @@
         //加载返回按钮
 		btnBack = [[CCMenuItemImage alloc] initFromNormalImage:@"btnBack.png" selectedImage:@"btnBack.png" disabledImage:@"btnBack.png" target:self selector:@selector(goToSelectSence:)];		
         CCMenu *btnBackMenu = [CCMenu menuWithItems:btnBack, nil];
-		btnBackMenu.position = CGPointMake(450 , 30);
+		btnBackMenu.position = CGPointMake(420 , 50);
 		[self addChild:btnBackMenu z:2];
         
         //加载升级按钮
-        btnUpdata = [[CCMenuItemImage alloc] initFromNormalImage:@"btnUpdata.png" selectedImage:@"btnUpdata.png" disabledImage:@"btnBack.png" target:self selector:@selector(updataLevel:)];		
+        btnUpdata = [[CCMenuItemImage alloc] initFromNormalImage:@"btnUpdateLv.png" selectedImage:@"btnUpdateLv.png" disabledImage:@"btnUpdataHui.png" target:self selector:@selector(updataLevel:)];		
         CCMenu *btnUpdataMenu = [CCMenu menuWithItems:btnUpdata, nil];
-		btnUpdataMenu.position = CGPointMake(380 , 30);
+		btnUpdataMenu.position = CGPointMake(348 , 50);
         btnUpdata.visible = NO;
 		[self addChild:btnUpdataMenu z:2];
         
@@ -117,6 +141,8 @@
                 [btnItem release];
             }
         }
+        
+        [self updataJnById:0];
 	}
 	return self;
 }
@@ -158,18 +184,41 @@
         NSString *Explain3 = [item objectForKey:@"Explain3"];
         NSString *Explain;
         
+        CGPoint itemPo = CGPointFromString([item objectForKey:@"position"]);
+        spriteXz.position = itemPo;
+        
+        
         [self removeChild:itemIcon cleanup:NO];
         [self removeChild:labelLevel cleanup:NO];
         [self removeChild:labelExplain cleanup:NO];
         
+        //加载升级动画
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"SjSheet.plist"];
+		spritebatchSj = [CCSpriteBatchNode batchNodeWithFile:@"SjSheet.png"];
+		[self addChild:spritebatchSj z:3];
+		
+		NSMutableArray *animFramesSj = [NSMutableArray array];
+		for(int i = 1; i < 18; i++) {
+			CCSpriteFrame *frameSj = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"1%04d.png",i]];
+			if (i==1) {
+				spriteSj = [[CCSprite alloc] initWithSpriteFrame:frameSj];
+			}
+			[animFramesSj addObject:frameSj];
+		}
+		animationSj = [CCAnimation animationWithName:@"Sj" frames:animFramesSj];
+		[spritebatchSj addChild:spriteSj];
+		[spriteSj release];
+        spriteSj.position = itemPo;
+		[spriteSj runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:1.2 animation:animationSj restoreOriginalFrame:NO] ]];
+        
         //加载默认的图标
         itemIcon = [CCSprite spriteWithFile:picUrl];
-		itemIcon.position = CGPointMake(40 , 120);
-		itemIcon.scale = 0.7;
+		itemIcon.position = CGPointMake(70 , 70);
+		itemIcon.scale = 0.75;
 		[self addChild:itemIcon z:2];
         //加载等级
-        labelLevel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level:%d/3", level] fontName:@"Georgia-Bold" fontSize:24];
-		labelLevel.position = CGPointMake(90 ,120);
+        labelLevel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level:%d/3", level] fontName:@"Georgia-Bold" fontSize:22];
+		labelLevel.position = CGPointMake(310 ,95);
 		labelLevel.anchorPoint = CGPointMake(0 ,0.5);
         labelLevel.color = ccc3(255, 204, 0);
 		[self addChild: labelLevel z:2];
@@ -184,9 +233,9 @@
         }
     
         //加载介绍
-        labelExplain = [CCLabelTTF labelWithString:Explain dimensions:CGSizeMake(300,100) alignment:UITextAlignmentLeft fontName:@"Georgia" fontSize:16];
+        labelExplain = [CCLabelTTF labelWithString:Explain dimensions:CGSizeMake(200,100) alignment:UITextAlignmentLeft fontName:@"Georgia" fontSize:16];
         //[CCLabelTTF labelWithString:Explain dimensions:CGSizeMake(300,300) fontName:@"Marker Felt" fontSize:18];
-		labelExplain.position = CGPointMake(20 ,40);
+		labelExplain.position = CGPointMake(100 ,50);
         labelExplain.color = ccc3(255, 204, 0);
 		labelExplain.anchorPoint = CGPointMake(0 ,0.5);
 		[self addChild: labelExplain z:2];
@@ -224,12 +273,23 @@
         //[scoreAtlas setString:[NSString stringWithFormat:@"%d", scoreVal]];
         [labelScore setString:[NSString stringWithFormat:@"%d",scoreVal]];
     }
+    
+    [self runAction:[CCSequence actions:
+                     [CCDelayTime actionWithDuration:1.2],
+                     [CCCallFunc actionWithTarget:self selector:@selector(clearSj)],
+                     nil]];
 }
 
--(void) updataJN:(id) sender 
+-(void) clearSj
 {
-    CCMenuItemImage *button = sender;
-    int intId = button.tag;
+    [self removeChild:spritebatchSj cleanup:NO];
+    [self removeChild:spriteSj cleanup:NO];
+    [self removeChild:animationSj cleanup:NO];
+}
+
+-(void) updataJnById:(int) jnId
+{
+    int intId = jnId;
     itemId = intId;
     
     NSString *errorDesc = nil;
@@ -239,10 +299,10 @@
         //NSLog(@"Not exsit");
         NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
         NSMutableDictionary *updataInfo = (NSMutableDictionary *)[NSPropertyListSerialization
-                                             propertyListFromData:plistXML
-                                             mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                                             format:&format
-                                             errorDescription:&errorDesc];
+                                                                  propertyListFromData:plistXML
+                                                                  mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                                                  format:&format
+                                                                  errorDescription:&errorDesc];
         
         if (!updataInfo) {
             NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
@@ -256,19 +316,23 @@
         NSString *Explain3 = [item objectForKey:@"Explain3"];
         NSString *Explain;
         
+        CGPoint itemPo = CGPointFromString([item objectForKey:@"position"]);
+        spriteXz.position = itemPo;
+        spriteSj.position = itemPo;
+        
         [self removeChild:itemIcon cleanup:NO];
         [self removeChild:labelLevel cleanup:NO];
         [self removeChild:labelExplain cleanup:NO];
         
         //加载默认的图标
         itemIcon = [CCSprite spriteWithFile:picUrl];
-		itemIcon.position = CGPointMake(40 , 120);
-		itemIcon.scale = 0.7;
+		itemIcon.position = CGPointMake(70 , 70);
+		itemIcon.scale = 0.75;
 		[self addChild:itemIcon z:2];
         
         //加载等级
-        labelLevel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level:%d/3", level] fontName:@"Georgia-Bold" fontSize:24];
-		labelLevel.position = CGPointMake(90 ,120);
+        labelLevel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level:%d/3", level] fontName:@"Georgia-Bold" fontSize:22];
+		labelLevel.position = CGPointMake(310 ,95);
 		labelLevel.anchorPoint = CGPointMake(0 ,0.5);
         labelLevel.color = ccc3(255, 204, 0);
 		[self addChild: labelLevel z:2];
@@ -277,16 +341,16 @@
             Explain = Explain2;
         }
         else if (level == 2){
-           Explain = Explain3; 
+            Explain = Explain3; 
         }
         else{
             Explain = @"This is Max Level,can't update!"; 
         }
         
         //加载介绍
-        labelExplain = [CCLabelTTF labelWithString:Explain dimensions:CGSizeMake(300,100) alignment:UITextAlignmentLeft fontName:@"Georgia" fontSize:16];
+        labelExplain = [CCLabelTTF labelWithString:Explain dimensions:CGSizeMake(200,100) alignment:UITextAlignmentLeft fontName:@"Georgia" fontSize:16];
         //[CCLabelTTF labelWithString:Explain dimensions:CGSizeMake(300,300) fontName:@"Marker Felt" fontSize:18];
-		labelExplain.position = CGPointMake(20 ,40);
+		labelExplain.position = CGPointMake(100 ,50);
 		labelExplain.anchorPoint = CGPointMake(0 ,0.5);
         labelExplain.color = ccc3(255, 204, 0);
 		[self addChild: labelExplain z:2];
@@ -300,6 +364,14 @@
             btnUpdata.isEnabled = YES;
         }
     }
+}
+
+-(void) updataJN:(id) sender 
+{
+    CCMenuItemImage *button = sender;
+    int intId = button.tag;
+    itemId = intId;
+    [self updataJnById:intId];  
 }
 
 - (void) dealloc

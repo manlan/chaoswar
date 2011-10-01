@@ -11,9 +11,8 @@
 #import "Enemy.h"
 #import "Bullet.h"
 #import "GameController.h"
-#import "SpriteDelegate.h"
 
-@interface Tower : CCSprite <BulletDelegate> {
+@interface Tower : CCMenuItemImage {
     int range;
 	Enemy *enemy;
     Bullet *bullet;
@@ -28,11 +27,27 @@
 @property (nonatomic, retain) CCSprite *spriteRange;
 @property (nonatomic, retain) NSMutableArray *bullets;
 
+
++ (id) tower;
+- (BOOL) run;
+
 - (Enemy*) getClosestEnemy;
 
 @end
 
-@interface MachineGunTower : Tower {
+@interface EmptyTower : Tower {
+    
+}
+
+@end
+
+@interface ArrowTower : Tower {
+    
+}
+
+@end
+
+@interface ArrowTower1 : ArrowTower {
     
 }
 

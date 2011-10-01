@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Pointer.h"
+#import "Sprites.h"
 
 @interface Pointer1 :Pointer {
     

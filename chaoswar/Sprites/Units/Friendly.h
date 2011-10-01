@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "SpriteDelegate.h"
 
-@interface Friendly : CCSprite <BulletDelegate> {
+@interface Friendly : CCSprite {
     int isdelete;
 }
 
 @property int isdelete;
+
++ (id) friendly;
+- (BOOL) run;
 
 @end
 

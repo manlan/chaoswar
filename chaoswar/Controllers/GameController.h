@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "Pointer.h"
 
 @class GameBackgroundScene;
 @class GameImfomationScene;
 @class GameMagicScene;
 @class GameControllerScene;
+@class GameHintScene;
+@class Pointer;
 @class WayPointManager;
 @class Wave;
 
@@ -22,6 +23,7 @@
 	GameImfomationScene *gameImfomation;	
 	GameMagicScene *gameMagic;
     GameControllerScene *gameController;
+    GameHintScene *gameHint;
 	NSMutableArray *enemyArray;
 	NSMutableArray *towerArray;
 	NSMutableArray *waveArray;	
@@ -38,6 +40,7 @@
 @property (nonatomic, retain) GameImfomationScene *gameImfomation;	
 @property (nonatomic, retain) GameMagicScene *gameMagic;
 @property (nonatomic, retain) GameControllerScene *gameController;
+@property (nonatomic, retain) GameHintScene *gameHint;
 @property (nonatomic, retain) NSMutableArray *enemyArray;
 @property (nonatomic, retain) NSMutableArray *towerArray;
 @property (nonatomic, retain) NSMutableArray *waveArray;	

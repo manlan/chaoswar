@@ -7,9 +7,31 @@
 //
 
 #import "Pointer.h"
-
+#import "GameController.h"
+#import "WayPointManager.h"
+#import "Bullet.h"
+#import "Tower.h"
+#import "Enemy.h"
+#import "Friendly.h"
+#import "WayPointManager.h"
+#import "WayPoint.h"
+#import "Wave.h"
+#import "GameBackgroundScene.h"
+#import "GameImfomationScene.h"
+#import "GameMagicScene.h"
+#import "GameControllerScene.h"
+#import "GameHintScene.h"
 
 @implementation Pointer
+
+-(void) addTower:(NSMutableArray*)array tower:(Tower*)tower point:(CGPoint)point
+{
+    GameController *gc = [GameController getGameController];
+    tower.position = point;
+    [gc.gameBackground addChild:tower z:5];
+    [array addObject:tower];
+    
+}
 
 -(void) initEnemy:(NSMutableArray*)array
 {

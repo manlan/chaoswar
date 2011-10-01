@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "WayPoint.h"
-#import "SpriteDelegate.h"
 
-@interface Enemy : CCSprite <BulletDelegate> {
+@interface Enemy : CCSprite {
     //
     int maxHP;
     //
@@ -40,6 +39,9 @@
 @property (nonatomic, assign) int moveSpeed;
 @property (nonatomic, assign) int wayNum;
 @property (nonatomic, assign) int wayPoint;
+
++ (id) enemy;
+- (BOOL) run;
 
 - (Enemy*) initWithEnemy:(Enemy*) copyFrom; 
 - (WayPoint*) getCurrentWaypoint;

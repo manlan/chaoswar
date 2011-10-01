@@ -10,6 +10,7 @@
 
 @interface UpdataSence : CCLayer {
     CCSprite *bgImg;
+    CCSprite *tipImg;
     CCMenuItemImage *btnBack;
     CCMenuItemImage *btnUpdata;
     int itemId;
@@ -22,7 +23,16 @@
     CCLabelTTF *labelLevel;
     CCLabelTTF *labelExplain;
     CCLabelTTF *labelScore;
+    
+    CCSpriteBatchNode *spritebatchXz;
+	CCSprite *spriteXz;
+	CCAnimation *animationXz;
+    
+    CCSpriteBatchNode *spritebatchSj;
+	CCSprite *spriteSj;
+	CCAnimation *animationSj;
 }
 
 +(CCScene *) scene;
+-(void) updataJnById:(int) jnId;
 @end

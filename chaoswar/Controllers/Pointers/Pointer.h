@@ -7,12 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WayPointManager.h"
+#import "cocos2d.h"
+
+@class WayPointManager;
+@class Bullet;
+@class Tower;
+@class Enemy;
+@class Friendly;
+@class WayPointManager;
+@class WayPoint;
+@class Wave;
 
 @interface Pointer : NSObject {
     
 }
 
+-(void) addTower:(NSMutableArray*)array tower:(Tower*)tower point:(CGPoint)point;
 
 -(void) initEnemy:(NSMutableArray*)array;
 

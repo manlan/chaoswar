@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+@class GameController;
+
 @interface GameMagicScene : CCLayer {
     
 }

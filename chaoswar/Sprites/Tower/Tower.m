@@ -39,11 +39,10 @@
 
 @end
 
-@implementation MachineGunTower
-
+@implementation EmptyTower
 
 + (id) tower {
-    MachineGunTower *tower = [[[MachineGunTower alloc] initWithFile:@"bullet.png"] autorelease];
+    EmptyTower *tower = [EmptyTower itemFromNormalImage:@"emptyTower.png" selectedImage:@"emptyTower.png" disabledImage:@"emptyTower.png" target:nil selector:@selector(showMenu:)];
     if (tower) {
         tower.isdelete = 0;
         tower.range = 200;
@@ -52,6 +51,26 @@
     return tower;
     
 }
+
+-(void) showMenu:(id) sender 
+{
+    NSLog(@"click EmptyTower showMenu");
+}
+
+- (BOOL) run
+{
+    return YES;
+}
+
+- (void) dealloc
+{  
+    [super dealloc];
+}
+
+@end
+
+
+@implementation ArrowTower
 
 - (BOOL) run
 {
@@ -73,6 +92,32 @@
     
     [self unschedule:@selector(attact:)];
     [self schedule:@selector(startSearch:)];
+}
+
+- (void) dealloc
+{  
+    [super dealloc];
+}
+
+@end
+
+
+@implementation ArrowTower1
+
++ (id) tower {
+    ArrowTower1 *tower = [ArrowTower1 itemFromNormalImage:@"ArrowTower1.png" selectedImage:@"ArrowTower1.png" disabledImage:@"ArrowTower1.png" target:nil selector:@selector(showMenu:)];
+    if (tower) {
+        tower.isdelete = 0;
+        tower.range = 200;
+		tower.enemy = nil;
+    }
+    return tower;
+    
+}
+
+-(void) showMenu:(id) sender 
+{
+    NSLog(@"click ArrowTower1 showMenu");
 }
 
 - (void) dealloc
