@@ -8,6 +8,10 @@
 
 #import "Tower.h"
 #import "GameControllerScene.h"
+#import "ArrowTower.h"
+#import "TurretTower.h"
+#import "DefenceTower.h"
+#import "MagicTower.h"
 
 @implementation Tower
 
@@ -28,7 +32,6 @@
 	}
 	
 	if (maxDistant < self.range) {
-        NSLog(@"current enemy no is %d", [gc.enemyArray indexOfObject:nextEnemy]);
         return nextEnemy;
     }
 		
@@ -56,16 +59,6 @@
 @end
 
 @implementation EmptyTower
-
-+ (id) getSprite {
-    EmptyTower *tower = [EmptyTower spriteWithFile:@"emptyTower.png"];
-    if (tower) {
-        tower.isDelete = NO;
-        tower.range = 0;
-		tower.enemy = nil;
-    }
-    return tower;
-}
 
 - (void) spriteTouchBegan:(UITouch *)touch
 {
@@ -149,79 +142,32 @@
 
 @end
 
-
-@implementation ArrowTower
-
-- (BOOL) run
-{
-    [self schedule:@selector(startSearch:)];
-    return YES;
-}
-
-//搜索敌人
-- (void) startSearch:(ccTime)dt {
-    enemy = [self searchClearEnemy];
-    if (enemy != nil && enemy.isDelete == NO) {
-        [self unschedule:@selector(startSearch:)];
-        [self schedule:@selector(attact:) interval:self.shoottime];
-    }
-}
-
-//攻击敌人
-- (void) attact:(ccTime)dt {
-    if ([self canAttactEnemy] == YES) {
-        [self AttactEnemy];
-    } else {
-        [self unschedule:@selector(attact:)];
-        [self schedule:@selector(startSearch:)];
-    }
-}
-
-- (void) AttactEnemy
-{
-    NSLog(@"ArrowTower Click");
-}
-
-- (void) dealloc
-{  
-    [super dealloc];
-}
-
-@end
-
-@implementation ArrowTower1
+@implementation EmptyTower1
 
 + (id) getSprite {
-    ArrowTower1 *tower = [ArrowTower1 spriteWithFile:@"ArrowTower1.png"];
+    EmptyTower *tower = [EmptyTower spriteWithFile:@"emptyTower1.png"];
     if (tower) {
         tower.isDelete = NO;
-        tower.range = 100;
-        tower.shoottime = 1.5;
+        tower.range = 0;
 		tower.enemy = nil;
     }
     return tower;
 }
 
-- (void) spriteTouchBegan:(UITouch *)touch
-{
-    NSLog(@"ArrowTower1 Click");
-}
+@end
 
-- (void) AttactEnemy
-{
-    NSLog(@"ArrowTower1 Attact!");
-    GameController *gc = [GameController getGameController];
-    Bullet1 *b = [Bullet1 getSprite];
-    b.enemy = self.enemy;
-    b.position = self.position;
-    [gc.gameBackground addChild:b z:12];
-    [gc.bulletArray addObject:b];
-    [b run];
-}
+@implementation EmptyTower2
 
-- (void) dealloc
-{  
-    [super dealloc];
++ (id) getSprite {
+    EmptyTower *tower = [EmptyTower spriteWithFile:@"emptyTower2.png"];
+    if (tower) {
+        tower.isDelete = NO;
+        tower.range = 0;
+		tower.enemy = nil;
+    }
+    return tower;
 }
 
 @end
+
+

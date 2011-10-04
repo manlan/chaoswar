@@ -33,7 +33,11 @@
     NSMutableArray *frientlyArray;
 	UIPanGestureRecognizer *gestureRecognizer;
     Pointer *pt;
-    int waveLevel;
+    int maxWave;
+	int currentWave;
+	int maxHealth;
+	int currentHealth;
+	int currentGold;
 }
 
 @property (nonatomic, retain) GameBackgroundScene *gameBackground;
@@ -50,18 +54,17 @@
 @property (nonatomic, retain) NSMutableArray *frientlyArray;
 @property (nonatomic, retain) UIPanGestureRecognizer *gestureRecognizer;
 @property (nonatomic, retain) Pointer *pt;
-@property int waveLevel;
+@property int maxWave;
+@property int currentWave;
+@property int maxHealth;
+@property int currentHealth;
+@property int currentGold;
 
 + (GameController*) getGameController;
 
 - (void) initController:(Pointer*)pointer;
 
 - (void) start;
-
-//获取当前的敌人攻击队列
-- (Wave *)getCurrentWave;
-//获取下一的敌人攻击队列
-- (Wave *)getNextWave;
 
 - (void) deleteUnUseSprite:(CCLayer*)scene;
 

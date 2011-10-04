@@ -34,15 +34,13 @@
 
 @end
 
-@interface ArrowTower : Tower {
+@interface EmptyTower1 : EmptyTower {
     
 }
 
-- (void) AttactEnemy;
-
 @end
 
-@interface ArrowTower1 : ArrowTower {
+@interface EmptyTower2 : EmptyTower {
     
 }
 

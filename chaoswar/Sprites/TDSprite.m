@@ -12,6 +12,8 @@
 @implementation TDSprite
 
 @synthesize isDelete;
+@synthesize killNum;
+@synthesize goldNum;
 
 + (id) getSprite
 {

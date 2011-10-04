@@ -32,7 +32,11 @@
 @synthesize frientlyArray;
 @synthesize gestureRecognizer;
 @synthesize pt;
-@synthesize waveLevel;
+@synthesize maxWave;
+@synthesize currentWave;
+@synthesize maxHealth;
+@synthesize currentHealth;
+@synthesize currentGold;
 
 static GameController *_sharedController = nil;
 
@@ -133,22 +137,6 @@ static GameController *_sharedController = nil;
 	[towerDeleteArray release];
 	[bulletDeleteArray release];
     [frientlyDeleteArray release];
-}
-
-//获取当前的敌人攻击队列
-- (Wave *)getCurrentWave {
-	Wave *wave = (Wave *) [self.waveArray objectAtIndex: self.waveLevel];
-	return wave;
-}
-
-//获取下一的敌人攻击队列
-- (Wave *)getNextWave {
-	GameController *gc = [GameController getGameController];
-    self.waveLevel++;
-    if (self.waveLevel > 1)
-    	self.waveLevel = 0;
-    Wave * wave = (Wave *) [gc.waveArray objectAtIndex:self.waveLevel];
-    return wave;
 }
 
 - (void)dealloc {

@@ -11,10 +11,14 @@
 
 @interface TDSprite : CCSprite <CCTargetedTouchDelegate>{
     //是否已经被删除
-    BOOL isDelete; 
+    BOOL isDelete;
+    int killNum;
+    int goldNum;
 }
 
 @property BOOL isDelete;
+@property int killNum;
+@property int goldNum;
 
 + (id) getSprite;
 

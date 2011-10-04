@@ -50,7 +50,6 @@
 }
 
 - (void) attact:(id)sender {
-    NSLog(@"bullet attact!");
     self.isDelete = YES;
     [self removeFromParentAndCleanup:YES];
 }

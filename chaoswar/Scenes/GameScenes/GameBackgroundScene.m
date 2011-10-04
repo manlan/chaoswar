@@ -67,17 +67,16 @@
 
 - (void) initMap:(int)pn
 {
-    self.pointNum = pn;
-    self.pointNum = 1;
+    self.pointNum = pn + 1;
     //================读取地图文件=================
     CGSize size = [[CCDirector sharedDirector] winSize];
     //背景，表示是否可以通过的
-    background = [CCSprite spriteWithFile:[NSString stringWithFormat:@"map%db.png", self.pointNum]];
+    background = [CCSprite spriteWithFile:[NSString stringWithFormat:@"map%03db.png", self.pointNum]];
     background.position = CGPointMake(size.width /2 , size.height/2);
     background.scale = 1;
     [self addChild:background z:1];
     //前景，显示用的
-    showground = [CCSprite spriteWithFile:[NSString stringWithFormat:@"map%ds.png", self.pointNum]];
+    showground = [CCSprite spriteWithFile:[NSString stringWithFormat:@"map%03ds.png", self.pointNum]];
     showground.position = CGPointMake(size.width /2 , size.height/2);
     showground.scale = 1;
     [self addChild:showground z:2];

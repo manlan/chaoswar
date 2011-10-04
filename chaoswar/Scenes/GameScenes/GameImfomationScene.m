@@ -27,7 +27,7 @@
 
 -(void) pauseGame:(id) sender 
 {
-    NSLog(@"click pauseGame");
+
 }
 
 @end
