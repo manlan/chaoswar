@@ -39,6 +39,13 @@
 		[self addChild:bgImg z:1];
 		
 		//加载魔法背景图片
+        btnWaveStationLight = [CCSprite spriteWithFile:@"waveStationLight.png"];
+		btnWaveStationLight.position = CGPointMake(size.width /2 , size.height/2);
+		btnWaveStationLight.scale = 1;
+        btnWaveStationLight.visible = NO;
+		[self addChild:btnWaveStationLight z:5];
+        
+        //加载魔法背景图片
         selectMagicBg = [CCSprite spriteWithFile:@"selectMagicBg.png"];
 		selectMagicBg.position = CGPointMake(size.width /2 , size.height/2);
 		selectMagicBg.scale = 1;
@@ -90,6 +97,14 @@
 		[self addChild:btnselectJn2Menu z:4];
 		[btnselectJn2 release];
 		
+        //加载关闭按钮
+		btnClose = [[CCMenuItemImage alloc] initFromNormalImage:@"close.png" selectedImage:@"closeDown.png" disabledImage:@"close.png" target:self selector:@selector(closeMagic:)];		
+        CCMenu *btnCloseMenu = [CCMenu menuWithItems:btnClose, nil];
+		btnCloseMenu.position = CGPointMake(385 , 224);
+		[self addChild:btnCloseMenu z:5];
+        btnClose.visible = NO;
+		[btnClose release];
+        
 		//加载开始 按钮
 		btnPlay = [[CCMenuItemImage alloc] initFromNormalImage:@"btnPlay.png" selectedImage:@"btnPlay.png" disabledImage:@"btnPlayHui.png" target:self selector:@selector(goToLoadingSence:)];		
         CCMenu *btnPlayMenu = [CCMenu menuWithItems:btnPlay, nil];
@@ -149,6 +164,7 @@
                     btnWaveStation.tag = [(NSNumber*)[wave objectForKey:@"id"] intValue];
                     CCMenu *btnWaveStationMenu = [CCMenu menuWithItems:btnWaveStation, nil];
                     btnWaveStationMenu.position = waveStationPo;
+                    //btnWaveStation.position = waveStationPo;
                     [self addChild:btnWaveStationMenu z:2];
                     [btnWaveStation release];
                     
@@ -261,6 +277,11 @@
 	}
 }
 
+-(void) closeMagic:(id) sender 
+{
+	[self setMagicHidden];
+}
+
 -(void) setMagicShow
 {
 	selectMagicBg.visible = YES;
@@ -273,6 +294,7 @@
 	btnselectJn2.visible = YES;
 	select1.visible = YES;
 	select2.visible = YES;
+    btnClose.visible = YES;
 }
 
 -(void) setMagicHidden
@@ -287,6 +309,7 @@
 	btnselectJn2.visible = NO;
 	select1.visible = NO;
 	select2.visible = NO;
+    btnClose.visible = NO;
 }
 
 -(void) goToLoadingSence:(id) sender 
@@ -298,6 +321,9 @@
 {
 	CCMenuItemImage *button = sender;
 	guanKa = button.tag;
+    CGPoint po = button.parent.position;
+    btnWaveStationLight.position = po;
+    btnWaveStationLight.visible = YES;
 	[self setMagicShow];
 }
 

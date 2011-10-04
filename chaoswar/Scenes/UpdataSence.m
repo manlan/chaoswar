@@ -26,6 +26,7 @@
         CGSize size = [[CCDirector sharedDirector] winSize];
         //初始化参数
         itemId = -1;
+        gLock = NO;
         
         //加载背景图片
 		bgImg = [CCSprite spriteWithFile:@"updataBg.png"];
@@ -154,6 +155,9 @@
 
 -(void) updataLevel:(id) sender 
 {
+    if (gLock == YES) {
+        return;
+    }
     NSString *errorDesc = nil;
     NSPropertyListFormat format;
     NSString *plistPath = [CCFileUtils fullPathFromRelativePath:@"updataList.plist"];
@@ -209,7 +213,7 @@
 		[spritebatchSj addChild:spriteSj];
 		[spriteSj release];
         spriteSj.position = itemPo;
-		[spriteSj runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:1.2 animation:animationSj restoreOriginalFrame:NO] ]];
+		[spriteSj runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:1 animation:animationSj  restoreOriginalFrame:NO]]];
         
         //加载默认的图标
         itemIcon = [CCSprite spriteWithFile:picUrl];
@@ -241,7 +245,6 @@
 		[self addChild: labelExplain z:2];
         
         btnUpdata.visible = YES;
-        
         if (level == 3) {
             btnUpdata.isEnabled = NO;
         }
@@ -274,21 +277,26 @@
         [labelScore setString:[NSString stringWithFormat:@"%d",scoreVal]];
     }
     
+    gLock = YES;
     [self runAction:[CCSequence actions:
-                     [CCDelayTime actionWithDuration:1.2],
+                     [CCDelayTime actionWithDuration:1],
                      [CCCallFunc actionWithTarget:self selector:@selector(clearSj)],
                      nil]];
 }
 
 -(void) clearSj
 {
+    gLock = NO;
     [self removeChild:spritebatchSj cleanup:NO];
     [self removeChild:spriteSj cleanup:NO];
-    [self removeChild:animationSj cleanup:NO];
+    //[self removeChild:animationSj cleanup:NO];
 }
 
 -(void) updataJnById:(int) jnId
 {
+    if (gLock == YES) {
+        return;
+    }
     int intId = jnId;
     itemId = intId;
     
@@ -368,6 +376,9 @@
 
 -(void) updataJN:(id) sender 
 {
+    if (gLock == YES) {
+        return;
+    }
     CCMenuItemImage *button = sender;
     int intId = button.tag;
     itemId = intId;

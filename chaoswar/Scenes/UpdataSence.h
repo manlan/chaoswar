@@ -31,6 +31,8 @@
     CCSpriteBatchNode *spritebatchSj;
 	CCSprite *spriteSj;
 	CCAnimation *animationSj;
+    
+    BOOL gLock;
 }
 
 +(CCScene *) scene;

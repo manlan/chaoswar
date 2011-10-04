@@ -13,6 +13,7 @@
 	CCSprite *selectMagicBg;
     CCMenuItemImage *btnBack;
 	CCMenuItemImage *btnUpdata;
+    CCSprite *btnWaveStationLight;
 	
 	CCMenuItemImage *btnPlay;
 	CCMenuItemImage *btnJN001;
@@ -23,6 +24,7 @@
 	CCMenuItemImage *btnselectJn2;
 	CCSprite *select1;
 	CCSprite *select2;
+    CCMenuItemImage *btnClose;
 	int intJN001;
 	int intJN002;
 	int guanKa;

@@ -20,10 +20,10 @@
 @implementation Bullet1
 
 + (id) getSprite {
-    Bullet1 *bullet = [Bullet1 spriteWithFile:@"emptyTower.png"];
+    Bullet1 *bullet = [Bullet1 spriteWithFile:@"ArrowBullet.png"];
     if (bullet) {
-        [bullet setScale:0.3];
-        [bullet setOpacity:180];
+        //[bullet setScale:0.3];
+        //[bullet setOpacity:180];
         bullet.isDelete = NO;
         bullet.flytime = 0.5;
     }
