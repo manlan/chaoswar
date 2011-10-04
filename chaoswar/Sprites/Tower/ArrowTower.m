@@ -9,7 +9,6 @@
 #import "ArrowTower.h"
 #import "GameControllerScene.h"
 
-
 @implementation ArrowTower
 
 - (BOOL) run
@@ -23,7 +22,7 @@
     enemy = [self searchClearEnemy];
     if (enemy != nil && enemy.isDelete == NO) {
         [self unschedule:@selector(startSearch:)];
-        [self schedule:@selector(attact:) interval:self.shoottime];
+        [self schedule:@selector(attact:) interval:self.attacttime];
     }
 }
 
@@ -56,7 +55,7 @@
     if (tower) {
         tower.isDelete = NO;
         tower.range = 100;
-        tower.shoottime = 1.5;
+        tower.attacttime = 0.5;
 		tower.enemy = nil;
     }
     return tower;
@@ -70,7 +69,7 @@
 - (void) AttactEnemy
 {
     GameController *gc = [GameController getGameController];
-    Bullet1 *b = [Bullet1 getSprite];
+    ArrowBullet1 *b = [ArrowBullet1 getSprite];
     b.enemy = self.enemy;
     b.position = self.position;
     [gc.gameBackground addChild:b z:12];

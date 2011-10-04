@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Wave.h"
 
 @class WayManager;
 @class Bullet;
@@ -15,7 +16,6 @@
 @class Enemy;
 @class Friendly;
 @class WayPoint;
-@class Wave;
 
 @interface Pointer : NSObject {
     
@@ -23,7 +23,7 @@
 
 -(void) addTower:(NSMutableArray*)array tower:(Tower*)tower point:(CGPoint)point;
 
--(void) addWave:(NSMutableArray*)array enemy:(Enemy *)enemy SpawnRate:(float)spawnrate TotalEnemys:(int)totalenemys wy:(NSMutableArray*)wy;
+-(void) addWave:(NSMutableArray*)array enemy:(TEnemyType)enemy SpawnRate:(float)spawnrate TotalEnemys:(int)totalenemys wy:(NSMutableArray*)wy;
 
 -(void) initEnemy:(NSMutableArray*)array;
 

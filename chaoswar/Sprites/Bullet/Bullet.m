@@ -8,19 +8,51 @@
 
 #import "Bullet.h"
 #import "Enemy.h"
+#import "Friendly.h"
 
 @implementation Bullet
 
 @synthesize flytime;
+@synthesize attact;
+@synthesize attactMode;
+
+@end
+
+@implementation DefBullet
+
 @synthesize enemy;
+
+- (BOOL) run
+{
+    [self move];
+    return YES;
+}
+
+- (void) move {
+    //爆炸则产生效果，同时自身消亡
+    if (!self.enemy) {
+        return;
+    }
+    //double curDistance = ccpDistance(self.position, self.enemy.position);
+    id actionMove = [CCJumpTo actionWithDuration:flytime position:self.enemy.position height:30 jumps:1];
+	id actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(attact:)];
+	[self runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
+}
+
+- (void) attact:(id)sender {
+    self.isDelete = YES;
+    [self removeFromParentAndCleanup:YES];
+}
 
 @end
 
 
-@implementation Bullet1
+@implementation EneBullet
+
+@synthesize friendly;
 
 + (id) getSprite {
-    Bullet1 *bullet = [Bullet1 spriteWithFile:@"ArrowBullet.png"];
+    DefBullet *bullet = [DefBullet spriteWithFile:@"ArrowBullet.png"];
     if (bullet) {
         //[bullet setScale:0.3];
         //[bullet setOpacity:180];
@@ -38,13 +70,11 @@
 
 - (void) move {
     //爆炸则产生效果，同时自身消亡
-    if (!self.enemy) {
+    if (!self.friendly) {
         return;
     }
-    //CGSize size = [[CCDirector sharedDirector] winSize];
     //double curDistance = ccpDistance(self.position, self.enemy.position);
-    //ccTime speed = curDistance / self.flytime;
-    id actionMove = [CCJumpTo actionWithDuration:2 position:self.enemy.position height:30 jumps:1];
+    id actionMove = [CCJumpTo actionWithDuration:flytime position:self.friendly.position height:30 jumps:1];
 	id actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(attact:)];
 	[self runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
 }
@@ -55,3 +85,5 @@
 }
 
 @end
+
+

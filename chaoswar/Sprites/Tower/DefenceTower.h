@@ -12,9 +12,18 @@
 #import "Tower.h"
 #import "Enemy.h"
 #import "Bullet.h"
+#import "DefBullet.h"
 #import "GameController.h"
 
-@interface DefenceTower : NSObject {
+@interface DefenceTower : Tower {
+    
+}
+
+- (void) AttactEnemy;
+
+@end
+
+@interface DefenceTower1 : DefenceTower {
     
 }
 

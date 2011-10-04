@@ -14,17 +14,31 @@
 #import "GameController.h"
 
 @interface Tower : TDSprite {
-    int range;     //射程，决定攻击敌人的视野
-    float shoottime; //攻击速度
-	Enemy *enemy;  //攻击的敌人
+    //攻击范围：像素（半径）
+    int range;
+    //攻击间隔：多少秒攻击一次
+    float attacttime;
+    //攻击的敌人
+	Enemy *enemy;
+    //背景名称
+    NSString *bgName;
+    //背景精灵
+    CCSprite *bgSprite;
+    
+    Tower *nextTower;
 }
 
 @property (nonatomic, assign) int range;
-@property (nonatomic, assign) float shoottime;
+@property (nonatomic, assign) float attacttime;
 @property (nonatomic, assign) Enemy *enemy;
+@property (nonatomic, assign) NSString *bgName;
+@property (nonatomic, assign) CCSprite *bgSprite; 
+@property (nonatomic, assign) Tower *nextTower;
 
 - (Enemy*) searchClearEnemy;
 - (BOOL) canAttactEnemy;
+- (void) buildTower:(Tower*)tower buildBG:(NSString*)buildBG;
+- (void) updateTower:(Tower*)tower;
 
 @end
 

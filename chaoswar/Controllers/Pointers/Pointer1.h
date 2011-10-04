@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "Pointer.h"
 #import "Sprites.h"
+#import "Wave.h"
+#import "WayManager.h"
+#import "WayPoint.h"
 
 @interface Pointer1 :Pointer {
     

@@ -12,6 +12,7 @@
 #import "Tower.h"
 #import "Enemy.h"
 #import "Bullet.h"
+#import "DefBullet.h"
 #import "GameController.h"
 
 @interface ArrowTower : Tower {

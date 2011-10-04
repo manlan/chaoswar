@@ -12,9 +12,18 @@
 #import "Tower.h"
 #import "Enemy.h"
 #import "Bullet.h"
+#import "DefBullet.h"
 #import "GameController.h"
 
-@interface MagicTower : NSObject {
+@interface MagicTower : Tower {
+    
+}
+
+- (void) AttactEnemy;
+
+@end
+
+@interface MagicTower1 : MagicTower {
     
 }
 

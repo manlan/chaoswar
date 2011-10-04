@@ -14,7 +14,8 @@
 @class GameController;
 
 @interface GameImfomationScene : CCLayer {
-    CCMenuItemFont *btnPause;
+	CCMenuItemImage *btnPause;
+	CCMenuItemImage *btnGo;
 }
 
 @end

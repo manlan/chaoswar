@@ -31,7 +31,7 @@
     
 }
 
--(void) addWave:(NSMutableArray*)array enemy:(Enemy *)enemy SpawnRate:(float)spawnrate TotalEnemys:(int)totalenemys wy:(NSMutableArray*)wy
+-(void) addWave:(NSMutableArray*)array enemy:(TEnemyType)enemy SpawnRate:(float)spawnrate TotalEnemys:(int)totalenemys wy:(NSMutableArray*)wy
 {
     Wave *wave = [[Wave alloc] initWithEnemy:enemy SpawnRate:spawnrate TotalEnemys:totalenemys wy:wy];
     [array addObject:wave];

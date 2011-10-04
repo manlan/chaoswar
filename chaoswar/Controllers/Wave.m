@@ -8,7 +8,7 @@
 
 #import "Wave.h"
 #import "GameController.h"
-#import "Enemy.h"
+#import "Sprites.h"
 #import "WayPoint.h"
 #import "GameBackgroundScene.h"
 #import "GameImfomationScene.h"
@@ -23,10 +23,9 @@
 @synthesize enemyType;
 @synthesize way;
 
-- (id)initWithEnemy:(Enemy *)enemy SpawnRate:(ccTime)spawnrate TotalEnemys:(int)totalenemys wy:(NSMutableArray*)wy
+- (id)initWithEnemy:(TEnemyType)enemy SpawnRate:(ccTime)spawnrate TotalEnemys:(int)totalenemys wy:(NSMutableArray*)wy
 {
-	NSAssert(enemy!=nil, @"Invalid creep for wave.");
-    
+	//NSAssert(enemy!=nil, @"Invalid creep for wave.");
 	if( (self = [self init]) )
 	{
 		enemyType = enemy;
@@ -49,7 +48,19 @@
         return;
     }
     GameController *gc = [GameController getGameController];
-    Enemy *enemy = [EnemyOne getSprite];
+    Enemy *enemy;
+    switch (self.enemyType) {
+        case footEnemy1:
+            enemy = [FootEnemy1 getSprite];
+            break;
+        case footEnemy2:
+            enemy = [FootEnemy2 getSprite];
+            break; 
+        default:
+            break;
+    }
+    
+    enemy.nextWayPoint = 1;
     enemy.position = ccp(-1,  -1);
     enemy.way = self.way;
     WayPoint *wayPoint = [enemy.way objectAtIndex:0];
