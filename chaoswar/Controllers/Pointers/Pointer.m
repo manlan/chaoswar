@@ -8,12 +8,10 @@
 
 #import "Pointer.h"
 #import "GameController.h"
-#import "WayPointManager.h"
 #import "Bullet.h"
 #import "Tower.h"
 #import "Enemy.h"
 #import "Friendly.h"
-#import "WayPointManager.h"
 #import "WayPoint.h"
 #import "Wave.h"
 #import "GameBackgroundScene.h"
@@ -31,6 +29,12 @@
     [gc.gameBackground addChild:tower z:5];
     [array addObject:tower];
     
+}
+
+-(void) addWave:(NSMutableArray*)array enemy:(Enemy *)enemy SpawnRate:(float)spawnrate TotalEnemys:(int)totalenemys wy:(NSMutableArray*)wy
+{
+    Wave *wave = [[Wave alloc] initWithEnemy:enemy SpawnRate:spawnrate TotalEnemys:totalenemys wy:wy];
+    [array addObject:wave];
 }
 
 -(void) initEnemy:(NSMutableArray*)array
@@ -53,7 +57,7 @@
     [array removeAllObjects];
 }
 
--(void) initWayPoint:(WayPointManager*)manager
+-(void) initWayPoint:(WayManager*)manager
 {
     //
 }

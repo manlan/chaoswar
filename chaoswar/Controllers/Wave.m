@@ -7,16 +7,23 @@
 //
 
 #import "Wave.h"
-
+#import "GameController.h"
+#import "Enemy.h"
+#import "WayPoint.h"
+#import "GameBackgroundScene.h"
+#import "GameImfomationScene.h"
+#import "GameMagicScene.h"
+#import "GameControllerScene.h"
+#import "GameHintScene.h"
 
 @implementation Wave
 
 @synthesize spawnRate;
 @synthesize totalEnemy;
 @synthesize enemyType;
+@synthesize way;
 
-
-- (id)initWithEnemy:(Enemy *)enemy SpawnRate:(float)spawnrate TotalEnemys:(int)totalenemys
+- (id)initWithEnemy:(Enemy *)enemy SpawnRate:(ccTime)spawnrate TotalEnemys:(int)totalenemys wy:(NSMutableArray*)wy
 {
 	NSAssert(enemy!=nil, @"Invalid creep for wave.");
     
@@ -25,8 +32,35 @@
 		enemyType = enemy;
 		spawnRate = spawnrate;
 		totalEnemy = totalenemys;
+        way = wy;
 	}
 	return self;
+}
+
+- (void) start
+{
+    [[CCScheduler sharedScheduler] scheduleSelector:@selector(runEnemy:) forTarget:self interval:spawnRate paused:NO];
+}
+
+
+- (void) runEnemy:(ccTime)dt {
+    if (totalEnemy <= 0) {
+        [[CCScheduler sharedScheduler] unscheduleSelector:@selector(runEnemy:) forTarget:self]; 
+        return;
+    }
+    GameController *gc = [GameController getGameController];
+    Enemy *enemy = [EnemyOne getSprite];
+    enemy.position = ccp(-1,  -1);
+    enemy.way = self.way;
+    WayPoint *wayPoint = [enemy.way objectAtIndex:0];
+    if (wayPoint) {
+        CGPoint position = [wayPoint getPoint];
+        enemy.position = ccp(position.x, position.y);
+    }
+    [gc.gameBackground addChild:enemy z:5];
+    [gc.enemyArray addObject:enemy];
+    [enemy run];
+    totalEnemy--;
 }
 
 -(id) init

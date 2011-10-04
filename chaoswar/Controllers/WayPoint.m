@@ -11,4 +11,18 @@
 
 @implementation WayPoint
 
+@synthesize point;
+
++ (WayPoint*) getWayPoint:(CGPoint)pt
+{
+    WayPoint *wayPoint = [[[WayPoint alloc] init] autorelease];
+    wayPoint.point = pt;
+    return wayPoint;
+}
+
+- (CGPoint) getPoint;
+{
+    return self.point;
+}
+
 @end

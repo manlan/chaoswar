@@ -15,7 +15,7 @@
 @class GameControllerScene;
 @class GameHintScene;
 @class Pointer;
-@class WayPointManager;
+@class WayManager;
 @class Wave;
 
 @interface GameController : NSObject {
@@ -28,7 +28,7 @@
 	NSMutableArray *towerArray;
 	NSMutableArray *waveArray;	
 	NSMutableArray *bulletArray;	
-	WayPointManager *waypointManager;
+	WayManager *wayManager;
     NSMutableArray *magicArray;
     NSMutableArray *frientlyArray;
 	UIPanGestureRecognizer *gestureRecognizer;
@@ -45,7 +45,7 @@
 @property (nonatomic, retain) NSMutableArray *towerArray;
 @property (nonatomic, retain) NSMutableArray *waveArray;	
 @property (nonatomic, retain) NSMutableArray *bulletArray;	
-@property (nonatomic, retain) WayPointManager *waypointManager;
+@property (nonatomic, retain) WayManager *wayManager;
 @property (nonatomic, retain) NSMutableArray *magicArray;
 @property (nonatomic, retain) NSMutableArray *frientlyArray;
 @property (nonatomic, retain) UIPanGestureRecognizer *gestureRecognizer;
@@ -64,7 +64,5 @@
 - (Wave *)getNextWave;
 
 - (void) deleteUnUseSprite:(CCLayer*)scene;
-
-- (void) clickAllSprite:(CGPoint)point;
 
 @end

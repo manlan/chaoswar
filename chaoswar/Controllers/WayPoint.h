@@ -9,7 +9,13 @@
 #import "cocos2d.h"
 
 @interface WayPoint : CCNode {
-    
+    CGPoint point;
 }
+
+@property CGPoint point;
+
++ (WayPoint*) getWayPoint:(CGPoint)pt;
+
+- (CGPoint) getPoint;;
 
 @end

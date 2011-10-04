@@ -8,15 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "TDSprite.h"
 
-@interface Friendly : CCSprite {
-    int isdelete;
+@interface Friendly : TDSprite {
+
 }
-
-@property int isdelete;
-
-+ (id) friendly;
-- (BOOL) run;
 
 @end
 

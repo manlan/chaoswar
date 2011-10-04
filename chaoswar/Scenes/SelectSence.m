@@ -26,24 +26,92 @@
 -(id) init
 {
 	if( (self=[super init])) {
+		//初始化参数
+		intJN001 = 10;
+		intJN002 = 10;
+		guanKa = 0;
+		
         CGSize size = [[CCDirector sharedDirector] winSize];
         //加载背景图片
         bgImg = [CCSprite spriteWithFile:@"selectWaveBg.png"];
 		bgImg.position = CGPointMake(size.width /2 , size.height/2);
 		bgImg.scale = 1;
 		[self addChild:bgImg z:1];
+		
+		//加载魔法背景图片
+        selectMagicBg = [CCSprite spriteWithFile:@"selectMagicBg.png"];
+		selectMagicBg.position = CGPointMake(size.width /2 , size.height/2);
+		selectMagicBg.scale = 1;
+		[self addChild:selectMagicBg z:3];
+		
+		//加载技能1按钮
+		btnJN001 = [[CCMenuItemImage alloc] initFromNormalImage:@"jN001.png" selectedImage:@"jN001.png" disabledImage:@"jN001Hui.png" target:self selector:@selector(addJn:)];		
+        CCMenu *btnJN001Menu = [CCMenu menuWithItems:btnJN001, nil];
+		btnJN001Menu.position = CGPointMake(144 , 175);
+		btnJN001.tag = 1;
+		[self addChild:btnJN001Menu z:4];
+		[btnJN001 release];
+		
+		//加载技能2按钮
+		btnJN002 = [[CCMenuItemImage alloc] initFromNormalImage:@"jN002.png" selectedImage:@"jN002.png" disabledImage:@"jN002Hui.png" target:self selector:@selector(addJn:)];		
+        CCMenu *btnJN002Menu = [CCMenu menuWithItems:btnJN002, nil];
+		btnJN002Menu.position = CGPointMake(215 , 175);
+		btnJN002.tag = 2;
+		[self addChild:btnJN002Menu z:4];
+		[btnJN002 release];
+		
+		//加载技能3按钮
+		btnJN003 = [[CCMenuItemImage alloc] initFromNormalImage:@"jN003.png" selectedImage:@"jN003.png" disabledImage:@"jN003Hui.png" target:self selector:@selector(addJn:)];		
+        CCMenu *btnJN003Menu = [CCMenu menuWithItems:btnJN003, nil];
+		btnJN003Menu.position = CGPointMake(286 , 175);
+		btnJN003.tag = 3;
+		[self addChild:btnJN003Menu z:4];
+		[btnJN003 release];
+		
+		//加载技能4按钮
+		btnJN004 = [[CCMenuItemImage alloc] initFromNormalImage:@"jN004.png" selectedImage:@"jN004.png" disabledImage:@"jN004Hui.png" target:self selector:@selector(addJn:)];		
+        CCMenu *btnJN004Menu = [CCMenu menuWithItems:btnJN004, nil];
+		btnJN004Menu.position = CGPointMake(357 , 175);
+		btnJN004.tag = 4;
+		[self addChild:btnJN004Menu z:4];
+		[btnJN004 release];
+		
+		//加载技能1边框按钮
+		btnselectJn1 = [[CCMenuItemImage alloc] initFromNormalImage:@"selectJn.png" selectedImage:@"selectJn.png" disabledImage:@"selectJn.png" target:self selector:@selector(removeJn1:)];		
+        CCMenu *btnselectJn1Menu = [CCMenu menuWithItems:btnselectJn1, nil];
+		btnselectJn1Menu.position = CGPointMake(144 , 115);
+		[self addChild:btnselectJn1Menu z:4];
+		[btnselectJn1 release];
+		
+		//加载技能2边框按钮
+		btnselectJn2 = [[CCMenuItemImage alloc] initFromNormalImage:@"selectJn.png" selectedImage:@"selectJn.png" disabledImage:@"selectJn.png" target:self selector:@selector(removeJn2:)];		
+        CCMenu *btnselectJn2Menu = [CCMenu menuWithItems:btnselectJn2, nil];
+		btnselectJn2Menu.position = CGPointMake(214 , 115);
+		[self addChild:btnselectJn2Menu z:4];
+		[btnselectJn2 release];
+		
+		//加载开始 按钮
+		btnPlay = [[CCMenuItemImage alloc] initFromNormalImage:@"btnPlay.png" selectedImage:@"btnPlay.png" disabledImage:@"btnPlayHui.png" target:self selector:@selector(goToLoadingSence:)];		
+        CCMenu *btnPlayMenu = [CCMenu menuWithItems:btnPlay, nil];
+		btnPlayMenu.position = CGPointMake(322 , 115);
+		[self addChild:btnPlayMenu z:4];
+		btnPlay.scale = 0.7;
+		btnPlay.isEnabled = NO;
+		[btnPlay release];
         
         //加载返回按钮
 		btnBack = [[CCMenuItemImage alloc] initFromNormalImage:@"btnBack.png" selectedImage:@"btnBackDown.png" disabledImage:@"btnBack.png" target:self selector:@selector(goToMainMenuSence:)];		
         CCMenu *btnBackMenu = [CCMenu menuWithItems:btnBack, nil];
 		btnBackMenu.position = CGPointMake(450 , 30);
 		[self addChild:btnBackMenu z:2];
+		[btnBack release];
         
         //加载升级按钮
 		btnUpdata = [[CCMenuItemImage alloc] initFromNormalImage:@"btnUpdate.png" selectedImage:@"btnUpdateDown.png" disabledImage:@"btnUpdate.png" target:self selector:@selector(goToUpdataSence:)];		
         CCMenu *btnUpdataMenu = [CCMenu menuWithItems:btnUpdata, nil];
 		btnUpdataMenu.position = CGPointMake(375 , 30);
 		[self addChild:btnUpdataMenu z:2];
+		[btnUpdata release];
         
         //加载关卡及分数
         NSString *errorDesc = nil;
@@ -76,7 +144,7 @@
                 isCanPLay = [(NSNumber*)[wave objectForKey:@"open"] intValue];
                 
                 if (isCanPLay == 1) {
-                    btnWaveStation = [[CCMenuItemImage alloc] initFromNormalImage:@"btnWaveStation.png" selectedImage:@"btnWaveStation.png" disabledImage:@"btnWaveStation.png" target:self  selector:@selector(goToLoadingSence:)];
+                    btnWaveStation = [[CCMenuItemImage alloc] initFromNormalImage:@"btnWaveStation.png" selectedImage:@"btnWaveStation.png" disabledImage:@"btnWaveStation.png" target:self  selector:@selector(setMagic:)];
                     btnWaveStation.scale = 1;
                     btnWaveStation.tag = [(NSNumber*)[wave objectForKey:@"id"] intValue];
                     CCMenu *btnWaveStationMenu = [CCMenu menuWithItems:btnWaveStation, nil];
@@ -100,14 +168,137 @@
                 }        
             }
         }
+		
+		[self setMagicHidden];
 	}
 	return self;
 }
 
--(void) goToLoadingSence:(id) sender 
+-(void) addJn:(id) sender 
 {
     CCMenuItemImage *button = sender;
-    [[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[LoadingSence scene:button.tag]]];
+    NSString *picUrl = [NSString stringWithFormat:@"jN00%d.png", button.tag];
+	if (intJN001 == 10) {
+		select1 = [CCSprite spriteWithFile:picUrl];
+		select1.position = CGPointMake(144 , 115);
+		select1.scale = 1;
+		[self addChild:select1 z:5];
+		intJN001 = button.tag;
+		button.isEnabled = NO;
+	}
+	else if(intJN002 == 10){
+		select2 = [CCSprite spriteWithFile:picUrl];
+		select2.position = CGPointMake(214 , 115);
+		select2.scale = 1;
+		[self addChild:select2 z:5];
+		intJN002 = button.tag;
+		button.isEnabled = NO;
+	}
+	
+	if (intJN002 != 10 && intJN001 != 10) {
+		btnPlay.isEnabled = YES;
+	}
+	else {
+		btnPlay.isEnabled = NO;
+	}
+
+}
+
+-(void) removeJn1:(id) sender 
+{
+	[self removeChild:select1 cleanup:NO];
+	
+	if (intJN001 == 1) {
+		btnJN001.isEnabled = YES;
+	}
+	
+	if (intJN001 == 2) {
+		btnJN002.isEnabled = YES;
+	}
+	
+	if (intJN001 == 3) {
+		btnJN003.isEnabled = YES;
+	}
+	
+	if (intJN001 == 4) {
+		btnJN004.isEnabled = YES;
+	}
+	intJN001 = 10;
+	
+	if (intJN002 != 10 && intJN001 != 10) {
+		btnPlay.isEnabled = YES;
+	}
+	else {
+		btnPlay.isEnabled = NO;
+	}
+}
+
+-(void) removeJn2:(id) sender 
+{
+	[self removeChild:select2 cleanup:NO];
+	if (intJN002 == 1) {
+		btnJN001.isEnabled = YES;
+	}
+	
+	if (intJN002 == 2) {
+		btnJN002.isEnabled = YES;
+	}
+	
+	if (intJN002 == 3) {
+		btnJN003.isEnabled = YES;
+	}
+	
+	if (intJN002 == 4) {
+		btnJN004.isEnabled = YES;
+	}
+	intJN002 = 10;
+	
+	if (intJN002 != 10 && intJN001 != 10) {
+		btnPlay.isEnabled = YES;
+	}
+	else {
+		btnPlay.isEnabled = NO;
+	}
+}
+
+-(void) setMagicShow
+{
+	selectMagicBg.visible = YES;
+	btnPlay.visible = YES;
+	btnJN001.visible = YES;
+	btnJN002.visible = YES;
+	btnJN003.visible = YES;
+	btnJN004.visible = YES;
+	btnselectJn1.visible = YES;
+	btnselectJn2.visible = YES;
+	select1.visible = YES;
+	select2.visible = YES;
+}
+
+-(void) setMagicHidden
+{
+	selectMagicBg.visible = NO;
+	btnPlay.visible = NO;
+	btnJN001.visible = NO;
+	btnJN002.visible = NO;
+	btnJN003.visible = NO;
+	btnJN004.visible = NO;
+	btnselectJn1.visible = NO;
+	btnselectJn2.visible = NO;
+	select1.visible = NO;
+	select2.visible = NO;
+}
+
+-(void) goToLoadingSence:(id) sender 
+{
+    [[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[LoadingSence scene:guanKa]]];
+}
+
+-(void) setMagic:(id) sender 
+{
+	CCMenuItemImage *button = sender;
+	guanKa = button.tag;
+	[self setMagicShow];
 }
 
 -(void) goToMainMenuSence:(id) sender 

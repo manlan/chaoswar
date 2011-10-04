@@ -28,6 +28,4 @@
 
 - (void) initMap:(int)pn;
 
-- (BOOL) canBuildOnTilePosition:(CGPoint) pos;
-
 @end

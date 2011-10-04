@@ -7,35 +7,13 @@
 //
 
 #import "Tower.h"
-
+#import "GameControllerScene.h"
 
 @implementation Tower
 
 @synthesize range;
-@synthesize isdelete;
 @synthesize enemy;
-
-+ (id) tower
-{
-    return nil;
-}
-
-- (BOOL) run
-{
-    return YES;
-}
-
--(void) onClick
-{
-    NSLog(@"click EmptyTower showMenu");
-}
-
-- (CGRect)rect
-{
-    CGSize s = [self.texture contentSize];
-    CGRect r = CGRectMake(-s.width / 2, -s.height / 2, s.width, s.height);
-    return r;
-}
+@synthesize shoottime;
 
 - (Enemy*) searchClearEnemy {
 	Enemy *nextEnemy = nil;
@@ -49,8 +27,11 @@
 		}
 	}
 	
-	if (maxDistant < self.range)
-		return nextEnemy;
+	if (maxDistant < self.range) {
+        NSLog(@"current enemy no is %d", [gc.enemyArray indexOfObject:nextEnemy]);
+        return nextEnemy;
+    }
+		
 	return nil;
 }
 
@@ -60,7 +41,7 @@
         return NO;
     }
     
-    if (enemy.isdelete == YES) {
+    if (enemy.isDelete == YES) {
         return NO;
     }
     
@@ -76,29 +57,94 @@
 
 @implementation EmptyTower
 
-+ (id) tower {
++ (id) getSprite {
     EmptyTower *tower = [EmptyTower spriteWithFile:@"emptyTower.png"];
     if (tower) {
-        tower.isdelete = NO;
+        tower.isDelete = NO;
         tower.range = 0;
 		tower.enemy = nil;
     }
     return tower;
 }
 
--(void) onClick
+- (void) spriteTouchBegan:(UITouch *)touch
 {
-    NSLog(@"click EmptyTower showMenu");
+    [[GameController getGameController].gameController removeAllChildrenWithCleanup:YES];
+    //箭塔
+    CCMenuItemImage *btnArrayTower = [[CCMenuItemImage alloc] initFromNormalImage:@"magic01.png" selectedImage:@"magic01.png" disabledImage:@"magic01.png" target:self selector:@selector(bulidArrayTower:)];		
+    CCMenu *btnArrayTowerMenu = [CCMenu menuWithItems:btnArrayTower, nil];
+    btnArrayTowerMenu.position = CGPointMake(254 , 30);
+    [[GameController getGameController].gameController addChild:btnArrayTowerMenu z:2];
+    
+    //防塔
+    CCMenuItemImage *btnDefenceTower = [[CCMenuItemImage alloc] initFromNormalImage:@"magic02.png" selectedImage:@"magic02.png" disabledImage:@"magic02.png" target:self selector:@selector(bulidDefenceTower:)];		
+    CCMenu *btnDefenceTowerMenu = [CCMenu menuWithItems:btnDefenceTower, nil];
+    btnDefenceTowerMenu.position = CGPointMake(318 , 30);
+    [[GameController getGameController].gameController addChild:btnDefenceTowerMenu z:2];
+    
+    //炮塔
+    CCMenuItemImage *btnTurretTower = [[CCMenuItemImage alloc] initFromNormalImage:@"magic03.png" selectedImage:@"magic03.png" disabledImage:@"magic03.png" target:self selector:@selector(bulidTurretTower:)];		
+    CCMenu *btnTurretTowerMenu = [CCMenu menuWithItems:btnTurretTower, nil];
+    btnTurretTowerMenu.position = CGPointMake(382 , 30);
+    [[GameController getGameController].gameController addChild:btnTurretTowerMenu z:2];
+    
+    //魔塔
+    CCMenuItemImage *btnMagicTower = [[CCMenuItemImage alloc] initFromNormalImage:@"magic04.png" selectedImage:@"magic04.png" disabledImage:@"magic04.png" target:self selector:@selector(bulidMagicTower:)];		
+    CCMenu *btnMagicTowerMenu = [CCMenu menuWithItems:btnMagicTower, nil];
+    btnMagicTowerMenu.position = CGPointMake(446 , 30);
+    [[GameController getGameController].gameController addChild:btnMagicTowerMenu z:2];
 }
 
-- (BOOL) run
+-(void) bulidArrayTower:(id) sender 
 {
-    return YES;
+    self.isDelete = YES;
+    GameController *gc = [GameController getGameController];
+    ArrowTower1 *tower = [ArrowTower1 getSprite];
+    tower.position = self.position;
+    [gc.gameBackground addChild:tower z:5];
+    [gc.towerArray addObject:tower];
+    [[GameController getGameController].gameController removeAllChildrenWithCleanup:YES];
+    [tower run];
+    [self removeFromParentAndCleanup:YES];
 }
 
-- (void) dealloc
-{  
-    [super dealloc];
+-(void) bulidDefenceTower:(id) sender 
+{
+    self.isDelete = YES;
+    GameController *gc = [GameController getGameController];
+    ArrowTower1 *tower = [ArrowTower1 getSprite];
+    tower.position = self.position;
+    [gc.gameBackground addChild:tower z:5];
+    [gc.towerArray addObject:tower];
+    [[GameController getGameController].gameController removeAllChildrenWithCleanup:YES];
+    [tower run];
+    [self removeFromParentAndCleanup:YES];
+}
+
+-(void) bulidTurretTower:(id) sender 
+{
+    self.isDelete = YES;
+    GameController *gc = [GameController getGameController];
+    ArrowTower1 *tower = [ArrowTower1 getSprite];
+    tower.position = self.position;
+    [gc.gameBackground addChild:tower z:5];
+    [gc.towerArray addObject:tower];
+    [[GameController getGameController].gameController removeAllChildrenWithCleanup:YES];
+    [tower run];
+    [self removeFromParentAndCleanup:YES];
+}
+
+-(void) bulidMagicTower:(id) sender 
+{
+    self.isDelete = YES;
+    GameController *gc = [GameController getGameController];
+    ArrowTower1 *tower = [ArrowTower1 getSprite];
+    tower.position = self.position;
+    [gc.gameBackground addChild:tower z:5];
+    [gc.towerArray addObject:tower];
+    [[GameController getGameController].gameController removeAllChildrenWithCleanup:YES];
+    [tower run];
+    [self removeFromParentAndCleanup:YES];
 }
 
 @end
@@ -112,17 +158,12 @@
     return YES;
 }
 
--(void) onClick
-{
-    NSLog(@"click EmptyTower showMenu");
-}
-
 //搜索敌人
 - (void) startSearch:(ccTime)dt {
     enemy = [self searchClearEnemy];
-    if (enemy != nil && enemy.isdelete == NO) {
+    if (enemy != nil && enemy.isDelete == NO) {
         [self unschedule:@selector(startSearch:)];
-        [self schedule:@selector(attact:)];
+        [self schedule:@selector(attact:) interval:self.shoottime];
     }
 }
 
@@ -138,7 +179,7 @@
 
 - (void) AttactEnemy
 {
-
+    NSLog(@"ArrowTower Click");
 }
 
 - (void) dealloc
@@ -150,25 +191,32 @@
 
 @implementation ArrowTower1
 
-+ (id) tower {
-    ArrowTower1 *tower =  [ArrowTower1 spriteWithFile:@"ArrowTower1.png"];
++ (id) getSprite {
+    ArrowTower1 *tower = [ArrowTower1 spriteWithFile:@"ArrowTower1.png"];
     if (tower) {
-        tower.isdelete = NO;
+        tower.isDelete = NO;
         tower.range = 100;
+        tower.shoottime = 1.5;
 		tower.enemy = nil;
     }
     return tower;
-    
 }
 
--(void) showMenu:(id) sender 
+- (void) spriteTouchBegan:(UITouch *)touch
 {
-    NSLog(@"click ArrowTower1 showMenu");
+    NSLog(@"ArrowTower1 Click");
 }
 
 - (void) AttactEnemy
 {
-    
+    NSLog(@"ArrowTower1 Attact!");
+    GameController *gc = [GameController getGameController];
+    Bullet1 *b = [Bullet1 getSprite];
+    b.enemy = self.enemy;
+    b.position = self.position;
+    [gc.gameBackground addChild:b z:12];
+    [gc.bulletArray addObject:b];
+    [b run];
 }
 
 - (void) dealloc

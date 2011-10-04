@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "TDSprite.h"
 #import "WayPoint.h"
 
-@interface Enemy : CCSprite {
+@interface Enemy : TDSprite {
     //
     int maxHP;
     //
@@ -22,28 +23,20 @@
     //
 	int moveSpeed;
     //
-    int wayNum;
-    //
-	int wayPoint;
-    //
     int attact;
     //
     int defence;
-    int isdelete;
+    
+    NSMutableArray *way;
 }
-@property int isdelete;
+
 @property (nonatomic, assign) int maxHP;
 @property (nonatomic, assign) int maxMP;
 @property (nonatomic, assign) int currentHP;
 @property (nonatomic, assign) int currentMP;
 @property (nonatomic, assign) int moveSpeed;
-@property (nonatomic, assign) int wayNum;
-@property (nonatomic, assign) int wayPoint;
+@property (nonatomic, assign) NSMutableArray *way;
 
-+ (id) enemy;
-- (BOOL) run;
-
-- (Enemy*) initWithEnemy:(Enemy*) copyFrom; 
 - (WayPoint*) getCurrentWaypoint;
 - (WayPoint*) getNextWaypoint;
 

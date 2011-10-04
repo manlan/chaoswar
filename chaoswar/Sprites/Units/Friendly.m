@@ -11,18 +11,14 @@
 
 @implementation Friendly
 
-@synthesize isdelete;
-
 @end
 
 @implementation Friendly1
 
-+ (id) friendly {
++ (id) getSprite {
     Friendly1 *friendly = [Friendly1 alloc];
     if ((friendly = [[friendly initWithFile:@"Enemy2.png"] autorelease])) {
-        //        enemy.hp = 10;
-        //        enemy.moveDuration = 4;
-        //		enemy.curWaypoint = 0;
+
     }
     return friendly;
 }

@@ -16,33 +16,14 @@
 @synthesize currentHP;
 @synthesize currentMP;
 @synthesize moveSpeed;
-@synthesize wayNum;
-@synthesize wayPoint;
-@synthesize isdelete;
-
-- (id) copyWithZone:(NSZone *)zone {
-	Enemy *copy = [[[self class] allocWithZone:zone] initWithEnemy:self];
-	return copy;
-}
-
-- (Enemy*) initWithEnemy:(Enemy*) copyFrom;  {
-    if ((self = [[self initWithFile:@"Enemy1.png"] autorelease])) {
-
-	}
-	[self retain];
-	return self;
-}
+@synthesize way;
 
 - (WayPoint*) getCurrentWaypoint{
-//	GameController *gc = [GameController getGameController];
-//	WayPoint *waypoint = (WayPoint*) [gc.waypointArray objectAtIndex:self.wayPoint];
-//	return waypoint;
+    return nil;
 }
 
 - (WayPoint*) getNextWaypoint{
-//	GameController *gc = [GameController getGameController];
-//	WayPoint *waypoint = (WayPoint*) [gc.waypointArray objectAtIndex:(self.wayPoint + 1)];
-//	return waypoint;
+    return nil;
 }
 
 -(void) enemyLogic:(ccTime)dt {
@@ -61,9 +42,12 @@
 
 @implementation EnemyOne
 
-+ (id) enemy {
-    EnemyOne *enemy = [EnemyOne alloc];
-    if ((enemy = [[enemy initWithFile:@"Enemy1.png"] autorelease])) {
++ (id) getSprite {
+    EnemyOne *enemy = [EnemyOne spriteWithFile:@"emptyTower.png"];
+    if (enemy) {
+        [enemy setScale:0.4];
+        [enemy setOpacity:180];
+        //enemy.rotation = 0;
 //        enemy.hp = 10;
 //        enemy.moveDuration = 4;
 //		enemy.curWaypoint = 0;
@@ -84,13 +68,30 @@
 
 - (void) move:(ccTime)dt {
     //遇敌
-    if (1 == 1) {
+    if (1 == 2) {
         [self unschedule:@selector(move:)];
         [self schedule:@selector(startAttact:)];
         return;
     }
+    [self unschedule:@selector(move:)];
     
-    return;
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    CGPoint position = ccp(CCRANDOM_0_1() * size.width, CCRANDOM_0_1() * size.height);
+    double curDistance = ccpDistance(self.position, position);
+    ccTime speed = curDistance / 20;
+    id actionMove = [CCMoveTo actionWithDuration:speed position:position];
+	id actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterMove:)];
+	[self runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
+}
+
+-(void) afterMove:(id)sender {
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    CGPoint position = ccp(CCRANDOM_0_1() * size.width, CCRANDOM_0_1() * size.height);
+    double curDistance = ccpDistance(self.position, position);
+    ccTime speed = curDistance / 20;
+    id actionMove = [CCMoveTo actionWithDuration:speed position:position];
+	id actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterMove:)];
+	[self runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
 }
 
 - (void) startAttact:(ccTime)dt {
@@ -120,7 +121,7 @@
 
 @implementation EnemyTwo
 
-+ (id) enemy {
++ (id) getSprite {
     EnemyOne *enemy = [EnemyOne alloc];
     if ((enemy = [[enemy initWithFile:@"Enemy2.png"] autorelease])) {
         //        enemy.hp = 10;

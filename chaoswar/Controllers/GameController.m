@@ -14,6 +14,7 @@
 #import "Wave.h"
 #import "WayPoint.h"
 #import "Pointer.h"
+#import "WayManager.h"
 
 @implementation GameController
 
@@ -26,7 +27,7 @@
 @synthesize towerArray;
 @synthesize waveArray;	
 @synthesize bulletArray;	
-@synthesize waypointManager;
+@synthesize wayManager;
 @synthesize magicArray;
 @synthesize frientlyArray;
 @synthesize gestureRecognizer;
@@ -50,7 +51,7 @@ static GameController *_sharedController = nil;
         towerArray = [[NSMutableArray alloc] init];
         waveArray = [[NSMutableArray alloc] init];
         bulletArray = [[NSMutableArray alloc] init];
-        waypointManager = [[WayPointManager alloc] init];
+        wayManager = [[WayManager alloc] init];
         magicArray = [[NSMutableArray alloc] init];
         frientlyArray = [[NSMutableArray alloc] init];
 	}
@@ -59,16 +60,16 @@ static GameController *_sharedController = nil;
 
 - (void) initController:(Pointer*)pointer {
     pt = pointer;
-    //=========初始化敌人
-    [pt initEnemy:enemyArray];
-    //=========初始化塔
-    [pt initTower:towerArray];
+    //=========初始化路线
+    [pt initWayPoint:wayManager];
     //=========初始化出兵顺序
     [pt initWave:waveArray];
+    //=========初始化塔
+    [pt initTower:towerArray];
+    //=========初始化敌人
+    [pt initEnemy:enemyArray];
     //=========初始化子弹
     [pt initBullety:bulletArray];
-    //=========初始化路线
-    [pt initWayPoint:waypointManager];
     //=========初始化魔法
     [pt initMagic:magicArray];
     //=========初始化友军
@@ -77,7 +78,9 @@ static GameController *_sharedController = nil;
 
 - (void) start
 {
-
+    for (Wave *wave in self.waveArray) {
+        [wave start];
+	}
 }
 
 - (void) deleteUnUseSprite:(CCLayer*)scene
@@ -87,43 +90,41 @@ static GameController *_sharedController = nil;
 	NSMutableArray *bulletDeleteArray = [[NSMutableArray alloc] init];
     NSMutableArray *frientlyDeleteArray = [[NSMutableArray alloc] init];
 	for (Enemy *en1 in self.enemyArray) {
-        if (en1.isdelete == 1) {
+        if (en1.isDelete == YES) {
             [enemyDeleteArray addObject:en1];
         }
-		for (Enemy *en2 in enemyDeleteArray) {
-			[self.enemyArray removeObject:en2];
-			[scene removeChild:en2 cleanup:YES];									
-		}
 	}
+    for (Enemy *en2 in enemyDeleteArray) {
+        [self.enemyArray removeObject:en2];
+        [scene removeChild:en2 cleanup:YES];									
+    }
     for (Tower *to1 in self.towerArray) {
-        if (to1.isdelete == 1) {
+        if (to1.isDelete == YES) {
             [towerDeleteArray addObject:to1];
         }
-		for (Bullet *to2 in towerDeleteArray) {
-			[self.towerArray removeObject:to2];
-			[scene removeChild:to2 cleanup:YES];									
-		}
 	}
-
+    for (Tower *to2 in towerDeleteArray) {
+        [self.towerArray removeObject:to2];
+        [scene removeChild:to2 cleanup:YES];									
+    }
     for (Bullet *bu1 in self.bulletArray) {
-        if (bu1.isdelete == 1) {
+        if (bu1.isDelete == YES) {
             [bulletDeleteArray addObject:bu1];
         }
-		for (Bullet *bu2 in bulletDeleteArray) {
-			[self.bulletArray removeObject:bu2];
-			[scene removeChild:bu2 cleanup:YES];									
-		}
 	}
-    
+    for (Bullet *bu2 in bulletDeleteArray) {
+        [self.bulletArray removeObject:bu2];
+        [scene removeChild:bu2 cleanup:YES];									
+    }
     for (Friendly *fr1 in self.frientlyArray) {
-        if (fr1.isdelete == 1) {
+        if (fr1.isDelete == YES) {
             [frientlyDeleteArray addObject:fr1];
         }
-		for (Friendly *fr2 in frientlyDeleteArray) {
-			[self.frientlyArray removeObject:fr2];
-			[scene removeChild:fr2 cleanup:YES];									
-		}
 	}
+    for (Friendly *fr2 in frientlyDeleteArray) {
+        [self.frientlyArray removeObject:fr2];
+        [scene removeChild:fr2 cleanup:YES];									
+    }
     [enemyDeleteArray removeAllObjects];
 	[towerDeleteArray removeAllObjects];
 	[bulletDeleteArray removeAllObjects];
@@ -132,32 +133,6 @@ static GameController *_sharedController = nil;
 	[towerDeleteArray release];
 	[bulletDeleteArray release];
     [frientlyDeleteArray release];
-}
-
-- (void) clickAllSprite:(CGPoint)point
-{
-    for (Enemy *en in self.enemyArray) {
-        if (en.isdelete == 0) {
-            if (CGRectContainsPoint(en.textureRect, point)) {
-                //[en onClick];
-            }
-        }
-	}
-    for (Tower *to in self.towerArray) {
-        if (to.isdelete == 0) {
-            if (CGRectContainsPoint(to.rect, point)) {
-                [to onClick];
-            }								
-		}
-	}
-
-    for (Friendly *fr in self.frientlyArray) {
-        if (fr.isdelete == 0) {
-            if (CGRectContainsPoint(fr.accessibilityFrame, point)) {
-                //[fr onClick];
-            }
-        }
-    }
 }
 
 //获取当前的敌人攻击队列
@@ -193,7 +168,7 @@ static GameController *_sharedController = nil;
     [towerArray release];
     [waveArray release];
     [bulletArray release];
-    [waypointManager release];
+    [wayManager release];
     [magicArray release];
     [frientlyArray release];
     gameBackground = nil;
@@ -205,7 +180,7 @@ static GameController *_sharedController = nil;
     towerArray = nil;
     waveArray = nil;
     bulletArray = nil;
-    waypointManager = nil;
+    wayManager = nil;
     magicArray = nil;
     frientlyArray = nil;
 	[super dealloc];

@@ -85,124 +85,16 @@
     [self schedule:@selector(gameLogic:) interval:1.0];		
 }
 
-//地图块编号
-- (CGPoint) tileCoordForPosition:(CGPoint) position 
-{
-//	int x = position.x / self.map.tileSize.width;
-//	int y = ((self.map.mapSize.height * self.map.tileSize.height) - position.y) / self.map.tileSize.height;
-//	return ccp(x,y);
-}
-
-//判断是否允许建塔
-- (BOOL) canBuildOnTilePosition:(CGPoint) pos 
-{
-//	CGPoint towerLoc = [self tileCoordForPosition: pos];
-//	
-//	int tileGid = [self.background tileGIDAt:towerLoc];
-//	NSDictionary *dics = [self.map propertiesForGID:tileGid];
-//	NSString *type = [dics valueForKey:@"canbuild"];
-//	if([type isEqualToString: @"1"]) {
-//		return YES;
-//	}
-	return NO;
-}
-
-//建塔
--(void)addTower: (CGPoint)pos {
-	GameController *gc = [GameController getGameController];
-//	
-//	Tower *tower = nil;
-//	
-//	CGPoint towerLoc = [self tileCoordForPosition: pos];
-//	
-//	int tileGid = [self.background tileGIDAt:towerLoc];
-//	NSDictionary *props = [self.map propertiesForGID:tileGid];
-//	NSString *type = [props valueForKey:@"buildable"];
-//	
-//	
-//	NSLog(@"Buildable: %@", type);
-//	if([type isEqualToString: @"1"]) {
-//		tower = [MachineGunTower tower];
-//		tower.position = ccp((towerLoc.x * 32) + 16, self.map.contentSize.height - (towerLoc.y * 32) - 16);
-//		[self addChild:tower z:1];
-//		
-//		tower.tag = 1;
-//		[gc.towerArray addObject:tower];
-//		
-//	} else {
-//		NSLog(@"Tile Not Buildable");
-//	}
-//	
-}
-
-//添加敌军
--(void)addEnemy {
-    
-	GameController *gc = [GameController getGameController];
-	Wave * wave = [self getCurrentWave];
-	if (wave.totalEnemy < 0) {
-		return; //[self getNextWave];
-	}
-	
-	wave.totalEnemy--;
-	
-    Enemy *enemy = nil;
-    if ((arc4random() % 2) == 0) {
-        enemy = [EnemyOne enemy];
-    } else {
-        enemy = [EnemyTwo enemy];
-    }	
-	
-	WayPoint *waypoint = [enemy getCurrentWaypoint];
-	enemy.position = waypoint.position;	
-	waypoint = [enemy getNextWaypoint];
-	
-	[self addChild:enemy z:1];
-	
-	int moveDuration = enemy.scale;	
-	id actionMove = [CCMoveTo actionWithDuration:moveDuration position:waypoint.position];
-	id actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(FollowPath:)];
-	[enemy runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
-	
-	// Add to targets array
-	enemy.tag = 1;
-	[gc.enemyArray addObject:enemy];
-	
-}
-
-//敌人的行动（循环）
--(void) FollowPath:(id)sender {
-    
-	Enemy *enemy = (Enemy *)sender;
-	
-	WayPoint *waypoint = [enemy getNextWaypoint];
-    
-	int moveDuration = enemy.scale;
-	id actionMove = [CCMoveTo actionWithDuration:moveDuration position:waypoint.position];
-	id actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(FollowPath:)];
-	[enemy stopAllActions];
-	[enemy runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
-}
-
 //游戏逻辑（循环）
 -(void)gameLogic:(ccTime)dt {
-	//增加敌军＝＝＝＝暂时
+	//删除无用信息
 	GameController *gc = [GameController getGameController];
-	Wave * wave = [gc getCurrentWave];
-	static double lastTimeTargetAdded = 0;
-    double now = [[NSDate date] timeIntervalSince1970];
-    if(lastTimeTargetAdded == 0 || now - lastTimeTargetAdded >= wave.spawnRate) {
-        [self addEnemy];
-        lastTimeTargetAdded = now;
-    }
-	
-    //删除无用信息
     [gc deleteUnUseSprite:self];
 }
 
 
 - (CGPoint)boundLayerPos:(CGPoint)newPos {
-    CGSize winSize = [CCDirector sharedDirector].winSize;
+    //CGSize winSize = [CCDirector sharedDirector].winSize;
     CGPoint retval = newPos;
     retval.x = MIN(retval.x, 0);
     //retval.x = MAX(retval.x, -map.contentSize.width+winSize.width); 
@@ -238,23 +130,21 @@
 {
     CGPoint point = [self convertTouchToNodeSpace:[touches anyObject]];
     NSLog(@"click pos is (x:%f,y:%f)",point.x, point.y);
-    GameController *gc = [GameController getGameController];
-    [gc clickAllSprite:point];
+//    GameController *gc = [GameController getGameController];
 }
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    //    CGPoint point = [self convertTouchToNodeSpace:[touches anyObject]];
-    //	NSLog(@"ccTouchesMoved point: x=%.2f, y=%.2f", point.x, point.y);
+//    CGPoint point = [self convertTouchToNodeSpace:[touches anyObject]];
+//    NSLog(@"ccTouchesMoved point: x=%.2f, y=%.2f", point.x, point.y);
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    //    CGPoint point = [self convertTouchToNodeSpace:[touches anyObject]];
-    //	NSLog(@"ccTouchesEnded point: x=%.2f, y=%.2f", point.x, point.y);
+//    CGPoint point = [self convertTouchToNodeSpace:[touches anyObject]];
+//    NSLog(@"ccTouchesEnded point: x=%.2f, y=%.2f", point.x, point.y);
 }
 
-// on "dealloc" you need to release all your retained objects
 - (void) dealloc
 {
 	[super dealloc];

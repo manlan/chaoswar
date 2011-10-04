@@ -8,17 +8,22 @@
 
 #import <Foundation/Foundation.h>
 #import "Enemy.h"
+#import "Pointer.h"
 
 @interface Wave : NSObject {
-    float spawnRate;
+    ccTime spawnRate;
 	int totalEnemy;
 	Enemy * enemyType;
+    NSMutableArray *way;
 }
 
-@property (nonatomic) float spawnRate;
+@property (nonatomic) ccTime spawnRate;
 @property (nonatomic) int totalEnemy;
 @property (nonatomic, retain) Enemy * enemyType;
+@property (nonatomic, assign) NSMutableArray *way;
 
-- (id)initWithEnemy:(Enemy *)enemy SpawnRate:(float)spawnrate TotalEnemys:(int)totalenemys;
+- (id)initWithEnemy:(Enemy *)enemy SpawnRate:(ccTime)spawnrate TotalEnemys:(int)totalenemys wy:(NSMutableArray*)wy;
+
+- (void) start;
 
 @end

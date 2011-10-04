@@ -9,12 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@class WayPointManager;
+@class WayManager;
 @class Bullet;
 @class Tower;
 @class Enemy;
 @class Friendly;
-@class WayPointManager;
 @class WayPoint;
 @class Wave;
 
@@ -24,6 +23,8 @@
 
 -(void) addTower:(NSMutableArray*)array tower:(Tower*)tower point:(CGPoint)point;
 
+-(void) addWave:(NSMutableArray*)array enemy:(Enemy *)enemy SpawnRate:(float)spawnrate TotalEnemys:(int)totalenemys wy:(NSMutableArray*)wy;
+
 -(void) initEnemy:(NSMutableArray*)array;
 
 -(void) initTower:(NSMutableArray*)array;
@@ -32,7 +33,7 @@
 
 -(void) initBullety:(NSMutableArray*)array;
 
--(void) initWayPoint:(WayPointManager*)manager;
+-(void) initWayPoint:(WayManager*)manager;
 
 -(void) initMagic:(NSMutableArray*)array;
 

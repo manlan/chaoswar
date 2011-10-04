@@ -8,24 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "TDSprite.h"
 #import "Enemy.h"
 #import "Bullet.h"
 #import "GameController.h"
 
-@interface Tower : CCSprite {
-    BOOL isdelete; //是否已经被删除
-    int range;    //射程，决定攻击敌人的视野
+@interface Tower : TDSprite {
+    int range;     //射程，决定攻击敌人的视野
+    float shoottime; //攻击速度
 	Enemy *enemy;  //攻击的敌人
 }
 
-@property BOOL isdelete;
 @property (nonatomic, assign) int range;
+@property (nonatomic, assign) float shoottime;
 @property (nonatomic, assign) Enemy *enemy;
-
-+ (id) tower;
-- (BOOL) run;
-- (void) onClick;
-- (CGRect)rect;
 
 - (Enemy*) searchClearEnemy;
 - (BOOL) canAttactEnemy;
