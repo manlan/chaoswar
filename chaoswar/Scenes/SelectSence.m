@@ -314,7 +314,7 @@
 
 -(void) goToLoadingSence:(id) sender 
 {
-    [[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[LoadingSence scene:guanKa]]];
+    [[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[LoadingSence scene:guanKa JN1:intJN001 JN2:intJN002]]];
 }
 
 -(void) setMagic:(id) sender 

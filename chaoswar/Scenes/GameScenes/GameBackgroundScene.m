@@ -22,16 +22,17 @@
 @synthesize waveLevel;
 @synthesize pointNum;
 
-+(id) scene:(int)pn
++ (id) scene:(int)gk JN1:(int)JN1 JN2:(int)JN2
 {
 	CCScene *scene = [CCScene node];
     
 	GameBackgroundScene *gameBackgroundScene = [GameBackgroundScene node];
-    [gameBackgroundScene initMap:pn];
+    [gameBackgroundScene initMap:gk];
 	[scene addChild:gameBackgroundScene z:1];
     GameImfomationScene *gameImfomationScene = [GameImfomationScene node];
     [scene addChild:gameImfomationScene z:2];
     GameMagicScene *gameMagicScene = [GameMagicScene node];
+    [gameMagicScene setMagic:JN1 JN2:JN2];
     [scene addChild:gameMagicScene z:3];
     GameControllerScene *gameControllerScene = [GameControllerScene node];
     [scene addChild:gameControllerScene z:4];
@@ -45,8 +46,8 @@
     gc.gameController = gameControllerScene;
     gc.gameHint = gameHintScene;
     //==================初始化配置=================
-    switch (pn) {
-        case 1:
+    switch (gk) {
+        case 0:
             [gc initController:[[[Pointer1 alloc] init] autorelease]];
             break;
         default:
@@ -71,12 +72,12 @@
     //================读取地图文件=================
     CGSize size = [[CCDirector sharedDirector] winSize];
     //背景，表示是否可以通过的
-    background = [CCSprite spriteWithFile:[NSString stringWithFormat:@"map%03db.png", self.pointNum]];
+    background = [CCSprite spriteWithFile:[NSString stringWithFormat:@"map%04db.png", self.pointNum]];
     background.position = CGPointMake(size.width /2 , size.height/2);
     background.scale = 1;
     [self addChild:background z:1];
     //前景，显示用的
-    showground = [CCSprite spriteWithFile:[NSString stringWithFormat:@"map%03ds.png", self.pointNum]];
+    showground = [CCSprite spriteWithFile:[NSString stringWithFormat:@"map%04ds.png", self.pointNum]];
     showground.position = CGPointMake(size.width /2 , size.height/2);
     showground.scale = 1;
     [self addChild:showground z:2];

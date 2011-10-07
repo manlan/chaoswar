@@ -9,6 +9,8 @@
 #import "GameImfomationScene.h"
 #import "GameHintScene.h"
 #import "GameController.h"
+#import "SceneManager.h"
+#import "SelectSence.h"
 
 @implementation GameImfomationScene
 
@@ -60,6 +62,7 @@
 
 -(void) pauseGame:(id) sender 
 {
+    [[CCDirector sharedDirector] pause];
 	GameController *gc = [GameController getGameController];
 	[gc.gameHint removeAllChildrenWithCleanup:YES];
 	//背景
@@ -69,30 +72,50 @@
 	
 	//继续
 	CCMenuItemImage *btnResume = [CCMenuItemImage itemFromNormalImage:@"btnResume.png" selectedImage:@"btnResume.png"  
-									  disabledImage:@"btnResume.png"  target:self selector:@selector(GoNext:)];
+									  disabledImage:@"btnResume.png"  target:self selector:@selector(Resume:)];
 	CCMenu *btnResumeMenu = [CCMenu menuWithItems:btnResume, nil];
-	btnResumeMenu.position = ccp(240 , 160);
+	btnResumeMenu.position = ccp(240 , 185);
 	[gc.gameHint addChild:btnResumeMenu z:2];
 	
 	//菜单
 	CCMenuItemImage *btnMenu = [CCMenuItemImage itemFromNormalImage:@"btnMenu.png" selectedImage:@"btnMenu.png"  
-														disabledImage:@"btnMenu.png"  target:self selector:@selector(GoNext:)];
+														disabledImage:@"btnMenu.png"  target:self selector:@selector(Menu:)];
 	CCMenu *btnMenuMenu = [CCMenu menuWithItems:btnMenu, nil];
-	btnResumeMenu.position = ccp(240 , 160);
+	btnMenuMenu.position = ccp(240 , 135);
 	[gc.gameHint addChild:btnMenuMenu z:2];
 	
 	//重来
 	CCMenuItemImage *btnRestart = [CCMenuItemImage itemFromNormalImage:@"btnRestart.png" selectedImage:@"btnRestart.png"  
-													  disabledImage:@"btnRestart.png"  target:self selector:@selector(GoNext:)];
+													  disabledImage:@"btnRestart.png"  target:self selector:@selector(Restart:)];
 	CCMenu *btnRestartMenu = [CCMenu menuWithItems:btnRestart, nil];
-	btnRestartMenu.position = ccp(240 , 160);
+	btnRestartMenu.position = ccp(240 , 85);
 	[gc.gameHint addChild:btnRestartMenu z:2];
+}
+
+-(void) Resume:(id) sender 
+{
+    [[CCDirector sharedDirector] resume];
+	GameController *gc = [GameController getGameController];
+	[gc.gameHint removeAllChildrenWithCleanup:YES];
+}
+
+-(void) Menu:(id) sender 
+{
+    [[CCDirector sharedDirector] resume];
+	[[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[SelectSence scene]]];
+}
+
+-(void) Restart:(id) sender 
+{
+    [[CCDirector sharedDirector] resume];
+	GameController *gc = [GameController getGameController];
+    [gc.gameHint removeAllChildrenWithCleanup:YES];
+	//[gc restart];
 }
 
 -(void) GoNext:(id) sender 
 {
-	GameController *gc = [GameController getGameController];
-	[gc.gameHint removeAllChildrenWithCleanup:YES];
+
 }
 
 @end

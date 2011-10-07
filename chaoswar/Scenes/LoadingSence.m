@@ -12,13 +12,18 @@
 
 @implementation LoadingSence
 
-@synthesize pointNum;
+@synthesize intJN001;
+@synthesize intJN002;
+@synthesize guanKa;
 
-+(CCScene *) scene:(int)pn;
+
++(CCScene *) scene:(int)gk JN1:(int)JN1 JN2:(int)JN2
 {
 	CCScene *scene = [CCScene node];
 	LoadingSence *layer = [LoadingSence node];
-    layer.pointNum = pn;
+    layer.guanKa = gk;
+    layer.intJN001 = JN1;
+    layer.intJN002 = JN2;
 	[scene addChild: layer];
 	return scene;
 }
@@ -62,7 +67,7 @@
 
 -(void) goToGameSence
 {
-    [[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[GameBackgroundScene scene:pointNum]]];
+    [[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[GameBackgroundScene scene:guanKa JN1:intJN001 JN2:intJN002]]];
 }
 
 - (void) dealloc

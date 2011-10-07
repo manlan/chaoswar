@@ -15,4 +15,8 @@
     
 }
 
+- (void) setMagic:(int)JN1 JN2:(int)JN2;
+
+- (void) addButton:(int)magicNum selector:(SEL)sel point:(CGPoint)point;
+
 @end

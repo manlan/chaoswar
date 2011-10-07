@@ -61,8 +61,7 @@
 
 -(void) goToSelectSence:(id) sender 
 {
-    [[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[GameBackgroundScene scene:0]]];
-    //[[CCDirector sharedDirector] replaceScene: [SceneManager TransFadeUp:0.56f layer:[SelectSence node]]];
+    [[CCDirector sharedDirector] replaceScene: [SceneManager TransFadeUp:0.56f layer:[SelectSence node]]];
 }
 
 -(void) goToHelpSence:(id) sender 

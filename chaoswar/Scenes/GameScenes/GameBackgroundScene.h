@@ -24,7 +24,7 @@
 @property int waveLevel;
 @property int pointNum;
 
-+ (id) scene:(int)pn;
++ (id) scene:(int)gk JN1:(int)JN1 JN2:(int)JN2;
 
 - (void) initMap:(int)pn;
 

@@ -34,7 +34,6 @@
 @synthesize pt;
 @synthesize maxWave;
 @synthesize currentWave;
-@synthesize maxHealth;
 @synthesize currentHealth;
 @synthesize currentGold;
 
@@ -64,6 +63,10 @@ static GameController *_sharedController = nil;
 
 - (void) initController:(Pointer*)pointer {
     pt = pointer;
+    maxWave = 7;
+    currentWave = 7;
+    currentHealth = 20;
+    currentGold = 320;
     //=========初始化路线
     [pt initWayPoint:wayManager];
     //=========初始化出兵顺序

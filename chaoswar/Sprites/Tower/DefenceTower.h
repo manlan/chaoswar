@@ -19,8 +19,6 @@
     
 }
 
-- (void) AttactEnemy;
-
 @end
 
 @interface DefenceTower1 : DefenceTower {

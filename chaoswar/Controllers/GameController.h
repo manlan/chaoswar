@@ -35,7 +35,6 @@
     Pointer *pt;
     int maxWave;
 	int currentWave;
-	int maxHealth;
 	int currentHealth;
 	int currentGold;
 }
@@ -56,7 +55,6 @@
 @property (nonatomic, retain) Pointer *pt;
 @property int maxWave;
 @property int currentWave;
-@property int maxHealth;
 @property int currentHealth;
 @property int currentGold;
 
