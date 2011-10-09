@@ -14,20 +14,12 @@
 
 @implementation TDSprite
 
+@synthesize costGold;
+@synthesize getGold;
+@synthesize isDelete;
 @synthesize maxHP;
 @synthesize currentHP;
-@synthesize maxMP;
-@synthesize currentMP;
-@synthesize moveSpeed;
-@synthesize attacttime;
-@synthesize range;
-@synthesize attact;
-@synthesize attactMode;
-@synthesize defence;
-@synthesize defenceMode;
-@synthesize isDelete;
 @synthesize killNum;
-@synthesize goldNum;
 
 + (id) getSprite
 {

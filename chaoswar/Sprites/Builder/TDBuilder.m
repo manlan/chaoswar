@@ -10,4 +10,11 @@
 
 @implementation TDBuilder
 
+@synthesize maxMP;
+@synthesize currentMP;
+@synthesize attacttime;
+@synthesize range;
+@synthesize attact;
+@synthesize attactMode;
+
 @end

@@ -11,4 +11,8 @@
 
 @implementation TDObject
 
+@synthesize moveTime;
+@synthesize attact;
+@synthesize attactMode;
+
 @end
