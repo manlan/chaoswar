@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "GamePubDef.h"
 
 @interface SpriteData : NSObject {
     

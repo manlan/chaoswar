@@ -11,8 +11,7 @@
 // If you want to support iAd, use this class as the controller of your iAd
 //
 
-#import "cocos2d.h"
-
+#import "GamePubDef.h"
 #import "RootViewController.h"
 #import "GameConfig.h"
 

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "cocos2d.h"
+#import "GamePubDef.h"
 
 @class GameBackgroundScene;
 @class GameImfomationScene;
@@ -37,6 +37,8 @@
 	int currentWave;
 	int currentHealth;
 	int currentGold;
+	TScreenClickType screenClickType;
+	TOperateType operateType;
 }
 
 @property (nonatomic, retain) GameBackgroundScene *gameBackground;
@@ -57,6 +59,8 @@
 @property int currentWave;
 @property int currentHealth;
 @property int currentGold;
+@property TScreenClickType screenClickType;
+@property TOperateType operateType;
 
 + (GameController*) getGameController;
 

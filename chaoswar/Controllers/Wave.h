@@ -7,14 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GameTypeDef.h"
 #import "Enemy.h"
 
 @class Pointer;
-
-typedef enum {
-	footEnemy1,
-	footEnemy2
-} TEnemyType;
 
 @interface Wave : NSObject {
     ccTime spawnRate;

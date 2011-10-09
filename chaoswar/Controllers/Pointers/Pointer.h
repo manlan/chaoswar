@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "cocos2d.h"
+#import "GamePubDef.h"
 #import "Wave.h"
 
 @class WayManager;
@@ -24,6 +24,8 @@
 -(void) addTower:(NSMutableArray*)array tower:(Tower*)tower point:(CGPoint)point;
 
 -(void) addWave:(NSMutableArray*)array enemy:(TEnemyType)enemy SpawnRate:(float)spawnrate TotalEnemys:(int)totalenemys wy:(NSMutableArray*)wy;
+
+-(void) initAnimate;
 
 -(void) initEnemy:(NSMutableArray*)array;
 

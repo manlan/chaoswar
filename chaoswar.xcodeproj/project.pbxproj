@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040859291441DACA0006B007 /* ArrowTower.m in Sources */ = {isa = PBXBuildFile; fileRef = 0408590F1441DACA0006B007 /* ArrowTower.m */; };
+		0408592A1441DACA0006B007 /* DefenceTower.m in Sources */ = {isa = PBXBuildFile; fileRef = 040859111441DACA0006B007 /* DefenceTower.m */; };
+		0408592B1441DACA0006B007 /* MagicTower.m in Sources */ = {isa = PBXBuildFile; fileRef = 040859131441DACA0006B007 /* MagicTower.m */; };
+		0408592C1441DACA0006B007 /* Tower.m in Sources */ = {isa = PBXBuildFile; fileRef = 040859151441DACA0006B007 /* Tower.m */; };
+		0408592D1441DACA0006B007 /* TurretTower.m in Sources */ = {isa = PBXBuildFile; fileRef = 040859171441DACA0006B007 /* TurretTower.m */; };
+		0408592E1441DACA0006B007 /* Bullet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0408591B1441DACA0006B007 /* Bullet.m */; };
+		0408592F1441DACA0006B007 /* DefBullet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0408591D1441DACA0006B007 /* DefBullet.m */; };
+		040859301441DACA0006B007 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 040859211441DACA0006B007 /* Enemy.m */; };
+		040859311441DACA0006B007 /* FootEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 040859231441DACA0006B007 /* FootEnemy.m */; };
+		040859321441DACA0006B007 /* Friendly.m in Sources */ = {isa = PBXBuildFile; fileRef = 040859261441DACA0006B007 /* Friendly.m */; };
+		040859331441DACA0006B007 /* TDUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 040859281441DACA0006B007 /* TDUnit.m */; };
 		0411D281143B563500386361 /* bottom_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0411D26F143B563500386361 /* bottom_bg.png */; };
 		0411D282143B563500386361 /* go_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 0411D270143B563500386361 /* go_normal.png */; };
 		0411D283143B563500386361 /* go_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 0411D271143B563500386361 /* go_black.png */; };
@@ -173,15 +184,8 @@
 		046CBDF7143ECF2900584A8C /* map0012b.png in Resources */ = {isa = PBXBuildFile; fileRef = 046CBDD3143ECF2900584A8C /* map0012b.png */; };
 		046CBDF8143ECF2900584A8C /* map0012s.png in Resources */ = {isa = PBXBuildFile; fileRef = 046CBDD4143ECF2900584A8C /* map0012s.png */; };
 		046CBDF9143ECF2900584A8C /* map0012y.png in Resources */ = {isa = PBXBuildFile; fileRef = 046CBDD5143ECF2900584A8C /* map0012y.png */; };
+		046CBDFC143ED32600584A8C /* AnimateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 046CBDFB143ED32600584A8C /* AnimateManager.m */; };
 		04A10E771436F38E00DFEFD6 /* TDSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A10E751436F38D00DFEFD6 /* TDSprite.m */; };
-		04A27C8F143AEA44002AD1CD /* ArrowTower.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A27C8E143AEA44002AD1CD /* ArrowTower.m */; };
-		04A27C92143AEA60002AD1CD /* DefenceTower.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A27C91143AEA60002AD1CD /* DefenceTower.m */; };
-		04A27C95143AEA71002AD1CD /* MagicTower.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A27C94143AEA71002AD1CD /* MagicTower.m */; };
-		04A27C98143AEA87002AD1CD /* TurretTower.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A27C97143AEA87002AD1CD /* TurretTower.m */; };
-		04A27CA2143AFCB1002AD1CD /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A27C9E143AFCB1002AD1CD /* Enemy.m */; };
-		04A27CA3143AFCB1002AD1CD /* Friendly.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A27CA1143AFCB1002AD1CD /* Friendly.m */; };
-		04A27CA6143B02DD002AD1CD /* FootEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A27CA5143B02DD002AD1CD /* FootEnemy.m */; };
-		04AD5303143B4D080052C338 /* DefBullet.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AD5302143B4D080052C338 /* DefBullet.m */; };
 		04B4030E142DB0C3005F35EE /* MainMenuSence.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B40309142DB0C3005F35EE /* MainMenuSence.m */; };
 		04B4030F142DB0C3005F35EE /* SelectSence.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B4030B142DB0C3005F35EE /* SelectSence.m */; };
 		04B40310142DB0C3005F35EE /* UpdataSence.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B4030D142DB0C3005F35EE /* UpdataSence.m */; };
@@ -189,8 +193,6 @@
 		04B5E3AC142CF10400089068 /* Wave.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5E3AB142CF10400089068 /* Wave.m */; };
 		04B5E3AF142CF11E00089068 /* WayPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5E3AE142CF11E00089068 /* WayPoint.m */; };
 		04B5E3B6142CF68900089068 /* Pointer1.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5E3B5142CF68900089068 /* Pointer1.m */; };
-		04B93D3C141E310600EA4499 /* Bullet.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B93D3A141E310600EA4499 /* Bullet.m */; };
-		04B93D42141E312C00EA4499 /* Tower.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B93D40141E312C00EA4499 /* Tower.m */; };
 		04BAEA871413B2E7006FD44B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BAEA861413B2E7006FD44B /* QuartzCore.framework */; };
 		04BAEA891413B2E7006FD44B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BAEA881413B2E7006FD44B /* OpenGLES.framework */; };
 		04BAEA8B1413B2E7006FD44B /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BAEA8A1413B2E7006FD44B /* OpenAL.framework */; };
@@ -358,6 +360,28 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0408590E1441DACA0006B007 /* ArrowTower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowTower.h; sourceTree = "<group>"; };
+		0408590F1441DACA0006B007 /* ArrowTower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrowTower.m; sourceTree = "<group>"; };
+		040859101441DACA0006B007 /* DefenceTower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefenceTower.h; sourceTree = "<group>"; };
+		040859111441DACA0006B007 /* DefenceTower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefenceTower.m; sourceTree = "<group>"; };
+		040859121441DACA0006B007 /* MagicTower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicTower.h; sourceTree = "<group>"; };
+		040859131441DACA0006B007 /* MagicTower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicTower.m; sourceTree = "<group>"; };
+		040859141441DACA0006B007 /* Tower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tower.h; sourceTree = "<group>"; };
+		040859151441DACA0006B007 /* Tower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tower.m; sourceTree = "<group>"; };
+		040859161441DACA0006B007 /* TurretTower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurretTower.h; sourceTree = "<group>"; };
+		040859171441DACA0006B007 /* TurretTower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurretTower.m; sourceTree = "<group>"; };
+		0408591A1441DACA0006B007 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
+		0408591B1441DACA0006B007 /* Bullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bullet.m; sourceTree = "<group>"; };
+		0408591C1441DACA0006B007 /* DefBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefBullet.h; sourceTree = "<group>"; };
+		0408591D1441DACA0006B007 /* DefBullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefBullet.m; sourceTree = "<group>"; };
+		040859201441DACA0006B007 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
+		040859211441DACA0006B007 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
+		040859221441DACA0006B007 /* FootEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FootEnemy.h; sourceTree = "<group>"; };
+		040859231441DACA0006B007 /* FootEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FootEnemy.m; sourceTree = "<group>"; };
+		040859251441DACA0006B007 /* Friendly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friendly.h; sourceTree = "<group>"; };
+		040859261441DACA0006B007 /* Friendly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friendly.m; sourceTree = "<group>"; };
+		040859271441DACA0006B007 /* TDUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDUnit.h; sourceTree = "<group>"; };
+		040859281441DACA0006B007 /* TDUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDUnit.m; sourceTree = "<group>"; };
 		0411D26F143B563500386361 /* bottom_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottom_bg.png; sourceTree = "<group>"; };
 		0411D270143B563500386361 /* go_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = go_normal.png; sourceTree = "<group>"; };
 		0411D271143B563500386361 /* go_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = go_black.png; sourceTree = "<group>"; };
@@ -532,24 +556,13 @@
 		046CBDD3143ECF2900584A8C /* map0012b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map0012b.png; sourceTree = "<group>"; };
 		046CBDD4143ECF2900584A8C /* map0012s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map0012s.png; sourceTree = "<group>"; };
 		046CBDD5143ECF2900584A8C /* map0012y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map0012y.png; sourceTree = "<group>"; };
+		046CBDFA143ED32600584A8C /* AnimateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimateManager.h; sourceTree = "<group>"; };
+		046CBDFB143ED32600584A8C /* AnimateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimateManager.m; sourceTree = "<group>"; };
 		04A10E741436F38D00DFEFD6 /* TDSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDSprite.h; sourceTree = "<group>"; };
 		04A10E751436F38D00DFEFD6 /* TDSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDSprite.m; sourceTree = "<group>"; };
-		04A27C8D143AEA44002AD1CD /* ArrowTower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowTower.h; sourceTree = "<group>"; };
-		04A27C8E143AEA44002AD1CD /* ArrowTower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrowTower.m; sourceTree = "<group>"; };
-		04A27C90143AEA60002AD1CD /* DefenceTower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefenceTower.h; sourceTree = "<group>"; };
-		04A27C91143AEA60002AD1CD /* DefenceTower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefenceTower.m; sourceTree = "<group>"; };
-		04A27C93143AEA71002AD1CD /* MagicTower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicTower.h; sourceTree = "<group>"; };
-		04A27C94143AEA71002AD1CD /* MagicTower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicTower.m; sourceTree = "<group>"; };
-		04A27C96143AEA87002AD1CD /* TurretTower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurretTower.h; sourceTree = "<group>"; };
-		04A27C97143AEA87002AD1CD /* TurretTower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurretTower.m; sourceTree = "<group>"; };
-		04A27C9D143AFCB1002AD1CD /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
-		04A27C9E143AFCB1002AD1CD /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
-		04A27CA0143AFCB1002AD1CD /* Friendly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friendly.h; sourceTree = "<group>"; };
-		04A27CA1143AFCB1002AD1CD /* Friendly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friendly.m; sourceTree = "<group>"; };
-		04A27CA4143B02DD002AD1CD /* FootEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FootEnemy.h; sourceTree = "<group>"; };
-		04A27CA5143B02DD002AD1CD /* FootEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FootEnemy.m; sourceTree = "<group>"; };
-		04AD5301143B4D070052C338 /* DefBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefBullet.h; sourceTree = "<group>"; };
-		04AD5302143B4D080052C338 /* DefBullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefBullet.m; sourceTree = "<group>"; };
+		04A4F279144175EF0094C637 /* GameTypeDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTypeDef.h; sourceTree = "<group>"; };
+		04A4F28B144176D70094C637 /* GameDataDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDataDef.h; sourceTree = "<group>"; };
+		04A4F28C144176E30094C637 /* GamePubDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePubDef.h; sourceTree = "<group>"; };
 		04B40308142DB0C3005F35EE /* MainMenuSence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuSence.h; sourceTree = "<group>"; };
 		04B40309142DB0C3005F35EE /* MainMenuSence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuSence.m; sourceTree = "<group>"; };
 		04B4030A142DB0C3005F35EE /* SelectSence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectSence.h; sourceTree = "<group>"; };
@@ -564,10 +577,6 @@
 		04B5E3AE142CF11E00089068 /* WayPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WayPoint.m; sourceTree = "<group>"; };
 		04B5E3B4142CF68900089068 /* Pointer1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pointer1.h; sourceTree = "<group>"; };
 		04B5E3B5142CF68900089068 /* Pointer1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pointer1.m; sourceTree = "<group>"; };
-		04B93D39141E310600EA4499 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
-		04B93D3A141E310600EA4499 /* Bullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bullet.m; sourceTree = "<group>"; };
-		04B93D3F141E312C00EA4499 /* Tower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tower.h; sourceTree = "<group>"; };
-		04B93D40141E312C00EA4499 /* Tower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tower.m; sourceTree = "<group>"; };
 		04BAEA821413B2E7006FD44B /* chaoswar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chaoswar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04BAEA861413B2E7006FD44B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		04BAEA881413B2E7006FD44B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -876,6 +885,81 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0408590C1441DACA0006B007 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				0408590D1441DACA0006B007 /* Tower */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		0408590D1441DACA0006B007 /* Tower */ = {
+			isa = PBXGroup;
+			children = (
+				0408590E1441DACA0006B007 /* ArrowTower.h */,
+				0408590F1441DACA0006B007 /* ArrowTower.m */,
+				040859101441DACA0006B007 /* DefenceTower.h */,
+				040859111441DACA0006B007 /* DefenceTower.m */,
+				040859121441DACA0006B007 /* MagicTower.h */,
+				040859131441DACA0006B007 /* MagicTower.m */,
+				040859141441DACA0006B007 /* Tower.h */,
+				040859151441DACA0006B007 /* Tower.m */,
+				040859161441DACA0006B007 /* TurretTower.h */,
+				040859171441DACA0006B007 /* TurretTower.m */,
+			);
+			path = Tower;
+			sourceTree = "<group>";
+		};
+		040859181441DACA0006B007 /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				040859191441DACA0006B007 /* Bullet */,
+			);
+			path = Object;
+			sourceTree = "<group>";
+		};
+		040859191441DACA0006B007 /* Bullet */ = {
+			isa = PBXGroup;
+			children = (
+				0408591A1441DACA0006B007 /* Bullet.h */,
+				0408591B1441DACA0006B007 /* Bullet.m */,
+				0408591C1441DACA0006B007 /* DefBullet.h */,
+				0408591D1441DACA0006B007 /* DefBullet.m */,
+			);
+			path = Bullet;
+			sourceTree = "<group>";
+		};
+		0408591E1441DACA0006B007 /* Unit */ = {
+			isa = PBXGroup;
+			children = (
+				0408591F1441DACA0006B007 /* Enemy */,
+				040859241441DACA0006B007 /* Friendly */,
+				040859271441DACA0006B007 /* TDUnit.h */,
+				040859281441DACA0006B007 /* TDUnit.m */,
+			);
+			path = Unit;
+			sourceTree = "<group>";
+		};
+		0408591F1441DACA0006B007 /* Enemy */ = {
+			isa = PBXGroup;
+			children = (
+				040859201441DACA0006B007 /* Enemy.h */,
+				040859211441DACA0006B007 /* Enemy.m */,
+				040859221441DACA0006B007 /* FootEnemy.h */,
+				040859231441DACA0006B007 /* FootEnemy.m */,
+			);
+			path = Enemy;
+			sourceTree = "<group>";
+		};
+		040859241441DACA0006B007 /* Friendly */ = {
+			isa = PBXGroup;
+			children = (
+				040859251441DACA0006B007 /* Friendly.h */,
+				040859261441DACA0006B007 /* Friendly.m */,
+			);
+			path = Friendly;
+			sourceTree = "<group>";
+		};
 		0426B194143ECAF50026DE87 /* Image */ = {
 			isa = PBXGroup;
 			children = (
@@ -1060,26 +1144,6 @@
 				04DE40071435AFB3008F301D /* GameHintScene.m */,
 			);
 			path = GameScenes;
-			sourceTree = "<group>";
-		};
-		04A27C9C143AFCB1002AD1CD /* Enemy */ = {
-			isa = PBXGroup;
-			children = (
-				04A27C9D143AFCB1002AD1CD /* Enemy.h */,
-				04A27C9E143AFCB1002AD1CD /* Enemy.m */,
-				04A27CA4143B02DD002AD1CD /* FootEnemy.h */,
-				04A27CA5143B02DD002AD1CD /* FootEnemy.m */,
-			);
-			path = Enemy;
-			sourceTree = "<group>";
-		};
-		04A27C9F143AFCB1002AD1CD /* Friendly */ = {
-			isa = PBXGroup;
-			children = (
-				04A27CA0143AFCB1002AD1CD /* Friendly.h */,
-				04A27CA1143AFCB1002AD1CD /* Friendly.m */,
-			);
-			path = Friendly;
 			sourceTree = "<group>";
 		};
 		04B5E3B0142CF55B00089068 /* Pointers */ = {
@@ -1493,6 +1557,8 @@
 				04B5E3AE142CF11E00089068 /* WayPoint.m */,
 				044921E714370FF30024AEE5 /* WayManager.h */,
 				044921E814370FF30024AEE5 /* WayManager.m */,
+				046CBDFA143ED32600584A8C /* AnimateManager.h */,
+				046CBDFB143ED32600584A8C /* AnimateManager.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1519,53 +1585,19 @@
 				04C1E5331436B552003D73B4 /* Sprites.h */,
 				04A10E741436F38D00DFEFD6 /* TDSprite.h */,
 				04A10E751436F38D00DFEFD6 /* TDSprite.m */,
-				04BAEC061413B5CC006FD44B /* Bullet */,
-				04BAEC071413B5CC006FD44B /* Tower */,
-				04BAEC081413B5CC006FD44B /* Units */,
+				0408590C1441DACA0006B007 /* Builder */,
+				040859181441DACA0006B007 /* Object */,
+				0408591E1441DACA0006B007 /* Unit */,
 			);
 			path = Sprites;
-			sourceTree = "<group>";
-		};
-		04BAEC061413B5CC006FD44B /* Bullet */ = {
-			isa = PBXGroup;
-			children = (
-				04B93D39141E310600EA4499 /* Bullet.h */,
-				04B93D3A141E310600EA4499 /* Bullet.m */,
-				04AD5301143B4D070052C338 /* DefBullet.h */,
-				04AD5302143B4D080052C338 /* DefBullet.m */,
-			);
-			path = Bullet;
-			sourceTree = "<group>";
-		};
-		04BAEC071413B5CC006FD44B /* Tower */ = {
-			isa = PBXGroup;
-			children = (
-				04B93D3F141E312C00EA4499 /* Tower.h */,
-				04B93D40141E312C00EA4499 /* Tower.m */,
-				04A27C8D143AEA44002AD1CD /* ArrowTower.h */,
-				04A27C8E143AEA44002AD1CD /* ArrowTower.m */,
-				04A27C90143AEA60002AD1CD /* DefenceTower.h */,
-				04A27C91143AEA60002AD1CD /* DefenceTower.m */,
-				04A27C93143AEA71002AD1CD /* MagicTower.h */,
-				04A27C94143AEA71002AD1CD /* MagicTower.m */,
-				04A27C96143AEA87002AD1CD /* TurretTower.h */,
-				04A27C97143AEA87002AD1CD /* TurretTower.m */,
-			);
-			path = Tower;
-			sourceTree = "<group>";
-		};
-		04BAEC081413B5CC006FD44B /* Units */ = {
-			isa = PBXGroup;
-			children = (
-				04A27C9C143AFCB1002AD1CD /* Enemy */,
-				04A27C9F143AFCB1002AD1CD /* Friendly */,
-			);
-			path = Units;
 			sourceTree = "<group>";
 		};
 		04BAEC091413B5F9006FD44B /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				04A4F28C144176E30094C637 /* GamePubDef.h */,
+				04A4F279144175EF0094C637 /* GameTypeDef.h */,
+				04A4F28B144176D70094C637 /* GameDataDef.h */,
 				045E89AE141E36340097B1EE /* GameData.h */,
 				045E89AF141E36340097B1EE /* GameData.m */,
 				045E89B0141E36340097B1EE /* SceneManager.h */,
@@ -2075,8 +2107,6 @@
 				04BAEBE71413B2EA006FD44B /* main.m in Sources */,
 				04BAEBEA1413B2EA006FD44B /* AppDelegate.m in Sources */,
 				04BAEBED1413B2EB006FD44B /* RootViewController.m in Sources */,
-				04B93D3C141E310600EA4499 /* Bullet.m in Sources */,
-				04B93D42141E312C00EA4499 /* Tower.m in Sources */,
 				045E89B2141E36340097B1EE /* GameData.m in Sources */,
 				045E89B3141E36340097B1EE /* SceneManager.m in Sources */,
 				045E89BE141E379E0097B1EE /* GameBackgroundScene.m in Sources */,
@@ -2095,15 +2125,19 @@
 				04527F631436F070005A2E0F /* LoadingSence.m in Sources */,
 				04A10E771436F38E00DFEFD6 /* TDSprite.m in Sources */,
 				044921E914370FF30024AEE5 /* WayManager.m in Sources */,
-				04A27C8F143AEA44002AD1CD /* ArrowTower.m in Sources */,
-				04A27C92143AEA60002AD1CD /* DefenceTower.m in Sources */,
-				04A27C95143AEA71002AD1CD /* MagicTower.m in Sources */,
-				04A27C98143AEA87002AD1CD /* TurretTower.m in Sources */,
-				04A27CA2143AFCB1002AD1CD /* Enemy.m in Sources */,
-				04A27CA3143AFCB1002AD1CD /* Friendly.m in Sources */,
-				04A27CA6143B02DD002AD1CD /* FootEnemy.m in Sources */,
-				04AD5303143B4D080052C338 /* DefBullet.m in Sources */,
 				04E41C13143B6CDB0040A11F /* SpriteData.m in Sources */,
+				046CBDFC143ED32600584A8C /* AnimateManager.m in Sources */,
+				040859291441DACA0006B007 /* ArrowTower.m in Sources */,
+				0408592A1441DACA0006B007 /* DefenceTower.m in Sources */,
+				0408592B1441DACA0006B007 /* MagicTower.m in Sources */,
+				0408592C1441DACA0006B007 /* Tower.m in Sources */,
+				0408592D1441DACA0006B007 /* TurretTower.m in Sources */,
+				0408592E1441DACA0006B007 /* Bullet.m in Sources */,
+				0408592F1441DACA0006B007 /* DefBullet.m in Sources */,
+				040859301441DACA0006B007 /* Enemy.m in Sources */,
+				040859311441DACA0006B007 /* FootEnemy.m in Sources */,
+				040859321441DACA0006B007 /* Friendly.m in Sources */,
+				040859331441DACA0006B007 /* TDUnit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

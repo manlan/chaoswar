@@ -36,6 +36,8 @@
 @synthesize currentWave;
 @synthesize currentHealth;
 @synthesize currentGold;
+@synthesize screenClickType;
+@synthesize operateType;
 
 static GameController *_sharedController = nil;
 
@@ -57,6 +59,8 @@ static GameController *_sharedController = nil;
         wayManager = [[WayManager alloc] init];
         magicArray = [[NSMutableArray alloc] init];
         frientlyArray = [[NSMutableArray alloc] init];
+		screenClickType = SCT_ALL;
+		operateType = OT_NORMAL;
 	}
 	return self;
 }
@@ -67,6 +71,7 @@ static GameController *_sharedController = nil;
     currentWave = 7;
     currentHealth = 20;
     currentGold = 320;
+    [pt initAnimate];
     //=========初始化路线
     [pt initWayPoint:wayManager];
     //=========初始化出兵顺序

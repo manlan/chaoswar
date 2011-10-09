@@ -6,7 +6,7 @@
 //  Copyright 2011年 __MyCompanyName__. All rights reserved.
 //
 
-#import "cocos2d.h"
+#import "GamePubDef.h"
 
 @interface LoadingSence : CCLayer {
     CCSprite *bgImg;

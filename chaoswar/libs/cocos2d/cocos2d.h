@@ -40,6 +40,7 @@
 
 // 0x00 HI ME LO
 // 00   01 00 00
+
 #define COCOS2D_VERSION 0x00010000
 
 #import <Availability.h>

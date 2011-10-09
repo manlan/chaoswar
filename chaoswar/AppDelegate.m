@@ -6,7 +6,7 @@
 //  Copyright __MyCompanyName__ 2011年. All rights reserved.
 //
 
-#import "cocos2d.h"
+#import "GamePubDef.h"
 
 #import "AppDelegate.h"
 #import "GameConfig.h"

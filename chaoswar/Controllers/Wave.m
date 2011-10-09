@@ -50,10 +50,10 @@
     GameController *gc = [GameController getGameController];
     Enemy *enemy;
     switch (self.enemyType) {
-        case footEnemy1:
+        case ET_FOOT1:
             enemy = [FootEnemy1 getSprite];
             break;
-        case footEnemy2:
+        case ET_FOOT2:
             enemy = [FootEnemy2 getSprite];
             break; 
         default:

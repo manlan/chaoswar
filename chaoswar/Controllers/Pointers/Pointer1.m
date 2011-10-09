@@ -7,8 +7,46 @@
 //
 
 #import "Pointer1.h"
+#import "AnimateManager.h"
 
 @implementation Pointer1
+
+-(void) initAnimate
+{
+    [AnimateManager initBoss01];
+    [AnimateManager initBoss02];
+    [AnimateManager initFly01];
+    [AnimateManager initFly02];
+    [AnimateManager initFly03];
+    [AnimateManager initShooter01];
+    [AnimateManager initMagic01];
+    [AnimateManager initMagic02];
+    [AnimateManager initFoot01];
+    [AnimateManager initFoot02];
+    [AnimateManager initFoot03];
+    [AnimateManager initFoot04];
+    [AnimateManager initFoot05];
+    [AnimateManager initFoot06];
+    [AnimateManager initFoot07];
+    [AnimateManager initFoot08];
+    [AnimateManager initFoot09];
+    [AnimateManager initFoot10];
+    [AnimateManager initFoot11];
+    [AnimateManager initFoot12];
+    [AnimateManager initFoot13];
+    [AnimateManager initFoot14];
+    [AnimateManager initFoot15];
+    [AnimateManager initFoot16];
+    [AnimateManager initDefenceTower01];
+    [AnimateManager initDefenceTower02];
+    [AnimateManager initDefenceTower03];
+    [AnimateManager initTurretTower01];
+    [AnimateManager initTurretTower02];
+    [AnimateManager initTurretTower03];
+    [AnimateManager initMagicTower01];
+    [AnimateManager initMagicTower02];
+    [AnimateManager initMagicTower03];
+}
 
 -(void) initEnemy:(NSMutableArray*)array
 {
@@ -27,8 +65,8 @@
 {
     [array removeAllObjects];
     GameController *gc = [GameController getGameController];
-    [self addWave:array enemy:footEnemy1 SpawnRate:1 TotalEnemys:10 wy:[gc.wayManager getWay:1]];
-    [self addWave:array enemy:footEnemy2 SpawnRate:1.2 TotalEnemys:5 wy:[gc.wayManager getWay:1]];
+    [self addWave:array enemy:ET_FOOT1 SpawnRate:1 TotalEnemys:10 wy:[gc.wayManager getWay:1]];
+    [self addWave:array enemy:ET_FOOT2 SpawnRate:1.2 TotalEnemys:5 wy:[gc.wayManager getWay:1]];
 }
 
 -(void) initBullety:(NSMutableArray*)array

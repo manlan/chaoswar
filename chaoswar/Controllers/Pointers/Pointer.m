@@ -22,10 +22,16 @@
 
 @implementation Pointer
 
+-(void) initAnimate
+{
+	
+}
+
 -(void) addTower:(NSMutableArray*)array tower:(Tower*)tower point:(CGPoint)point
 {
     GameController *gc = [GameController getGameController];
     tower.position = point;
+	tower.anchorPoint = ccp(0, 1);
     [gc.gameBackground addChild:tower z:5];
     [array addObject:tower];
     

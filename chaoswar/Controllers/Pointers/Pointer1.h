@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GameTypeDef.h"
 #import "Pointer.h"
 #import "Sprites.h"
 #import "Wave.h"

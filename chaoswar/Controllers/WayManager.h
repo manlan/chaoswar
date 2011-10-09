@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "GameTypeDef.h"
 
 @interface WayManager : NSObject {
     NSMutableDictionary *dicWay;

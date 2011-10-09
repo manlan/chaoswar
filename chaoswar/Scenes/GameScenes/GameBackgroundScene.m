@@ -130,19 +130,82 @@
 {
     CGPoint point = [self convertTouchToNodeSpace:[touches anyObject]];
     NSLog(@"click pos is (x:%f,y:%f)",point.x, point.y);
-//    GameController *gc = [GameController getGameController];
+	switch ([GameController getGameController].screenClickType) {
+		case SCT_ALL:
+			[self sceneTouchBegan:touch operateType:[GameController getGameController].operateType];
+			break;
+		case SCT_ONLYWHITE:
+			if (1 == 2) {
+				[self sceneTouchBegan:touch operateType:[GameController getGameController].operateType];
+			}
+			break;
+		case SCT_NOTWHITE:
+			if (1 == 2) {
+				[self sceneTouchBegan:touch operateType:[GameController getGameController].operateType];
+			}
+			break;
+		default:
+			break;
+	}
 }
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-//    CGPoint point = [self convertTouchToNodeSpace:[touches anyObject]];
-//    NSLog(@"ccTouchesMoved point: x=%.2f, y=%.2f", point.x, point.y);
+	switch ([GameController getGameController].screenClickType) {
+		case SCT_ALL:
+			[self sceneTouchMoved:touch operateType:[GameController getGameController].operateType];
+			break;
+		case SCT_ONLYWHITE:
+			if (1 == 2) {
+				[self sceneTouchMoved:touch operateType:[GameController getGameController].operateType];
+			}
+			break;
+		case SCT_NOTWHITE:
+			if (1 == 2) {
+				[self sceneTouchMoved:touch operateType:[GameController getGameController].operateType];
+			}
+			break;
+		default:
+			break;
+	}
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-//    CGPoint point = [self convertTouchToNodeSpace:[touches anyObject]];
-//    NSLog(@"ccTouchesEnded point: x=%.2f, y=%.2f", point.x, point.y);
+	switch ([GameController getGameController].screenClickType) {
+		case SCT_ALL:
+			[self sceneTouchEnded:touch operateType:[GameController getGameController].operateType];
+			break;
+		case SCT_ONLYWHITE:
+			// 判断点的颜色
+			if (1 == 2) {
+				[self sceneTouchEnded:touch operateType:[GameController getGameController].operateType];
+			}
+			break;
+		case SCT_NOTWHITE:
+			// 判断点的颜色
+			if (1 == 2) {
+				[self sceneTouchEnded:touch operateType:[GameController getGameController].operateType];
+			}
+			break;
+		default:
+			break;
+	}
+}
+
+- (BOOL) sceneTouchBegan:(NSSet *)touches operateType:(TOperateType)operateType
+{
+	
+}
+
+- (void) sceneTouchMoved:(UITouch *)touch operateType:(TOperateType)operateType
+{
+
+}
+
+- (void) sceneTouchEnded:(UITouch *)touch operateType:(TOperateType)operateType
+{
+
 }
 
 - (void) dealloc
