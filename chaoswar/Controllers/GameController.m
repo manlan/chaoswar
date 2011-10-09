@@ -7,10 +7,10 @@
 //
 
 #import "GameController.h"
-#import "Bullet.h"
-#import "Tower.h"
-#import "Enemy.h"
-#import "Friendly.h"
+#import "TDBullet.h"
+#import "TDTower.h"
+#import "TDEnemy.h"
+#import "TDFriendly.h"
 #import "Wave.h"
 #import "WayPoint.h"
 #import "Pointer.h"
@@ -101,39 +101,39 @@ static GameController *_sharedController = nil;
 	NSMutableArray *towerDeleteArray = [[NSMutableArray alloc] init];	
 	NSMutableArray *bulletDeleteArray = [[NSMutableArray alloc] init];
     NSMutableArray *frientlyDeleteArray = [[NSMutableArray alloc] init];
-	for (Enemy *en1 in self.enemyArray) {
+	for (TDEnemy *en1 in self.enemyArray) {
         if (en1.isDelete == YES) {
             [enemyDeleteArray addObject:en1];
         }
 	}
-    for (Enemy *en2 in enemyDeleteArray) {
+    for (TDEnemy *en2 in enemyDeleteArray) {
         [self.enemyArray removeObject:en2];
         [scene removeChild:en2 cleanup:YES];									
     }
-    for (Tower *to1 in self.towerArray) {
+    for (TDTower *to1 in self.towerArray) {
         if (to1.isDelete == YES) {
             [towerDeleteArray addObject:to1];
         }
 	}
-    for (Tower *to2 in towerDeleteArray) {
+    for (TDTower *to2 in towerDeleteArray) {
         [self.towerArray removeObject:to2];
         [scene removeChild:to2 cleanup:YES];									
     }
-    for (Bullet *bu1 in self.bulletArray) {
+    for (TDBullet *bu1 in self.bulletArray) {
         if (bu1.isDelete == YES) {
             [bulletDeleteArray addObject:bu1];
         }
 	}
-    for (Bullet *bu2 in bulletDeleteArray) {
+    for (TDBullet *bu2 in bulletDeleteArray) {
         [self.bulletArray removeObject:bu2];
         [scene removeChild:bu2 cleanup:YES];									
     }
-    for (Friendly *fr1 in self.frientlyArray) {
+    for (TDFriendly *fr1 in self.frientlyArray) {
         if (fr1.isDelete == YES) {
             [frientlyDeleteArray addObject:fr1];
         }
 	}
-    for (Friendly *fr2 in frientlyDeleteArray) {
+    for (TDFriendly *fr2 in frientlyDeleteArray) {
         [self.frientlyArray removeObject:fr2];
         [scene removeChild:fr2 cleanup:YES];									
     }

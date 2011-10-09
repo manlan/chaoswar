@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "GamePubDef.h"
 #import "Wave.h"
-#import "Enemy.h"
-#import "Tower.h"
+#import "TDEnemy.h"
+#import "TDTower.h"
 
 @interface GameBackgroundScene : CCLayer {
     CCSprite *background;

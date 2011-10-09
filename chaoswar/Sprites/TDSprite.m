@@ -8,9 +8,9 @@
 
 #import "TDSprite.h"
 #import "GameController.h"
-#import "Tower.h"
-#import "Enemy.h"
-#import "Friendly.h"
+#import "TDTower.h"
+#import "TDEnemy.h"
+#import "TDFriendly.h"
 
 @implementation TDSprite
 
@@ -96,7 +96,7 @@
 			}
 			break;
 		case SCT_TOWER:
-			if ([self isMemberOfClass:[Tower class]]) {
+			if ([self isMemberOfClass:[TDTower class]]) {
 				[self spriteTouchBegan:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
@@ -106,12 +106,12 @@
 			}
 			break;
 		case SCT_ENEMY:
-			if ([self isMemberOfClass:[Enemy class]]) {
+			if ([self isMemberOfClass:[TDEnemy class]]) {
 				[self spriteTouchBegan:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_FRIENDLY:
-			if ([self isMemberOfClass:[Friendly class]]) {
+			if ([self isMemberOfClass:[TDFriendly class]]) {
 				[self spriteTouchBegan:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
@@ -134,7 +134,7 @@
 			}
 			break;
 		case SCT_TOWER:
-			if ([self isMemberOfClass:[Tower class]]) {
+			if ([self isMemberOfClass:[TDTower class]]) {
 				[self spriteTouchMoved:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
@@ -144,12 +144,12 @@
 			}
 			break;
 		case SCT_ENEMY:
-			if ([self isMemberOfClass:[Enemy class]]) {
+			if ([self isMemberOfClass:[TDEnemy class]]) {
 				[self spriteTouchMoved:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_FRIENDLY:
-			if ([self isMemberOfClass:[Friendly class]]) {
+			if ([self isMemberOfClass:[TDFriendly class]]) {
 				[self spriteTouchMoved:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
@@ -170,7 +170,7 @@
 			}
 			break;
 		case SCT_TOWER:
-			if ([self isMemberOfClass:[Tower class]]) {
+			if ([self isMemberOfClass:[TDTower class]]) {
 				[self spriteTouchEnded:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
@@ -180,12 +180,12 @@
 			}
 			break;
 		case SCT_ENEMY:
-			if ([self isMemberOfClass:[Enemy class]]) {
+			if ([self isMemberOfClass:[TDEnemy class]]) {
 				[self spriteTouchEnded:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_FRIENDLY:
-			if ([self isMemberOfClass:[Friendly class]]) {
+			if ([self isMemberOfClass:[TDFriendly class]]) {
 				[self spriteTouchEnded:touch operateType:[GameController getGameController].operateType];
 			}
 			break;

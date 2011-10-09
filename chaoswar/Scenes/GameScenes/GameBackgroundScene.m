@@ -132,16 +132,16 @@
     NSLog(@"click pos is (x:%f,y:%f)",point.x, point.y);
 	switch ([GameController getGameController].screenClickType) {
 		case SCT_ALL:
-			[self sceneTouchBegan:touch operateType:[GameController getGameController].operateType];
+			[self sceneTouchBegan:touches operateType:[GameController getGameController].operateType];
 			break;
 		case SCT_ONLYWHITE:
 			if (1 == 2) {
-				[self sceneTouchBegan:touch operateType:[GameController getGameController].operateType];
+				[self sceneTouchBegan:touches operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_NOTWHITE:
 			if (1 == 2) {
-				[self sceneTouchBegan:touch operateType:[GameController getGameController].operateType];
+				[self sceneTouchBegan:touches operateType:[GameController getGameController].operateType];
 			}
 			break;
 		default:
@@ -153,16 +153,16 @@
 {
 	switch ([GameController getGameController].screenClickType) {
 		case SCT_ALL:
-			[self sceneTouchMoved:touch operateType:[GameController getGameController].operateType];
+			[self sceneTouchMoved:touches operateType:[GameController getGameController].operateType];
 			break;
 		case SCT_ONLYWHITE:
 			if (1 == 2) {
-				[self sceneTouchMoved:touch operateType:[GameController getGameController].operateType];
+				[self sceneTouchMoved:touches operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_NOTWHITE:
 			if (1 == 2) {
-				[self sceneTouchMoved:touch operateType:[GameController getGameController].operateType];
+				[self sceneTouchMoved:touches operateType:[GameController getGameController].operateType];
 			}
 			break;
 		default:
@@ -174,18 +174,18 @@
 {
 	switch ([GameController getGameController].screenClickType) {
 		case SCT_ALL:
-			[self sceneTouchEnded:touch operateType:[GameController getGameController].operateType];
+			[self sceneTouchEnded:touches operateType:[GameController getGameController].operateType];
 			break;
 		case SCT_ONLYWHITE:
 			// 判断点的颜色
 			if (1 == 2) {
-				[self sceneTouchEnded:touch operateType:[GameController getGameController].operateType];
+				[self sceneTouchEnded:touches operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_NOTWHITE:
 			// 判断点的颜色
 			if (1 == 2) {
-				[self sceneTouchEnded:touch operateType:[GameController getGameController].operateType];
+				[self sceneTouchEnded:touches operateType:[GameController getGameController].operateType];
 			}
 			break;
 		default:

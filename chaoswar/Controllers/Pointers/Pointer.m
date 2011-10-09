@@ -8,10 +8,10 @@
 
 #import "Pointer.h"
 #import "GameController.h"
-#import "Bullet.h"
-#import "Tower.h"
-#import "Enemy.h"
-#import "Friendly.h"
+#import "TDBullet.h"
+#import "TDTower.h"
+#import "TDEnemy.h"
+#import "TDFriendly.h"
 #import "WayPoint.h"
 #import "Wave.h"
 #import "GameBackgroundScene.h"
@@ -27,7 +27,7 @@
 	
 }
 
--(void) addTower:(NSMutableArray*)array tower:(Tower*)tower point:(CGPoint)point
+-(void) addTower:(NSMutableArray*)array tower:(TDTower*)tower point:(CGPoint)point
 {
     GameController *gc = [GameController getGameController];
     tower.position = point;

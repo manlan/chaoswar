@@ -56,9 +56,9 @@
 -(void) initTower:(NSMutableArray*)array
 {
     [array removeAllObjects];
-    [self addTower:array tower:[EmptyTower1 getSprite] point:ccp(320, 160)];
-    [self addTower:array tower:[EmptyTower1 getSprite] point:ccp(240, 160)];
-    [self addTower:array tower:[EmptyTower1 getSprite] point:ccp(140, 166)];
+    [self addTower:array tower:[TDEmptyTower1 getSprite] point:ccp(320, 160)];
+    [self addTower:array tower:[TDEmptyTower1 getSprite] point:ccp(240, 160)];
+    [self addTower:array tower:[TDEmptyTower1 getSprite] point:ccp(140, 166)];
 }
 
 -(void) initWave:(NSMutableArray*)array

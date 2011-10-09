@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GameTypeDef.h"
 #import "Pointer.h"
-#import "Sprites.h"
+#import "SpritesImp.h"
 #import "Wave.h"
 #import "WayManager.h"
 #import "WayPoint.h"

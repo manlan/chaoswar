@@ -8,7 +8,7 @@
 
 #import "Wave.h"
 #import "GameController.h"
-#import "Sprites.h"
+#import "SpritesImp.h"
 #import "WayPoint.h"
 #import "GameBackgroundScene.h"
 #import "GameImfomationScene.h"
@@ -48,13 +48,13 @@
         return;
     }
     GameController *gc = [GameController getGameController];
-    Enemy *enemy;
+    TDEnemy *enemy;
     switch (self.enemyType) {
         case ET_FOOT1:
-            enemy = [FootEnemy1 getSprite];
+            enemy = [TDFootEnemy1 getSprite];
             break;
         case ET_FOOT2:
-            enemy = [FootEnemy2 getSprite];
+            enemy = [TDFootEnemy2 getSprite];
             break; 
         default:
             break;

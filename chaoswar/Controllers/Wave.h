@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GameTypeDef.h"
-#import "Enemy.h"
+#import "TDEnemy.h"
 
 @class Pointer;
 

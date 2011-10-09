@@ -11,17 +11,17 @@
 #import "Wave.h"
 
 @class WayManager;
-@class Bullet;
-@class Tower;
-@class Enemy;
-@class Friendly;
+@class TDBullet;
+@class TDTower;
+@class TDEnemy;
+@class TDFriendly;
 @class WayPoint;
 
 @interface Pointer : NSObject {
     
 }
 
--(void) addTower:(NSMutableArray*)array tower:(Tower*)tower point:(CGPoint)point;
+-(void) addTower:(NSMutableArray*)array tower:(TDTower*)tower point:(CGPoint)point;
 
 -(void) addWave:(NSMutableArray*)array enemy:(TEnemyType)enemy SpawnRate:(float)spawnrate TotalEnemys:(int)totalenemys wy:(NSMutableArray*)wy;
 
