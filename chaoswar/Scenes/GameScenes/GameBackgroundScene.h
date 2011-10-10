@@ -28,4 +28,10 @@
 
 - (void) initMap:(int)pn;
 
+- (void) sceneTouchBegan:(NSSet*)touches operateType:(TOperateType)operateType;
+
+- (void) sceneTouchMoved:(NSSet*)touches operateType:(TOperateType)operateType;
+
+- (void) sceneTouchEnded:(NSSet*)touches operateType:(TOperateType)operateType;
+
 @end

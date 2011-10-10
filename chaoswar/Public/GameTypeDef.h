@@ -2,8 +2,21 @@
 typedef enum {
 	//FOOT步兵
 	ET_FOOT1,  
-	ET_FOOT2
-	
+	ET_FOOT2,
+	ET_FOOT3,
+    ET_FOOT4,
+    ET_FOOT5,
+    ET_FOOT6,
+    ET_FOOT7,
+    ET_FOOT8,
+    ET_FOOT9,
+    ET_FOOT10,
+    ET_FOOT11,
+    ET_FOOT12,
+    ET_FOOT13,
+    ET_FOOT14,
+    ET_FOOT15,
+    ET_FOOT16
 } TEnemyType;
 
 // 攻击类型
@@ -44,3 +57,10 @@ typedef enum {
 	OT_UPDATE,
 	OT_NONE,
 } TOperateType;
+
+// 地图类型
+typedef enum {
+	MT_GREEN,
+	MT_SNOW,
+	MT_SAND
+} TMapType;

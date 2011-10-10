@@ -55,6 +55,48 @@
             break;
         case ET_FOOT2:
             enemy = [TDFootEnemy2 getSprite];
+            break;
+        case ET_FOOT3:
+            enemy = [TDFootEnemy3 getSprite];
+            break; 
+        case ET_FOOT4:
+            enemy = [TDFootEnemy4 getSprite];
+            break; 
+        case ET_FOOT5:
+            enemy = [TDFootEnemy5 getSprite];
+            break; 
+        case ET_FOOT6:
+            enemy = [TDFootEnemy6 getSprite];
+            break; 
+        case ET_FOOT7:
+            enemy = [TDFootEnemy7 getSprite];
+            break; 
+        case ET_FOOT8:
+            enemy = [TDFootEnemy8 getSprite];
+            break; 
+        case ET_FOOT9:
+            enemy = [TDFootEnemy9 getSprite];
+            break; 
+        case ET_FOOT10:
+            enemy = [TDFootEnemy10 getSprite];
+            break; 
+        case ET_FOOT11:
+            enemy = [TDFootEnemy11 getSprite];
+            break; 
+        case ET_FOOT12:
+            enemy = [TDFootEnemy12 getSprite];
+            break; 
+        case ET_FOOT13:
+            enemy = [TDFootEnemy13 getSprite];
+            break; 
+        case ET_FOOT14:
+            enemy = [TDFootEnemy14 getSprite];
+            break; 
+        case ET_FOOT15:
+            enemy = [TDFootEnemy15 getSprite];
+            break; 
+        case ET_FOOT16:
+            enemy = [TDFootEnemy16 getSprite];
             break; 
         default:
             break;

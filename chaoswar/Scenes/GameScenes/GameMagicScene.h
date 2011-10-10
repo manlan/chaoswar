@@ -12,11 +12,17 @@
 @class GameController;
 
 @interface GameMagicScene : CCLayer {
-    
+    CCMenu *btnRestartMenu;
+	CCMenu *btnMagic1Menu;
+	CCMenu *btnMagic2Menu;
 }
+
+@property (nonatomic, assign) CCMenu *btnRestartMenu;
+@property (nonatomic, assign) CCMenu *btnMagic1Menu;
+@property (nonatomic, assign) CCMenu *btnMagic2Menu;
 
 - (void) setMagic:(int)JN1 JN2:(int)JN2;
 
-- (void) addButton:(int)magicNum selector:(SEL)sel point:(CGPoint)point;
+- (CCMenu*) addButton:(int)magicNum selector:(SEL)sel point:(CGPoint)point;
 
 @end

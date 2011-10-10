@@ -22,6 +22,11 @@
 
 @implementation Pointer
 
+-(void) initController
+{
+
+}
+
 -(void) initAnimate
 {
 	
@@ -30,11 +35,13 @@
 -(void) addTower:(NSMutableArray*)array tower:(TDTower*)tower point:(CGPoint)point
 {
     GameController *gc = [GameController getGameController];
-    tower.position = point;
-	tower.anchorPoint = ccp(0, 1);
-    [gc.gameBackground addChild:tower z:5];
+    CCSprite *towbg = [CCSprite spriteWithFile:@"et01.png"];
+    towbg.position = ccp(point.x, point.y + tower.contentSize.height / 2);;
+    [gc.gameBackground addChild:towbg z:TOWER_BACKGROUND_Z];
+    tower.bottomPoint = point;
+    tower.position = ccp(point.x, point.y + tower.contentSize.height / 2);
+    [gc.gameBackground addChild:tower z:TOWER_BUILDING_Z];
     [array addObject:tower];
-    
 }
 
 -(void) addWave:(NSMutableArray*)array enemy:(TEnemyType)enemy SpawnRate:(float)spawnrate TotalEnemys:(int)totalenemys wy:(NSMutableArray*)wy
@@ -53,7 +60,7 @@
     [array removeAllObjects];
 }
 
--(void) initWave:(NSMutableArray*)array
+-(BOOL) runWaves:(NSMutableArray*)array wave:(int)wave
 {
     [array removeAllObjects];
 }

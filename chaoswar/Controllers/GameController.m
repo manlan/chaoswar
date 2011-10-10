@@ -38,6 +38,8 @@
 @synthesize currentGold;
 @synthesize screenClickType;
 @synthesize operateType;
+@synthesize mapType;
+@synthesize canNext;
 
 static GameController *_sharedController = nil;
 
@@ -71,11 +73,13 @@ static GameController *_sharedController = nil;
     currentWave = 7;
     currentHealth = 20;
     currentGold = 320;
+    [pt initController];
+    
     [pt initAnimate];
     //=========初始化路线
     [pt initWayPoint:wayManager];
-    //=========初始化出兵顺序
-    [pt initWave:waveArray];
+//    //=========初始化出兵顺序
+//    [pt initWave:waveArray];
     //=========初始化塔
     [pt initTower:towerArray];
     //=========初始化敌人
@@ -92,6 +96,18 @@ static GameController *_sharedController = nil;
 {
     for (Wave *wave in self.waveArray) {
         [wave start];
+	}
+}
+
+- (void) restart
+{
+
+}
+
+- (void) strartNextWave
+{
+	if ([pt runWaves:self.waveArray wave:self.currentWave + 1]) {
+		self.currentWave++;
 	}
 }
 

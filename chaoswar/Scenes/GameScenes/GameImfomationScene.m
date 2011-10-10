@@ -25,13 +25,6 @@
 		btnPauseMenu.position = ccp(446 , 300);
 		[self addChild:btnPauseMenu z:2];
 		
-		//下一波
-		btnGo = [CCMenuItemImage itemFromNormalImage:@"go_normal.png" selectedImage:@"go_normal.png"  
-									   disabledImage:@"go_black.png"  target:self selector:@selector(GoNext:)];
-		CCMenu *btnGoMenu = [CCMenu menuWithItems:btnGo, nil];
-		btnGoMenu.position = ccp(448 , 20);
-		[self addChild:btnGoMenu z:2];
-		
 		//背景
 		CCSprite *bottom = [CCSprite spriteWithFile:@"bottom_bg.png"];
 		bottom.position = ccp(240 , 15);
@@ -41,17 +34,26 @@
 		CCSprite *xueTip = [CCSprite spriteWithFile:@"xueTip.png"];
 		xueTip.position = ccp(260 , 300);
 		[self addChild:xueTip z:1];
+		CCLabelTTF *lblTip = [CCLabelTTF labelWithString:@"" fontName:@"" fontSize:12];
+		lblTip.position = ccp(260 , 300);
+		[self addChild:lblTip z:1];
 		
 		//金额
 		CCSprite *qianTip = [CCSprite spriteWithFile:@"qianTip.png"];
 		qianTip.position = ccp(316 , 300);
 		[self addChild:qianTip z:1];
+		CCLabelTTF *lblQian = [CCLabelTTF labelWithString:@"" fontName:@"" fontSize:12];
+		lblQian.position = ccp(260 , 300);
+		[self addChild:lblQian z:1];
 		
 		//波数
 		CCSprite *wavesTip = [CCSprite spriteWithFile:@"wavesTip.png"];
 		wavesTip.position = ccp(370 , 300);
 		[self addChild:wavesTip z:1];
-
+		CCLabelTTF *lblWave = [CCLabelTTF labelWithString:@"" fontName:@"" fontSize:12];
+		lblWave.position = ccp(260 , 300);
+		[self addChild:lblWave z:1];
+		
 		//技能背景
 		CCSprite *jiNengBg = [CCSprite spriteWithFile:@"jiNengBg.png"];
 		jiNengBg.position = ccp(75 , 20);
@@ -110,12 +112,13 @@
     [[CCDirector sharedDirector] resume];
 	GameController *gc = [GameController getGameController];
     [gc.gameHint removeAllChildrenWithCleanup:YES];
-	//[gc restart];
+	[gc restart];
 }
 
 -(void) GoNext:(id) sender 
 {
-
+	GameController *gc = [GameController getGameController];
+	[gc strartNextWave];
 }
 
 @end

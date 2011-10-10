@@ -201,4 +201,19 @@
 	
 }
 
+- (void) addButton:(NSString*)normal selected:(NSString*)selected disabled:(NSString*)disabled sel:(SEL)sel pos:(CGPoint)pos
+{
+    CCMenuItemImage *menuItem = [CCMenuItemImage itemFromNormalImage:normal selectedImage:selected disabledImage:disabled target:self selector:sel];
+    //[menuItem setScale:0.75];
+    CCMenu *menu = [CCMenu menuWithItems:menuItem, nil];
+    [menu setOpacity:MENU_OPACITY];
+    menu.position = pos;
+    [[GameController getGameController].gameController addChild:menu z:2];
+}
+
+// 离开时的操作
+- (void) onSpriteExit
+{
+}
+
 @end

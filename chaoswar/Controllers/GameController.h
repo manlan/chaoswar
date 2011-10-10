@@ -39,6 +39,8 @@
 	int currentGold;
 	TScreenClickType screenClickType;
 	TOperateType operateType;
+    TMapType mapType;
+	BOOL canNext;
 }
 
 @property (nonatomic, retain) GameBackgroundScene *gameBackground;
@@ -61,6 +63,8 @@
 @property int currentGold;
 @property TScreenClickType screenClickType;
 @property TOperateType operateType;
+@property TMapType mapType;
+@property BOOL canNext;
 
 + (GameController*) getGameController;
 
@@ -69,5 +73,9 @@
 - (void) start;
 
 - (void) deleteUnUseSprite:(CCLayer*)scene;
+
+- (void) restart;
+
+- (void) strartNextWave;
 
 @end

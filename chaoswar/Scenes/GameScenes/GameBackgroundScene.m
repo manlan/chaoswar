@@ -78,6 +78,7 @@
     [self addChild:background z:1];
     //前景，显示用的
     showground = [CCSprite spriteWithFile:[NSString stringWithFormat:@"map%04ds.png", self.pointNum]];
+    //showground = [CCSprite spriteWithFile:[NSString stringWithFormat:@"map%04dy.png", self.pointNum]];
     showground.position = CGPointMake(size.width /2 , size.height/2);
     showground.scale = 1;
     [self addChild:showground z:2];
@@ -90,8 +91,10 @@
 	//删除无用信息
 	GameController *gc = [GameController getGameController];
     [gc deleteUnUseSprite:self];
+	//下一波按钮的状态
+	//gc.gameMagic.btnRestartMenu = 
+	//其他控制按钮的状态
 }
-
 
 - (CGPoint)boundLayerPos:(CGPoint)newPos {
     //CGSize winSize = [CCDirector sharedDirector].winSize;
@@ -193,17 +196,17 @@
 	}
 }
 
-- (BOOL) sceneTouchBegan:(NSSet *)touches operateType:(TOperateType)operateType
+- (void) sceneTouchBegan:(NSSet*)touches operateType:(TOperateType)operateType
 {
 	
 }
 
-- (void) sceneTouchMoved:(UITouch *)touch operateType:(TOperateType)operateType
+- (void) sceneTouchMoved:(NSSet*)touches operateType:(TOperateType)operateType
 {
 
 }
 
-- (void) sceneTouchEnded:(UITouch *)touch operateType:(TOperateType)operateType
+- (void) sceneTouchEnded:(NSSet*)touches operateType:(TOperateType)operateType
 {
 
 }

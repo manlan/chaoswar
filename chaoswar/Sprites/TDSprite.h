@@ -31,16 +31,28 @@
 @property int currentHP;
 @property int killNum;
 
+// 获取当前精灵的实例
 + (id) getSprite;
 
+// 运行精灵
 - (BOOL) run;
 
+// 初始化动画（声音等）
 - (void) initAnimate;
 
+// 触摸开始 TOperateType 为当前操作类型
 - (void) spriteTouchBegan:(UITouch *)touch operateType:(TOperateType)operateType;
 
+// 触摸移动
 - (void) spriteTouchMoved:(UITouch *)touch operateType:(TOperateType)operateType;
 
+// 触摸结束
 - (void) spriteTouchEnded:(UITouch *)touch operateType:(TOperateType)operateType;
+
+// 添加一个操作按钮
+- (void) addButton:(NSString*)normal selected:(NSString*)selected disabled:(NSString*)disabled sel:(SEL)sel pos:(CGPoint)pos;
+
+// 离开时的操作
+- (void) onSpriteExit;
 
 @end

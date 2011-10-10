@@ -25,13 +25,15 @@
 
 -(void) addWave:(NSMutableArray*)array enemy:(TEnemyType)enemy SpawnRate:(float)spawnrate TotalEnemys:(int)totalenemys wy:(NSMutableArray*)wy;
 
+-(void) initController;
+
 -(void) initAnimate;
 
 -(void) initEnemy:(NSMutableArray*)array;
 
 -(void) initTower:(NSMutableArray*)array;
 
--(void) initWave:(NSMutableArray*)array;
+-(BOOL) runWaves:(NSMutableArray*)array wave:(int)wave;
 
 -(void) initBullety:(NSMutableArray*)array;
 

@@ -13,8 +13,9 @@
 @synthesize maxMP;
 @synthesize currentMP;
 @synthesize attacttime;
-@synthesize range;
+@synthesize attactRange;
 @synthesize attact;
 @synthesize attactMode;
+@synthesize bottomPoint;
 
 @end

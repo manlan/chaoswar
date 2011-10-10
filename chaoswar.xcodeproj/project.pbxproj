@@ -376,11 +376,11 @@
 		0408591B1441DACA0006B007 /* TDBullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBullet.m; sourceTree = "<group>"; };
 		0408591C1441DACA0006B007 /* TDDefBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDefBullet.h; sourceTree = "<group>"; };
 		0408591D1441DACA0006B007 /* TDDefBullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDDefBullet.m; sourceTree = "<group>"; };
-		040859201441DACA0006B007 /* TDEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; path = TDEnemy.h; sourceTree = "<group>"; };
+		040859201441DACA0006B007 /* TDEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDEnemy.h; sourceTree = "<group>"; };
 		040859211441DACA0006B007 /* TDEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDEnemy.m; sourceTree = "<group>"; };
-		040859221441DACA0006B007 /* TDFootEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; path = TDFootEnemy.h; sourceTree = "<group>"; };
+		040859221441DACA0006B007 /* TDFootEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDFootEnemy.h; sourceTree = "<group>"; };
 		040859231441DACA0006B007 /* TDFootEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDFootEnemy.m; sourceTree = "<group>"; };
-		040859251441DACA0006B007 /* TDFriendly.h */ = {isa = PBXFileReference; fileEncoding = 4; path = TDFriendly.h; sourceTree = "<group>"; };
+		040859251441DACA0006B007 /* TDFriendly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDFriendly.h; sourceTree = "<group>"; };
 		040859261441DACA0006B007 /* TDFriendly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDFriendly.m; sourceTree = "<group>"; };
 		040859271441DACA0006B007 /* TDUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDUnit.h; sourceTree = "<group>"; };
 		040859281441DACA0006B007 /* TDUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDUnit.m; sourceTree = "<group>"; };
