@@ -70,25 +70,25 @@
 -(void) initTower:(NSMutableArray*)array
 {
     [array removeAllObjects];
-    [self addTower:array tower:[TDEmptyTower getSprite] point:ccp(320, 160)];
-    [self addTower:array tower:[TDEmptyTower getSprite] point:ccp(240, 160)];
-    [self addTower:array tower:[TDEmptyTower getSprite] point:ccp(140, 166)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(320, 160)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(240, 160)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(140, 166)];
 }
 
--(BOOL) runWaves:(NSMutableArray*)array wave:(int)wave
+-(BOOL) runWaves:(int)wave
 {
-    [array removeAllObjects];
     GameController *gc = [GameController getGameController];
 	switch (wave) {
 		case 1:
-			[self addWave:array enemy:ET_FOOT1 SpawnRate:1 TotalEnemys:10 wy:[gc.wayManager getWay:1]];
-			[self addWave:array enemy:ET_FOOT2 SpawnRate:1.2 TotalEnemys:5 wy:[gc.wayManager getWay:1]];
-			[self addWave:array enemy:ET_FOOT14 SpawnRate:2.6 TotalEnemys:1 wy:[gc.wayManager getWay:1]];
+			[self runWave:6 e:ET_FOOT1 s:1 t:10 wy:[gc.wayManager getWay:1]];
+            [self runWave:4 e:ET_FOOT2 s:1 t:10 wy:[gc.wayManager getWay:1]];
+            [self runWave:8 e:ET_FOOT14 s:1 t:10 wy:[gc.wayManager getWay:1]];
 			break;
 		default:
 			break;
 	}
 	gc.canNext = NO;
+    return YES;
 }
 
 -(void) initBullety:(NSMutableArray*)array

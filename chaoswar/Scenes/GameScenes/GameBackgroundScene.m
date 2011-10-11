@@ -8,7 +8,6 @@
 
 #import "GameBackgroundScene.h"
 #import "GameController.h"
-
 #import "GameImfomationScene.h"
 #import "GameMagicScene.h"
 #import "GameControllerScene.h"
@@ -91,9 +90,27 @@
 	//删除无用信息
 	GameController *gc = [GameController getGameController];
     [gc deleteUnUseSprite:self];
-	//下一波按钮的状态
+	// 设置当前金额，波数等信息
+    [gc.gameImfomation setPauseMenuStatus];
+    [gc.gameImfomation setEnemyNumValue];
+    [gc.gameImfomation setWaveValue];
+    [gc.gameImfomation setGoldValue];
 	//gc.gameMagic.btnRestartMenu = 
-	//其他控制按钮的状态
+	// 控制法术按钮及下一波按钮的状态
+    [gc.gameMagic setGoMenuStatus];
+    [gc.gameMagic setMagic1MenuStatus];
+    [gc.gameMagic setMagic2MenuStatus];
+    [gc.gameMagic setMagic3MenuStatus];
+    [gc.gameMagic setMagic4MenuStatus];
+    // 控制建造按钮及其他操作按钮的状态
+    [gc.gameController setBuild1MenuStatus];
+    [gc.gameController setBuild2MenuStatus];
+    [gc.gameController setBuild3MenuStatus];
+    [gc.gameController setBuild4MenuStatus];
+    [gc.gameController setUpdateMenuStatus];
+    [gc.gameController setSellMenuStatus];
+    [gc.gameController setZoneMenuStatus];
+    
 }
 
 - (CGPoint)boundLayerPos:(CGPoint)newPos {

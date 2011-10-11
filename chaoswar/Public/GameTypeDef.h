@@ -55,6 +55,7 @@ typedef enum {
 	OT_BUILDING,
 	OT_SELL,
 	OT_UPDATE,
+    OT_SETSEARCHPOINT,
 	OT_NONE,
 } TOperateType;
 

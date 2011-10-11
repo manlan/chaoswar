@@ -21,9 +21,9 @@
     
 }
 
--(void) addTower:(NSMutableArray*)array tower:(TDTower*)tower point:(CGPoint)point;
+-(void) addTower:(NSMutableArray*)a t:(TDTower*)t p:(CGPoint)p;
 
--(void) addWave:(NSMutableArray*)array enemy:(TEnemyType)enemy SpawnRate:(float)spawnrate TotalEnemys:(int)totalenemys wy:(NSMutableArray*)wy;
+-(void) runWave:(float)b e:(TEnemyType)e s:(float)s t:(int)t wy:(NSMutableArray*)wy;
 
 -(void) initController;
 
@@ -33,7 +33,7 @@
 
 -(void) initTower:(NSMutableArray*)array;
 
--(BOOL) runWaves:(NSMutableArray*)array wave:(int)wave;
+-(BOOL) runWaves:(int)wave;
 
 -(void) initBullety:(NSMutableArray*)array;
 

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "GamePubDef.h"
 
+@class GameController;
+
 @interface TDSprite : CCSprite <CCTargetedTouchDelegate>{
     // 花费金额
     int costGold;
@@ -34,6 +36,11 @@
 // 获取当前精灵的实例
 + (id) getSprite;
 
++ (BOOL) getDoSpriteExit;
++ (TDSprite*) getCurrentSprite;
++ (void) setDoSpriteExit:(BOOL)value;
++ (void) setCurrentSprite:(TDSprite*)value;
+
 // 运行精灵
 - (BOOL) run;
 
@@ -50,7 +57,7 @@
 - (void) spriteTouchEnded:(UITouch *)touch operateType:(TOperateType)operateType;
 
 // 添加一个操作按钮
-- (void) addButton:(NSString*)normal selected:(NSString*)selected disabled:(NSString*)disabled sel:(SEL)sel pos:(CGPoint)pos;
+- (CCMenu*) addButton:(NSString*)normal selected:(NSString*)selected disabled:(NSString*)disabled sel:(SEL)sel pos:(CGPoint)pos;
 
 // 离开时的操作
 - (void) onSpriteExit;

@@ -32,22 +32,21 @@
 	
 }
 
--(void) addTower:(NSMutableArray*)array tower:(TDTower*)tower point:(CGPoint)point
+-(void) addTower:(NSMutableArray*)a t:(TDTower*)t p:(CGPoint)p
 {
     GameController *gc = [GameController getGameController];
     CCSprite *towbg = [CCSprite spriteWithFile:@"et01.png"];
-    towbg.position = ccp(point.x, point.y + tower.contentSize.height / 2);;
+    towbg.position = ccp(p.x, p.y + t.contentSize.height / 2);;
     [gc.gameBackground addChild:towbg z:TOWER_BACKGROUND_Z];
-    tower.bottomPoint = point;
-    tower.position = ccp(point.x, point.y + tower.contentSize.height / 2);
-    [gc.gameBackground addChild:tower z:TOWER_BUILDING_Z];
-    [array addObject:tower];
+    t.bottomPoint = p;
+    t.position = ccp(p.x, p.y + t.contentSize.height / 2);
+    [gc.gameBackground addChild:t z:TOWER_BUILDING_Z];
+    [a addObject:t];
 }
 
--(void) addWave:(NSMutableArray*)array enemy:(TEnemyType)enemy SpawnRate:(float)spawnrate TotalEnemys:(int)totalenemys wy:(NSMutableArray*)wy
+-(void) runWave:(float)b e:(TEnemyType)e s:(float)s t:(int)t wy:(NSMutableArray*)wy
 {
-    Wave *wave = [[Wave alloc] initWithEnemy:enemy SpawnRate:spawnrate TotalEnemys:totalenemys wy:wy];
-    [array addObject:wave];
+    [Wave runWave:b e:e s:s t:t wy:wy];
 }
 
 -(void) initEnemy:(NSMutableArray*)array
@@ -60,9 +59,9 @@
     [array removeAllObjects];
 }
 
--(BOOL) runWaves:(NSMutableArray*)array wave:(int)wave
+-(BOOL) runWaves:(int)wave
 {
-    [array removeAllObjects];
+    return YES;
 }
 
 -(void) initBullety:(NSMutableArray*)array

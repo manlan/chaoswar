@@ -13,18 +13,20 @@
 @class Pointer;
 
 @interface Wave : NSObject {
+    ccTime beginRate;
     ccTime spawnRate;
 	int totalEnemy;
 	TEnemyType enemyType;
     NSMutableArray *way;
 }
 
+@property (nonatomic) ccTime beginRate;
 @property (nonatomic) ccTime spawnRate;
 @property (nonatomic) int totalEnemy;
 @property (nonatomic, assign) TEnemyType enemyType;
 @property (nonatomic, assign) NSMutableArray *way;
 
-- (id)initWithEnemy:(TEnemyType)enemy SpawnRate:(ccTime)spawnrate TotalEnemys:(int)totalenemys wy:(NSMutableArray*)wy;
++ (void)runWave:(float)b e:(TEnemyType)e s:(float)s t:(int)t wy:(NSMutableArray*)wy;
 
 - (void) start;
 

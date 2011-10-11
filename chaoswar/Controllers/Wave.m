@@ -18,29 +18,89 @@
 
 @implementation Wave
 
+@synthesize beginRate;
 @synthesize spawnRate;
 @synthesize totalEnemy;
 @synthesize enemyType;
 @synthesize way;
 
-- (id)initWithEnemy:(TEnemyType)enemy SpawnRate:(ccTime)spawnrate TotalEnemys:(int)totalenemys wy:(NSMutableArray*)wy
++ (void)runWave:(float)b e:(TEnemyType)e s:(float)s t:(int)t wy:(NSMutableArray*)wy
 {
-	//NSAssert(enemy!=nil, @"Invalid creep for wave.");
-	if( (self = [self init]) )
-	{
-		enemyType = enemy;
-		spawnRate = spawnrate;
-		totalEnemy = totalenemys;
-        way = wy;
-	}
-	return self;
+    Wave *wave = [[[Wave alloc] init] autorelease];
+    wave.enemyType = e;
+    wave.spawnRate = s;
+    wave.totalEnemy = t;
+    wave.way = wy;
+    wave.beginRate = b;
+    [wave start];
 }
 
 - (void) start
 {
+    [[CCScheduler sharedScheduler] scheduleSelector:@selector(startRunEnemy:) forTarget:self interval:beginRate paused:NO];
+}
+
+- (void) startRunEnemy:(ccTime)dt
+{
     [[CCScheduler sharedScheduler] scheduleSelector:@selector(runEnemy:) forTarget:self interval:spawnRate paused:NO];
 }
 
+- (TDEnemy*) getEnemy
+{
+    switch (self.enemyType) {
+        case ET_FOOT1:
+            return [TDFootEnemy1 getSprite];
+            break;
+        case ET_FOOT2:
+            return [TDFootEnemy2 getSprite];
+            break;
+        case ET_FOOT3:
+            return [TDFootEnemy3 getSprite];
+            break; 
+        case ET_FOOT4:
+            return [TDFootEnemy4 getSprite];
+            break; 
+        case ET_FOOT5:
+            return [TDFootEnemy5 getSprite];
+            break; 
+        case ET_FOOT6:
+            return [TDFootEnemy6 getSprite];
+            break; 
+        case ET_FOOT7:
+            return [TDFootEnemy7 getSprite];
+            break; 
+        case ET_FOOT8:
+            return [TDFootEnemy8 getSprite];
+            break; 
+        case ET_FOOT9:
+            return [TDFootEnemy9 getSprite];
+            break; 
+        case ET_FOOT10:
+            return [TDFootEnemy10 getSprite];
+            break; 
+        case ET_FOOT11:
+            return [TDFootEnemy11 getSprite];
+            break; 
+        case ET_FOOT12:
+            return [TDFootEnemy12 getSprite];
+            break; 
+        case ET_FOOT13:
+            return [TDFootEnemy13 getSprite];
+            break; 
+        case ET_FOOT14:
+            return [TDFootEnemy14 getSprite];
+            break; 
+        case ET_FOOT15:
+            return [TDFootEnemy15 getSprite];
+            break; 
+        case ET_FOOT16:
+            return [TDFootEnemy16 getSprite];
+            break; 
+        default:
+            break;
+    }
+    return nil;
+}
 
 - (void) runEnemy:(ccTime)dt {
     if (totalEnemy <= 0) {
@@ -48,60 +108,7 @@
         return;
     }
     GameController *gc = [GameController getGameController];
-    TDEnemy *enemy;
-    switch (self.enemyType) {
-        case ET_FOOT1:
-            enemy = [TDFootEnemy1 getSprite];
-            break;
-        case ET_FOOT2:
-            enemy = [TDFootEnemy2 getSprite];
-            break;
-        case ET_FOOT3:
-            enemy = [TDFootEnemy3 getSprite];
-            break; 
-        case ET_FOOT4:
-            enemy = [TDFootEnemy4 getSprite];
-            break; 
-        case ET_FOOT5:
-            enemy = [TDFootEnemy5 getSprite];
-            break; 
-        case ET_FOOT6:
-            enemy = [TDFootEnemy6 getSprite];
-            break; 
-        case ET_FOOT7:
-            enemy = [TDFootEnemy7 getSprite];
-            break; 
-        case ET_FOOT8:
-            enemy = [TDFootEnemy8 getSprite];
-            break; 
-        case ET_FOOT9:
-            enemy = [TDFootEnemy9 getSprite];
-            break; 
-        case ET_FOOT10:
-            enemy = [TDFootEnemy10 getSprite];
-            break; 
-        case ET_FOOT11:
-            enemy = [TDFootEnemy11 getSprite];
-            break; 
-        case ET_FOOT12:
-            enemy = [TDFootEnemy12 getSprite];
-            break; 
-        case ET_FOOT13:
-            enemy = [TDFootEnemy13 getSprite];
-            break; 
-        case ET_FOOT14:
-            enemy = [TDFootEnemy14 getSprite];
-            break; 
-        case ET_FOOT15:
-            enemy = [TDFootEnemy15 getSprite];
-            break; 
-        case ET_FOOT16:
-            enemy = [TDFootEnemy16 getSprite];
-            break; 
-        default:
-            break;
-    }
-    
+    TDEnemy *enemy = [self getEnemy];
     enemy.nextWayPoint = 1;
     enemy.position = ccp(-1,  -1);
     enemy.way = self.way;

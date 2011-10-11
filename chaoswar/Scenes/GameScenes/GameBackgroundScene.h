@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "GamePubDef.h"
-#import "Wave.h"
-#import "TDEnemy.h"
-#import "TDTower.h"
 
 @interface GameBackgroundScene : CCLayer {
     CCSprite *background;
@@ -19,8 +16,8 @@
     int pointNum;
 }
 
-@property (nonatomic, retain) CCSprite *background;
-@property (nonatomic, retain) CCSprite *showground;	
+@property (nonatomic, assign) CCSprite *background;
+@property (nonatomic, assign) CCSprite *showground;	
 @property int waveLevel;
 @property int pointNum;
 

@@ -7,10 +7,7 @@
 //
 
 #import "GameController.h"
-#import "TDBullet.h"
-#import "TDTower.h"
-#import "TDEnemy.h"
-#import "TDFriendly.h"
+#import "SpritesImp.h"
 #import "Wave.h"
 #import "WayPoint.h"
 #import "Pointer.h"
@@ -94,9 +91,7 @@ static GameController *_sharedController = nil;
 
 - (void) start
 {
-    for (Wave *wave in self.waveArray) {
-        [wave start];
-	}
+
 }
 
 - (void) restart
@@ -106,7 +101,7 @@ static GameController *_sharedController = nil;
 
 - (void) strartNextWave
 {
-	if ([pt runWaves:self.waveArray wave:self.currentWave + 1]) {
+	if ([pt runWaves:self.currentWave + 1]) {
 		self.currentWave++;
 	}
 }
