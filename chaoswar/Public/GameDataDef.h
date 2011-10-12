@@ -1,24 +1,24 @@
 #import "cocos2d.h"
+#import <CoreGraphics/CGGeometry.h>
 
 // 按钮的Alpha值，255为不透明
 #define MENU_OPACITY 255
 
 // 建造按钮位置
-#define BUILD_BTN_Y 21
-#define BUILD_BTN1_X 260
-#define BUILD_BTN2_X (260 + 46)
-#define BUILD_BTN3_X (260 + 46 + 46)
-#define BUILD_BTN4_X (260 + 46 + 46 + 46)
+
+#define BUTTON1_POS CGPointMake(260, 21)
+#define BUTTON2_POS CGPointMake(306, 21)
+#define BUTTON3_POS CGPointMake(352, 21)
+#define BUTTON4_POS CGPointMake(398, 21)
 
 // 魔法按钮位置
-#define MAGIC_BTN_Y 28
-#define MAGIC_BTN1_X 44
-#define MAGIC_BTN2_X 106
+
+#define MAGIC1_POS CGPointMake(44, 28)
+#define MAGIC2_POS CGPointMake(106, 28)
 
 // 升级按钮位置
-#define UPDATE_BTN_Y 18
-#define UPDATE_BTN1_X 186
-#define UPDATE_BTN2_X 226
+
+#define SELL_POS CGPointMake(186, 18)
 
 // 塔的建造时间
 #define TOWER_BUILDING_TIME 0.8f

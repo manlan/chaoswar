@@ -13,6 +13,7 @@
 #import "RootViewController.h"
 #import "MainMenuSence.h"
 #import "SceneManager.h"
+#import "TDSprite.h"
 
 @implementation AppDelegate
 
@@ -41,6 +42,7 @@
 }
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
+//    arrayTDSprite = [[NSMutableArray alloc] init];
 	// Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
@@ -140,6 +142,8 @@
 	
 	[[director openGLView] removeFromSuperview];
 	
+//    [arrayTDSprite release];
+    
 	[viewController release];
 	
 	[window release];

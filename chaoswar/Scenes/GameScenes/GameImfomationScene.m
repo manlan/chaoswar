@@ -39,24 +39,24 @@
 		CCSprite *xueTip = [CCSprite spriteWithFile:@"xueTip.png"];
 		xueTip.position = ccp(260 , 300);
 		[self addChild:xueTip z:1];
-		lblEnemyNum = [CCLabelTTF labelWithString:@"" fontName:@"" fontSize:12];
-		lblEnemyNum.position = ccp(260 , 300);
+		lblEnemyNum = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:12];
+		lblEnemyNum.position = ccp(286 , 300);
 		[self addChild:lblEnemyNum z:1];
 		
 		//===============金额===============
 		CCSprite *qianTip = [CCSprite spriteWithFile:@"qianTip.png"];
-		qianTip.position = ccp(316 , 300);
+		qianTip.position = ccp(315 , 300);
 		[self addChild:qianTip z:1];
-		lblGold = [CCLabelTTF labelWithString:@"" fontName:@"" fontSize:12];
-		lblGold.position = ccp(260 , 300);
+		lblGold = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:12];
+		lblGold.position = ccp(342 , 300);
 		[self addChild:lblGold z:1];
 		
 		//===============波数===============
 		CCSprite *wavesTip = [CCSprite spriteWithFile:@"wavesTip.png"];
 		wavesTip.position = ccp(370 , 300);
 		[self addChild:wavesTip z:1];
-		lblWave = [CCLabelTTF labelWithString:@"" fontName:@"" fontSize:12];
-		lblWave.position = ccp(260 , 300);
+		lblWave = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:12];
+		lblWave.position = ccp(400 , 300);
 		[self addChild:lblWave z:1];
 		
 		//=============技能背景===============
@@ -72,7 +72,7 @@
     [[CCDirector sharedDirector] pause];
 	GameController *gc = [GameController getGameController];
 	[gc.gameHint removeAllChildrenWithCleanup:YES];
-	//背景
+    //背景
 	CCSprite *pauseBg = [CCSprite spriteWithFile:@"pauseBg.png"];
 	pauseBg.position = ccp(240 , 160);
 	[gc.gameHint addChild:pauseBg z:1];
@@ -120,17 +120,14 @@
 	[gc restart];
 }
 
--(void) GoNext:(id) sender 
-{
-	GameController *gc = [GameController getGameController];
-	[gc strartNextWave];
-}
-
-
 - (void) setPauseMenuStatus
 {
-//    GameController *gc = [GameController getGameController];
-//    [btnPauseMenu setIsTouchEnabled:NO];
+    if ([CCDirector sharedDirector].isPaused) {
+        [btnPauseMenu setIsTouchEnabled:NO];
+        return;
+    }
+    
+    [btnPauseMenu setIsTouchEnabled:YES];
 }
 
 - (void) setEnemyNumValue

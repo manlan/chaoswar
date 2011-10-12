@@ -11,6 +11,8 @@
 
 @class GameController;
 
+//static NSMutableArray *arrayTDSprite = nil;
+
 @interface TDSprite : CCSprite <CCTargetedTouchDelegate>{
     // 花费金额
     int costGold;
@@ -24,6 +26,8 @@
     int currentHP;
     // 杀敌次数
     int killNum;
+    // 是否已经被删除
+    BOOL showLife;
 }
 
 @property int costGold;
@@ -32,14 +36,15 @@
 @property int maxHP;
 @property int currentHP;
 @property int killNum;
+@property BOOL showLife;
 
 // 获取当前精灵的实例
 + (id) getSprite;
 
-+ (BOOL) getDoSpriteExit;
-+ (TDSprite*) getCurrentSprite;
-+ (void) setDoSpriteExit:(BOOL)value;
-+ (void) setCurrentSprite:(TDSprite*)value;
+//+ (BOOL) getDoSpriteExit;
+//+ (TDSprite*) getCurrentSprite;
+//+ (void) setDoSpriteExit:(BOOL)value;
+//+ (void) setCurrentSprite:(TDSprite*)value;
 
 // 运行精灵
 - (BOOL) run;

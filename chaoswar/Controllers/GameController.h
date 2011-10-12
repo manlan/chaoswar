@@ -76,6 +76,6 @@
 
 - (void) restart;
 
-- (void) strartNextWave;
+- (void) startNextWave;
 
 @end

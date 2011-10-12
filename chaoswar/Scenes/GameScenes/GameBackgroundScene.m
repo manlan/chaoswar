@@ -110,7 +110,6 @@
     [gc.gameController setUpdateMenuStatus];
     [gc.gameController setSellMenuStatus];
     [gc.gameController setZoneMenuStatus];
-    
 }
 
 - (CGPoint)boundLayerPos:(CGPoint)newPos {

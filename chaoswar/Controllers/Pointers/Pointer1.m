@@ -80,9 +80,9 @@
     GameController *gc = [GameController getGameController];
 	switch (wave) {
 		case 1:
-			[self runWave:6 e:ET_FOOT1 s:1 t:10 wy:[gc.wayManager getWay:1]];
-            [self runWave:4 e:ET_FOOT2 s:1 t:10 wy:[gc.wayManager getWay:1]];
-            [self runWave:8 e:ET_FOOT14 s:1 t:10 wy:[gc.wayManager getWay:1]];
+			//[self runWave:6 e:ET_FOOT1 s:1 t:10 wy:[gc.wayManager getWay:1]];
+            [self runWave:4 e:ET_FOOT2 s:1.1 t:1 wy:[gc.wayManager getWay:1]];
+            //[self runWave:1 e:ET_FOOT14 s:1.2 t:1 wy:[gc.wayManager getWay:1]];
 			break;
 		default:
 			break;

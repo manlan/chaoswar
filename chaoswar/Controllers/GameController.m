@@ -51,42 +51,42 @@ static GameController *_sharedController = nil;
 - (id) init
 {
 	if ((self = [super init])) {
-        enemyArray = [[NSMutableArray alloc] init];
-        towerArray = [[NSMutableArray alloc] init];
-        waveArray = [[NSMutableArray alloc] init];
-        bulletArray = [[NSMutableArray alloc] init];
-        wayManager = [[WayManager alloc] init];
-        magicArray = [[NSMutableArray alloc] init];
-        frientlyArray = [[NSMutableArray alloc] init];
-		screenClickType = SCT_ALL;
-		operateType = OT_NORMAL;
+        self.enemyArray = [[NSMutableArray alloc] init];
+        self.towerArray = [[NSMutableArray alloc] init];
+        self.waveArray = [[NSMutableArray alloc] init];
+        self.bulletArray = [[NSMutableArray alloc] init];
+        self.wayManager = [[WayManager alloc] init];
+        self.magicArray = [[NSMutableArray alloc] init];
+        self.frientlyArray = [[NSMutableArray alloc] init];
+		self.screenClickType = SCT_ALL;
+		self.operateType = OT_NORMAL;
 	}
 	return self;
 }
 
 - (void) initController:(Pointer*)pointer {
-    pt = pointer;
-    maxWave = 7;
-    currentWave = 7;
-    currentHealth = 20;
-    currentGold = 320;
-    [pt initController];
+    self.pt = pointer;
+    self.maxWave = 7;
+    self.currentWave = 7;
+    self.currentHealth = 20;
+    self.currentGold = 320;
+    [self.pt initController];
     
-    [pt initAnimate];
+    [self.pt initAnimate];
     //=========初始化路线
-    [pt initWayPoint:wayManager];
+    [self.pt initWayPoint:wayManager];
 //    //=========初始化出兵顺序
 //    [pt initWave:waveArray];
     //=========初始化塔
-    [pt initTower:towerArray];
+    [self.pt initTower:towerArray];
     //=========初始化敌人
-    [pt initEnemy:enemyArray];
+    [self.pt initEnemy:enemyArray];
     //=========初始化子弹
-    [pt initBullety:bulletArray];
+    [self.pt initBullety:bulletArray];
     //=========初始化魔法
-    [pt initMagic:magicArray];
+    [self.pt initMagic:magicArray];
     //=========初始化友军
-    [pt initFriendly:frientlyArray];
+    [self.pt initFriendly:frientlyArray];
 }
 
 - (void) start
@@ -99,9 +99,9 @@ static GameController *_sharedController = nil;
 
 }
 
-- (void) strartNextWave
+- (void) startNextWave
 {
-	if ([pt runWaves:self.currentWave + 1]) {
+	if ([self.pt runWaves:self.currentWave + 1]) {
 		self.currentWave++;
 	}
 }

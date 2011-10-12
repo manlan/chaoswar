@@ -40,16 +40,16 @@
 {
     switch (JN1) {
         case 1:
-            btnMagic1Menu = [self addButton:JN1 selector:@selector(Magic1:) point:ccp(MAGIC_BTN1_X , MAGIC_BTN_Y)];
+            btnMagic1Menu = [self addButton:JN1 selector:@selector(Magic1:) point:MAGIC1_POS];
             break;
         case 2:
-            btnMagic2Menu = [self addButton:JN1 selector:@selector(Magic2:) point:ccp(MAGIC_BTN1_X , MAGIC_BTN_Y)];
+            btnMagic2Menu = [self addButton:JN1 selector:@selector(Magic2:) point:MAGIC1_POS];
             break;
         case 3:
-            btnMagic3Menu = [self addButton:JN1 selector:@selector(Magic3:) point:ccp(MAGIC_BTN1_X , MAGIC_BTN_Y)];
+            btnMagic3Menu = [self addButton:JN1 selector:@selector(Magic3:) point:MAGIC1_POS];
             break;
         case 4:
-            btnMagic4Menu = [self addButton:JN1 selector:@selector(Magic4:) point:ccp(MAGIC_BTN1_X , MAGIC_BTN_Y)];
+            btnMagic4Menu = [self addButton:JN1 selector:@selector(Magic4:) point:MAGIC1_POS];
             break;
         default:
             break;
@@ -57,16 +57,16 @@
     
     switch (JN2) {
         case 1:
-            btnMagic1Menu = [self addButton:JN2 selector:@selector(Magic1:) point:ccp(MAGIC_BTN2_X , MAGIC_BTN_Y)];
+            btnMagic1Menu = [self addButton:JN2 selector:@selector(Magic1:) point:MAGIC2_POS];
             break;
         case 2:
-            btnMagic2Menu = [self addButton:JN2 selector:@selector(Magic2:) point:ccp(MAGIC_BTN2_X , MAGIC_BTN_Y)];
+            btnMagic2Menu = [self addButton:JN2 selector:@selector(Magic2:) point:MAGIC2_POS];
             break;
         case 3:
-            btnMagic3Menu = [self addButton:JN2 selector:@selector(Magic3:) point:ccp(MAGIC_BTN2_X , MAGIC_BTN_Y)];
+            btnMagic3Menu = [self addButton:JN2 selector:@selector(Magic3:) point:MAGIC2_POS];
             break;
         case 4:
-            btnMagic4Menu = [self addButton:JN2 selector:@selector(Magic4:) point:ccp(MAGIC_BTN2_X , MAGIC_BTN_Y)];
+            btnMagic4Menu = [self addButton:JN2 selector:@selector(Magic4:) point:MAGIC2_POS];
             break;
         default:
             break;
@@ -85,54 +85,72 @@
 	return btnMagicMenu;
 }
 
+//==============火雨=================
 -(void) Magic1:(id) sender 
 {
     GameController *gc = [GameController getGameController];
     if (gc.operateType == OT_MAGIC_FIRE) {
         gc.operateType = OT_NORMAL;
+        gc.screenClickType = SCT_ALL;
     } else {
         gc.operateType = OT_MAGIC_FIRE;
+        gc.screenClickType = SCT_ONLYWHITE;
     }
 }
 
+//==============盟军=================
 -(void) Magic2:(id) sender 
 {
 	GameController *gc = [GameController getGameController];
     if (gc.operateType == OT_MAGIC_FRIENDLY) {
         gc.operateType = OT_NORMAL;
+        gc.screenClickType = SCT_ALL;
     } else {
         gc.operateType = OT_MAGIC_FRIENDLY;
+        gc.screenClickType = SCT_ONLYWHITE;
     }
 }
 
+//==============静止=================
 -(void) Magic3:(id) sender 
 {
 	GameController *gc = [GameController getGameController];
     if (gc.operateType == OT_MAGIC_STOP) {
         gc.operateType = OT_NORMAL;
+        gc.screenClickType = SCT_ALL;
     } else {
         gc.operateType = OT_MAGIC_STOP;
+        gc.screenClickType = SCT_ENEMY;
     }
 }
 
+//==============雷电=================
 -(void) Magic4:(id) sender
 {
 	GameController *gc = [GameController getGameController];
     if (gc.operateType == OT_MAGIC_THUNDER) {
         gc.operateType = OT_NORMAL;
+        gc.screenClickType = SCT_ALL;
     } else {
         gc.operateType = OT_MAGIC_THUNDER;
+        gc.screenClickType = SCT_ENEMY;
     }
 }
 
 -(void) GoNext:(id) sender 
 {
 	GameController *gc = [GameController getGameController];
-	[gc strartNextWave];
+	[gc startNextWave];
 }
 
 - (void) setGoMenuStatus
 {
+    if ([CCDirector sharedDirector].isPaused) {
+        [btnGoMenu setIsTouchEnabled:NO];
+        return;
+    }
+    
+    [btnGoMenu setIsTouchEnabled:YES];
 }
 
 - (void) setMagic1MenuStatus
@@ -140,6 +158,11 @@
     if (!btnMagic1Menu) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_FIRE) {
+        [btnMagic1Menu setIsTouchEnabled:NO];
+        return;
+    }
+    
+    if ([CCDirector sharedDirector].isPaused) {
         [btnMagic1Menu setIsTouchEnabled:NO];
         return;
     }
@@ -156,6 +179,11 @@
         return;
     }
     
+    if ([CCDirector sharedDirector].isPaused) {
+        [btnMagic2Menu setIsTouchEnabled:NO];
+        return;
+    }
+    
     [btnMagic2Menu setIsTouchEnabled:YES];
 }
 
@@ -168,6 +196,11 @@
         return;
     }
     
+    if ([CCDirector sharedDirector].isPaused) {
+        [btnMagic3Menu setIsTouchEnabled:NO];
+        return;
+    }
+    
     [btnMagic3Menu setIsTouchEnabled:YES];
 }
 
@@ -176,6 +209,11 @@
     if (!btnMagic4Menu) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_THUNDER) {
+        [btnMagic4Menu setIsTouchEnabled:NO];
+        return;
+    }
+    
+    if ([CCDirector sharedDirector].isPaused) {
         [btnMagic4Menu setIsTouchEnabled:NO];
         return;
     }

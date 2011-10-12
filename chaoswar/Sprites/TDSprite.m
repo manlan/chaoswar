@@ -13,8 +13,8 @@
 #import "TDEnemy.h"
 #import "TDFriendly.h"
 
-static BOOL doSpriteExit = YES;
-static TDSprite *currentSprite = nil;
+//static BOOL doSpriteExit = YES;
+//static TDSprite *currentTDSprite = nil;
 
 @implementation TDSprite
 
@@ -24,31 +24,32 @@ static TDSprite *currentSprite = nil;
 @synthesize maxHP;
 @synthesize currentHP;
 @synthesize killNum;
+@synthesize showLife;
 
 + (id) getSprite
 {
     return nil;
 }
-
-+ (BOOL) getDoSpriteExit
-{
-    return doSpriteExit;
-}
-
-+ (TDSprite*) getCurrentSprite
-{
-    return currentSprite;
-}
-
-+ (void) setDoSpriteExit:(BOOL)value
-{
-    doSpriteExit = value;
-}
-
-+ (void) setCurrentSprite:(TDSprite*)value
-{
-    currentSprite = value;
-}
+//
+//+ (BOOL) getDoSpriteExit
+//{
+//    return doSpriteExit;
+//}
+//
+//+ (TDSprite*) getCurrentSprite
+//{
+//    return currentTDSprite;
+//}
+//
+//+ (void) setDoSpriteExit:(BOOL)value
+//{
+//    doSpriteExit = value;
+//}
+//
+//+ (void) setCurrentSprite:(TDSprite*)value
+//{
+//    currentTDSprite = value;
+//}
 
 - (BOOL) run
 {
@@ -58,6 +59,14 @@ static TDSprite *currentSprite = nil;
 -(id) init
 {
 	if( (self=[super init])) {
+//        [arrayTDSprite addObject:self];
+        self.costGold = 0;
+        self.getGold = 0;
+        self.isDelete = NO;
+        self.maxHP = 0;
+        self.currentHP = 0;
+        self.killNum = 0;
+        self.showLife = NO;
         [self initAnimate];
 	}
 	return self;
@@ -65,6 +74,7 @@ static TDSprite *currentSprite = nil;
 
 - (void) dealloc
 {
+//    [arrayTDSprite removeObject:self];
 	[super dealloc];
 }
 
@@ -96,12 +106,12 @@ static TDSprite *currentSprite = nil;
 
 - (void) runSpriteExit
 {
-	if (doSpriteExit == YES) {
-        if (currentSprite) {
-            [currentSprite onSpriteExit];
-        }
-        currentSprite = self;
-    }
+//	if (doSpriteExit == YES) {
+//        if (currentTDSprite) {
+//            [currentTDSprite onSpriteExit];
+//        }
+//        currentTDSprite = self;
+//    }
 }	
 
 - (BOOL) containsTouchLocation:(UITouch *)touch
