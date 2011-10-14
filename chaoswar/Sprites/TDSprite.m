@@ -13,9 +13,6 @@
 #import "TDEnemy.h"
 #import "TDFriendly.h"
 
-//static BOOL doSpriteExit = YES;
-//static TDSprite *currentTDSprite = nil;
-
 @implementation TDSprite
 
 @synthesize costGold;
@@ -24,32 +21,15 @@
 @synthesize maxHP;
 @synthesize currentHP;
 @synthesize killNum;
-@synthesize showLife;
+@synthesize canClick;
+@synthesize showBlood;
+@synthesize bloodSprite;
+@synthesize arrowSprite;
 
 + (id) getSprite
 {
     return nil;
 }
-//
-//+ (BOOL) getDoSpriteExit
-//{
-//    return doSpriteExit;
-//}
-//
-//+ (TDSprite*) getCurrentSprite
-//{
-//    return currentTDSprite;
-//}
-//
-//+ (void) setDoSpriteExit:(BOOL)value
-//{
-//    doSpriteExit = value;
-//}
-//
-//+ (void) setCurrentSprite:(TDSprite*)value
-//{
-//    currentTDSprite = value;
-//}
 
 - (BOOL) run
 {
@@ -59,14 +39,14 @@
 -(id) init
 {
 	if( (self=[super init])) {
-//        [arrayTDSprite addObject:self];
         self.costGold = 0;
         self.getGold = 0;
         self.isDelete = NO;
         self.maxHP = 0;
         self.currentHP = 0;
         self.killNum = 0;
-        self.showLife = NO;
+        self.showBlood = NO;
+        self.canClick = YES;
         [self initAnimate];
 	}
 	return self;
@@ -74,7 +54,8 @@
 
 - (void) dealloc
 {
-//    [arrayTDSprite removeObject:self];
+    [bloodSprite release];
+    [arrowSprite release];
 	[super dealloc];
 }
 
@@ -94,24 +75,24 @@
 
 - (void) onEnter
 {
-	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+    if (canClick) {
+        [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+        if (arrowSprite) {
+            [arrowSprite setVisible:YES];
+        }
+    }
 	[super onEnter];
 }
 
 - (void) onExit
 {
-	[[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
+    if (canClick) {
+        [[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
+        if (arrowSprite) {
+            [arrowSprite setVisible:NO];
+        }
+    }
 	[super onExit];
-}	
-
-- (void) runSpriteExit
-{
-//	if (doSpriteExit == YES) {
-//        if (currentTDSprite) {
-//            [currentTDSprite onSpriteExit];
-//        }
-//        currentTDSprite = self;
-//    }
 }	
 
 - (BOOL) containsTouchLocation:(UITouch *)touch
@@ -124,36 +105,30 @@
 	if ( ![self containsTouchLocation:touch] ) return NO;
 	switch ([GameController getGameController].screenClickType) {
 		case SCT_ALL:
-            [self runSpriteExit];
             [self spriteTouchBegan:touch operateType:[GameController getGameController].operateType];
 			break;
 		case SCT_ALLSPRITE:
 			if ([self isMemberOfClass:[TDSprite class]]) {
-                [self runSpriteExit];
 				[self spriteTouchBegan:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_TOWER:
 			if ([self isMemberOfClass:[TDTower class]]) {
-                [self runSpriteExit];
 				[self spriteTouchBegan:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_UNIT:
 			if ([self isMemberOfClass:[TDUnit class]]) {
-                [self runSpriteExit];
 				[self spriteTouchBegan:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_ENEMY:
 			if ([self isMemberOfClass:[TDEnemy class]]) {
-                [self runSpriteExit];
 				[self spriteTouchBegan:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_FRIENDLY:
 			if ([self isMemberOfClass:[TDFriendly class]]) {
-                [self runSpriteExit];
 				[self spriteTouchBegan:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
@@ -251,7 +226,7 @@
 	
 }
 
-- (CCMenu*) addButton:(NSString*)normal selected:(NSString*)selected disabled:(NSString*)disabled sel:(SEL)sel pos:(CGPoint)pos
+- (CCMenuItemImage*) addButton:(NSString*)normal selected:(NSString*)selected disabled:(NSString*)disabled sel:(SEL)sel pos:(CGPoint)pos
 {
     CCMenuItemImage *menuItem = [CCMenuItemImage itemFromNormalImage:normal selectedImage:selected disabledImage:disabled target:self selector:sel];
     //[menuItem setScale:0.75];
@@ -259,14 +234,7 @@
     [menu setOpacity:MENU_OPACITY];
     menu.position = pos;
     [[GameController getGameController].gameController addChild:menu z:2];
-    return menu;
-}
-
-// 离开时的操作
-- (void) onSpriteExit
-{
-    GameControllerScene *gcs = [GameController getGameController].gameController;
-    [gcs clearSceneSrpite];
+    return menuItem;
 }
 
 @end

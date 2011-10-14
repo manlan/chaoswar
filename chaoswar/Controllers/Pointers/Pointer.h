@@ -21,26 +21,28 @@
     
 }
 
--(void) addTower:(NSMutableArray*)a t:(TDTower*)t p:(CGPoint)p;
+- (void) addTower:(NSMutableArray*)a t:(TDTower*)t p:(CGPoint)p;
 
--(void) runWave:(float)b e:(TEnemyType)e s:(float)s t:(int)t wy:(NSMutableArray*)wy;
+- (void) runWave:(float)b e:(TEnemyType)e s:(float)s t:(int)t wy:(NSMutableArray*)wy;
 
--(void) initController;
+- (void) prepareNextWave:(ccTime)dt;
 
--(void) initAnimate;
+- (void) initController;
 
--(void) initEnemy:(NSMutableArray*)array;
+- (void) initAnimate;
 
--(void) initTower:(NSMutableArray*)array;
+- (void) initEnemy:(NSMutableArray*)array;
 
--(BOOL) runWaves:(int)wave;
+- (void) initTower:(NSMutableArray*)array;
 
--(void) initBullety:(NSMutableArray*)array;
+- (BOOL) runWaves:(int)wave;
 
--(void) initWayPoint:(WayManager*)manager;
+- (void) initBullety:(NSMutableArray*)array;
 
--(void) initMagic:(NSMutableArray*)array;
+- (void) initWayPoint:(WayManager*)manager;
 
--(void) initFriendly:(NSMutableArray*)array;
+- (void) initMagic:(NSMutableArray*)array;
+
+- (void) initFriendly:(NSMutableArray*)array;
 
 @end

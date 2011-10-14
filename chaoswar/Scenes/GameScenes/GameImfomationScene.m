@@ -14,7 +14,7 @@
 
 @implementation GameImfomationScene
 
-@synthesize btnPauseMenu;
+@synthesize btnPause;
 @synthesize lblEnemyNum;
 @synthesize lblWave;
 @synthesize lblGold;
@@ -24,9 +24,9 @@
 	if( (self=[super init])) {
         //CGSize size = [[CCDirector sharedDirector] winSize];
 		//暂停
-		CCMenuItemImage *btnPauseItem = [CCMenuItemImage itemFromNormalImage:@"pause_black.png" selectedImage:@"pause_normal.png"  
+		btnPause = [CCMenuItemImage itemFromNormalImage:@"pause_black.png" selectedImage:@"pause_normal.png"  
 										  disabledImage:@"pause_black.png"  target:self selector:@selector(pauseGame:)];
-		btnPauseMenu = [CCMenu menuWithItems:btnPauseItem, nil];
+		CCMenu *btnPauseMenu = [CCMenu menuWithItems:btnPause, nil];
 		btnPauseMenu.position = ccp(446 , 300);
 		[self addChild:btnPauseMenu z:2];
 		
@@ -97,6 +97,8 @@
 	CCMenu *btnRestartMenu = [CCMenu menuWithItems:btnRestart, nil];
 	btnRestartMenu.position = ccp(240 , 85);
 	[gc.gameHint addChild:btnRestartMenu z:2];
+    
+    [gc setGameStatus];
 }
 
 -(void) Resume:(id) sender 
@@ -104,6 +106,8 @@
     [[CCDirector sharedDirector] resume];
 	GameController *gc = [GameController getGameController];
 	[gc.gameHint removeAllChildrenWithCleanup:YES];
+    
+    [gc setGameStatus];
 }
 
 -(void) Menu:(id) sender 
@@ -123,29 +127,35 @@
 - (void) setPauseMenuStatus
 {
     if ([CCDirector sharedDirector].isPaused) {
-        [btnPauseMenu setIsTouchEnabled:NO];
+        [btnPause setIsEnabled:NO];
         return;
     }
     
-    [btnPauseMenu setIsTouchEnabled:YES];
+    [btnPause setIsEnabled:YES];
 }
 
 - (void) setEnemyNumValue
 {
     GameController *gc = [GameController getGameController];
-    [lblEnemyNum setString:[NSString stringWithFormat:@"%d", gc.currentHealth]];
+    if (lblEnemyNum) {
+        [lblEnemyNum setString:[NSString stringWithFormat:@"%d", gc.currentHealth]];
+    }
 }
 
 - (void) setWaveValue
 {
     GameController *gc = [GameController getGameController];
-    [lblWave setString:[NSString stringWithFormat:@"%d/%d", gc.currentWave, gc.maxWave]];
+    if (lblWave) {
+        [lblWave setString:[NSString stringWithFormat:@"%d/%d", gc.currentWave, gc.maxWave]];
+    }
 }
 
 - (void) setGoldValue
 {
     GameController *gc = [GameController getGameController];
-    [lblGold setString:[NSString stringWithFormat:@"%d", gc.currentGold]];
+    if (lblGold) {
+        [lblGold setString:[NSString stringWithFormat:@"%d", gc.currentGold]];
+    }
 }
 
 @end

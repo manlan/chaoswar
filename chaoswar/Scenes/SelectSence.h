@@ -6,7 +6,7 @@
 //  Copyright 2011年 __MyCompanyName__. All rights reserved.
 //
 
-#import "GamePubDef.h"
+#import "cocos2d.h"
 
 @interface SelectSence : CCLayer {
     CCSprite *bgImg;
@@ -25,6 +25,7 @@
 	CCSprite *select1;
 	CCSprite *select2;
     CCMenuItemImage *btnClose;
+    CCMenuItemImage *btnTouMing;
 	int intJN001;
 	int intJN002;
 	int guanKa;

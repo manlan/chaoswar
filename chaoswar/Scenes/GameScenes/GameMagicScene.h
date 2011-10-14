@@ -12,22 +12,22 @@
 @class GameController;
 
 @interface GameMagicScene : CCLayer {
-    CCMenu *btnGoMenu;
-	CCMenu *btnMagic1Menu;
-	CCMenu *btnMagic2Menu;
-    CCMenu *btnMagic3Menu;
-    CCMenu *btnMagic4Menu;
+    CCMenuItemImage *btnGo;
+	CCMenuItemImage *btnMagic1;
+	CCMenuItemImage *btnMagic2;
+    CCMenuItemImage *btnMagic3;
+    CCMenuItemImage *btnMagic4;
 }
 
-@property (nonatomic, assign) CCMenu *btnGoMenu;
-@property (nonatomic, assign) CCMenu *btnMagic1Menu;
-@property (nonatomic, assign) CCMenu *btnMagic2Menu;
-@property (nonatomic, assign) CCMenu *btnMagic3Menu;
-@property (nonatomic, assign) CCMenu *btnMagic4Menu;
+@property (nonatomic, assign) CCMenuItemImage *btnGo;
+@property (nonatomic, assign) CCMenuItemImage *btnMagic1;
+@property (nonatomic, assign) CCMenuItemImage *btnMagic2;
+@property (nonatomic, assign) CCMenuItemImage *btnMagic3;
+@property (nonatomic, assign) CCMenuItemImage *btnMagic4;
 
 - (void) setMagic:(int)JN1 JN2:(int)JN2;
 
-- (CCMenu*) addButton:(int)magicNum selector:(SEL)sel point:(CGPoint)point;
+- (CCMenuItemImage*) addButton:(int)magicNum selector:(SEL)sel point:(CGPoint)point;
 
 - (void) setGoMenuStatus;
 - (void) setMagic1MenuStatus;

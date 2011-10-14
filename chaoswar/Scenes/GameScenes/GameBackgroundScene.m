@@ -13,6 +13,17 @@
 #import "GameControllerScene.h"
 #import "GameHintScene.h"
 #import "Pointer1.h"
+#import "Pointer2.h"
+#import "Pointer3.h"
+#import "Pointer4.h"
+#import "Pointer5.h"
+#import "Pointer6.h"
+#import "Pointer7.h"
+#import "Pointer8.h"
+#import "Pointer9.h"
+#import "Pointer10.h"
+#import "Pointer11.h"
+#import "Pointer12.h"
 
 @implementation GameBackgroundScene
 
@@ -49,8 +60,41 @@
         case 0:
             [gc initController:[[[Pointer1 alloc] init] autorelease]];
             break;
+        case 1:
+            [gc initController:[[[Pointer2 alloc] init] autorelease]];
+            break;
+        case 2:
+            [gc initController:[[[Pointer3 alloc] init] autorelease]];
+            break;
+        case 3:
+            [gc initController:[[[Pointer4 alloc] init] autorelease]];
+            break;
+        case 4:
+            [gc initController:[[[Pointer5 alloc] init] autorelease]];
+            break;
+        case 5:
+            [gc initController:[[[Pointer6 alloc] init] autorelease]];
+            break;
+        case 6:
+            [gc initController:[[[Pointer7 alloc] init] autorelease]];
+            break;
+        case 7:
+            [gc initController:[[[Pointer8 alloc] init] autorelease]];
+            break;
+        case 8:
+            [gc initController:[[[Pointer9 alloc] init] autorelease]];
+            break;
+        case 9:
+            [gc initController:[[[Pointer10 alloc] init] autorelease]];
+            break;
+        case 10:
+            [gc initController:[[[Pointer11 alloc] init] autorelease]];
+            break;
+        case 11:
+            [gc initController:[[[Pointer12 alloc] init] autorelease]];
+            break;
         default:
-            [gc initController:[[[Pointer1 alloc] init] autorelease]];
+            [gc initController:nil];
             break;
     }
     [gc start];
@@ -91,25 +135,9 @@
 	GameController *gc = [GameController getGameController];
     [gc deleteUnUseSprite:self];
 	// 设置当前金额，波数等信息
-    [gc.gameImfomation setPauseMenuStatus];
     [gc.gameImfomation setEnemyNumValue];
     [gc.gameImfomation setWaveValue];
     [gc.gameImfomation setGoldValue];
-	//gc.gameMagic.btnRestartMenu = 
-	// 控制法术按钮及下一波按钮的状态
-    [gc.gameMagic setGoMenuStatus];
-    [gc.gameMagic setMagic1MenuStatus];
-    [gc.gameMagic setMagic2MenuStatus];
-    [gc.gameMagic setMagic3MenuStatus];
-    [gc.gameMagic setMagic4MenuStatus];
-    // 控制建造按钮及其他操作按钮的状态
-    [gc.gameController setBuild1MenuStatus];
-    [gc.gameController setBuild2MenuStatus];
-    [gc.gameController setBuild3MenuStatus];
-    [gc.gameController setBuild4MenuStatus];
-    [gc.gameController setUpdateMenuStatus];
-    [gc.gameController setSellMenuStatus];
-    [gc.gameController setZoneMenuStatus];
 }
 
 - (CGPoint)boundLayerPos:(CGPoint)newPos {

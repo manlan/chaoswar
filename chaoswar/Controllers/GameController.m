@@ -12,6 +12,11 @@
 #import "WayPoint.h"
 #import "Pointer.h"
 #import "WayManager.h"
+#import "GameBackgroundScene.h"
+#import "GameImfomationScene.h"
+#import "GameMagicScene.h"
+#import "GameControllerScene.h"
+#import "GameHintScene.h"
 
 @implementation GameController
 
@@ -65,11 +70,11 @@ static GameController *_sharedController = nil;
 }
 
 - (void) initController:(Pointer*)pointer {
-    self.pt = pointer;
-    self.maxWave = 7;
-    self.currentWave = 7;
-    self.currentHealth = 20;
-    self.currentGold = 320;
+    pt = pointer;
+    maxWave = 7;
+    currentWave = 7;
+    currentHealth = 20;
+    currentGold = 320;
     [self.pt initController];
     
     [self.pt initAnimate];
@@ -156,6 +161,28 @@ static GameController *_sharedController = nil;
 	[towerDeleteArray release];
 	[bulletDeleteArray release];
     [frientlyDeleteArray release];
+}
+
+
+//游戏逻辑（循环）
+- (void) setGameStatus {
+	// 设置当前金额，波数等信息
+    [self.gameImfomation setPauseMenuStatus];
+	//gameMagic.btnRestartMenu = 
+	// 控制法术按钮及下一波按钮的状态
+    [gameMagic setGoMenuStatus];
+    [gameMagic setMagic1MenuStatus];
+    [gameMagic setMagic2MenuStatus];
+    [gameMagic setMagic3MenuStatus];
+    [gameMagic setMagic4MenuStatus];
+    // 控制建造按钮及其他操作按钮的状态
+    [gameController setBuild1MenuStatus];
+    [gameController setBuild2MenuStatus];
+    [gameController setBuild3MenuStatus];
+    [gameController setBuild4MenuStatus];
+    [gameController setUpdateMenuStatus];
+    [gameController setSellMenuStatus];
+    [gameController setZoneMenuStatus];
 }
 
 - (void)dealloc {

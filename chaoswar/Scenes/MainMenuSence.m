@@ -10,6 +10,8 @@
 #import "SelectSence.h"
 #import "GameBackgroundScene.h"
 #import "SceneManager.h"
+#import "HelpSence.h"
+#import "CreditsSence.h"
 
 @implementation MainMenuSence
 
@@ -66,12 +68,12 @@
 
 -(void) goToHelpSence:(id) sender 
 {
-    //[[CCDirector sharedDirector] replaceScene: [SceneManager TransFadeUp:0.6f layer:[LoadSence node]]];
+    [[CCDirector sharedDirector] replaceScene: [SceneManager TransFadeUp:0.56f layer:[HelpSence node]]];
 }
 
 -(void) goToCreditsSence:(id) sender 
 {
-    //[[CCDirector sharedDirector] replaceScene: [SceneManager TransFadeUp:0.6f layer:[CreditsSence node]]];
+    [[CCDirector sharedDirector] replaceScene: [SceneManager TransFadeUp:0.56f layer:[CreditsSence node]]];
 }
 
 - (void) dealloc

@@ -96,6 +96,27 @@
         case ET_FOOT16:
             return [TDFootEnemy16 getSprite];
             break; 
+        case ET_FLY1:
+            return [TDFlyEnemy1 getSprite];
+            break; 
+        case ET_FLY2:
+            return [TDFlyEnemy2 getSprite];
+            break; 
+        case ET_MAGIC1:
+            return [TDMagicEnemy1 getSprite];
+            break; 
+        case ET_MAGIC2:
+            return [TDMagicEnemy2 getSprite];
+            break; 
+        case ET_BOSS1:
+            return [TDBossEnemy1 getSprite];
+            break; 
+        case ET_BOSS2:
+            return [TDBossEnemy1 getSprite];
+            break; 
+        case ET_SHOOT:
+            //return [TDShootEnemy1 getSprite];
+            break; 
         default:
             break;
     }

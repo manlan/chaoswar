@@ -13,28 +13,28 @@
 
 @interface GameControllerScene : CCLayer {
     // 箭塔
-    CCMenu *btnBuild1Menu;
+    CCMenuItemImage *btnBuild1;
     // 防御塔
-	CCMenu *btnBuild2Menu;
+	CCMenuItemImage *btnBuild2;
     // 炮塔
-    CCMenu *btnBuild3Menu;
+    CCMenuItemImage *btnBuild3;
     // 魔法塔
-    CCMenu *btnBuild4Menu;
+    CCMenuItemImage *btnBuild4;
     // 升级
-    CCMenu *btnUpdateMenu;
+    CCMenuItemImage *btnUpdate;
     // 卖掉
-    CCMenu *btnSellMenu;
+    CCMenuItemImage *btnSell;
     // 聚集地
-    CCMenu *btnZoneMenu;
+    CCMenuItemImage *btnZone;
 }
 
-@property (nonatomic, assign) CCMenu *btnBuild1Menu;
-@property (nonatomic, assign) CCMenu *btnBuild2Menu;
-@property (nonatomic, assign) CCMenu *btnBuild3Menu;
-@property (nonatomic, assign) CCMenu *btnBuild4Menu;
-@property (nonatomic, assign) CCMenu *btnUpdateMenu;
-@property (nonatomic, assign) CCMenu *btnSellMenu;
-@property (nonatomic, assign) CCMenu *btnZoneMenu;
+@property (nonatomic, assign) CCMenuItemImage *btnBuild1;
+@property (nonatomic, assign) CCMenuItemImage *btnBuild2;
+@property (nonatomic, assign) CCMenuItemImage *btnBuild3;
+@property (nonatomic, assign) CCMenuItemImage *btnBuild4;
+@property (nonatomic, assign) CCMenuItemImage *btnUpdate;
+@property (nonatomic, assign) CCMenuItemImage *btnSell;
+@property (nonatomic, assign) CCMenuItemImage *btnZone;
 
 - (void) setBuild1MenuStatus;
 - (void) setBuild2MenuStatus;

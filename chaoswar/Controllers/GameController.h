@@ -74,8 +74,15 @@
 
 - (void) deleteUnUseSprite:(CCLayer*)scene;
 
+- (void) setGameStatus;
+
 - (void) restart;
 
 - (void) startNextWave;
+
+//- (void) setMaxWave:(int)value;
+//- (void) setCurrentWave:(int)value;
+//- (void) setCurrentHealth:(int)value;
+//- (void) setCurrentGold:(int)value;
 
 @end

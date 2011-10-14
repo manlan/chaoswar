@@ -16,7 +16,14 @@ typedef enum {
     ET_FOOT13,
     ET_FOOT14,
     ET_FOOT15,
-    ET_FOOT16
+    ET_FOOT16,
+    ET_FLY1,  
+	ET_FLY2,
+    ET_MAGIC1,  
+	ET_MAGIC2,
+    ET_BOSS1,  
+	ET_BOSS2,
+    ET_SHOOT
 } TEnemyType;
 
 // 攻击类型

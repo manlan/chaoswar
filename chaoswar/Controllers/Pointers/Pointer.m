@@ -22,17 +22,17 @@
 
 @implementation Pointer
 
--(void) initController
+- (void) initController
 {
 
 }
 
--(void) initAnimate
+- (void) initAnimate
 {
 	
 }
 
--(void) addTower:(NSMutableArray*)a t:(TDTower*)t p:(CGPoint)p
+- (void) addTower:(NSMutableArray*)a t:(TDTower*)t p:(CGPoint)p
 {
     GameController *gc = [GameController getGameController];
     CCSprite *towbg = [CCSprite spriteWithFile:@"et01.png"];
@@ -44,42 +44,55 @@
     [a addObject:t];
 }
 
--(void) runWave:(float)b e:(TEnemyType)e s:(float)s t:(int)t wy:(NSMutableArray*)wy
+- (void) runWave:(float)b e:(TEnemyType)e s:(float)s t:(int)t wy:(NSMutableArray*)wy
 {
     [Wave runWave:b e:e s:s t:t wy:wy];
 }
 
--(void) initEnemy:(NSMutableArray*)array
+- (void) prepareNextWave:(ccTime)dt
+{
+    [[CCScheduler sharedScheduler] scheduleSelector:@selector(nextWaveReady:) forTarget:self interval:dt paused:NO];
+}
+
+- (void) nextWaveReady:(ccTime)dt
+{
+    [[CCScheduler sharedScheduler] unscheduleSelector:@selector(nextWaveReady:) forTarget:self];
+    GameController *gc = [GameController getGameController];
+	gc.canNext = YES;
+    [gc setGameStatus];
+}
+
+- (void) initEnemy:(NSMutableArray*)array
 {
     [array removeAllObjects];
 }
 
--(void) initTower:(NSMutableArray*)array
+- (void) initTower:(NSMutableArray*)array
 {
     [array removeAllObjects];
 }
 
--(BOOL) runWaves:(int)wave
+- (BOOL) runWaves:(int)wave
 {
     return YES;
 }
 
--(void) initBullety:(NSMutableArray*)array
+- (void) initBullety:(NSMutableArray*)array
 {
     [array removeAllObjects];
 }
 
--(void) initWayPoint:(WayManager*)manager
+- (void) initWayPoint:(WayManager*)manager
 {
     //
 }
 
--(void) initMagic:(NSMutableArray*)array
+- (void) initMagic:(NSMutableArray*)array
 {
     [array removeAllObjects];
 }
 
--(void) initFriendly:(NSMutableArray*)array
+- (void) initFriendly:(NSMutableArray*)array
 {
     [array removeAllObjects];
 }

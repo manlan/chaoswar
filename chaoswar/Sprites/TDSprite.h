@@ -27,7 +27,13 @@
     // 杀敌次数
     int killNum;
     // 是否已经被删除
-    BOOL showLife;
+    BOOL showBlood;
+    // 是否已经被删除
+    BOOL canClick;
+    // 血条
+    CCSprite *bloodSprite;
+    // 选中框
+    CCSprite *arrowSprite;
 }
 
 @property int costGold;
@@ -36,7 +42,10 @@
 @property int maxHP;
 @property int currentHP;
 @property int killNum;
-@property BOOL showLife;
+@property BOOL showBlood;
+@property BOOL canClick;
+@property (nonatomic, assign) CCSprite *bloodSprite;
+@property (nonatomic, assign) CCSprite *arrowSprite;
 
 // 获取当前精灵的实例
 + (id) getSprite;
@@ -62,9 +71,6 @@
 - (void) spriteTouchEnded:(UITouch *)touch operateType:(TOperateType)operateType;
 
 // 添加一个操作按钮
-- (CCMenu*) addButton:(NSString*)normal selected:(NSString*)selected disabled:(NSString*)disabled sel:(SEL)sel pos:(CGPoint)pos;
-
-// 离开时的操作
-- (void) onSpriteExit;
+- (CCMenuItemImage*) addButton:(NSString*)normal selected:(NSString*)selected disabled:(NSString*)disabled sel:(SEL)sel pos:(CGPoint)pos;
 
 @end

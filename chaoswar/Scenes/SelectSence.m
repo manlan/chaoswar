@@ -49,14 +49,22 @@
         selectMagicBg = [CCSprite spriteWithFile:@"selectMagicBg.png"];
 		selectMagicBg.position = CGPointMake(size.width /2 , size.height/2);
 		selectMagicBg.scale = 1;
-		[self addChild:selectMagicBg z:3];
+		[self addChild:selectMagicBg z:13];
+        
+        //加载透明按钮
+        btnTouMing = [[CCMenuItemImage alloc] initFromNormalImage:@"touMingBg.png" selectedImage:@"touMingBg.png" disabledImage:@"touMingBg.png" target:self selector:@selector(doNothing:)];		
+        CCMenu *btnTouMingMenu = [CCMenu menuWithItems:btnTouMing, nil];
+		btnTouMingMenu.position = CGPointMake(size.width /2 , size.height/2);
+        btnTouMing.visible = NO;
+		[self addChild:btnTouMingMenu z:3];
+		[btnTouMing release];
 		
 		//加载技能1按钮
 		btnJN001 = [[CCMenuItemImage alloc] initFromNormalImage:@"jN001.png" selectedImage:@"jN001.png" disabledImage:@"jN001Hui.png" target:self selector:@selector(addJn:)];		
         CCMenu *btnJN001Menu = [CCMenu menuWithItems:btnJN001, nil];
 		btnJN001Menu.position = CGPointMake(144 , 175);
 		btnJN001.tag = 1;
-		[self addChild:btnJN001Menu z:4];
+		[self addChild:btnJN001Menu z:14];
 		[btnJN001 release];
 		
 		//加载技能2按钮
@@ -64,7 +72,7 @@
         CCMenu *btnJN002Menu = [CCMenu menuWithItems:btnJN002, nil];
 		btnJN002Menu.position = CGPointMake(215 , 175);
 		btnJN002.tag = 2;
-		[self addChild:btnJN002Menu z:4];
+		[self addChild:btnJN002Menu z:14];
 		[btnJN002 release];
 		
 		//加载技能3按钮
@@ -72,7 +80,7 @@
         CCMenu *btnJN003Menu = [CCMenu menuWithItems:btnJN003, nil];
 		btnJN003Menu.position = CGPointMake(286 , 175);
 		btnJN003.tag = 3;
-		[self addChild:btnJN003Menu z:4];
+		[self addChild:btnJN003Menu z:14];
 		[btnJN003 release];
 		
 		//加载技能4按钮
@@ -80,28 +88,28 @@
         CCMenu *btnJN004Menu = [CCMenu menuWithItems:btnJN004, nil];
 		btnJN004Menu.position = CGPointMake(357 , 175);
 		btnJN004.tag = 4;
-		[self addChild:btnJN004Menu z:4];
+		[self addChild:btnJN004Menu z:14];
 		[btnJN004 release];
 		
 		//加载技能1边框按钮
 		btnselectJn1 = [[CCMenuItemImage alloc] initFromNormalImage:@"selectJn.png" selectedImage:@"selectJn.png" disabledImage:@"selectJn.png" target:self selector:@selector(removeJn1:)];		
         CCMenu *btnselectJn1Menu = [CCMenu menuWithItems:btnselectJn1, nil];
 		btnselectJn1Menu.position = CGPointMake(144 , 115);
-		[self addChild:btnselectJn1Menu z:4];
+		[self addChild:btnselectJn1Menu z:14];
 		[btnselectJn1 release];
 		
 		//加载技能2边框按钮
 		btnselectJn2 = [[CCMenuItemImage alloc] initFromNormalImage:@"selectJn.png" selectedImage:@"selectJn.png" disabledImage:@"selectJn.png" target:self selector:@selector(removeJn2:)];		
         CCMenu *btnselectJn2Menu = [CCMenu menuWithItems:btnselectJn2, nil];
 		btnselectJn2Menu.position = CGPointMake(214 , 115);
-		[self addChild:btnselectJn2Menu z:4];
+		[self addChild:btnselectJn2Menu z:14];
 		[btnselectJn2 release];
 		
         //加载关闭按钮
 		btnClose = [[CCMenuItemImage alloc] initFromNormalImage:@"close.png" selectedImage:@"closeDown.png" disabledImage:@"close.png" target:self selector:@selector(closeMagic:)];		
         CCMenu *btnCloseMenu = [CCMenu menuWithItems:btnClose, nil];
 		btnCloseMenu.position = CGPointMake(385 , 224);
-		[self addChild:btnCloseMenu z:5];
+		[self addChild:btnCloseMenu z:15];
         btnClose.visible = NO;
 		[btnClose release];
         
@@ -109,7 +117,7 @@
 		btnPlay = [[CCMenuItemImage alloc] initFromNormalImage:@"btnPlay.png" selectedImage:@"btnPlay.png" disabledImage:@"btnPlayHui.png" target:self selector:@selector(goToLoadingSence:)];		
         CCMenu *btnPlayMenu = [CCMenu menuWithItems:btnPlay, nil];
 		btnPlayMenu.position = CGPointMake(322 , 115);
-		[self addChild:btnPlayMenu z:4];
+		[self addChild:btnPlayMenu z:14];
 		btnPlay.scale = 0.7;
 		btnPlay.isEnabled = NO;
 		[btnPlay release];
@@ -160,7 +168,7 @@
                 
                 if (isCanPLay == 1) {
                     btnWaveStation = [[CCMenuItemImage alloc] initFromNormalImage:@"btnWaveStation.png" selectedImage:@"btnWaveStation.png" disabledImage:@"btnWaveStation.png" target:self  selector:@selector(setMagic:)];
-                    btnWaveStation.scale = 1;
+                    btnWaveStation.scale = 0.85;
                     btnWaveStation.tag = [(NSNumber*)[wave objectForKey:@"id"] intValue];
                     CCMenu *btnWaveStationMenu = [CCMenu menuWithItems:btnWaveStation, nil];
                     btnWaveStationMenu.position = waveStationPo;
@@ -198,7 +206,7 @@
 		select1 = [CCSprite spriteWithFile:picUrl];
 		select1.position = CGPointMake(144 , 115);
 		select1.scale = 1;
-		[self addChild:select1 z:5];
+		[self addChild:select1 z:16];
 		intJN001 = button.tag;
 		button.isEnabled = NO;
 	}
@@ -206,7 +214,7 @@
 		select2 = [CCSprite spriteWithFile:picUrl];
 		select2.position = CGPointMake(214 , 115);
 		select2.scale = 1;
-		[self addChild:select2 z:5];
+		[self addChild:select2 z:16];
 		intJN002 = button.tag;
 		button.isEnabled = NO;
 	}
@@ -292,9 +300,10 @@
 	btnJN004.visible = YES;
 	btnselectJn1.visible = YES;
 	btnselectJn2.visible = YES;
-	select1.visible = YES;
-	select2.visible = YES;
+	//select1.visible = YES;
+	//select2.visible = YES;
     btnClose.visible = YES;
+    btnTouMing.visible = YES;
 }
 
 -(void) setMagicHidden
@@ -307,14 +316,29 @@
 	btnJN004.visible = NO;
 	btnselectJn1.visible = NO;
 	btnselectJn2.visible = NO;
-	select1.visible = NO;
-	select2.visible = NO;
+	//select1.visible = NO;
+	//select2.visible = NO;
+    [self removeChild:select1 cleanup:NO];
+    [self removeChild:select2 cleanup:NO];
+    btnJN001.isEnabled = YES;
+	btnJN002.isEnabled = YES;
+	btnJN003.isEnabled = YES;
+	btnJN004.isEnabled = YES;
+    btnPlay.isEnabled = NO;
+    intJN001 = 10;
+    intJN002 = 10;
     btnClose.visible = NO;
+    btnTouMing.visible = NO;
 }
 
 -(void) goToLoadingSence:(id) sender 
 {
     [[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[LoadingSence scene:guanKa JN1:intJN001 JN2:intJN002]]];
+}
+
+-(void) doNothing:(id) sender 
+{
+    NSLog(@"TOUMING");
 }
 
 -(void) setMagic:(id) sender 

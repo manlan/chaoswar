@@ -11,13 +11,13 @@
 
 @implementation GameControllerScene
 
-@synthesize btnBuild1Menu;
-@synthesize btnBuild2Menu;
-@synthesize btnBuild3Menu;
-@synthesize btnBuild4Menu;
-@synthesize btnUpdateMenu;
-@synthesize btnSellMenu;
-@synthesize btnZoneMenu;
+@synthesize btnBuild1;
+@synthesize btnBuild2;
+@synthesize btnBuild3;
+@synthesize btnBuild4;
+@synthesize btnUpdate;
+@synthesize btnSell;
+@synthesize btnZone;
 
 -(id) init
 {
@@ -29,98 +29,98 @@
 
 - (void) setBuild1MenuStatus
 {
-    if (!btnBuild1Menu) return;
+    if (!btnBuild1) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL) {
-        [btnBuild1Menu setIsTouchEnabled:NO];
+        [btnBuild1 setIsEnabled:NO];
         return;
     }
     
-    [btnBuild1Menu setIsTouchEnabled:YES];
+    [btnBuild1 setIsEnabled:YES];
 }
 
 - (void) setBuild2MenuStatus
 {
-    if (!btnBuild2Menu) return;
+    if (!btnBuild2) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL) {
-        [btnBuild2Menu setIsTouchEnabled:NO];
+        [btnBuild2 setIsEnabled:NO];
         return;
     }
     
-    [btnBuild2Menu setIsTouchEnabled:YES];
+    [btnBuild2 setIsEnabled:YES];
 }
 
 - (void) setBuild3MenuStatus
 {
-    if (!btnBuild3Menu) return;
+    if (!btnBuild3) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL) {
-        [btnBuild3Menu setIsTouchEnabled:NO];
+        [btnBuild3 setIsEnabled:NO];
         return;
     }
     
-    [btnBuild3Menu setIsTouchEnabled:YES];
+    [btnBuild3 setIsEnabled:YES];
 }
 
 - (void) setBuild4MenuStatus
 {
-    if (!btnBuild4Menu) return;
+    if (!btnBuild4) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL) {
-        [btnBuild4Menu setIsTouchEnabled:NO];
+        [btnBuild4 setIsEnabled:NO];
         return;
     }
     
-    [btnBuild4Menu setIsTouchEnabled:YES];
+    [btnBuild4 setIsEnabled:YES];
 }
 
 - (void) setUpdateMenuStatus
 {
-    if (!btnUpdateMenu) return;
+    if (!btnUpdate) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL) {
-        [btnUpdateMenu setIsTouchEnabled:NO];
+        [btnUpdate setIsEnabled:NO];
         return;
     }
     
-    [btnUpdateMenu setIsTouchEnabled:YES];
+    [btnUpdate setIsEnabled:YES];
 }
 
 - (void) setSellMenuStatus
 {
-    if (!btnSellMenu) return;
+    if (!btnSell) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL) {
-        [btnSellMenu setIsTouchEnabled:NO];
+        [btnSell setIsEnabled:NO];
         return;
     }
     
-    [btnSellMenu setIsTouchEnabled:YES];
+    [btnSell setIsEnabled:YES];
 }
 
 - (void) setZoneMenuStatus
 {
-    if (!btnZoneMenu) return;
+    if (!btnZone) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL && gc.operateType != OT_SETSEARCHPOINT) {
-        [btnZoneMenu setIsTouchEnabled:NO];
+        [btnZone setIsEnabled:NO];
         return;
     }
     
-    [btnZoneMenu setIsTouchEnabled:YES];
+    [btnZone setIsEnabled:YES];
 }
 
 - (void) clearSceneSrpite
 {
     [self removeAllChildrenWithCleanup:YES];
-    btnBuild1Menu = nil;
-    btnBuild2Menu = nil;
-    btnBuild3Menu = nil;
-    btnBuild4Menu = nil;
-    btnUpdateMenu = nil;
-    btnSellMenu = nil;
-    btnZoneMenu = nil;
+    btnBuild1= nil;
+    btnBuild2= nil;
+    btnBuild3= nil;
+    btnBuild4= nil;
+    btnUpdate= nil;
+    btnSell= nil;
+    btnZone= nil;
 }
 
 @end
