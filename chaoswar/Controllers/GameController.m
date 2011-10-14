@@ -17,6 +17,18 @@
 #import "GameMagicScene.h"
 #import "GameControllerScene.h"
 #import "GameHintScene.h"
+#import "Pointer1.h"
+#import "Pointer2.h"
+#import "Pointer3.h"
+#import "Pointer4.h"
+#import "Pointer5.h"
+#import "Pointer6.h"
+#import "Pointer7.h"
+#import "Pointer8.h"
+#import "Pointer9.h"
+#import "Pointer10.h"
+#import "Pointer11.h"
+#import "Pointer12.h"
 
 @implementation GameController
 
@@ -71,10 +83,6 @@ static GameController *_sharedController = nil;
 
 - (void) initController:(Pointer*)pointer {
     pt = pointer;
-    maxWave = 7;
-    currentWave = 7;
-    currentHealth = 20;
-    currentGold = 320;
     [self.pt initController];
     
     [self.pt initAnimate];
