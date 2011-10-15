@@ -45,10 +45,10 @@
         [self removeFromParentAndCleanup:YES];
     }
     WayPoint *wp = [self.way objectAtIndex:nextWayPoint];
-    position = [wp getPoint];
+    position = wp.point;
     [self removeFromParentAndCleanup:NO];
     
-    [gc.gameBackground addChild:self z:[wp getZ]];
+    [gc.gameBackground addChild:self z:wp.z];
     //动画
     float x_plus = position.x - self.position.x;
     float y_plus = position.y - self.position.y;

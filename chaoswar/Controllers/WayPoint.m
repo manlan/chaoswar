@@ -11,25 +11,20 @@
 
 @implementation WayPoint
 
-@synthesize point;
-@synthesize z;
+@synthesize point = _point;
+@synthesize z = _z;
 
 + (WayPoint*) getWayPoint:(CGPoint)pt z:(int)z
 {
     WayPoint *wayPoint = [[[WayPoint alloc] init] autorelease];
-    wayPoint.point = pt;
-    wayPoint.z = z;
+    [wayPoint setValue:pt z:z];
     return wayPoint;
 }
 
-- (CGPoint) getPoint;
+- (void) setValue:(CGPoint)pt z:(int)z
 {
-    return self.point;
-}
-
-- (int) getZ
-{
-    return self.z;
+    _point = pt;
+    _z = z;
 }
 
 @end

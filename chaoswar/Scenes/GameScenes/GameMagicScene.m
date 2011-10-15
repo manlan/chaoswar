@@ -12,24 +12,24 @@
 
 @implementation GameMagicScene
 
-@synthesize btnGo;
-@synthesize btnMagic1;
-@synthesize btnMagic2;
-@synthesize btnMagic3;
-@synthesize btnMagic4;
+@synthesize btnGo = _btnGo;
+@synthesize btnMagic1 = _btnMagic1;
+@synthesize btnMagic2 = _btnMagic2;
+@synthesize btnMagic3 = _btnMagic3;
+@synthesize btnMagic4 = _btnMagic4;
 
 -(id) init
 {
 	if( (self=[super init])) {
-        btnMagic1 = nil;
-        btnMagic2 = nil;
-        btnMagic3 = nil;
-        btnMagic4 = nil;
+        _btnMagic1 = nil;
+        _btnMagic2 = nil;
+        _btnMagic3 = nil;
+        _btnMagic4 = nil;
 		//GameController *gc = [GameController getGameController];
 		//下一波
-		btnGo = [CCMenuItemImage itemFromNormalImage:@"go_normal.png" selectedImage:@"go_normal.png"  
+		_btnGo = [CCMenuItemImage itemFromNormalImage:@"go_normal.png" selectedImage:@"go_normal.png"  
 									   disabledImage:@"go_black.png"  target:self selector:@selector(GoNext:)];
-		CCMenu *btnGoMenu = [CCMenu menuWithItems:btnGo, nil];
+		CCMenu *btnGoMenu = [CCMenu menuWithItems:_btnGo, nil];
 		btnGoMenu.position = ccp(448 , 20);
 		[self addChild:btnGoMenu z:2];
 	}
@@ -40,16 +40,16 @@
 {
     switch (JN1) {
         case 1:
-            btnMagic1 = [self addButton:JN1 selector:@selector(Magic1:) point:MAGIC1_POS];
+            _btnMagic1 = [self addButton:JN1 selector:@selector(Magic1:) point:MAGIC1_POS];
             break;
         case 2:
-            btnMagic2 = [self addButton:JN1 selector:@selector(Magic2:) point:MAGIC1_POS];
+            _btnMagic2 = [self addButton:JN1 selector:@selector(Magic2:) point:MAGIC1_POS];
             break;
         case 3:
-            btnMagic3 = [self addButton:JN1 selector:@selector(Magic3:) point:MAGIC1_POS];
+            _btnMagic3 = [self addButton:JN1 selector:@selector(Magic3:) point:MAGIC1_POS];
             break;
         case 4:
-            btnMagic4 = [self addButton:JN1 selector:@selector(Magic4:) point:MAGIC1_POS];
+            _btnMagic4 = [self addButton:JN1 selector:@selector(Magic4:) point:MAGIC1_POS];
             break;
         default:
             break;
@@ -57,16 +57,16 @@
     
     switch (JN2) {
         case 1:
-            btnMagic1 = [self addButton:JN2 selector:@selector(Magic1:) point:MAGIC2_POS];
+            _btnMagic1 = [self addButton:JN2 selector:@selector(Magic1:) point:MAGIC2_POS];
             break;
         case 2:
-            btnMagic2 = [self addButton:JN2 selector:@selector(Magic2:) point:MAGIC2_POS];
+            _btnMagic2 = [self addButton:JN2 selector:@selector(Magic2:) point:MAGIC2_POS];
             break;
         case 3:
-            btnMagic3 = [self addButton:JN2 selector:@selector(Magic3:) point:MAGIC2_POS];
+            _btnMagic3 = [self addButton:JN2 selector:@selector(Magic3:) point:MAGIC2_POS];
             break;
         case 4:
-            btnMagic4 = [self addButton:JN2 selector:@selector(Magic4:) point:MAGIC2_POS];
+            _btnMagic4 = [self addButton:JN2 selector:@selector(Magic4:) point:MAGIC2_POS];
             break;
         default:
             break;
@@ -151,84 +151,84 @@
 {
     GameController *gc = [GameController getGameController];
     if (!gc.canNext) {
-        [btnGo setIsEnabled:NO];
+        [_btnGo setIsEnabled:NO];
         return;
     }
     
     if ([CCDirector sharedDirector].isPaused) {
-        [btnGo setIsEnabled:NO];
+        [_btnGo setIsEnabled:NO];
         return;
     }
     
-    [btnGo setIsEnabled:YES];
+    [_btnGo setIsEnabled:YES];
 }
 
 - (void) setMagic1MenuStatus
 {
-    if (!btnMagic1) return;
+    if (!_btnMagic1) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_FIRE) {
-        [btnMagic1 setIsEnabled:NO];
+        [_btnMagic1 setIsEnabled:NO];
         return;
     }
     
     if ([CCDirector sharedDirector].isPaused) {
-        [btnMagic1 setIsEnabled:NO];
+        [_btnMagic1 setIsEnabled:NO];
         return;
     }
     
-    [btnMagic1 setIsEnabled:YES];
+    [_btnMagic1 setIsEnabled:YES];
 }
 
 - (void) setMagic2MenuStatus
 {
-    if (!btnMagic2) return;
+    if (!_btnMagic2) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_FRIENDLY) {
-        [btnMagic2 setIsEnabled:NO];
+        [_btnMagic2 setIsEnabled:NO];
         return;
     }
     
     if ([CCDirector sharedDirector].isPaused) {
-        [btnMagic2 setIsEnabled:NO];
+        [_btnMagic2 setIsEnabled:NO];
         return;
     }
     
-    [btnMagic2 setIsEnabled:YES];
+    [_btnMagic2 setIsEnabled:YES];
 }
 
 - (void) setMagic3MenuStatus
 {
-    if (!btnMagic3) return;
+    if (!_btnMagic3) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_STOP) {
-        [btnMagic3 setIsEnabled:NO];
+        [_btnMagic3 setIsEnabled:NO];
         return;
     }
     
     if ([CCDirector sharedDirector].isPaused) {
-        [btnMagic3 setIsEnabled:NO];
+        [_btnMagic3 setIsEnabled:NO];
         return;
     }
     
-    [btnMagic3 setIsEnabled:YES];
+    [_btnMagic3 setIsEnabled:YES];
 }
 
 - (void) setMagic4MenuStatus
 {
-    if (!btnMagic4) return;
+    if (!_btnMagic4) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_THUNDER) {
-        [btnMagic4 setIsEnabled:NO];
+        [_btnMagic4 setIsEnabled:NO];
         return;
     }
     
     if ([CCDirector sharedDirector].isPaused) {
-        [btnMagic4 setIsEnabled:NO];
+        [_btnMagic4 setIsEnabled:NO];
         return;
     }
     
-    [btnMagic4 setIsEnabled:YES];
+    [_btnMagic4 setIsEnabled:YES];
 }
 
 @end

@@ -19,43 +19,19 @@
 @class Wave;
 
 @interface GameController : NSObject {
-    GameBackgroundScene *gameBackground;
-	GameImfomationScene *gameImfomation;	
-	GameMagicScene *gameMagic;
-    GameControllerScene *gameController;
-    GameHintScene *gameHint;
-	NSMutableArray *enemyArray;
-	NSMutableArray *towerArray;
-	NSMutableArray *waveArray;	
-	NSMutableArray *bulletArray;	
-	WayManager *wayManager;
-    NSMutableArray *magicArray;
-    NSMutableArray *frientlyArray;
-	UIPanGestureRecognizer *gestureRecognizer;
-    Pointer *pt;
-    int maxWave;
-	int currentWave;
-	int currentHealth;
-	int currentGold;
-	TScreenClickType screenClickType;
-	TOperateType operateType;
-    TMapType mapType;
-	BOOL canNext;
+
 }
 
-@property (nonatomic, retain) GameBackgroundScene *gameBackground;
-@property (nonatomic, retain) GameImfomationScene *gameImfomation;	
-@property (nonatomic, retain) GameMagicScene *gameMagic;
-@property (nonatomic, retain) GameControllerScene *gameController;
-@property (nonatomic, retain) GameHintScene *gameHint;
+@property (nonatomic, assign) GameBackgroundScene *gameBackground;
+@property (nonatomic, assign) GameImfomationScene *gameImfomation;
+@property (nonatomic, assign) GameMagicScene *gameMagic;
+@property (nonatomic, assign) GameControllerScene *gameController;
+@property (nonatomic, assign) GameHintScene *gameHint;
 @property (nonatomic, retain) NSMutableArray *enemyArray;
 @property (nonatomic, retain) NSMutableArray *towerArray;
-@property (nonatomic, retain) NSMutableArray *waveArray;	
-@property (nonatomic, retain) NSMutableArray *bulletArray;	
-@property (nonatomic, retain) WayManager *wayManager;
-@property (nonatomic, retain) NSMutableArray *magicArray;
+@property (nonatomic, retain) NSMutableArray *bulletArray;
 @property (nonatomic, retain) NSMutableArray *frientlyArray;
-@property (nonatomic, retain) UIPanGestureRecognizer *gestureRecognizer;
+@property (nonatomic, retain) WayManager *wayManager;
 @property (nonatomic, retain) Pointer *pt;
 @property int maxWave;
 @property int currentWave;
@@ -68,6 +44,8 @@
 
 + (GameController*) getGameController;
 
++ (void) delGameController;
+
 - (void) initController:(Pointer*)pointer;
 
 - (void) start;
@@ -79,10 +57,5 @@
 - (void) restart;
 
 - (void) startNextWave;
-
-//- (void) setMaxWave:(int)value;
-//- (void) setCurrentWave:(int)value;
-//- (void) setCurrentHealth:(int)value;
-//- (void) setCurrentGold:(int)value;
 
 @end

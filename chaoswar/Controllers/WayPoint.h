@@ -9,17 +9,14 @@
 #import "GamePubDef.h"
 
 @interface WayPoint : CCNode {
-    CGPoint point;
-    int z;
+
 }
 
-@property CGPoint point;
-@property int z;
+@property (readonly) CGPoint point;
+@property (readonly) int z;
 
 + (WayPoint*) getWayPoint:(CGPoint)pt z:(int)z;
 
-- (CGPoint) getPoint;;
-
-- (int) getZ;
+- (void) setValue:(CGPoint)pt z:(int)z;
 
 @end

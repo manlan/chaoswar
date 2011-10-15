@@ -142,6 +142,8 @@
 		042F259D143AE4840097682D /* wave.png in Resources */ = {isa = PBXBuildFile; fileRef = 042F2598143AE4840097682D /* wave.png */; };
 		04364C601441DB2500CFFBC0 /* TDBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 04364C5F1441DB2500CFFBC0 /* TDBuilder.m */; };
 		04364C631441DB3500CFFBC0 /* TDObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 04364C621441DB3500CFFBC0 /* TDObject.m */; };
+		0446D48514487FB50086FADB /* liftprogress.png in Resources */ = {isa = PBXBuildFile; fileRef = 0446D48314487FB50086FADB /* liftprogress.png */; };
+		0446D48614487FB50086FADB /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 0446D48414487FB50086FADB /* selected.png */; };
 		044921E914370FF30024AEE5 /* WayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 044921E814370FF30024AEE5 /* WayManager.m */; };
 		04527F631436F070005A2E0F /* LoadingSence.m in Sources */ = {isa = PBXBuildFile; fileRef = 04527F621436F070005A2E0F /* LoadingSence.m */; };
 		045E89B2141E36340097B1EE /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E89AF141E36340097B1EE /* GameData.m */; };
@@ -531,6 +533,8 @@
 		04364C5F1441DB2500CFFBC0 /* TDBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBuilder.m; sourceTree = "<group>"; };
 		04364C611441DB3500CFFBC0 /* TDObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDObject.h; sourceTree = "<group>"; };
 		04364C621441DB3500CFFBC0 /* TDObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDObject.m; sourceTree = "<group>"; };
+		0446D48314487FB50086FADB /* liftprogress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liftprogress.png; sourceTree = "<group>"; };
+		0446D48414487FB50086FADB /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected.png; sourceTree = "<group>"; };
 		044921E714370FF30024AEE5 /* WayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WayManager.h; sourceTree = "<group>"; };
 		044921E814370FF30024AEE5 /* WayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WayManager.m; sourceTree = "<group>"; };
 		04527F611436F070005A2E0F /* LoadingSence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingSence.h; sourceTree = "<group>"; };
@@ -1037,6 +1041,8 @@
 		0426B194143ECAF50026DE87 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				0446D48314487FB50086FADB /* liftprogress.png */,
+				0446D48414487FB50086FADB /* selected.png */,
 				0426B195143ECAF50026DE87 /* enemy */,
 				0426B1C6143ECAF50026DE87 /* magic */,
 				0426B1F5143ECAF50026DE87 /* other */,
@@ -2119,6 +2125,8 @@
 				04CDDDFC1446D9FA00BAFE84 /* helpBg.png in Resources */,
 				04CDDDFD1446D9FA00BAFE84 /* helpList.plist in Resources */,
 				04CDDDFF1446DA0F00BAFE84 /* touMingBg.png in Resources */,
+				0446D48514487FB50086FADB /* liftprogress.png in Resources */,
+				0446D48614487FB50086FADB /* selected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

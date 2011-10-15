@@ -17,43 +17,28 @@
 #import "GameMagicScene.h"
 #import "GameControllerScene.h"
 #import "GameHintScene.h"
-#import "Pointer1.h"
-#import "Pointer2.h"
-#import "Pointer3.h"
-#import "Pointer4.h"
-#import "Pointer5.h"
-#import "Pointer6.h"
-#import "Pointer7.h"
-#import "Pointer8.h"
-#import "Pointer9.h"
-#import "Pointer10.h"
-#import "Pointer11.h"
-#import "Pointer12.h"
 
 @implementation GameController
 
-@synthesize gameBackground;
-@synthesize gameImfomation;	
-@synthesize gameMagic;
-@synthesize gameController;
-@synthesize gameHint;
-@synthesize enemyArray;
-@synthesize towerArray;
-@synthesize waveArray;	
-@synthesize bulletArray;	
-@synthesize wayManager;
-@synthesize magicArray;
-@synthesize frientlyArray;
-@synthesize gestureRecognizer;
-@synthesize pt;
-@synthesize maxWave;
-@synthesize currentWave;
-@synthesize currentHealth;
-@synthesize currentGold;
-@synthesize screenClickType;
-@synthesize operateType;
-@synthesize mapType;
-@synthesize canNext;
+@synthesize gameBackground = _gameBackground;
+@synthesize gameImfomation = _gameImfomation;
+@synthesize gameMagic = _gameMagic;
+@synthesize gameController = _gameController;
+@synthesize gameHint = _gameHint;
+@synthesize enemyArray = _enemyArray;
+@synthesize towerArray = _towerArray;
+@synthesize bulletArray = _bulletArray;
+@synthesize frientlyArray = _frientlyArray;
+@synthesize wayManager = _wayManager;
+@synthesize pt = _pt;
+@synthesize maxWave = _maxWave;
+@synthesize currentWave = _currentWave;
+@synthesize currentHealth = _currentHealth;
+@synthesize currentGold = _currentGold;
+@synthesize screenClickType = _screenClickType;
+@synthesize operateType = _operateType;
+@synthesize mapType = _mapType;
+@synthesize canNext = _canNext;
 
 static GameController *_sharedController = nil;
 
@@ -65,16 +50,22 @@ static GameController *_sharedController = nil;
 	return _sharedController;
 }
 
++ (void) delGameController
+{
+	if (_sharedController) {
+		[_sharedController release];
+        _sharedController = nil;
+	}
+}
+
 - (id) init
 {
 	if ((self = [super init])) {
-        self.enemyArray = [[NSMutableArray alloc] init];
-        self.towerArray = [[NSMutableArray alloc] init];
-        self.waveArray = [[NSMutableArray alloc] init];
-        self.bulletArray = [[NSMutableArray alloc] init];
-        self.wayManager = [[WayManager alloc] init];
-        self.magicArray = [[NSMutableArray alloc] init];
-        self.frientlyArray = [[NSMutableArray alloc] init];
+        _enemyArray = [[NSMutableArray alloc] init];
+        _towerArray = [[NSMutableArray alloc] init];
+        _bulletArray = [[NSMutableArray alloc] init];
+        _wayManager = [[WayManager alloc] init];
+        _frientlyArray = [[NSMutableArray alloc] init];
 		self.screenClickType = SCT_ALL;
 		self.operateType = OT_NORMAL;
 	}
@@ -82,24 +73,21 @@ static GameController *_sharedController = nil;
 }
 
 - (void) initController:(Pointer*)pointer {
-    pt = pointer;
+    self.pt = pointer;
+    //=========初始化设置
     [self.pt initController];
-    
+    //=========初始化动画
     [self.pt initAnimate];
     //=========初始化路线
-    [self.pt initWayPoint:wayManager];
-//    //=========初始化出兵顺序
-//    [pt initWave:waveArray];
+    [self.pt initWayPoint:_wayManager];
     //=========初始化塔
-    [self.pt initTower:towerArray];
+    [self.pt initTower:_towerArray];
     //=========初始化敌人
-    [self.pt initEnemy:enemyArray];
+    [self.pt initEnemy:_enemyArray];
     //=========初始化子弹
-    [self.pt initBullety:bulletArray];
-    //=========初始化魔法
-    [self.pt initMagic:magicArray];
+    [self.pt initBullety:_bulletArray];
     //=========初始化友军
-    [self.pt initFriendly:frientlyArray];
+    [self.pt initFriendly:_frientlyArray];
 }
 
 - (void) start
@@ -114,9 +102,9 @@ static GameController *_sharedController = nil;
 
 - (void) startNextWave
 {
-	if ([self.pt runWaves:self.currentWave + 1]) {
-		self.currentWave++;
-	}
+    if ([_pt runWaves:_currentWave + 1]) {
+        self.currentWave++;
+    }
 }
 
 - (void) deleteUnUseSprite:(CCLayer*)scene
@@ -125,40 +113,40 @@ static GameController *_sharedController = nil;
 	NSMutableArray *towerDeleteArray = [[NSMutableArray alloc] init];	
 	NSMutableArray *bulletDeleteArray = [[NSMutableArray alloc] init];
     NSMutableArray *frientlyDeleteArray = [[NSMutableArray alloc] init];
-	for (TDEnemy *en1 in self.enemyArray) {
+	for (TDEnemy *en1 in _enemyArray) {
         if (en1.isDelete == YES) {
             [enemyDeleteArray addObject:en1];
         }
 	}
     for (TDEnemy *en2 in enemyDeleteArray) {
-        [self.enemyArray removeObject:en2];
+        [_enemyArray removeObject:en2];
         [scene removeChild:en2 cleanup:YES];									
     }
-    for (TDTower *to1 in self.towerArray) {
+    for (TDTower *to1 in _towerArray) {
         if (to1.isDelete == YES) {
             [towerDeleteArray addObject:to1];
         }
 	}
     for (TDTower *to2 in towerDeleteArray) {
-        [self.towerArray removeObject:to2];
+        [_towerArray removeObject:to2];
         [scene removeChild:to2 cleanup:YES];									
     }
-    for (TDBullet *bu1 in self.bulletArray) {
+    for (TDBullet *bu1 in _bulletArray) {
         if (bu1.isDelete == YES) {
             [bulletDeleteArray addObject:bu1];
         }
 	}
     for (TDBullet *bu2 in bulletDeleteArray) {
-        [self.bulletArray removeObject:bu2];
+        [_bulletArray removeObject:bu2];
         [scene removeChild:bu2 cleanup:YES];									
     }
-    for (TDFriendly *fr1 in self.frientlyArray) {
+    for (TDFriendly *fr1 in _frientlyArray) {
         if (fr1.isDelete == YES) {
             [frientlyDeleteArray addObject:fr1];
         }
 	}
     for (TDFriendly *fr2 in frientlyDeleteArray) {
-        [self.frientlyArray removeObject:fr2];
+        [_frientlyArray removeObject:fr2];
         [scene removeChild:fr2 cleanup:YES];									
     }
     [enemyDeleteArray removeAllObjects];
@@ -171,60 +159,42 @@ static GameController *_sharedController = nil;
     [frientlyDeleteArray release];
 }
 
-
 //游戏逻辑（循环）
 - (void) setGameStatus {
 	// 设置当前金额，波数等信息
-    [self.gameImfomation setPauseMenuStatus];
+    [_gameImfomation setPauseMenuStatus];
 	//gameMagic.btnRestartMenu = 
 	// 控制法术按钮及下一波按钮的状态
-    [gameMagic setGoMenuStatus];
-    [gameMagic setMagic1MenuStatus];
-    [gameMagic setMagic2MenuStatus];
-    [gameMagic setMagic3MenuStatus];
-    [gameMagic setMagic4MenuStatus];
+    [_gameMagic setGoMenuStatus];
+    [_gameMagic setMagic1MenuStatus];
+    [_gameMagic setMagic2MenuStatus];
+    [_gameMagic setMagic3MenuStatus];
+    [_gameMagic setMagic4MenuStatus];
     // 控制建造按钮及其他操作按钮的状态
-    [gameController setBuild1MenuStatus];
-    [gameController setBuild2MenuStatus];
-    [gameController setBuild3MenuStatus];
-    [gameController setBuild4MenuStatus];
-    [gameController setUpdateMenuStatus];
-    [gameController setSellMenuStatus];
-    [gameController setZoneMenuStatus];
+    [_gameController setBuild1MenuStatus];
+    [_gameController setBuild2MenuStatus];
+    [_gameController setBuild3MenuStatus];
+    [_gameController setBuild4MenuStatus];
+    [_gameController setUpdateMenuStatus];
+    [_gameController setSellMenuStatus];
+    [_gameController setZoneMenuStatus];
 }
 
 - (void)dealloc {
-    [enemyArray removeAllObjects];
-    [towerArray removeAllObjects];
-    [waveArray removeAllObjects];
-    [bulletArray removeAllObjects];
-    [magicArray removeAllObjects];
-    [frientlyArray removeAllObjects];
-    [gameBackground release];
-	[gameImfomation release];	
-	[gameMagic release];
-    [gameController release];
-    [gameHint release];
-	[gestureRecognizer release];
-    [enemyArray release];
-    [towerArray release];
-    [waveArray release];
-    [bulletArray release];
-    [wayManager release];
-    [magicArray release];
-    [frientlyArray release];
-    gameBackground = nil;
-	gameImfomation = nil;	
-	gameMagic = nil;
-    gameController = nil;
-	gestureRecognizer = nil;
-    enemyArray = nil;
-    towerArray = nil;
-    waveArray = nil;
-    bulletArray = nil;
-    wayManager = nil;
-    magicArray = nil;
-    frientlyArray = nil;
+    [_enemyArray removeAllObjects];
+    [_towerArray removeAllObjects];
+    [_bulletArray removeAllObjects];
+    [_frientlyArray removeAllObjects];
+    [_enemyArray release];
+    [_towerArray release];
+    [_bulletArray release];
+    [_wayManager release];
+    [_frientlyArray release];
+    _enemyArray = nil;
+    _towerArray = nil;
+    _bulletArray = nil;
+    _wayManager = nil;
+    _frientlyArray = nil;
 	[super dealloc];
 }
 

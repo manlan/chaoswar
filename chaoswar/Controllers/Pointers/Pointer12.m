@@ -112,11 +112,6 @@
     [manager addWayPoint:1 wayPoint:ccp(128, 325) z:5];
 }
 
-- (void) initMagic:(NSMutableArray*)array
-{
-    [array removeAllObjects];
-}
-
 - (void) initFriendly:(NSMutableArray*)array
 {
     [array removeAllObjects];

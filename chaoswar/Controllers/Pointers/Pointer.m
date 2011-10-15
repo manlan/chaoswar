@@ -87,11 +87,6 @@
     //
 }
 
-- (void) initMagic:(NSMutableArray*)array
-{
-    [array removeAllObjects];
-}
-
 - (void) initFriendly:(NSMutableArray*)array
 {
     [array removeAllObjects];

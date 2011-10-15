@@ -41,8 +41,6 @@
 
 - (void) initWayPoint:(WayManager*)manager;
 
-- (void) initMagic:(NSMutableArray*)array;
-
 - (void) initFriendly:(NSMutableArray*)array;
 
 @end

@@ -64,7 +64,7 @@
     }
     WayPoint *wayPoint = [way objectAtIndex:num];
     if (wayPoint) {
-        return [wayPoint getPoint];
+        return wayPoint.point;
     }
     return ccp(-100, -100);
 }

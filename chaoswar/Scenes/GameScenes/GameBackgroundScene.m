@@ -27,10 +27,10 @@
 
 @implementation GameBackgroundScene
 
-@synthesize background;
-@synthesize showground;
-@synthesize waveLevel;
-@synthesize pointNum;
+@synthesize background = _background;
+@synthesize showground = _showground;
+@synthesize waveLevel = _waveLevel;
+@synthesize pointNum = _pointNum;
 
 + (id) scene:(int)gk JN1:(int)JN1 JN2:(int)JN2
 {
@@ -115,16 +115,15 @@
     //================读取地图文件=================
     CGSize size = [[CCDirector sharedDirector] winSize];
     //背景，表示是否可以通过的
-    background = [CCSprite spriteWithFile:[NSString stringWithFormat:@"map%04db.png", self.pointNum]];
-    background.position = CGPointMake(size.width /2 , size.height/2);
-    background.scale = 1;
-    [self addChild:background z:1];
+    _background = [CCSprite spriteWithFile:[NSString stringWithFormat:@"map%04db.png", self.pointNum]];
+    _background.position = CGPointMake(size.width /2 , size.height/2);
+    _background.scale = 1;
+    [self addChild:_background z:1];
     //前景，显示用的
-    showground = [CCSprite spriteWithFile:[NSString stringWithFormat:@"map%04ds.png", self.pointNum]];
-    //showground = [CCSprite spriteWithFile:[NSString stringWithFormat:@"map%04dy.png", self.pointNum]];
-    showground.position = CGPointMake(size.width /2 , size.height/2);
-    showground.scale = 1;
-    [self addChild:showground z:2];
+    _showground = [CCSprite spriteWithFile:[NSString stringWithFormat:@"map%04ds.png", self.pointNum]];
+    _showground.position = CGPointMake(size.width /2 , size.height/2);
+    _showground.scale = 1;
+    [self addChild:_showground z:2];
     //================循环游戏逻辑=================
     [self schedule:@selector(gameLogic:) interval:1.0];		
 }
@@ -257,6 +256,7 @@
 
 - (void) dealloc
 {
+    [GameController delGameController];
 	[super dealloc];
 }
 

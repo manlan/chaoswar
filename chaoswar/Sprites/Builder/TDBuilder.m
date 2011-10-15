@@ -10,12 +10,12 @@
 
 @implementation TDBuilder
 
-@synthesize maxMP;
-@synthesize currentMP;
-@synthesize attacttime;
-@synthesize attactRange;
-@synthesize attact;
-@synthesize attactMode;
-@synthesize bottomPoint;
+@synthesize maxMP = _maxMP;
+@synthesize currentMP = _currentMP;
+@synthesize attacttime = _attacttime;
+@synthesize attactRange = _attactRange;
+@synthesize attact = _attact;
+@synthesize attactMode = _attactMode;
+@synthesize bottomPoint = _bottomPoint;
 
 @end

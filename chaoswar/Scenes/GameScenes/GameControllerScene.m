@@ -11,13 +11,13 @@
 
 @implementation GameControllerScene
 
-@synthesize btnBuild1;
-@synthesize btnBuild2;
-@synthesize btnBuild3;
-@synthesize btnBuild4;
-@synthesize btnUpdate;
-@synthesize btnSell;
-@synthesize btnZone;
+@synthesize btnBuild1 = _btnBuild1;
+@synthesize btnBuild2 = _btnBuild2;
+@synthesize btnBuild3 = _btnBuild3;
+@synthesize btnBuild4 = _btnBuild4;
+@synthesize btnUpdate = _btnUpdate;
+@synthesize btnSell = _btnSell;
+@synthesize btnZone = _btnZone;
 
 -(id) init
 {
@@ -29,98 +29,98 @@
 
 - (void) setBuild1MenuStatus
 {
-    if (!btnBuild1) return;
+    if (!_btnBuild1) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL) {
-        [btnBuild1 setIsEnabled:NO];
+        [_btnBuild1 setIsEnabled:NO];
         return;
     }
     
-    [btnBuild1 setIsEnabled:YES];
+    [_btnBuild1 setIsEnabled:YES];
 }
 
 - (void) setBuild2MenuStatus
 {
-    if (!btnBuild2) return;
+    if (!_btnBuild2) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL) {
-        [btnBuild2 setIsEnabled:NO];
+        [_btnBuild2 setIsEnabled:NO];
         return;
     }
     
-    [btnBuild2 setIsEnabled:YES];
+    [_btnBuild2 setIsEnabled:YES];
 }
 
 - (void) setBuild3MenuStatus
 {
-    if (!btnBuild3) return;
+    if (!_btnBuild3) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL) {
-        [btnBuild3 setIsEnabled:NO];
+        [_btnBuild3 setIsEnabled:NO];
         return;
     }
     
-    [btnBuild3 setIsEnabled:YES];
+    [_btnBuild3 setIsEnabled:YES];
 }
 
 - (void) setBuild4MenuStatus
 {
-    if (!btnBuild4) return;
+    if (!_btnBuild4) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL) {
-        [btnBuild4 setIsEnabled:NO];
+        [_btnBuild4 setIsEnabled:NO];
         return;
     }
     
-    [btnBuild4 setIsEnabled:YES];
+    [_btnBuild4 setIsEnabled:YES];
 }
 
 - (void) setUpdateMenuStatus
 {
-    if (!btnUpdate) return;
+    if (!_btnUpdate) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL) {
-        [btnUpdate setIsEnabled:NO];
+        [_btnUpdate setIsEnabled:NO];
         return;
     }
     
-    [btnUpdate setIsEnabled:YES];
+    [_btnUpdate setIsEnabled:YES];
 }
 
 - (void) setSellMenuStatus
 {
-    if (!btnSell) return;
+    if (!_btnSell) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL) {
-        [btnSell setIsEnabled:NO];
+        [_btnSell setIsEnabled:NO];
         return;
     }
     
-    [btnSell setIsEnabled:YES];
+    [_btnSell setIsEnabled:YES];
 }
 
 - (void) setZoneMenuStatus
 {
-    if (!btnZone) return;
+    if (!_btnZone) return;
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL && gc.operateType != OT_SETSEARCHPOINT) {
-        [btnZone setIsEnabled:NO];
+        [_btnZone setIsEnabled:NO];
         return;
     }
     
-    [btnZone setIsEnabled:YES];
+    [_btnZone setIsEnabled:YES];
 }
 
 - (void) clearSceneSrpite
 {
     [self removeAllChildrenWithCleanup:YES];
-    btnBuild1= nil;
-    btnBuild2= nil;
-    btnBuild3= nil;
-    btnBuild4= nil;
-    btnUpdate= nil;
-    btnSell= nil;
-    btnZone= nil;
+    _btnBuild1= nil;
+    _btnBuild2= nil;
+    _btnBuild3= nil;
+    _btnBuild4= nil;
+    _btnUpdate= nil;
+    _btnSell= nil;
+    _btnZone= nil;
 }
 
 @end

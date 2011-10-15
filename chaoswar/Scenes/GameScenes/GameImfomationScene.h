@@ -14,16 +14,13 @@
 @class GameController;
 
 @interface GameImfomationScene : CCLayer {
-	CCMenuItemImage *btnPause;
-    CCLabelTTF *lblEnemyNum;
-    CCLabelTTF *lblWave;
-    CCLabelTTF *lblGold;
+
 }
 
-@property (nonatomic, assign) CCMenuItemImage *btnPause;
-@property (nonatomic, assign) CCLabelTTF *lblEnemyNum;
-@property (nonatomic, assign) CCLabelTTF *lblWave;
-@property (nonatomic, assign) CCLabelTTF *lblGold;
+@property (nonatomic, readonly) CCMenuItemImage *btnPause;
+@property (nonatomic, readonly) CCLabelTTF *lblEnemyNum;
+@property (nonatomic, readonly) CCLabelTTF *lblWave;
+@property (nonatomic, readonly) CCLabelTTF *lblGold;
 
 - (void) setPauseMenuStatus;
 - (void) setEnemyNumValue;

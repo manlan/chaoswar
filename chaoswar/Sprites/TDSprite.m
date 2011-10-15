@@ -15,16 +15,17 @@
 
 @implementation TDSprite
 
-@synthesize costGold;
-@synthesize getGold;
-@synthesize isDelete;
-@synthesize maxHP;
-@synthesize currentHP;
-@synthesize killNum;
-@synthesize canClick;
-@synthesize showBlood;
-@synthesize bloodSprite;
-@synthesize arrowSprite;
+@synthesize costGold = _costGold;
+@synthesize getGold = _getGold;
+@synthesize isDelete = _isDelete;
+@synthesize maxHP = _maxHP;
+@synthesize currentHP = _currentHP;
+@synthesize killNum = _killNum;
+@synthesize canClick = _canClick;
+@synthesize showBlood = _showBlood;
+@synthesize bloodShowSprite = _bloodShowSprite;
+@synthesize bloodBackSprite = _bloodBackSprite;
+@synthesize arrowSprite = _arrowSprite;
 
 + (id) getSprite
 {
@@ -39,14 +40,27 @@
 -(id) init
 {
 	if( (self=[super init])) {
-        self.costGold = 0;
-        self.getGold = 0;
-        self.isDelete = NO;
-        self.maxHP = 0;
-        self.currentHP = 0;
-        self.killNum = 0;
-        self.showBlood = NO;
-        self.canClick = YES;
+        _costGold = 0;
+        _getGold = 0;
+        _isDelete = NO;
+        _maxHP = 0;
+        _currentHP = 0;
+        _killNum = 0;
+        _showBlood = NO;
+        _canClick = YES;
+        _bloodShowSprite = [CCSprite spriteWithFile:@"liftprogress.png"];
+        _bloodShowSprite.position = ccp(-1,  -1);
+        _bloodShowSprite.anchorPoint = ccp(0, 0);
+        [_bloodShowSprite setScaleX:0.5];
+        [self addChild:_bloodShowSprite z:1];
+        
+        
+        _arrowSprite = [CCSprite spriteWithFile:@"selected.png"];
+        _arrowSprite.position = ccp(80,  80);
+        [self addChild:_arrowSprite z:1];
+        
+        [_bloodShowSprite setVisible:YES];
+        [_arrowSprite setVisible:YES];
         [self initAnimate];
 	}
 	return self;
@@ -54,8 +68,8 @@
 
 - (void) dealloc
 {
-    [bloodSprite release];
-    [arrowSprite release];
+//    [bloodSprite release];
+//    [arrowSprite release];
 	[super dealloc];
 }
 
@@ -75,10 +89,10 @@
 
 - (void) onEnter
 {
-    if (canClick) {
+    if (_canClick) {
         [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
-        if (arrowSprite) {
-            [arrowSprite setVisible:YES];
+        if (_arrowSprite) {
+            [_arrowSprite setVisible:YES];
         }
     }
 	[super onEnter];
@@ -86,10 +100,10 @@
 
 - (void) onExit
 {
-    if (canClick) {
+    if (_canClick) {
         [[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
-        if (arrowSprite) {
-            [arrowSprite setVisible:NO];
+        if (_arrowSprite) {
+            [_arrowSprite setVisible:NO];
         }
     }
 	[super onExit];

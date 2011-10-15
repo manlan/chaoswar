@@ -18,11 +18,11 @@
 
 @implementation Wave
 
-@synthesize beginRate;
-@synthesize spawnRate;
-@synthesize totalEnemy;
-@synthesize enemyType;
-@synthesize way;
+@synthesize beginRate = _beginRate;
+@synthesize spawnRate = _spawnRate;
+@synthesize totalEnemy = _totalEnemy;
+@synthesize enemyType = _enemyType;
+@synthesize way = _way;
 
 + (void)runWave:(float)b e:(TEnemyType)e s:(float)s t:(int)t wy:(NSMutableArray*)wy
 {
@@ -37,12 +37,12 @@
 
 - (void) start
 {
-    [[CCScheduler sharedScheduler] scheduleSelector:@selector(startRunEnemy:) forTarget:self interval:beginRate paused:NO];
+    [[CCScheduler sharedScheduler] scheduleSelector:@selector(startRunEnemy:) forTarget:self interval:_beginRate paused:NO];
 }
 
 - (void) startRunEnemy:(ccTime)dt
 {
-    [[CCScheduler sharedScheduler] scheduleSelector:@selector(runEnemy:) forTarget:self interval:spawnRate paused:NO];
+    [[CCScheduler sharedScheduler] scheduleSelector:@selector(runEnemy:) forTarget:self interval:_spawnRate paused:NO];
 }
 
 - (TDEnemy*) getEnemy
@@ -124,7 +124,7 @@
 }
 
 - (void) runEnemy:(ccTime)dt {
-    if (totalEnemy <= 0) {
+    if (_totalEnemy <= 0) {
         [[CCScheduler sharedScheduler] unscheduleSelector:@selector(runEnemy:) forTarget:self]; 
         return;
     }
@@ -135,13 +135,13 @@
     enemy.way = self.way;
     WayPoint *wayPoint = [enemy.way objectAtIndex:0];
     if (wayPoint) {
-        CGPoint position = [wayPoint getPoint];
+        CGPoint position = wayPoint.point;
         enemy.position = ccp(position.x, position.y);
     }
     [gc.gameBackground addChild:enemy z:5];
     [gc.enemyArray addObject:enemy];
     [enemy run];
-    totalEnemy--;
+    _totalEnemy--;
 }
 
 -(id) init

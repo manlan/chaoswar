@@ -14,46 +14,35 @@
 //static NSMutableArray *arrayTDSprite = nil;
 
 @interface TDSprite : CCSprite <CCTargetedTouchDelegate>{
-    // 花费金额
-    int costGold;
-    // 得到金额
-    int getGold;
-    // 是否已经被删除
-    BOOL isDelete;
-    // 最大生命值：HP
-    int maxHP;
-    // 当前生命值：HP
-    int currentHP;
-    // 杀敌次数
-    int killNum;
-    // 是否已经被删除
-    BOOL showBlood;
-    // 是否已经被删除
-    BOOL canClick;
-    // 血条
-    CCSprite *bloodSprite;
-    // 选中框
-    CCSprite *arrowSprite;
+
 }
 
+// 花费金额
 @property int costGold;
+// 得到金额
 @property int getGold;
+// 是否已经被删除
 @property BOOL isDelete;
+// 最大生命值：HP
 @property int maxHP;
+// 当前生命值：HP
 @property int currentHP;
+// 杀敌次数
 @property int killNum;
+// 是否已经被删除
 @property BOOL showBlood;
+// 是否已经被删除
 @property BOOL canClick;
-@property (nonatomic, assign) CCSprite *bloodSprite;
-@property (nonatomic, assign) CCSprite *arrowSprite;
+// 血条
+@property (nonatomic, readonly) CCSprite *bloodShowSprite;
+// 血条
+@property (nonatomic, readonly) CCSprite *bloodBackSprite;
+// 选中框
+@property (nonatomic, readonly) CCSprite *arrowSprite;
+
 
 // 获取当前精灵的实例
 + (id) getSprite;
-
-//+ (BOOL) getDoSpriteExit;
-//+ (TDSprite*) getCurrentSprite;
-//+ (void) setDoSpriteExit:(BOOL)value;
-//+ (void) setCurrentSprite:(TDSprite*)value;
 
 // 运行精灵
 - (BOOL) run;

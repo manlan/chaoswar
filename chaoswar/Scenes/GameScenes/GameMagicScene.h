@@ -12,11 +12,7 @@
 @class GameController;
 
 @interface GameMagicScene : CCLayer {
-    CCMenuItemImage *btnGo;
-	CCMenuItemImage *btnMagic1;
-	CCMenuItemImage *btnMagic2;
-    CCMenuItemImage *btnMagic3;
-    CCMenuItemImage *btnMagic4;
+
 }
 
 @property (nonatomic, assign) CCMenuItemImage *btnGo;

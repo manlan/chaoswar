@@ -14,19 +14,19 @@
 
 @implementation GameImfomationScene
 
-@synthesize btnPause;
-@synthesize lblEnemyNum;
-@synthesize lblWave;
-@synthesize lblGold;
+@synthesize btnPause = _btnPause;
+@synthesize lblEnemyNum = _lblEnemyNum;
+@synthesize lblWave = _lblWave;
+@synthesize lblGold = _lblGold;
 
 -(id) init
 {
 	if( (self=[super init])) {
         //CGSize size = [[CCDirector sharedDirector] winSize];
 		//暂停
-		btnPause = [CCMenuItemImage itemFromNormalImage:@"pause_black.png" selectedImage:@"pause_normal.png"  
+		_btnPause = [CCMenuItemImage itemFromNormalImage:@"pause_black.png" selectedImage:@"pause_normal.png"  
 										  disabledImage:@"pause_black.png"  target:self selector:@selector(pauseGame:)];
-		CCMenu *btnPauseMenu = [CCMenu menuWithItems:btnPause, nil];
+		CCMenu *btnPauseMenu = [CCMenu menuWithItems:_btnPause, nil];
 		btnPauseMenu.position = ccp(446 , 300);
 		[self addChild:btnPauseMenu z:2];
 		
@@ -39,25 +39,25 @@
 		CCSprite *xueTip = [CCSprite spriteWithFile:@"xueTip.png"];
 		xueTip.position = ccp(260 , 300);
 		[self addChild:xueTip z:1];
-		lblEnemyNum = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:12];
-		lblEnemyNum.position = ccp(286 , 300);
-		[self addChild:lblEnemyNum z:1];
+		_lblEnemyNum = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:12];
+		_lblEnemyNum.position = ccp(286 , 300);
+		[self addChild:_lblEnemyNum z:1];
 		
 		//===============金额===============
 		CCSprite *qianTip = [CCSprite spriteWithFile:@"qianTip.png"];
 		qianTip.position = ccp(315 , 300);
 		[self addChild:qianTip z:1];
-		lblGold = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:12];
-		lblGold.position = ccp(342 , 300);
-		[self addChild:lblGold z:1];
+		_lblGold = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:12];
+		_lblGold.position = ccp(342 , 300);
+		[self addChild:_lblGold z:1];
 		
 		//===============波数===============
 		CCSprite *wavesTip = [CCSprite spriteWithFile:@"wavesTip.png"];
 		wavesTip.position = ccp(370 , 300);
 		[self addChild:wavesTip z:1];
-		lblWave = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:12];
-		lblWave.position = ccp(400 , 300);
-		[self addChild:lblWave z:1];
+		_lblWave = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:12];
+		_lblWave.position = ccp(400 , 300);
+		[self addChild:_lblWave z:1];
 		
 		//=============技能背景===============
 		CCSprite *jiNengBg = [CCSprite spriteWithFile:@"jiNengBg.png"];
@@ -127,34 +127,34 @@
 - (void) setPauseMenuStatus
 {
     if ([CCDirector sharedDirector].isPaused) {
-        [btnPause setIsEnabled:NO];
+        [_btnPause setIsEnabled:NO];
         return;
     }
     
-    [btnPause setIsEnabled:YES];
+    [_btnPause setIsEnabled:YES];
 }
 
 - (void) setEnemyNumValue
 {
     GameController *gc = [GameController getGameController];
-    if (lblEnemyNum) {
-        [lblEnemyNum setString:[NSString stringWithFormat:@"%d", gc.currentHealth]];
+    if (_lblEnemyNum) {
+        [_lblEnemyNum setString:[NSString stringWithFormat:@"%d", gc.currentHealth]];
     }
 }
 
 - (void) setWaveValue
 {
     GameController *gc = [GameController getGameController];
-    if (lblWave) {
-        [lblWave setString:[NSString stringWithFormat:@"%d/%d", gc.currentWave, gc.maxWave]];
+    if (_lblWave) {
+        [_lblWave setString:[NSString stringWithFormat:@"%d/%d", gc.currentWave, gc.maxWave]];
     }
 }
 
 - (void) setGoldValue
 {
     GameController *gc = [GameController getGameController];
-    if (lblGold) {
-        [lblGold setString:[NSString stringWithFormat:@"%d", gc.currentGold]];
+    if (_lblGold) {
+        [_lblGold setString:[NSString stringWithFormat:@"%d", gc.currentGold]];
     }
 }
 

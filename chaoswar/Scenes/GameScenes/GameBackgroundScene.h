@@ -10,14 +10,11 @@
 #import "GamePubDef.h"
 
 @interface GameBackgroundScene : CCLayer {
-    CCSprite *background;
-    CCSprite *showground;
-    int waveLevel;
-    int pointNum;
+
 }
 
-@property (nonatomic, assign) CCSprite *background;
-@property (nonatomic, assign) CCSprite *showground;	
+@property (nonatomic, readonly) CCSprite *background;
+@property (nonatomic, readonly) CCSprite *showground;	
 @property int waveLevel;
 @property int pointNum;
 

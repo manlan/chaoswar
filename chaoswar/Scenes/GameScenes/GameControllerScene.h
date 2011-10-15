@@ -12,20 +12,7 @@
 @class GameController;
 
 @interface GameControllerScene : CCLayer {
-    // 箭塔
-    CCMenuItemImage *btnBuild1;
-    // 防御塔
-	CCMenuItemImage *btnBuild2;
-    // 炮塔
-    CCMenuItemImage *btnBuild3;
-    // 魔法塔
-    CCMenuItemImage *btnBuild4;
-    // 升级
-    CCMenuItemImage *btnUpdate;
-    // 卖掉
-    CCMenuItemImage *btnSell;
-    // 聚集地
-    CCMenuItemImage *btnZone;
+
 }
 
 @property (nonatomic, assign) CCMenuItemImage *btnBuild1;

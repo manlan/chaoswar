@@ -39,21 +39,20 @@
 		logoImg.scale = 1;
 		[self addChild:logoImg z:2];
 
-        
         //加载开始按钮
-		btnPlay = [[CCMenuItemImage alloc] initFromNormalImage:@"btnPlay.png" selectedImage:@"btnPlay.png" disabledImage:@"btnPlay.png" target:self selector:@selector(goToSelectSence:)];		
+		btnPlay = [CCMenuItemImage itemFromNormalImage:@"btnPlay.png" selectedImage:@"btnPlay.png" disabledImage:@"btnPlay.png" target:self selector:@selector(goToSelectSence:)];		
 		CCMenu *btnPlayMenu = [CCMenu menuWithItems:btnPlay, nil];
 		btnPlayMenu.position = CGPointMake(size.width /2 , 170);
 		[self addChild:btnPlayMenu z:2];
 		
 		//加载开发团队介绍
-		btnCredits = [[CCMenuItemImage alloc] initFromNormalImage:@"btnCredit.png" selectedImage:@"btnCredit.png" disabledImage:@"btnCredit.png" target:self selector:@selector(goToCreditsSence:)];		
+		btnCredits = [CCMenuItemImage itemFromNormalImage:@"btnCredit.png" selectedImage:@"btnCredit.png" disabledImage:@"btnCredit.png" target:self selector:@selector(goToCreditsSence:)];		
 		CCMenu *btnCreditsMenu = [CCMenu menuWithItems:btnCredits, nil];
 		btnCreditsMenu.position = CGPointMake(size.width /2 , 40);
 		[self addChild:btnCreditsMenu z:2];
         
         //加载帮助介绍
-		btnHelp = [[CCMenuItemImage alloc] initFromNormalImage:@"btnHelp.png" selectedImage:@"btnHelp.png" disabledImage:@"btnHelp.png" target:self selector:@selector(goToHelpSence:)];		
+		btnHelp = [CCMenuItemImage itemFromNormalImage:@"btnHelp.png" selectedImage:@"btnHelp.png" disabledImage:@"btnHelp.png" target:self selector:@selector(goToHelpSence:)];		
         CCMenu *btnHelpMenu = [CCMenu menuWithItems:btnHelp, nil];
 		btnHelpMenu.position = CGPointMake(size.width /2 , 105);
 		[self addChild:btnHelpMenu z:2];
