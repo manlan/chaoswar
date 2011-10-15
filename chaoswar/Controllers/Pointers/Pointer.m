@@ -22,6 +22,8 @@
 
 @implementation Pointer
 
+@synthesize waveArray = _waveArray;
+
 - (void) initController
 {
 
@@ -35,18 +37,16 @@
 - (void) addTower:(NSMutableArray*)a t:(TDTower*)t p:(CGPoint)p
 {
     GameController *gc = [GameController getGameController];
-    CCSprite *towbg = [CCSprite spriteWithFile:@"et01.png"];
-    towbg.position = ccp(p.x, p.y + t.contentSize.height / 2);;
-    [gc.gameBackground addChild:towbg z:TOWER_BACKGROUND_Z];
     t.bottomPoint = p;
     t.position = ccp(p.x, p.y + t.contentSize.height / 2);
     [gc.gameBackground addChild:t z:TOWER_BUILDING_Z];
+    [t run];
     [a addObject:t];
 }
 
 - (void) runWave:(float)b e:(TEnemyType)e s:(float)s t:(int)t wy:(NSMutableArray*)wy
 {
-    [Wave runWave:b e:e s:s t:t wy:wy];
+    [_waveArray addObject:[Wave runWave:b e:e s:s t:t wy:wy]];
 }
 
 - (void) prepareNextWave:(ccTime)dt
@@ -90,6 +90,25 @@
 - (void) initFriendly:(NSMutableArray*)array
 {
     [array removeAllObjects];
+}
+
+- (id) init
+{
+	if ((self = [super init])) {
+        _waveArray = [[NSMutableArray alloc] init];
+	}
+	return self;
+}
+
+- (void)dealloc {
+    for (int i = 0; i < [_waveArray count]; i++) {
+        Wave *wave = (Wave*) [_waveArray objectAtIndex:i];
+        [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:wave];
+    }
+    [_waveArray removeAllObjects];
+    [_waveArray release];
+    [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
+	[super dealloc];
 }
 
 @end

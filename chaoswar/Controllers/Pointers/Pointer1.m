@@ -84,6 +84,7 @@
 
 - (BOOL) runWaves:(int)wave
 {
+    [super runWaves:wave];
     //出兵的控制
     GameController *gc = [GameController getGameController];
     //每一波的出兵数和顺序
@@ -95,9 +96,9 @@
     // wy:路线，路线维护在下面
 	switch (wave) {
 		case 1:
-//			[self runWave:6 e:ET_FOOT1 s:1 t:10 wy:[gc.wayManager getWay:1]];
-//            [self runWave:4 e:ET_FOOT2 s:1.1 t:5 wy:[gc.wayManager getWay:1]];
-            [self runWave:1 e:ET_FOOT14 s:1.2 t:100 wy:[gc.wayManager getWay:1]];
+			[self runWave:6 e:ET_FOOT1 s:1 t:10 wy:[gc.wayManager getWay:1]];
+            [self runWave:4 e:ET_FOOT2 s:1.1 t:5 wy:[gc.wayManager getWay:1]];
+            [self runWave:1 e:ET_FOOT14 s:1.2 t:8 wy:[gc.wayManager getWay:1]];
             //prepareNextWave函数参数，等待多少秒之后，可以点击下一波
             [self prepareNextWave:22];
 			break;

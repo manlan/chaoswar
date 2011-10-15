@@ -145,16 +145,19 @@
 + (void) initDefenceTower01
 {
     [AnimateManager initAnimate:@"dt01"];
+    [AnimateManager initAnimate:@"dtf01"];
 }
 
 + (void) initDefenceTower02
 {
     [AnimateManager initAnimate:@"dt02"];
+    [AnimateManager initAnimate:@"dtf02"];
 }
 
 + (void) initDefenceTower03
 {
     [AnimateManager initAnimate:@"dt03"];
+    [AnimateManager initAnimate:@"dtf03"];
 }
 
 + (void) initTurretTower01

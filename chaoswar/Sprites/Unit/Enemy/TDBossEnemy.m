@@ -11,6 +11,8 @@
 
 @implementation TDBossEnemy
 
+@synthesize atAni = _atAni;
+
 -(id) init
 {
 	if( (self=[super init])) {

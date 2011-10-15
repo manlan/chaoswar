@@ -16,6 +16,9 @@
     
 }
 
+@property (nonatomic, assign) CCAnimation *atAni;
+@property (nonatomic, assign) CCAnimation *mcAni;
+
 @end
 
 @interface TDMagicEnemy1 : TDMagicEnemy {

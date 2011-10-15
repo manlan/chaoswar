@@ -11,6 +11,9 @@
 
 @implementation TDMagicEnemy
 
+@synthesize atAni = _atAni;
+@synthesize mcAni = _mcAni;
+
 -(id) init
 {
 	if( (self=[super init])) {

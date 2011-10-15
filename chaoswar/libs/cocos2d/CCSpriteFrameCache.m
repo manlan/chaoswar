@@ -330,8 +330,10 @@ static CCSpriteFrameCache *sharedSpriteFrameCache_=nil;
 		NSString *key = [spriteFramesAliases_ objectForKey:name];
 		frame = [spriteFrames_ objectForKey:key];
 		
-		if( ! frame )
-			CCLOG(@"cocos2d: CCSpriteFrameCache: Frame '%@' not found", name);
+		if( ! frame ) {
+            //mod by swimming
+			//CCLOG(@"cocos2d: CCSpriteFrameCache: Frame '%@' not found", name);
+        }
 	}
 	
 	return frame;

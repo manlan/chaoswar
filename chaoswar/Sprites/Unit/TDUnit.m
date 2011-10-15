@@ -11,21 +11,21 @@
 
 @implementation TDUnit
 
-@synthesize maxMP;
-@synthesize currentMP;
-@synthesize moveSpeed;
-@synthesize searchRange;
-@synthesize attact;
-@synthesize attactMode;
-@synthesize attactRange;
-@synthesize attacttime;
-@synthesize defence;
-@synthesize defenceMode;
-@synthesize mvuAni;
-@synthesize mvdAni;
-@synthesize mvlAni;
-@synthesize mvrAni;
-@synthesize ddAni;
+@synthesize maxMP = _maxMP;
+@synthesize currentMP = _currentMP;
+@synthesize moveSpeed = _moveSpeed;
+@synthesize searchRange = _searchRange;
+@synthesize attact = _attact;
+@synthesize attactMode = _attactMode;
+@synthesize attactRange = _attactRange;
+@synthesize attacttime = _attacttime;
+@synthesize defence = _defence;
+@synthesize defenceMode = _defenceMode;
+@synthesize mvuAni = _mvuAni;
+@synthesize mvdAni = _mvdAni;
+@synthesize mvlAni = _mvlAni;
+@synthesize mvrAni = _mvrAni;
+@synthesize ddAni = _ddAni;
 
 -(id) init
 {
@@ -41,7 +41,7 @@
     if (self.currentHP < 0) self.currentHP = 0;
     if (self.currentHP == 0) {
         s.killNum++;
-        self.isDelete = 2;
+        self.spriteStatus = TSS_DEADING;
         [self stopAllActions];        
         id actionDead = [CCAnimate actionWithAnimation:self.ddAni restoreOriginalFrame:NO];
         id actionDeadDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterDead:)];
@@ -52,7 +52,7 @@
 
 -(void) afterDead:(id)sender {
     GameController *gc = [GameController getGameController];
-    self.isDelete = 1;
+    self.spriteStatus = TSS_DEAD;
     gc.currentGold = gc.currentGold + self.getGold;
     [self removeFromParentAndCleanup:YES];
 }

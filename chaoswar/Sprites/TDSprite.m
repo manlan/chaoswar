@@ -13,11 +13,13 @@
 #import "TDEnemy.h"
 #import "TDFriendly.h"
 
+const TDSprite *_lastSprite = nil;
+
 @implementation TDSprite
 
 @synthesize costGold = _costGold;
 @synthesize getGold = _getGold;
-@synthesize isDelete = _isDelete;
+@synthesize spriteStatus = _spriteStatus;
 @synthesize maxHP = _maxHP;
 @synthesize currentHP = _currentHP;
 @synthesize killNum = _killNum;
@@ -34,42 +36,66 @@
 
 - (BOOL) run
 {
+    NSLog(@"tdsprite x:%f,y:%f,height:%f,width:%f", self.textureRect.origin.x, self.textureRect.origin.y, self.textureRect.size.height, self.textureRect.size.width);
+    [_bloodShowSprite setScaleY:0.4];
+    [_bloodBackSprite setScaleY:0.4];
+    _bloodShowSprite.position = ccp(0, self.textureRect.size.height + 10);
+    _bloodBackSprite.position = ccp(0, self.textureRect.size.height + 10);
+    [_bloodShowSprite setVisible:_showBlood];
+    [_bloodBackSprite setVisible:_showBlood];
     return YES;
 }
 
 -(id) init
 {
 	if( (self=[super init])) {
+        //初始化属性
         _costGold = 0;
         _getGold = 0;
-        _isDelete = NO;
+        _spriteStatus = TSS_NORMAL;
         _maxHP = 0;
         _currentHP = 0;
         _killNum = 0;
-        _showBlood = NO;
         _canClick = YES;
-        _bloodShowSprite = [CCSprite spriteWithFile:@"liftprogress.png"];
-        _bloodShowSprite.position = ccp(-1,  -1);
-        _bloodShowSprite.anchorPoint = ccp(0, 0);
-        [_bloodShowSprite setScaleX:0.5];
-        [self addChild:_bloodShowSprite z:1];
+        _showBlood = NO;
         
+        //初始化血条，选择标记，魔法动画等
+        _bloodShowSprite = [CCSprite spriteWithFile:@"showProgress.png"];
+        _bloodShowSprite.anchorPoint = ccp(0, 0);
+        [self addChild:_bloodShowSprite z:2];
+        
+        _bloodBackSprite = [CCSprite spriteWithFile:@"lifeProgressBG.png"];
+        _bloodBackSprite.anchorPoint = ccp(0, 0);
+        [self addChild:_bloodBackSprite z:1];
         
         _arrowSprite = [CCSprite spriteWithFile:@"selected.png"];
-        _arrowSprite.position = ccp(80,  80);
-        [self addChild:_arrowSprite z:1];
+        _arrowSprite.anchorPoint = ccp(0.5, 0.5);
+        [self addChild:_arrowSprite z:3];
         
-        [_bloodShowSprite setVisible:YES];
-        [_arrowSprite setVisible:YES];
+        [_bloodShowSprite setVisible:NO];
+        [_bloodBackSprite setVisible:NO];
+        [_arrowSprite setVisible:NO];
         [self initAnimate];
 	}
 	return self;
 }
 
+- (void) setShowBlood:(BOOL)showBlood
+{
+    _showBlood = showBlood;
+    if (_bloodShowSprite) {
+        [_bloodShowSprite setVisible:_showBlood];
+    }
+    if (_bloodBackSprite) {
+        [_bloodBackSprite setVisible:_showBlood];
+    }
+}
+
 - (void) dealloc
 {
-//    [bloodSprite release];
-//    [arrowSprite release];
+    if (_lastSprite == self) {
+        _lastSprite = nil;
+    }
 	[super dealloc];
 }
 
@@ -82,18 +108,27 @@
 {
 }
 
-- (CGRect)rect
+- (void) doSelect
 {
-	return CGRectMake(-rect_.size.width / 2, -rect_.size.height / 2, rect_.size.width, rect_.size.height);
+    _arrowSprite.position = ccp(self.textureRect.size.width / 2, self.textureRect.size.height + 15);
+    [_arrowSprite setVisible:YES];
+    _lastSprite = self;
+}
+
+- (void) doUnSelect
+{
+    [_arrowSprite setVisible:NO];
+}
+
+- (CGRect) tdTouchRect
+{
+	return CGRectMake(-self.textureRect.size.width / 2, -self.textureRect.size.height / 2, self.textureRect.size.width, self.textureRect.size.height);
 }
 
 - (void) onEnter
 {
     if (_canClick) {
         [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
-        if (_arrowSprite) {
-            [_arrowSprite setVisible:YES];
-        }
     }
 	[super onEnter];
 }
@@ -102,21 +137,24 @@
 {
     if (_canClick) {
         [[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
-        if (_arrowSprite) {
-            [_arrowSprite setVisible:NO];
-        }
     }
 	[super onExit];
 }	
 
 - (BOOL) containsTouchLocation:(UITouch *)touch
 {
-	return CGRectContainsPoint(self.rect, [self convertTouchToNodeSpaceAR:touch]);
+	return CGRectContainsPoint([self tdTouchRect], [self convertTouchToNodeSpaceAR:touch]);
 }
 
 - (BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
 	if ( ![self containsTouchLocation:touch] ) return NO;
+    if (_arrowSprite) {
+        if (_lastSprite) {
+            [_lastSprite doUnSelect];
+        }
+        [self doSelect];
+    }
 	switch ([GameController getGameController].screenClickType) {
 		case SCT_ALL:
             [self spriteTouchBegan:touch operateType:[GameController getGameController].operateType];
@@ -240,10 +278,19 @@
 	
 }
 
+- (void) setCurrentHP:(int)currentHP
+{
+    _currentHP = currentHP;
+    float scalex = self.textureRect.size.width / 100 * 1.5;
+    [_bloodBackSprite setScaleX:scalex];
+    scalex = scalex * _currentHP / _maxHP;
+    [_bloodShowSprite setScaleX:scalex];    
+}
+
 - (CCMenuItemImage*) addButton:(NSString*)normal selected:(NSString*)selected disabled:(NSString*)disabled sel:(SEL)sel pos:(CGPoint)pos
 {
     CCMenuItemImage *menuItem = [CCMenuItemImage itemFromNormalImage:normal selectedImage:selected disabledImage:disabled target:self selector:sel];
-    //[menuItem setScale:0.75];
+    [menuItem setScale:0.7];
     CCMenu *menu = [CCMenu menuWithItems:menuItem, nil];
     [menu setOpacity:MENU_OPACITY];
     menu.position = pos;

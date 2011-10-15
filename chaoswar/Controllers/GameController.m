@@ -114,7 +114,7 @@ static GameController *_sharedController = nil;
 	NSMutableArray *bulletDeleteArray = [[NSMutableArray alloc] init];
     NSMutableArray *frientlyDeleteArray = [[NSMutableArray alloc] init];
 	for (TDEnemy *en1 in _enemyArray) {
-        if (en1.isDelete == YES) {
+        if (en1.spriteStatus == TSS_DEAD) {
             [enemyDeleteArray addObject:en1];
         }
 	}
@@ -123,7 +123,7 @@ static GameController *_sharedController = nil;
         [scene removeChild:en2 cleanup:YES];									
     }
     for (TDTower *to1 in _towerArray) {
-        if (to1.isDelete == YES) {
+        if (to1.spriteStatus == TSS_DEAD) {
             [towerDeleteArray addObject:to1];
         }
 	}
@@ -132,7 +132,7 @@ static GameController *_sharedController = nil;
         [scene removeChild:to2 cleanup:YES];									
     }
     for (TDBullet *bu1 in _bulletArray) {
-        if (bu1.isDelete == YES) {
+        if (bu1.spriteStatus == TSS_DEAD) {
             [bulletDeleteArray addObject:bu1];
         }
 	}
@@ -141,7 +141,7 @@ static GameController *_sharedController = nil;
         [scene removeChild:bu2 cleanup:YES];									
     }
     for (TDFriendly *fr1 in _frientlyArray) {
-        if (fr1.isDelete == YES) {
+        if (fr1.spriteStatus == TSS_DEAD) {
             [frientlyDeleteArray addObject:fr1];
         }
 	}
@@ -181,6 +181,7 @@ static GameController *_sharedController = nil;
 }
 
 - (void)dealloc {
+    [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
     [_enemyArray removeAllObjects];
     [_towerArray removeAllObjects];
     [_bulletArray removeAllObjects];
@@ -190,11 +191,13 @@ static GameController *_sharedController = nil;
     [_bulletArray release];
     [_wayManager release];
     [_frientlyArray release];
+    [_pt release];
     _enemyArray = nil;
     _towerArray = nil;
     _bulletArray = nil;
-    _wayManager = nil;
     _frientlyArray = nil;
+    _wayManager = nil;
+    _pt = nil;
 	[super dealloc];
 }
 

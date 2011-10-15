@@ -25,6 +25,27 @@ typedef enum {
 	ET_BOSS2,
     ET_SHOOT
 } TEnemyType;
+// 敌人种类
+typedef enum {
+	//FOOT步兵
+	TSS_NORMAL,
+    TSS_DEADING,
+    TSS_DEAD
+} TSpriteStatus;
+
+// 敌人种类
+typedef enum {
+	//FOOT步兵
+	MS_NORMAL,
+    MS_DEADING,
+	MS_FIRE,
+	MS_STOP,
+	MS_THUNDER,
+    MS_SPEEDUP,
+    MS_SLOW,
+    MS_LIFEUP,
+    MS_FREEZE
+} TMMagicStatus;
 
 // 攻击类型
 typedef enum {

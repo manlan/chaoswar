@@ -24,7 +24,7 @@
 @synthesize enemyType = _enemyType;
 @synthesize way = _way;
 
-+ (void)runWave:(float)b e:(TEnemyType)e s:(float)s t:(int)t wy:(NSMutableArray*)wy
++ (id)runWave:(float)b e:(TEnemyType)e s:(float)s t:(int)t wy:(NSMutableArray*)wy
 {
     Wave *wave = [[[Wave alloc] init] autorelease];
     wave.enemyType = e;
@@ -33,6 +33,7 @@
     wave.way = wy;
     wave.beginRate = b;
     [wave start];
+    return wave;
 }
 
 - (void) start
@@ -149,8 +150,12 @@
 	if( (self=[super init]) ) {
 		
 	}
-	
 	return self;
+}
+
+- (void)dealloc {
+    [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
+	[super dealloc];
 }
 
 @end

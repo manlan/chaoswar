@@ -21,6 +21,8 @@
     
 }
 
+@property (nonatomic, retain) NSMutableArray *waveArray;
+
 - (void) addTower:(NSMutableArray*)a t:(TDTower*)t p:(CGPoint)p;
 
 - (void) runWave:(float)b e:(TEnemyType)e s:(float)s t:(int)t wy:(NSMutableArray*)wy;

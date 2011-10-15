@@ -22,7 +22,7 @@
 @property TEnemyType enemyType;
 @property (nonatomic, assign) NSMutableArray *way;
 
-+ (void)runWave:(float)b e:(TEnemyType)e s:(float)s t:(int)t wy:(NSMutableArray*)wy;
++ (id)runWave:(float)b e:(TEnemyType)e s:(float)s t:(int)t wy:(NSMutableArray*)wy;
 
 - (void) start;
 

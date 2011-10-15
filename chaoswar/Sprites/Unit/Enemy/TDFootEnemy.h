@@ -13,7 +13,7 @@
 #import "WayPoint.h"
 
 @interface TDFootEnemy : TDEnemy {
-    CCAnimation *atAni;
+
 }
 
 @property (nonatomic, assign) CCAnimation *atAni;

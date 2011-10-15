@@ -11,7 +11,7 @@
 
 @implementation TDFootEnemy
 
-@synthesize atAni;
+@synthesize atAni = _atAni;
 
 -(id) init
 {
@@ -460,9 +460,10 @@
 + (id) getSprite {
     TDFootEnemy14 *enemy = [TDFootEnemy14 spriteWithSpriteFrameName:@"ft14mvc0001.png"];
     if (enemy) {
-        [enemy setScale:0.65];
+        [enemy setScale:0.8];
         enemy.maxHP = 60;
         enemy.currentHP = enemy.maxHP;
+        enemy.currentHP = 51;
         enemy.moveSpeed = 40;
         enemy.attacttime = 1.2;
         enemy.attactRange = 0;     

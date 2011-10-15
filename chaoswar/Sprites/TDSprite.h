@@ -11,8 +11,6 @@
 
 @class GameController;
 
-//static NSMutableArray *arrayTDSprite = nil;
-
 @interface TDSprite : CCSprite <CCTargetedTouchDelegate>{
 
 }
@@ -22,11 +20,11 @@
 // 得到金额
 @property int getGold;
 // 是否已经被删除
-@property BOOL isDelete;
+@property TSpriteStatus spriteStatus;
 // 最大生命值：HP
 @property int maxHP;
 // 当前生命值：HP
-@property int currentHP;
+@property (readwrite) int currentHP;
 // 杀敌次数
 @property int killNum;
 // 是否已经被删除
@@ -49,6 +47,12 @@
 
 // 初始化动画（声音等）
 - (void) initAnimate;
+
+// 选中时
+- (void) doSelect;
+
+// 离开时
+- (void) doUnSelect;
 
 // 触摸开始 TOperateType 为当前操作类型
 - (void) spriteTouchBegan:(UITouch *)touch operateType:(TOperateType)operateType;
