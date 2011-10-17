@@ -1,11 +1,3 @@
-//
-//  TDUnit.m
-//  chaoswar
-//
-//  Created by Mac on 11-10-9.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "TDUnit.h"
 #import "GameController.h"
 
@@ -47,7 +39,6 @@
         id actionDeadDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterDead:)];
         [self runAction:[CCSequence actions:actionDead, actionDeadDone, nil]];
     }
-        
 }
 
 -(void) afterDead:(id)sender {

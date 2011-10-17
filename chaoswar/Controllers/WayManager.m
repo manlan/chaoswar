@@ -1,11 +1,3 @@
-//
-//  WayManager.m
-//  chaoswar
-//
-//  Created by Mac on 11-10-1.
-//  Copyright 2011年 __MyCompanyName__. All rights reserved.
-//
-
 #import "WayManager.h"
 #import "WayPoint.h"
 

@@ -1,11 +1,3 @@
-//
-//  Pointer1.m
-//  chaoswar
-//
-//  Created by Mac on 11-9-24.
-//  Copyright 2011年 __MyCompanyName__. All rights reserved.
-//
-
 #import "Pointer4.h"
 #import "GameController.h"
 #import "AnimateManager.h"

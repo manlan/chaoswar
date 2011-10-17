@@ -1,11 +1,3 @@
-//
-//  TDSprite.h
-//  chaoswar
-//
-//  Created by Mac on 11-10-1.
-//  Copyright 2011年 __MyCompanyName__. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 #import "GamePubDef.h"
 
@@ -53,6 +45,13 @@
 
 // 离开时
 - (void) doUnSelect;
+
+
+- (void) statusToNormal;
+
+- (void) statusToDeading;
+
+- (void) statusToDead;
 
 // 触摸开始 TOperateType 为当前操作类型
 - (void) spriteTouchBegan:(UITouch *)touch operateType:(TOperateType)operateType;

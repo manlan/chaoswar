@@ -1,11 +1,3 @@
-//
-//  SceneManager.m
-//  FiveElement-IP
-//
-//  Created by Mac on 11-8-18.
-//  Copyright 2011年 __MyCompanyName__. All rights reserved.
-//
-
 #import "SceneManager.h"
 
 @implementation SceneManager

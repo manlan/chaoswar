@@ -1,11 +1,3 @@
-//
-//  Enemy.m
-//  chaoswar
-//
-//  Created by Mac on 11-9-12.
-//  Copyright 2011年 __MyCompanyName__. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 #import "TDEnemy.h"
 #import "GameController.h"
@@ -45,16 +37,43 @@
 	return self;
 }
 
+- (void) statusToDeading {
+    NSMutableArray *arraySelfBuller = [NSMutableArray arrayWithArray:_selfBulletArray];
+    for (TDEnemyBullet *t in arraySelfBuller) {
+        t.shooter = nil;
+    }
+    [arraySelfBuller removeAllObjects];
+    
+    NSMutableArray *arrayTowerBuller = [NSMutableArray arrayWithArray:_towerBulletArray];
+    for (TDTowerBullet *t in arrayTowerBuller) {
+        t.enemy = nil;
+    }
+    [arrayTowerBuller removeAllObjects];
+    
+    NSMutableArray *arrayFriendlyBuller = [NSMutableArray arrayWithArray:_friendlyBulletArray];
+    for (TDFriendlyBullet *t in arrayFriendlyBuller) {
+        t.enemy = nil;
+    }
+    [arrayFriendlyBuller removeAllObjects];
+    
+    NSMutableArray *arrayMagicBuller = [NSMutableArray arrayWithArray:_magicBulletArray];
+    [arrayMagicBuller removeAllObjects];
+    
+    NSMutableArray *arrayTower = [NSMutableArray arrayWithArray:_towerArray];
+    for (TDTower *t in arrayTower) {
+        t.enemy = nil;
+    }
+    [arrayTower removeAllObjects];
+    
+    NSMutableArray *arrayFriendly = [NSMutableArray arrayWithArray:_friendlyArray];
+    for (TDFriendly *t in arrayFriendly) {
+        //t.enemy = nil;
+    }
+    [arrayFriendly removeAllObjects];
+}
+
 - (void) dealloc
 {
-    //===============need mod=================
-    [_selfBulletArray removeAllObjects];
-    [_towerBulletArray removeAllObjects];
-    [_friendlyBulletArray removeAllObjects];
-    [_magicBulletArray removeAllObjects];
-    [_towerArray removeAllObjects];
-    [_friendlyArray removeAllObjects];
-    //===============need mod=================
     [_selfBulletArray removeAllObjects];
     [_towerBulletArray removeAllObjects];
     [_friendlyBulletArray removeAllObjects];

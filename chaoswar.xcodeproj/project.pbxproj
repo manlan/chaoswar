@@ -386,7 +386,7 @@
 		04DA164E143ADA0A00FF1744 /* XzSheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DA161B143ADA0A00FF1744 /* XzSheet.png */; };
 		04DE3FF9143597E3008F301D /* Pointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE3FF8143597E3008F301D /* Pointer.m */; };
 		04DE40081435AFB4008F301D /* GameHintScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE40071435AFB3008F301D /* GameHintScene.m */; };
-		04E41C13143B6CDB0040A11F /* SpriteData.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E41C12143B6CDB0040A11F /* SpriteData.m */; };
+		04E41C13143B6CDB0040A11F /* GameSpriteDef.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E41C12143B6CDB0040A11F /* GameSpriteDef.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -940,8 +940,8 @@
 		04DE3FF8143597E3008F301D /* Pointer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pointer.m; sourceTree = "<group>"; };
 		04DE40061435AFB3008F301D /* GameHintScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHintScene.h; sourceTree = "<group>"; };
 		04DE40071435AFB3008F301D /* GameHintScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameHintScene.m; sourceTree = "<group>"; };
-		04E41C11143B6CDB0040A11F /* SpriteData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteData.h; sourceTree = "<group>"; };
-		04E41C12143B6CDB0040A11F /* SpriteData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteData.m; sourceTree = "<group>"; };
+		04E41C11143B6CDB0040A11F /* GameSpriteDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameSpriteDef.h; path = ../../Public/GameSpriteDef.h; sourceTree = "<group>"; };
+		04E41C12143B6CDB0040A11F /* GameSpriteDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSpriteDef.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1015,6 +1015,7 @@
 			isa = PBXGroup;
 			children = (
 				040859271441DACA0006B007 /* TDUnit.h */,
+				04E41C11143B6CDB0040A11F /* GameSpriteDef.h */,
 				040859281441DACA0006B007 /* TDUnit.m */,
 				0408591F1441DACA0006B007 /* Enemy */,
 				040859241441DACA0006B007 /* Friendly */,
@@ -1725,8 +1726,7 @@
 				045E89AF141E36340097B1EE /* GameData.m */,
 				045E89B0141E36340097B1EE /* SceneManager.h */,
 				045E89B1141E36340097B1EE /* SceneManager.m */,
-				04E41C11143B6CDB0040A11F /* SpriteData.h */,
-				04E41C12143B6CDB0040A11F /* SpriteData.m */,
+				04E41C12143B6CDB0040A11F /* GameSpriteDef.m */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -2272,7 +2272,7 @@
 				04527F631436F070005A2E0F /* LoadingSence.m in Sources */,
 				04A10E771436F38E00DFEFD6 /* TDSprite.m in Sources */,
 				044921E914370FF30024AEE5 /* WayManager.m in Sources */,
-				04E41C13143B6CDB0040A11F /* SpriteData.m in Sources */,
+				04E41C13143B6CDB0040A11F /* GameSpriteDef.m in Sources */,
 				046CBDFC143ED32600584A8C /* AnimateManager.m in Sources */,
 				040859291441DACA0006B007 /* TDArrowTower.m in Sources */,
 				0408592A1441DACA0006B007 /* TDDefenceTower.m in Sources */,

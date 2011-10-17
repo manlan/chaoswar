@@ -1,11 +1,3 @@
-//
-//  LoadingSence.m
-//  chaoswar
-//
-//  Created by apple on 11-10-1.
-//  Copyright 2011年 __MyCompanyName__. All rights reserved.
-//
-
 #import "LoadingSence.h"
 #import "GameBackgroundScene.h"
 #import "SceneManager.h"

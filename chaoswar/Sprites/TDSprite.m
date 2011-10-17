@@ -1,11 +1,3 @@
-//
-//  TDSprite.m
-//  chaoswar
-//
-//  Created by Mac on 11-10-1.
-//  Copyright 2011年 __MyCompanyName__. All rights reserved.
-//
-
 #import "TDSprite.h"
 #import "GameController.h"
 #import "GameControllerScene.h"
@@ -36,9 +28,8 @@ const TDSprite *_lastSprite = nil;
 
 - (BOOL) run
 {
-    NSLog(@"tdsprite x:%f,y:%f,height:%f,width:%f", self.textureRect.origin.x, self.textureRect.origin.y, self.textureRect.size.height, self.textureRect.size.width);
-    [_bloodShowSprite setScaleY:0.4];
-    [_bloodBackSprite setScaleY:0.4];
+    [_bloodShowSprite setScaleY:TDS_BLOOD_SCALE];
+    [_bloodBackSprite setScaleY:TDS_BLOOD_SCALE];
     _bloodShowSprite.position = ccp(0, self.textureRect.size.height + 10);
     _bloodBackSprite.position = ccp(0, self.textureRect.size.height + 10);
     [_bloodShowSprite setVisible:_showBlood];
@@ -281,20 +272,50 @@ const TDSprite *_lastSprite = nil;
 - (void) setCurrentHP:(int)currentHP
 {
     _currentHP = currentHP;
-    float scalex = self.textureRect.size.width / 100 * 1.5;
+    float scalex = self.textureRect.size.width / 100;
     [_bloodBackSprite setScaleX:scalex];
     scalex = scalex * _currentHP / _maxHP;
     [_bloodShowSprite setScaleX:scalex];    
 }
 
+- (void) statusToNormal {
+
+}
+
+- (void) statusToDeading {
+    
+}
+
+- (void) statusToDead {
+    
+}
+
+- (void) setSpriteStatus:(TSpriteStatus)spriteStatus
+{
+    _spriteStatus = spriteStatus;
+    switch (_spriteStatus) {
+        case TSS_NORMAL:
+            [self statusToNormal];
+            break;
+        case TSS_DEADING:
+            [self statusToDeading];
+            break;
+        case TSS_DEAD:
+            [self statusToDead];
+            break;
+        default:
+            break;
+    }
+}
+
 - (CCMenuItemImage*) addButton:(NSString*)normal selected:(NSString*)selected disabled:(NSString*)disabled sel:(SEL)sel pos:(CGPoint)pos
 {
     CCMenuItemImage *menuItem = [CCMenuItemImage itemFromNormalImage:normal selectedImage:selected disabledImage:disabled target:self selector:sel];
-    [menuItem setScale:0.7];
+    [menuItem setScale:TDS_MENU_SCALE];
     CCMenu *menu = [CCMenu menuWithItems:menuItem, nil];
     [menu setOpacity:MENU_OPACITY];
     menu.position = pos;
-    [[GameController getGameController].gameController addChild:menu z:2];
+    [[GameController getGameController].gameController addChild:menu z:TDS_MENU_Z];
     return menuItem;
 }
 

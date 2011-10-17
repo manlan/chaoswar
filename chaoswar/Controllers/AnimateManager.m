@@ -1,11 +1,3 @@
-//
-//  AnimateManager.m
-//  chaoswar
-//
-//  Created by Mac on 11-10-7.
-//  Copyright 2011年 __MyCompanyName__. All rights reserved.
-//
-
 #import "AnimateManager.h"
 #import "GameController.h"
 
@@ -173,6 +165,11 @@
 + (void) initTurretTower03
 {
     [AnimateManager initAnimate:@"tt03"];
+}
+
++ (void) initTurretBullet
+{
+    [AnimateManager initAnimate:@"ttat"];
 }
 
 + (void) initMagicTower01

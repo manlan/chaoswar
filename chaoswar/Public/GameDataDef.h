@@ -28,3 +28,15 @@
 #define TOWER_BACKGROUND_Z 5
 // 塔的层次
 #define TOWER_Z 6
+
+//血条比例
+#define TDS_BLOOD_SCALE 0.4
+//魔法菜单等缩小比例
+#define TDS_MENU_SCALE 0.7
+//魔法菜单等级次
+#define TDS_MENU_Z 2
+
+//血条比例
+#define TDS_PROGRESS_SCALE_X 0.55
+//血条比例
+#define TDS_PROGRESS_SCALE_Y 0.5

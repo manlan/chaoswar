@@ -1,11 +1,3 @@
-//
-//  TDMagicEnemy.m
-//  chaoswar
-//
-//  Created by Mac on 11-10-13.
-//  Copyright 2011年 __MyCompanyName__. All rights reserved.
-//
-
 #import "TDMagicEnemy.h"
 
 
@@ -68,15 +60,16 @@
 + (id) getSprite {
     TDMagicEnemy1 *enemy = [TDMagicEnemy1 spriteWithSpriteFrameName:@"mc01mvc0001.png"];
     if (enemy) {
-        [enemy setScale:0.65];
-        enemy.maxHP = 100;
-        enemy.currentHP = enemy.maxHP;
-        enemy.moveSpeed = 20;
-        enemy.attacttime = 1.2;
-        enemy.attactRange = 0;     
-        enemy.attact = 8;
-        enemy.attactMode = 0;
-        enemy.defenceMode = 0;
+        [enemy setScale:TDS_MC1_SCALE];
+        enemy.maxHP = TDS_MC1_MAXHP;
+        enemy.currentHP = TDS_MC1_CURRENTHP;
+        enemy.moveSpeed = TDS_MC1_MOVESPEED;
+        enemy.attacttime = TDS_MC1_ATTACTTIME;
+        enemy.attactRange = TDS_MC1_ATTACTRANGE;     
+        enemy.attact = TDS_MC1_ATTACT;
+        enemy.attactMode = TDS_MC1_ATTACTMODE;
+        enemy.defence = TDS_MC1_DEFENCE;
+        enemy.defenceMode = TDS_MC1_DEFENCEMODE;
     }
     return enemy;
 }
@@ -98,15 +91,16 @@
 + (id) getSprite {
     TDMagicEnemy2 *enemy = [TDMagicEnemy2 spriteWithSpriteFrameName:@"mc02mvc0001.png"];
     if (enemy) {
-        [enemy setScale:0.65];
-        enemy.maxHP = 60;
-        enemy.currentHP = enemy.maxHP;
-        enemy.moveSpeed = 40;
-        enemy.attacttime = 1.2;
-        enemy.attactRange = 0;     
-        enemy.attact = 8;
-        enemy.attactMode = 0;
-        enemy.defenceMode = 0;
+        [enemy setScale:TDS_MC2_SCALE];
+        enemy.maxHP = TDS_MC2_MAXHP;
+        enemy.currentHP = TDS_MC2_CURRENTHP;
+        enemy.moveSpeed = TDS_MC2_MOVESPEED;
+        enemy.attacttime = TDS_MC2_ATTACTTIME;
+        enemy.attactRange = TDS_MC2_ATTACTRANGE;     
+        enemy.attact = TDS_MC2_ATTACT;
+        enemy.attactMode = TDS_MC2_ATTACTMODE;
+        enemy.defence = TDS_MC2_DEFENCE;
+        enemy.defenceMode = TDS_MC2_DEFENCEMODE;
     }
     return enemy;
 }

@@ -1,11 +1,3 @@
-//
-//  Pointer1.m
-//  chaoswar
-//
-//  Created by Mac on 11-9-24.
-//  Copyright 2011年 __MyCompanyName__. All rights reserved.
-//
-
 #import "Pointer1.h"
 #import "GameController.h"
 #import "AnimateManager.h"
@@ -63,6 +55,7 @@
     [AnimateManager initTurretTower01];
     [AnimateManager initTurretTower02];
     [AnimateManager initTurretTower03];
+    [AnimateManager initTurretBullet];
     [AnimateManager initMagicTower01];
     [AnimateManager initMagicTower02];
     [AnimateManager initMagicTower03];

@@ -1,11 +1,3 @@
-//
-//  Wave.m
-//  chaoswar
-//
-//  Created by Mac on 11-9-24.
-//  Copyright 2011年 __MyCompanyName__. All rights reserved.
-//
-
 #import "Wave.h"
 #import "GameController.h"
 #import "SpritesImp.h"

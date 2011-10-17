@@ -1,11 +1,3 @@
-//
-//  TDFlyEnemy.m
-//  chaoswar
-//
-//  Created by Mac on 11-10-13.
-//  Copyright 2011年 __MyCompanyName__. All rights reserved.
-//
-
 #import "TDFlyEnemy.h"
 
 
@@ -65,15 +57,16 @@
 + (id) getSprite {
     TDFlyEnemy *enemy = [TDFlyEnemy spriteWithSpriteFrameName:@"fl01mvc0001.png"];
     if (enemy) {
-        [enemy setScale:0.65];
-        enemy.maxHP = 100;
-        enemy.currentHP = enemy.maxHP;
-        enemy.moveSpeed = 20;
-        enemy.attacttime = 1.2;
-        enemy.attactRange = 0;     
-        enemy.attact = 8;
-        enemy.attactMode = 0;
-        enemy.defenceMode = 0;
+        [enemy setScale:TDS_FL1_SCALE];
+        enemy.maxHP = TDS_FL1_MAXHP;
+        enemy.currentHP = TDS_FL1_CURRENTHP;
+        enemy.moveSpeed = TDS_FL1_MOVESPEED;
+        enemy.attacttime = TDS_FL1_ATTACTTIME;
+        enemy.attactRange = TDS_FL1_ATTACTRANGE;     
+        enemy.attact = TDS_FL1_ATTACT;
+        enemy.attactMode = TDS_FL1_ATTACTMODE;
+        enemy.defence = TDS_FL1_DEFENCE;
+        enemy.defenceMode = TDS_FL1_DEFENCEMODE;
     }
     return enemy;
 }
@@ -95,15 +88,16 @@
 + (id) getSprite {
     TDFlyEnemy2 *enemy = [TDFlyEnemy2 spriteWithSpriteFrameName:@"fl02mvc0001.png"];
     if (enemy) {
-        [enemy setScale:0.65];
-        enemy.maxHP = 60;
-        enemy.currentHP = enemy.maxHP;
-        enemy.moveSpeed = 40;
-        enemy.attacttime = 1.2;
-        enemy.attactRange = 0;     
-        enemy.attact = 8;
-        enemy.attactMode = 0;
-        enemy.defenceMode = 0;
+        [enemy setScale:TDS_FL2_SCALE];
+        enemy.maxHP = TDS_FL2_MAXHP;
+        enemy.currentHP = TDS_FL2_CURRENTHP;
+        enemy.moveSpeed = TDS_FL2_MOVESPEED;
+        enemy.attacttime = TDS_FL2_ATTACTTIME;
+        enemy.attactRange = TDS_FL2_ATTACTRANGE;     
+        enemy.attact = TDS_FL2_ATTACT;
+        enemy.attactMode = TDS_FL2_ATTACTMODE;
+        enemy.defence = TDS_FL2_DEFENCE;
+        enemy.defenceMode = TDS_FL2_DEFENCEMODE;
     }
     return enemy;
 }
@@ -111,6 +105,37 @@
 - (void) initAnimate
 {
     [self addAnimate:2]; 
+}
+
+- (void) dealloc
+{  
+    [super dealloc];
+}
+
+@end
+
+@implementation TDFlyEnemy3
+
++ (id) getSprite {
+    TDFlyEnemy3 *enemy = [TDFlyEnemy3 spriteWithSpriteFrameName:@"fl03mvc0001.png"];
+    if (enemy) {
+        [enemy setScale:TDS_FL3_SCALE];
+        enemy.maxHP = TDS_FL3_MAXHP;
+        enemy.currentHP = TDS_FL3_CURRENTHP;
+        enemy.moveSpeed = TDS_FL3_MOVESPEED;
+        enemy.attacttime = TDS_FL3_ATTACTTIME;
+        enemy.attactRange = TDS_FL3_ATTACTRANGE;     
+        enemy.attact = TDS_FL3_ATTACT;
+        enemy.attactMode = TDS_FL3_ATTACTMODE;
+        enemy.defence = TDS_FL3_DEFENCE;
+        enemy.defenceMode = TDS_FL3_DEFENCEMODE;
+    }
+    return enemy;
+}
+
+- (void) initAnimate
+{
+    [self addAnimate:3]; 
 }
 
 - (void) dealloc

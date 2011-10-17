@@ -1,12 +1,4 @@
 //
-//  RootViewController.m
-//  chaoswar
-//
-//  Created by Mac on 11-9-4.
-//  Copyright __MyCompanyName__ 2011年. All rights reserved.
-//
-
-//
 // RootViewController + iAd
 // If you want to support iAd, use this class as the controller of your iAd
 //

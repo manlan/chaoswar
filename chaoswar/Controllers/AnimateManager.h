@@ -1,11 +1,3 @@
-//
-//  AnimateManager.h
-//  chaoswar
-//
-//  Created by Mac on 11-10-7.
-//  Copyright 2011年 __MyCompanyName__. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 #import "GamePubDef.h"
 
@@ -77,6 +69,8 @@
 + (void) initTurretTower02;
 
 + (void) initTurretTower03;
+
++ (void) initTurretBullet;
 
 + (void) initMagicTower01;
 

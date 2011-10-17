@@ -1,11 +1,3 @@
-//
-//  GameConfig.h
-//  chaoswar
-//
-//  Created by Mac on 11-9-4.
-//  Copyright __MyCompanyName__ 2011年. All rights reserved.
-//
-
 #ifndef __GAME_CONFIG_H
 #define __GAME_CONFIG_H
 
