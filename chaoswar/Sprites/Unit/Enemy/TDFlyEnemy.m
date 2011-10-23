@@ -1,5 +1,5 @@
 #import "TDFlyEnemy.h"
-
+#import "GamePubDef.h"
 
 @implementation TDFlyEnemy
 

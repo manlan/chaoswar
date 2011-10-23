@@ -98,13 +98,14 @@
     [[CCDirector sharedDirector] resume];
 	GameController *gc = [GameController getGameController];
 	[gc.gameHint removeAllChildrenWithCleanup:YES];
-    
     [gc setGameStatus];
 }
 
 -(void) Menu:(id) sender 
 {
     [[CCDirector sharedDirector] resume];
+    GameController *gc = [GameController getGameController];
+    [gc stopGame];
 	[[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[SelectSence scene]]];
 }
 
@@ -114,6 +115,7 @@
 	GameController *gc = [GameController getGameController];
     [gc.gameHint removeAllChildrenWithCleanup:YES];
 	[gc restart];
+    [gc setGameStatus];
 }
 
 - (void) setPauseMenuStatus

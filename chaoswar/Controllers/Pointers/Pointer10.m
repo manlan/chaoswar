@@ -62,9 +62,13 @@
 - (void) initTower:(NSMutableArray*)array
 {
     [array removeAllObjects];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(320, 160)];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(240, 160)];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(140, 166)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(115, 130)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(115, 184)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(245, 143)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(307, 143)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(370, 143)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(204, 272)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(395, 66)];
 }
 
 - (BOOL) runWaves:(int)wave
@@ -72,9 +76,13 @@
     GameController *gc = [GameController getGameController];
 	switch (wave) {
 		case 1:
-			[self runWave:6 e:ET_FOOT1 s:1 t:10 wy:[gc.wayManager getWay:1]];
-            [self runWave:4 e:ET_FOOT2 s:1.1 t:5 wy:[gc.wayManager getWay:1]];
-            [self runWave:1 e:ET_FOOT14 s:1.2 t:4 wy:[gc.wayManager getWay:1]];
+            [self runWave:1 e:ET_FOOT9 s:1 t:5 wy:[gc.wayManager getWay:1]];
+            [self runWave:1 e:ET_FOOT9 s:1.1 t:5 wy:[gc.wayManager getWay:2]];
+            [self runWave:1 e:ET_FOOT10 s:1.2 t:4 wy:[gc.wayManager getWay:3]];
+            
+            [self runWave:1 e:ET_FOOT10 s:1 t:5 wy:[gc.wayManager getWay:4]];
+            [self runWave:1 e:ET_FOOT11 s:1.1 t:5 wy:[gc.wayManager getWay:5]];
+            [self runWave:1 e:ET_FOOT10 s:1.2 t:4 wy:[gc.wayManager getWay:6]];
             [self prepareNextWave:22];
 			break;
 		default:
@@ -94,19 +102,48 @@
 - (void) initWayPoint:(WayManager*)manager
 {
     [manager removeAllWay];
-    [manager addWayPoint:1 wayPoint:ccp(228, -5) z:5];
-    [manager addWayPoint:1 wayPoint:ccp(228, 0) z:5];
-    [manager addWayPoint:1 wayPoint:ccp(228, 90) z:5];
-    [manager addWayPoint:1 wayPoint:ccp(383, 90) z:5];
-    [manager addWayPoint:1 wayPoint:ccp(383, 220) z:5];
-    [manager addWayPoint:1 wayPoint:ccp(128, 220) z:5];
-    [manager addWayPoint:1 wayPoint:ccp(128, 320) z:5];
-    [manager addWayPoint:1 wayPoint:ccp(128, 325) z:5];
+    [manager addWayPoint:1 wayPoint:ccp(-1, 113) z:15];
+    [manager addWayPoint:1 wayPoint:ccp(148, 113) z:15];
+    [manager addWayPoint:1 wayPoint:ccp(344, 124) z:15];
+    [manager addWayPoint:1 wayPoint:ccp(344, -1) z:15];
+    
+    [manager addWayPoint:2 wayPoint:ccp(-1, 99) z:16];
+    [manager addWayPoint:2 wayPoint:ccp(148, 99) z:16];
+    [manager addWayPoint:2 wayPoint:ccp(331, 110) z:16];
+    [manager addWayPoint:2 wayPoint:ccp(331, -1) z:16];
+    
+    [manager addWayPoint:3 wayPoint:ccp(-1, 84) z:17];
+    [manager addWayPoint:3 wayPoint:ccp(148, 84) z:17];
+    [manager addWayPoint:3 wayPoint:ccp(318, 97) z:17];
+    [manager addWayPoint:3 wayPoint:ccp(318, -1) z:17];
+    
+    [manager addWayPoint:4 wayPoint:ccp(481, 260) z:15];
+    [manager addWayPoint:4 wayPoint:ccp(167, 260) z:15];
+    [manager addWayPoint:4 wayPoint:ccp(167, 97) z:17];
+    [manager addWayPoint:4 wayPoint:ccp(318, 97) z:17];
+    [manager addWayPoint:4 wayPoint:ccp(318, -1) z:17];
+    
+    [manager addWayPoint:5 wayPoint:ccp(481, 246) z:16];
+    [manager addWayPoint:5 wayPoint:ccp(180, 246) z:16];
+    [manager addWayPoint:5 wayPoint:ccp(180, 110) z:16];
+    [manager addWayPoint:5 wayPoint:ccp(331, 110) z:16];
+    [manager addWayPoint:5 wayPoint:ccp(331, -1) z:16];
+    
+    [manager addWayPoint:6 wayPoint:ccp(481, 230) z:17];
+    [manager addWayPoint:6 wayPoint:ccp(195, 230) z:17];
+    [manager addWayPoint:6 wayPoint:ccp(195, 124) z:15];
+    [manager addWayPoint:6 wayPoint:ccp(348, 124) z:15];
+    [manager addWayPoint:6 wayPoint:ccp(348, -1) z:15];
 }
 
 - (void) initFriendly:(NSMutableArray*)array
 {
     [array removeAllObjects];
+}
+
+- (BOOL) isWhite:(CGPoint)point
+{
+    return YES;
 }
 
 @end

@@ -2,13 +2,25 @@
 #import "SpritesImp.h"
 #import "Wave.h"
 #import "WayPoint.h"
-#import "Pointer.h"
 #import "WayManager.h"
 #import "GameBackgroundScene.h"
 #import "GameImfomationScene.h"
 #import "GameMagicScene.h"
 #import "GameControllerScene.h"
 #import "GameHintScene.h"
+#import "Pointer.h"
+#import "Pointer1.h"
+#import "Pointer2.h"
+#import "Pointer3.h"
+#import "Pointer4.h"
+#import "Pointer5.h"
+#import "Pointer6.h"
+#import "Pointer7.h"
+#import "Pointer8.h"
+#import "Pointer9.h"
+#import "Pointer10.h"
+#import "Pointer11.h"
+#import "Pointer12.h"
 
 @implementation GameController
 
@@ -56,35 +68,79 @@ static GameController *_sharedController = nil;
         _enemyArray = [[NSMutableArray alloc] init];
         _towerArray = [[NSMutableArray alloc] init];
         _bulletArray = [[NSMutableArray alloc] init];
-        _wayManager = [[WayManager alloc] init];
         _frientlyArray = [[NSMutableArray alloc] init];
-		self.screenClickType = SCT_ALL;
-		self.operateType = OT_NORMAL;
+        _wayManager = [[WayManager alloc] init];
 	}
 	return self;
 }
 
-- (void) initController:(Pointer*)pointer {
-    self.pt = pointer;
-    //=========初始化设置
-    [self.pt initController];
-    //=========初始化动画
-    [self.pt initAnimate];
-    //=========初始化路线
-    [self.pt initWayPoint:_wayManager];
-    //=========初始化塔
-    [self.pt initTower:_towerArray];
-    //=========初始化敌人
-    [self.pt initEnemy:_enemyArray];
-    //=========初始化子弹
-    [self.pt initBullety:_bulletArray];
-    //=========初始化友军
-    [self.pt initFriendly:_frientlyArray];
+- (Pointer*) getPointer:(int)p
+{
+	switch (p) {
+        case 0:
+            return [[Pointer1 alloc] init];
+            break;
+        case 1:
+            return [[Pointer2 alloc] init];
+            break;
+        case 2:
+            return [[Pointer3 alloc] init];
+            break;
+        case 3:
+            return [[Pointer4 alloc] init];
+            break;
+        case 4:
+            return [[Pointer5 alloc] init];
+            break;
+        case 5:
+            return [[Pointer6 alloc] init];
+            break;
+        case 6:
+            return [[Pointer7 alloc] init];
+            break;
+        case 7:
+            return [[Pointer8 alloc] init];
+            break;
+        case 8:
+            return [[Pointer9 alloc] init];
+            break;
+        case 9:
+            return [[Pointer10 alloc] init];
+            break;
+        case 10:
+            return [[Pointer11 alloc] init];
+            break;
+        case 11:
+            return [[Pointer12 alloc] init];
+            break;
+        default:
+            return nil;
+            break;
+    }
+}
+
+- (void) initController:(int)p {
+    _pt = [self getPointer:p];
 }
 
 - (void) start
 {
-
+    self.screenClickType = SCT_ALL;
+    self.operateType = OT_NORMAL;
+    //=========初始化设置
+    [_pt initController];
+    //=========初始化动画
+    [_pt initAnimate];
+    //=========初始化路线
+    [_pt initWayPoint:_wayManager];
+    //=========初始化塔
+    [_pt initTower:_towerArray];
+    //=========初始化敌人
+    [_pt initEnemy:_enemyArray];
+    //=========初始化子弹
+    [_pt initBullety:_bulletArray];
+    //=========初始化友军
+    [_pt initFriendly:_frientlyArray];
 }
 
 - (void) restart
@@ -92,70 +148,15 @@ static GameController *_sharedController = nil;
 
 }
 
-- (void) startNextWave
+- (void) stopGame
 {
-    if ([_pt runWaves:_currentWave + 1]) {
-        self.currentWave++;
-    }
-}
-
-- (void) deleteUnUseSprite:(CCLayer*)scene
-{
-    NSMutableArray *enemyDeleteArray = [[NSMutableArray alloc] init];
-	NSMutableArray *towerDeleteArray = [[NSMutableArray alloc] init];	
-	NSMutableArray *bulletDeleteArray = [[NSMutableArray alloc] init];
-    NSMutableArray *frientlyDeleteArray = [[NSMutableArray alloc] init];
-	for (TDEnemy *en1 in _enemyArray) {
-        if (en1.spriteStatus == TSS_DEAD) {
-            [enemyDeleteArray addObject:en1];
-        }
-	}
-    for (TDEnemy *en2 in enemyDeleteArray) {
-        [_enemyArray removeObject:en2];
-        [scene removeChild:en2 cleanup:YES];									
-    }
-    for (TDTower *to1 in _towerArray) {
-        if (to1.spriteStatus == TSS_DEAD) {
-            [towerDeleteArray addObject:to1];
-        }
-	}
-    for (TDTower *to2 in towerDeleteArray) {
-        [_towerArray removeObject:to2];
-        [scene removeChild:to2 cleanup:YES];									
-    }
-    for (TDBullet *bu1 in _bulletArray) {
-        if (bu1.spriteStatus == TSS_DEAD) {
-            [bulletDeleteArray addObject:bu1];
-        }
-	}
-    for (TDBullet *bu2 in bulletDeleteArray) {
-        [_bulletArray removeObject:bu2];
-        [scene removeChild:bu2 cleanup:YES];									
-    }
-    for (TDFriendly *fr1 in _frientlyArray) {
-        if (fr1.spriteStatus == TSS_DEAD) {
-            [frientlyDeleteArray addObject:fr1];
-        }
-	}
-    for (TDFriendly *fr2 in frientlyDeleteArray) {
-        [_frientlyArray removeObject:fr2];
-        [scene removeChild:fr2 cleanup:YES];									
-    }
-    [enemyDeleteArray removeAllObjects];
-	[towerDeleteArray removeAllObjects];
-	[bulletDeleteArray removeAllObjects];
-    [frientlyDeleteArray removeAllObjects];
-    [enemyDeleteArray release];
-	[towerDeleteArray release];
-	[bulletDeleteArray release];
-    [frientlyDeleteArray release];
+    
 }
 
 //游戏逻辑（循环）
 - (void) setGameStatus {
 	// 设置当前金额，波数等信息
     [_gameImfomation setPauseMenuStatus];
-	//gameMagic.btnRestartMenu = 
 	// 控制法术按钮及下一波按钮的状态
     [_gameMagic setGoMenuStatus];
     [_gameMagic setMagic1MenuStatus];
@@ -172,8 +173,14 @@ static GameController *_sharedController = nil;
     [_gameController setZoneMenuStatus];
 }
 
+- (void) startNextWave
+{
+    if ([_pt runWaves:_currentWave + 1]) {
+        self.currentWave++;
+    }
+}
+
 - (void)dealloc {
-    [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
     [_enemyArray removeAllObjects];
     [_towerArray removeAllObjects];
     [_bulletArray removeAllObjects];
@@ -191,6 +198,30 @@ static GameController *_sharedController = nil;
     _wayManager = nil;
     _pt = nil;
 	[super dealloc];
+}
+
+- (void) setMaxWave:(int)maxWave
+{
+    _maxWave = maxWave;
+    [_gameImfomation setWaveValue];
+}
+
+- (void) setCurrentWave:(int)currentWave
+{
+    _currentWave = currentWave;
+    [_gameImfomation setWaveValue];
+}
+
+- (void) setCurrentHealth:(int)currentHealth
+{
+    _currentHealth = currentHealth;
+    [_gameImfomation setEnemyNumValue];
+}
+
+- (void) setCurrentGold:(int)currentGold
+{
+    _currentGold = currentGold;
+    [_gameImfomation setGoldValue];
 }
 
 @end

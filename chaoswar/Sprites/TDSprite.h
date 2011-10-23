@@ -30,7 +30,6 @@
 // 选中框
 @property (nonatomic, readonly) CCSprite *arrowSprite;
 
-
 // 获取当前精灵的实例
 + (id) getSprite;
 
@@ -46,12 +45,17 @@
 // 离开时
 - (void) doUnSelect;
 
-
+// 正常状态
 - (void) statusToNormal;
 
+// 正在死亡
 - (void) statusToDeading;
 
+// 已经死亡
 - (void) statusToDead;
+
+// 正在死亡 或 已经死亡 时需要做的事，主要释放关联关系的
+- (void) clearSpriteData;
 
 // 触摸开始 TOperateType 为当前操作类型
 - (void) spriteTouchBegan:(UITouch *)touch operateType:(TOperateType)operateType;

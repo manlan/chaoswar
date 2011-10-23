@@ -107,8 +107,8 @@
         case ET_BOSS2:
             return [TDBossEnemy1 getSprite];
             break; 
-        case ET_SHOOT:
-            //return [TDShootEnemy1 getSprite];
+        case ET_SHOOT1:
+            return [TDShooterEnemy1 getSprite];
             break; 
         default:
             break;

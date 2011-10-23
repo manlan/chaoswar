@@ -23,7 +23,7 @@ typedef enum {
 	ET_MAGIC2,
     ET_BOSS1,  
 	ET_BOSS2,
-    ET_SHOOT
+    ET_SHOOT1
 } TEnemyType;
 // 敌人种类
 typedef enum {

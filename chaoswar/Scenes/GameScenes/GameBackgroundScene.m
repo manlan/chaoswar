@@ -4,18 +4,7 @@
 #import "GameMagicScene.h"
 #import "GameControllerScene.h"
 #import "GameHintScene.h"
-#import "Pointer1.h"
-#import "Pointer2.h"
-#import "Pointer3.h"
-#import "Pointer4.h"
-#import "Pointer5.h"
-#import "Pointer6.h"
-#import "Pointer7.h"
-#import "Pointer8.h"
-#import "Pointer9.h"
-#import "Pointer10.h"
-#import "Pointer11.h"
-#import "Pointer12.h"
+#import "Pointer.h"
 
 @implementation GameBackgroundScene
 
@@ -48,47 +37,7 @@
     gc.gameController = gameControllerScene;
     gc.gameHint = gameHintScene;
     //==================初始化配置=================
-    switch (gk) {
-        case 0:
-            [gc initController:[[[Pointer1 alloc] init] autorelease]];
-            break;
-        case 1:
-            [gc initController:[[[Pointer2 alloc] init] autorelease]];
-            break;
-        case 2:
-            [gc initController:[[[Pointer3 alloc] init] autorelease]];
-            break;
-        case 3:
-            [gc initController:[[[Pointer4 alloc] init] autorelease]];
-            break;
-        case 4:
-            [gc initController:[[[Pointer5 alloc] init] autorelease]];
-            break;
-        case 5:
-            [gc initController:[[[Pointer6 alloc] init] autorelease]];
-            break;
-        case 6:
-            [gc initController:[[[Pointer7 alloc] init] autorelease]];
-            break;
-        case 7:
-            [gc initController:[[[Pointer8 alloc] init] autorelease]];
-            break;
-        case 8:
-            [gc initController:[[[Pointer9 alloc] init] autorelease]];
-            break;
-        case 9:
-            [gc initController:[[[Pointer10 alloc] init] autorelease]];
-            break;
-        case 10:
-            [gc initController:[[[Pointer11 alloc] init] autorelease]];
-            break;
-        case 11:
-            [gc initController:[[[Pointer12 alloc] init] autorelease]];
-            break;
-        default:
-            [gc initController:nil];
-            break;
-    }
+    [gc initController:gk];
     [gc start];
 	return scene;
 }
@@ -116,28 +65,12 @@
     _showground.position = CGPointMake(size.width /2 , size.height/2);
     _showground.scale = 1;
     [self addChild:_showground z:2];
-    //================循环游戏逻辑=================
-    [self schedule:@selector(gameLogic:) interval:1.0];		
-}
-
-//游戏逻辑（循环）
--(void)gameLogic:(ccTime)dt {
-	//删除无用信息
-	GameController *gc = [GameController getGameController];
-    [gc deleteUnUseSprite:self];
-	// 设置当前金额，波数等信息
-    [gc.gameImfomation setEnemyNumValue];
-    [gc.gameImfomation setWaveValue];
-    [gc.gameImfomation setGoldValue];
 }
 
 - (CGPoint)boundLayerPos:(CGPoint)newPos {
-    //CGSize winSize = [CCDirector sharedDirector].winSize;
     CGPoint retval = newPos;
     retval.x = MIN(retval.x, 0);
-    //retval.x = MAX(retval.x, -map.contentSize.width+winSize.width); 
     retval.y = MIN(0, retval.y);
-    //retval.y = MAX(-map.contentSize.height+winSize.height, retval.y); 
     return retval;
 }
 
@@ -168,17 +101,18 @@
 {
     CGPoint point = [self convertTouchToNodeSpace:[touches anyObject]];
     NSLog(@"click pos is (x:%f,y:%f)",point.x, point.y);
-	switch ([GameController getGameController].screenClickType) {
+    GameController *gc = [GameController getGameController];
+	switch (gc.screenClickType) {
 		case SCT_ALL:
 			[self sceneTouchBegan:touches operateType:[GameController getGameController].operateType];
 			break;
 		case SCT_ONLYWHITE:
-			if (1 == 2) {
+			if ([gc.pt isWhite:point]) {
 				[self sceneTouchBegan:touches operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_NOTWHITE:
-			if (1 == 2) {
+			if (![gc.pt isWhite:point]) {
 				[self sceneTouchBegan:touches operateType:[GameController getGameController].operateType];
 			}
 			break;
@@ -189,17 +123,19 @@
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	switch ([GameController getGameController].screenClickType) {
+    CGPoint point = [self convertTouchToNodeSpace:[touches anyObject]];
+    GameController *gc = [GameController getGameController];
+	switch (gc.screenClickType) {
 		case SCT_ALL:
 			[self sceneTouchMoved:touches operateType:[GameController getGameController].operateType];
 			break;
 		case SCT_ONLYWHITE:
-			if (1 == 2) {
+			if ([gc.pt isWhite:point]) {
 				[self sceneTouchMoved:touches operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_NOTWHITE:
-			if (1 == 2) {
+			if (![gc.pt isWhite:point]) {
 				[self sceneTouchMoved:touches operateType:[GameController getGameController].operateType];
 			}
 			break;
@@ -210,19 +146,19 @@
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	switch ([GameController getGameController].screenClickType) {
+    CGPoint point = [self convertTouchToNodeSpace:[touches anyObject]];
+    GameController *gc = [GameController getGameController];
+	switch (gc.screenClickType) {
 		case SCT_ALL:
 			[self sceneTouchEnded:touches operateType:[GameController getGameController].operateType];
 			break;
 		case SCT_ONLYWHITE:
-			// 判断点的颜色
-			if (1 == 2) {
+			if ([gc.pt isWhite:point]) {
 				[self sceneTouchEnded:touches operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_NOTWHITE:
-			// 判断点的颜色
-			if (1 == 2) {
+			if (![gc.pt isWhite:point]) {
 				[self sceneTouchEnded:touches operateType:[GameController getGameController].operateType];
 			}
 			break;

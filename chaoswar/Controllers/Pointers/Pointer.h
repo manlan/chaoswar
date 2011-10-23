@@ -21,6 +21,8 @@
 
 - (void) prepareNextWave:(ccTime)dt;
 
+- (void) endThisPoint:(ccTime)dt;
+
 - (void) initController;
 
 - (void) initAnimate;
@@ -36,5 +38,7 @@
 - (void) initWayPoint:(WayManager*)manager;
 
 - (void) initFriendly:(NSMutableArray*)array;
+
+- (BOOL) isWhite:(CGPoint)point;
 
 @end

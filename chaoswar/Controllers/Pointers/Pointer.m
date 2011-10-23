@@ -46,6 +46,11 @@
     [[CCScheduler sharedScheduler] scheduleSelector:@selector(nextWaveReady:) forTarget:self interval:dt paused:NO];
 }
 
+- (void) endThisPoint:(ccTime)dt
+{
+
+}
+
 - (void) nextWaveReady:(ccTime)dt
 {
     [[CCScheduler sharedScheduler] unscheduleSelector:@selector(nextWaveReady:) forTarget:self];
@@ -101,6 +106,11 @@
     [_waveArray release];
     [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
 	[super dealloc];
+}
+
+- (BOOL) isWhite:(CGPoint)point
+{
+    return YES;
 }
 
 @end

@@ -21,7 +21,8 @@
 
 + (void) initBoss02
 {
-    [AnimateManager initAnimate:@"bs02"];
+    [AnimateManager initAnimate:@"bs021"];
+    [AnimateManager initAnimate:@"bs022"];
 }
 
 + (void) initFly01

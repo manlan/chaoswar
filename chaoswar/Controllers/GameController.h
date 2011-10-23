@@ -19,12 +19,12 @@
 @property (nonatomic, assign) GameMagicScene *gameMagic;
 @property (nonatomic, assign) GameControllerScene *gameController;
 @property (nonatomic, assign) GameHintScene *gameHint;
-@property (nonatomic, retain) NSMutableArray *enemyArray;
-@property (nonatomic, retain) NSMutableArray *towerArray;
-@property (nonatomic, retain) NSMutableArray *bulletArray;
-@property (nonatomic, retain) NSMutableArray *frientlyArray;
-@property (nonatomic, retain) WayManager *wayManager;
-@property (nonatomic, retain) Pointer *pt;
+@property (nonatomic, assign) NSMutableArray *enemyArray;
+@property (nonatomic, assign) NSMutableArray *towerArray;
+@property (nonatomic, assign) NSMutableArray *bulletArray;
+@property (nonatomic, assign) NSMutableArray *frientlyArray;
+@property (nonatomic, assign) WayManager *wayManager;
+@property (nonatomic, assign) Pointer *pt;
 @property int maxWave;
 @property int currentWave;
 @property int currentHealth;
@@ -38,15 +38,15 @@
 
 + (void) delGameController;
 
-- (void) initController:(Pointer*)pointer;
+- (void) initController:(int)p;
 
 - (void) start;
 
-- (void) deleteUnUseSprite:(CCLayer*)scene;
+- (void) restart;
+
+- (void) stopGame;
 
 - (void) setGameStatus;
-
-- (void) restart;
 
 - (void) startNextWave;
 

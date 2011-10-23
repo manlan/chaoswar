@@ -18,5 +18,6 @@
 #import "TDFlyEnemy.h"
 #import "TDMagicEnemy.h"
 #import "TDBossEnemy.h"
+#import "TDShooterEnemy.h"
 
 #import "TDFriendly.h"

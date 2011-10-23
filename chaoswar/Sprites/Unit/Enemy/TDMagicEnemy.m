@@ -1,5 +1,5 @@
 #import "TDMagicEnemy.h"
-
+#import "GamePubDef.h"
 
 @implementation TDMagicEnemy
 

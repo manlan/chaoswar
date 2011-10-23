@@ -63,8 +63,8 @@ const TDSprite *_lastSprite = nil;
         _arrowSprite.anchorPoint = ccp(0.5, 0.5);
         [self addChild:_arrowSprite z:3];
         
-        [_bloodShowSprite setVisible:NO];
-        [_bloodBackSprite setVisible:NO];
+        [_bloodShowSprite setVisible:_showBlood];
+        [_bloodBackSprite setVisible:_showBlood];
         [_arrowSprite setVisible:NO];
         [self initAnimate];
 	}
@@ -97,6 +97,7 @@ const TDSprite *_lastSprite = nil;
 
 - (void) onClick
 {
+    
 }
 
 - (void) doSelect
@@ -283,11 +284,16 @@ const TDSprite *_lastSprite = nil;
 }
 
 - (void) statusToDeading {
-    
+    [self clearSpriteData];
 }
 
 - (void) statusToDead {
     
+}
+
+- (void) clearSpriteData
+{
+
 }
 
 - (void) setSpriteStatus:(TSpriteStatus)spriteStatus
@@ -298,9 +304,11 @@ const TDSprite *_lastSprite = nil;
             [self statusToNormal];
             break;
         case TSS_DEADING:
+            [self clearSpriteData];
             [self statusToDeading];
             break;
         case TSS_DEAD:
+            [self clearSpriteData];
             [self statusToDead];
             break;
         default:
