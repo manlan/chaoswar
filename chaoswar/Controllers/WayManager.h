@@ -7,7 +7,7 @@
 
 - (void) removeAllWay;
 
-- (void) addWayPoint:(int)roadNum wayPoint:(CGPoint)wayPoint z:(int)z;
+- (void) addWayPoint:(int)roadNum wayPoint:(CGPoint)wayPoint;
 
 - (NSMutableArray*) getWay:(int)roadNum;
 

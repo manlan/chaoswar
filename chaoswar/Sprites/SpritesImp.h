@@ -21,3 +21,6 @@
 #import "TDShooterEnemy.h"
 
 #import "TDFriendly.h"
+#import "TDTowerFriendly.h"
+#import "TDMagicFriendly.h"
+#import "TDForeverFriendly.h"

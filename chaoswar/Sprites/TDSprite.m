@@ -20,6 +20,7 @@ const TDSprite *_lastSprite = nil;
 @synthesize bloodShowSprite = _bloodShowSprite;
 @synthesize bloodBackSprite = _bloodBackSprite;
 @synthesize arrowSprite = _arrowSprite;
+@synthesize effectSprite = _effectSprite;
 
 + (id) getSprite
 {
@@ -37,6 +38,11 @@ const TDSprite *_lastSprite = nil;
     return YES;
 }
 
+- (BOOL) stop
+{
+    [self unscheduleAllSelectors];
+}
+
 -(id) init
 {
 	if( (self=[super init])) {
@@ -49,7 +55,6 @@ const TDSprite *_lastSprite = nil;
         _killNum = 0;
         _canClick = YES;
         _showBlood = NO;
-        
         //初始化血条，选择标记，魔法动画等
         _bloodShowSprite = [CCSprite spriteWithFile:@"showProgress.png"];
         _bloodShowSprite.anchorPoint = ccp(0, 0);
@@ -59,8 +64,22 @@ const TDSprite *_lastSprite = nil;
         _bloodBackSprite.anchorPoint = ccp(0, 0);
         [self addChild:_bloodBackSprite z:1];
         
-        _arrowSprite = [CCSprite spriteWithFile:@"selected.png"];
+        _arrowSprite = [CCSprite spriteWithSpriteFrameName:@"spSel0001.png"];
         _arrowSprite.anchorPoint = ccp(0.5, 0.5);
+        CCSpriteFrameCache *cache = [CCSpriteFrameCache sharedSpriteFrameCache];
+        NSMutableArray *animArray = [NSMutableArray array];
+        CCSpriteFrame *frame = nil;
+        int i = 1;
+        do {
+            frame = [cache spriteFrameByName:[NSString stringWithFormat:@"spSel%04d.png", i]];
+            i++;
+            if (frame != nil) {
+                [animArray addObject:frame];
+            }
+        } while (frame != nil);
+        CCAnimation *arrowAni = [CCAnimation animationWithFrames:animArray delay:0.05f];
+        [_arrowSprite addAnimation:arrowAni];
+        [_arrowSprite runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:0.9 animation:arrowAni restoreOriginalFrame:NO]]];
         [self addChild:_arrowSprite z:3];
         
         [_bloodShowSprite setVisible:_showBlood];
@@ -87,6 +106,9 @@ const TDSprite *_lastSprite = nil;
     if (_lastSprite == self) {
         _lastSprite = nil;
     }
+//    [_bloodShowSprite removeFromParentAndCleanup:YES];
+//    [_bloodBackSprite removeFromParentAndCleanup:YES];
+//    [_arrowSprite removeFromParentAndCleanup:YES];
 	[super dealloc];
 }
 
@@ -152,27 +174,27 @@ const TDSprite *_lastSprite = nil;
             [self spriteTouchBegan:touch operateType:[GameController getGameController].operateType];
 			break;
 		case SCT_ALLSPRITE:
-			if ([self isMemberOfClass:[TDSprite class]]) {
+			if ([self isKindOfClass:[TDSprite class]]) {
 				[self spriteTouchBegan:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_TOWER:
-			if ([self isMemberOfClass:[TDTower class]]) {
+			if ([self isKindOfClass:[TDTower class]]) {
 				[self spriteTouchBegan:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_UNIT:
-			if ([self isMemberOfClass:[TDUnit class]]) {
+			if ([self isKindOfClass:[TDUnit class]]) {
 				[self spriteTouchBegan:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_ENEMY:
-			if ([self isMemberOfClass:[TDEnemy class]]) {
+			if ([self isKindOfClass:[TDEnemy class]]) {
 				[self spriteTouchBegan:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_FRIENDLY:
-			if ([self isMemberOfClass:[TDFriendly class]]) {
+			if ([self isKindOfClass:[TDFriendly class]]) {
 				[self spriteTouchBegan:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
@@ -190,27 +212,27 @@ const TDSprite *_lastSprite = nil;
 			[self spriteTouchMoved:touch operateType:[GameController getGameController].operateType];
 			break;
 		case SCT_ALLSPRITE:
-			if ([self isMemberOfClass:[TDSprite class]]) {
+			if ([self isKindOfClass:[TDSprite class]]) {
 				[self spriteTouchMoved:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_TOWER:
-			if ([self isMemberOfClass:[TDTower class]]) {
+			if ([self isKindOfClass:[TDTower class]]) {
 				[self spriteTouchMoved:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_UNIT:
-			if ([self isMemberOfClass:[TDUnit class]]) {
+			if ([self isKindOfClass:[TDUnit class]]) {
 				[self spriteTouchMoved:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_ENEMY:
-			if ([self isMemberOfClass:[TDEnemy class]]) {
+			if ([self isKindOfClass:[TDEnemy class]]) {
 				[self spriteTouchMoved:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_FRIENDLY:
-			if ([self isMemberOfClass:[TDFriendly class]]) {
+			if ([self isKindOfClass:[TDFriendly class]]) {
 				[self spriteTouchMoved:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
@@ -226,27 +248,27 @@ const TDSprite *_lastSprite = nil;
 			[self spriteTouchEnded:touch operateType:[GameController getGameController].operateType];
 			break;
 		case SCT_ALLSPRITE:
-			if ([self isMemberOfClass:[TDSprite class]]) {
+			if ([self isKindOfClass:[TDSprite class]]) {
 				[self spriteTouchEnded:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_TOWER:
-			if ([self isMemberOfClass:[TDTower class]]) {
+			if ([self isKindOfClass:[TDTower class]]) {
 				[self spriteTouchEnded:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_UNIT:
-			if ([self isMemberOfClass:[TDUnit class]]) {
+			if ([self isKindOfClass:[TDUnit class]]) {
 				[self spriteTouchEnded:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_ENEMY:
-			if ([self isMemberOfClass:[TDEnemy class]]) {
+			if ([self isKindOfClass:[TDEnemy class]]) {
 				[self spriteTouchEnded:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
 		case SCT_FRIENDLY:
-			if ([self isMemberOfClass:[TDFriendly class]]) {
+			if ([self isKindOfClass:[TDFriendly class]]) {
 				[self spriteTouchEnded:touch operateType:[GameController getGameController].operateType];
 			}
 			break;
@@ -284,16 +306,20 @@ const TDSprite *_lastSprite = nil;
 }
 
 - (void) statusToDeading {
-    [self clearSpriteData];
+
 }
 
 - (void) statusToDead {
-    
+    [[GameController getGameController].enemyArray removeObject:self];
+    [[GameController getGameController].towerArray removeObject:self];
+    [[GameController getGameController].bulletArray removeObject:self];
+    [[GameController getGameController].frientlyArray removeObject:self];
+    [self removeFromParentAndCleanup:YES];
 }
 
 - (void) clearSpriteData
 {
-
+    
 }
 
 - (void) setSpriteStatus:(TSpriteStatus)spriteStatus
@@ -325,6 +351,17 @@ const TDSprite *_lastSprite = nil;
     menu.position = pos;
     [[GameController getGameController].gameController addChild:menu z:TDS_MENU_Z];
     return menuItem;
+}
+
+-(void) setPosition: (CGPoint)newPosition
+{
+    [super setPosition:newPosition];
+    if (self.parent) {
+        CCNode *p = self.parent;
+        CGSize size = [[CCDirector sharedDirector] winSize];
+        [self removeFromParentAndCleanup:NO];
+        [p addChild:self z:size.height - newPosition.y + 100];
+    }
 }
 
 @end

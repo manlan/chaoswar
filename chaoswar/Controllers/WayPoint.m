@@ -4,19 +4,18 @@
 @implementation WayPoint
 
 @synthesize point = _point;
-@synthesize z = _z;
 
-+ (WayPoint*) getWayPoint:(CGPoint)pt z:(int)z
++ (WayPoint*) getWayPoint:(CGPoint)pt
 {
     WayPoint *wayPoint = [[[WayPoint alloc] init] autorelease];
-    [wayPoint setValue:pt z:z];
+    [wayPoint setValue:pt];
     return wayPoint;
 }
 
-- (void) setValue:(CGPoint)pt z:(int)z
+- (void) setValue:(CGPoint)pt
 {
     _point = pt;
-    _z = z;
+
 }
 
 @end

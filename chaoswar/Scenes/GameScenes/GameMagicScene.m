@@ -77,22 +77,8 @@
 	return btnMagic;
 }
 
-//==============火雨=================
--(void) Magic1:(id) sender 
-{
-    GameController *gc = [GameController getGameController];
-    if (gc.operateType == OT_MAGIC_FIRE) {
-        gc.operateType = OT_NORMAL;
-        gc.screenClickType = SCT_ALL;
-    } else {
-        gc.operateType = OT_MAGIC_FIRE;
-        gc.screenClickType = SCT_ONLYWHITE;
-    }
-    [gc setGameStatus];
-}
-
 //==============盟军=================
--(void) Magic2:(id) sender 
+-(void) Magic1:(id) sender 
 {
 	GameController *gc = [GameController getGameController];
     if (gc.operateType == OT_MAGIC_FRIENDLY) {
@@ -105,8 +91,36 @@
     [gc setGameStatus];
 }
 
+//==============火雨=================
+-(void) Magic2:(id) sender 
+{
+    GameController *gc = [GameController getGameController];
+    if (gc.operateType == OT_MAGIC_FIRE) {
+        gc.operateType = OT_NORMAL;
+        gc.screenClickType = SCT_ALL;
+    } else {
+        gc.operateType = OT_MAGIC_FIRE;
+        gc.screenClickType = SCT_ONLYWHITE;
+    }
+    [gc setGameStatus];
+}
+
+//==============雷电=================
+-(void) Magic3:(id) sender
+{
+	GameController *gc = [GameController getGameController];
+    if (gc.operateType == OT_MAGIC_THUNDER) {
+        gc.operateType = OT_NORMAL;
+        gc.screenClickType = SCT_ALL;
+    } else {
+        gc.operateType = OT_MAGIC_THUNDER;
+        gc.screenClickType = SCT_ENEMY;
+    }
+    [gc setGameStatus];
+}
+
 //==============静止=================
--(void) Magic3:(id) sender 
+-(void) Magic4:(id) sender 
 {
 	GameController *gc = [GameController getGameController];
     if (gc.operateType == OT_MAGIC_STOP) {
@@ -117,19 +131,6 @@
         gc.screenClickType = SCT_ENEMY;
     }
     [gc setGameStatus];
-}
-
-//==============雷电=================
--(void) Magic4:(id) sender
-{
-	GameController *gc = [GameController getGameController];
-    if (gc.operateType == OT_MAGIC_THUNDER) {
-        gc.operateType = OT_NORMAL;
-        gc.screenClickType = SCT_ALL;
-    } else {
-        gc.operateType = OT_MAGIC_THUNDER;
-        gc.screenClickType = SCT_ENEMY;
-    }
 }
 
 -(void) GoNext:(id) sender 
@@ -159,7 +160,7 @@
 {
     if (!_btnMagic1) return;
     GameController *gc = [GameController getGameController];
-    if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_FIRE) {
+    if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_FRIENDLY) {
         [_btnMagic1 setIsEnabled:NO];
         return;
     }
@@ -176,7 +177,7 @@
 {
     if (!_btnMagic2) return;
     GameController *gc = [GameController getGameController];
-    if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_FRIENDLY) {
+    if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_FIRE) {
         [_btnMagic2 setIsEnabled:NO];
         return;
     }
@@ -193,7 +194,7 @@
 {
     if (!_btnMagic3) return;
     GameController *gc = [GameController getGameController];
-    if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_STOP) {
+    if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_THUNDER) {
         [_btnMagic3 setIsEnabled:NO];
         return;
     }
@@ -210,7 +211,7 @@
 {
     if (!_btnMagic4) return;
     GameController *gc = [GameController getGameController];
-    if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_THUNDER) {
+    if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_STOP) {
         [_btnMagic4 setIsEnabled:NO];
         return;
     }

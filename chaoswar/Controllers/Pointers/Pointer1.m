@@ -59,6 +59,13 @@
     [AnimateManager initMagicTower01];
     [AnimateManager initMagicTower02];
     [AnimateManager initMagicTower03];
+    [AnimateManager initMagicFriendly01];
+    [AnimateManager initMagicFriendly02];
+    [AnimateManager initForeverFriendly01];
+    [AnimateManager initMagicFire];
+    [AnimateManager initMagicThunder];
+    [AnimateManager initMagicStone];
+    [AnimateManager initAllEffect];
 }
 
 - (void) initEnemy:(NSMutableArray*)array
@@ -155,33 +162,33 @@
     //每一波的出兵数和顺序
     //addWayPoint函数参数
     // addWayPoint:路线编号
-    // addWayPoint:路线坐标，按顺序出的
-    [manager addWayPoint:1 wayPoint:ccp(232, -1) z:15];
-    [manager addWayPoint:1 wayPoint:ccp(232, 0) z:15];
-    [manager addWayPoint:1 wayPoint:ccp(232, 111) z:15];
-    [manager addWayPoint:1 wayPoint:ccp(350, 111) z:15];
-    [manager addWayPoint:1 wayPoint:ccp(350, 201) z:17];
-    [manager addWayPoint:1 wayPoint:ccp(142, 201) z:17];
-    [manager addWayPoint:1 wayPoint:ccp(142, 320) z:15];
-    [manager addWayPoint:1 wayPoint:ccp(142, 321) z:15];
-    
-    [manager addWayPoint:2 wayPoint:ccp(247, -1) z:15];
-    [manager addWayPoint:2 wayPoint:ccp(247, 0) z:15];
-    [manager addWayPoint:2 wayPoint:ccp(247, 96) z:17];
-    [manager addWayPoint:2 wayPoint:ccp(365, 96) z:17];
-    [manager addWayPoint:2 wayPoint:ccp(365, 216) z:16];
-    [manager addWayPoint:2 wayPoint:ccp(157, 216) z:16];
-    [manager addWayPoint:2 wayPoint:ccp(157, 320) z:15];
-    [manager addWayPoint:2 wayPoint:ccp(157, 321) z:15];
-    
-    [manager addWayPoint:3 wayPoint:ccp(262, -1) z:15];
-    [manager addWayPoint:3 wayPoint:ccp(262, 0) z:15];
-    [manager addWayPoint:3 wayPoint:ccp(262, 81) z:17];
-    [manager addWayPoint:3 wayPoint:ccp(380, 81) z:17];
-    [manager addWayPoint:3 wayPoint:ccp(380, 231) z:15];
-    [manager addWayPoint:3 wayPoint:ccp(172, 231) z:15];
-    [manager addWayPoint:3 wayPoint:ccp(172, 320) z:15];
-    [manager addWayPoint:3 wayPoint:ccp(172, 321) z:15];
+    // addWayPoint:路线坐标，按顺序出的    
+    [manager addWayPoint:1 wayPoint:ccp(142, 321)];
+    [manager addWayPoint:1 wayPoint:ccp(142, 320)];
+    [manager addWayPoint:1 wayPoint:ccp(142, 201)];
+    [manager addWayPoint:1 wayPoint:ccp(350, 201)];
+    [manager addWayPoint:1 wayPoint:ccp(350, 111)];
+    [manager addWayPoint:1 wayPoint:ccp(232, 111)];
+    [manager addWayPoint:1 wayPoint:ccp(232, 0)];
+    [manager addWayPoint:1 wayPoint:ccp(232, -1)];
+   
+    [manager addWayPoint:2 wayPoint:ccp(157, 321)];
+    [manager addWayPoint:2 wayPoint:ccp(157, 320)];
+    [manager addWayPoint:2 wayPoint:ccp(157, 216)];
+    [manager addWayPoint:2 wayPoint:ccp(365, 216)];
+    [manager addWayPoint:2 wayPoint:ccp(365, 96)];
+    [manager addWayPoint:2 wayPoint:ccp(247, 96)];
+    [manager addWayPoint:2 wayPoint:ccp(247, 0)];
+    [manager addWayPoint:2 wayPoint:ccp(247, -1)];
+      
+    [manager addWayPoint:3 wayPoint:ccp(172, 321)];
+    [manager addWayPoint:3 wayPoint:ccp(172, 320)];
+    [manager addWayPoint:3 wayPoint:ccp(172, 231)];
+    [manager addWayPoint:3 wayPoint:ccp(380, 231)];
+    [manager addWayPoint:3 wayPoint:ccp(380, 81)];
+    [manager addWayPoint:3 wayPoint:ccp(262, 81)];
+    [manager addWayPoint:3 wayPoint:ccp(262, 0)];
+    [manager addWayPoint:3 wayPoint:ccp(262, -1)];
 }
 
 - (void) initFriendly:(NSMutableArray*)array

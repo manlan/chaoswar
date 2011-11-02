@@ -33,8 +33,14 @@
     [[CCScheduler sharedScheduler] scheduleSelector:@selector(startRunEnemy:) forTarget:self interval:_beginRate paused:NO];
 }
 
+- (void) stopWave
+{
+    [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
+}
+
 - (void) startRunEnemy:(ccTime)dt
 {
+    [[CCScheduler sharedScheduler] unscheduleSelector:@selector(startRunEnemy:) forTarget:self];
     [[CCScheduler sharedScheduler] scheduleSelector:@selector(runEnemy:) forTarget:self interval:_spawnRate paused:NO];
 }
 
@@ -94,7 +100,10 @@
             break; 
         case ET_FLY2:
             return [TDFlyEnemy2 getSprite];
-            break; 
+            break;
+        case ET_FLY3:
+            return [TDFlyEnemy3 getSprite];
+            break;
         case ET_MAGIC1:
             return [TDMagicEnemy1 getSprite];
             break; 
@@ -121,17 +130,19 @@
         [[CCScheduler sharedScheduler] unscheduleSelector:@selector(runEnemy:) forTarget:self]; 
         return;
     }
+    CGSize size = [[CCDirector sharedDirector] winSize];    
     GameController *gc = [GameController getGameController];
     TDEnemy *enemy = [self getEnemy];
     enemy.nextWayPoint = 1;
     enemy.position = ccp(-1,  -1);
+    enemy.anchorPoint = ccp(0.5, 0);
     enemy.way = self.way;
     WayPoint *wayPoint = [enemy.way objectAtIndex:0];
     if (wayPoint) {
         CGPoint position = wayPoint.point;
         enemy.position = ccp(position.x, position.y);
     }
-    [gc.gameBackground addChild:enemy z:5];
+    [gc.gameBackground addChild:enemy z:size.height - enemy.position.y + 100];
     [gc.enemyArray addObject:enemy];
     [enemy run];
     _totalEnemy--;

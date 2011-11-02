@@ -3,14 +3,16 @@
 #import "GameController.h"
 #import "TDFriendly.h"
 #import "TDBullet.h"
+#import "TDDefBullet.h"
 #import "TDTower.h"
 
 @implementation TDEnemy
 
 @synthesize nextWayPoint = _nextWayPoint;
+@synthesize enemyStatus = _enemyStatus;
 @synthesize way = _way;
 @synthesize friendly = _friendly;
-@synthesize selfBulletArray = _selfBulletArray;
+@synthesize shootBulletArray = _shootBulletArray;
 @synthesize towerBulletArray = _towerBulletArray;
 @synthesize friendlyBulletArray = _friendlyBulletArray;
 @synthesize magicBulletArray = _magicBulletArray;
@@ -27,7 +29,8 @@
 -(id) init
 {
 	if( (self=[super init])) {
-        _selfBulletArray = [[NSMutableArray alloc] init];
+        _enemyStatus = ES_NORMAL;
+        _shootBulletArray = [[NSMutableArray alloc] init];
         _towerBulletArray = [[NSMutableArray alloc] init];
         _friendlyBulletArray = [[NSMutableArray alloc] init];
         _magicBulletArray = [[NSMutableArray alloc] init];
@@ -38,56 +41,25 @@
 }
 
 - (void) statusToDeading {
-    NSMutableArray *arraySelfBuller = [NSMutableArray arrayWithArray:_selfBulletArray];
-    for (TDEnemyBullet *t in arraySelfBuller) {
-        t.shooter = nil;
-    }
-    [arraySelfBuller removeAllObjects];
-    
-    NSMutableArray *arrayTowerBuller = [NSMutableArray arrayWithArray:_towerBulletArray];
-    for (TDTowerBullet *t in arrayTowerBuller) {
-        t.enemy = nil;
-    }
-    [arrayTowerBuller removeAllObjects];
-    
-    NSMutableArray *arrayFriendlyBuller = [NSMutableArray arrayWithArray:_friendlyBulletArray];
-    for (TDFriendlyBullet *t in arrayFriendlyBuller) {
-        t.enemy = nil;
-    }
-    [arrayFriendlyBuller removeAllObjects];
-    
-    NSMutableArray *arrayMagicBuller = [NSMutableArray arrayWithArray:_magicBulletArray];
-    [arrayMagicBuller removeAllObjects];
-    
-    NSMutableArray *arrayTower = [NSMutableArray arrayWithArray:_towerArray];
-    for (TDTower *t in arrayTower) {
-        t.enemy = nil;
-    }
-    [arrayTower removeAllObjects];
-    
-    NSMutableArray *arrayFriendly = [NSMutableArray arrayWithArray:_friendlyArray];
-    for (TDFriendly *t in arrayFriendly) {
-        //t.enemy = nil;
-    }
-    [arrayFriendly removeAllObjects];
+
 }
 
 - (void) dealloc
 {
-    [_selfBulletArray removeAllObjects];
+    [_shootBulletArray removeAllObjects];
     [_towerBulletArray removeAllObjects];
     [_friendlyBulletArray removeAllObjects];
     [_magicBulletArray removeAllObjects];
     [_towerArray removeAllObjects];
     [_friendlyArray removeAllObjects];
-    [_way release];
-    [_friendly release];
-    [_selfBulletArray release];
+    [_shootBulletArray release];
     [_towerBulletArray release];
     [_friendlyBulletArray release];
     [_magicBulletArray release];
     [_towerArray release];
     [_friendlyArray release];
+    self.friendly = nil;
+    self.way = nil;
 	[super dealloc];
 }
 
@@ -106,7 +78,7 @@
     position = wp.point;
     [self removeFromParentAndCleanup:NO];
     
-    [gc.gameBackground addChild:self z:wp.z];
+    [gc.gameBackground addChild:self z:self.zOrder];
     //动画
     float x_plus = position.x - self.position.x;
     float y_plus = position.y - self.position.y;
@@ -140,12 +112,157 @@
 
 - (CGPoint) getPositionAfterTime:(ccTime)dt
 {
-    return ccp(0, 0);
+    CGFloat doDistance = self.moveSpeed * dt;
+    CGPoint currentPos = self.position;
+    CGPoint nextPos = self.position;
+    int iWave = _nextWayPoint;
+    while ((iWave < self.way.count)) {
+        WayPoint *wp = [self.way objectAtIndex:iWave];
+        nextPos = wp.point;
+        CGFloat curDistance = ccpDistance(currentPos, nextPos);
+        if (curDistance >= doDistance) {
+            CGFloat x = nextPos.x - currentPos.x;
+            x = x * doDistance;
+            x = x / curDistance;
+            x = currentPos.x + x;
+            CGFloat y = nextPos.y - currentPos.y;
+            y = y * doDistance;
+            y = y / curDistance;
+            y = currentPos.y + y;
+            return ccp(x, y);
+        }
+        doDistance = doDistance - curDistance;
+        currentPos = nextPos;
+        iWave++;
+    }
+    return currentPos;
 }
 
 -(void) afterMove:(id)sender {
     _nextWayPoint++;
     [self schedule:@selector(doMove:)];
+}
+
+- (void) setFriendly:(TDFriendly *)friendly
+{
+    if (_friendly) {
+        [_friendly.attactEnemyArray removeObject:self];
+    }
+    _friendly = friendly;
+    if (_friendly) {
+        [_friendly.attactEnemyArray addObject:self];
+    }
+}
+
+- (void) clearSpriteData
+{
+    [super clearSpriteData];
+    NSMutableArray *tmpArray = nil;
+    //攻击的友军清空
+    self.friendly = nil;
+    //发射的子弹清空
+    tmpArray = [NSMutableArray arrayWithArray:_shootBulletArray];
+    for (TDEnemyBullet *t in tmpArray) t.shooter = nil;
+    [tmpArray removeAllObjects];
+    //被攻击的子弹清空
+    tmpArray = [NSMutableArray arrayWithArray:_towerBulletArray];
+    for (TDTowerBullet *t in tmpArray) t.enemy = nil;
+    [tmpArray removeAllObjects];
+    //被攻击的子弹清空
+    tmpArray = [NSMutableArray arrayWithArray:_friendlyBulletArray];
+    for (TDFriendlyBullet *t in tmpArray) t.enemy = nil;
+    [tmpArray removeAllObjects];
+    //被攻击的子弹清空
+    tmpArray = [NSMutableArray arrayWithArray:_magicBulletArray];
+    for (TDMagicBullet *t in tmpArray) t.enemy = nil;
+    [tmpArray removeAllObjects];
+    //被攻击的塔清空
+    tmpArray = [NSMutableArray arrayWithArray:_towerArray];
+    for (TDTower *t in tmpArray) t.enemy = nil;
+    [tmpArray removeAllObjects];
+    //被攻击的友军清空
+    tmpArray = [NSMutableArray arrayWithArray:_friendlyArray];
+    for (TDFriendly *t in tmpArray) t.enemy = nil;
+    [tmpArray removeAllObjects];
+}
+
+- (void) spriteTouchBegan:(UITouch *)touch operateType:(TOperateType)operateType
+{
+    switch (operateType) {
+        case OT_NORMAL:
+            NSLog(@"OperateType is Nomal");
+            break;
+        case OT_MAGIC_FRIENDLY:
+            NSLog(@"OperateType is Friendly");
+            break;
+        case OT_MAGIC_FIRE:
+            NSLog(@"OperateType is Fire");
+            break;
+        case OT_MAGIC_THUNDER:
+            NSLog(@"OperateType is Thunder");
+            [self doMagicThunder];
+            break;
+        case OT_MAGIC_STOP:
+            NSLog(@"OperateType is Stop");
+            [self doMagicStop];
+            break;
+        case OT_BUILDING:
+            NSLog(@"OperateType is Building");
+            break;
+        case OT_SELL:
+            NSLog(@"OperateType is Sell");
+            break;
+        case OT_UPDATE:
+            NSLog(@"OperateType is Update");
+            break;
+        case OT_SETSEARCHPOINT:
+            NSLog(@"OperateType is SearchPoint");
+            break;
+        case OT_NONE:
+            NSLog(@"OperateType is None");
+            break;
+        default:
+            break;
+    }
+}
+
+- (void) spriteTouchMoved:(UITouch *)touch operateType:(TOperateType)operateType
+{
+	
+}
+
+- (void) spriteTouchEnded:(UITouch *)touch operateType:(TOperateType)operateType
+{
+	
+}
+
+- (void) doMagicThunder
+{
+    GameController *gc = [GameController getGameController];
+	TDThunderBullet1 *b = [TDThunderBullet1 getSprite];
+    b.enemy = self;
+    b.position = ccp(self.position.x, self.position.y + 100);
+    [gc.gameBackground addChild:b z:60];
+    [gc.bulletArray addObject:b];
+    [b run];
+}
+
+- (void) doMagicStop
+{
+    GameController *gc = [GameController getGameController];
+	TDStoneBullet1 *b = [TDStoneBullet1 getSprite];
+    b.enemy = self;
+    b.position = ccp(self.position.x, self.position.y + 100);
+    [gc.gameBackground addChild:b z:60];
+    [gc.bulletArray addObject:b];
+    [b run];
+}
+
+- (void) doubleAttact:(TDFriendly*)s
+{
+    [self stopAllActions];
+    _enemyStatus = ES_ATTACT;
+    _friendly = s;
 }
 
 @end

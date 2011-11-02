@@ -8,6 +8,5 @@
 @synthesize attactRange = _attactRange;
 @synthesize attact = _attact;
 @synthesize attactMode = _attactMode;
-@synthesize bottomPoint = _bottomPoint;
 
 @end

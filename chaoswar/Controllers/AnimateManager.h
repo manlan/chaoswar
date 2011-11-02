@@ -10,6 +10,8 @@
 
 + (void) initAnimate:(NSString*)fileName;
 
+//初始化敌人动画
+
 + (void) initBoss01;
 
 + (void) initBoss02;
@@ -58,6 +60,8 @@
 
 + (void) initFoot16;
 
+//初始化塔动画
+
 + (void) initDefenceTower01;
 
 + (void) initDefenceTower02;
@@ -77,5 +81,25 @@
 + (void) initMagicTower02;
 
 + (void) initMagicTower03;
+
+//初始化友军动画
+
++ (void) initMagicFriendly01;
+
++ (void) initMagicFriendly02;
+
++ (void) initForeverFriendly01;
+
+//初始化魔法动画
+
++ (void) initMagicFire;
+
++ (void) initMagicThunder;
+
++ (void) initMagicStone;
+
+//初始化效果动画
+
++ (void) initAllEffect;
 
 @end

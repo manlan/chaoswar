@@ -105,55 +105,55 @@
 - (void) initWayPoint:(WayManager*)manager
 {
     [manager removeAllWay];
-    [manager addWayPoint:1 wayPoint:ccp(-1, 121) z:15];
-    [manager addWayPoint:1 wayPoint:ccp(101, 121) z:15];
-    [manager addWayPoint:1 wayPoint:ccp(101, 235) z:15];
-    [manager addWayPoint:1 wayPoint:ccp(214, 235) z:15];
-    [manager addWayPoint:1 wayPoint:ccp(214, 321) z:15];
+    [manager addWayPoint:1 wayPoint:ccp(-1, 121)];
+    [manager addWayPoint:1 wayPoint:ccp(101, 121)];
+    [manager addWayPoint:1 wayPoint:ccp(101, 235)];
+    [manager addWayPoint:1 wayPoint:ccp(214, 235)];
+    [manager addWayPoint:1 wayPoint:ccp(214, 321)];
     
-    [manager addWayPoint:2 wayPoint:ccp(-1, 105) z:16];
-    [manager addWayPoint:2 wayPoint:ccp(116, 105) z:16];
-    [manager addWayPoint:2 wayPoint:ccp(116, 220) z:16];
-    [manager addWayPoint:2 wayPoint:ccp(229, 220) z:16];
-    [manager addWayPoint:2 wayPoint:ccp(229, 321) z:16];
+    [manager addWayPoint:2 wayPoint:ccp(-1, 105)];
+    [manager addWayPoint:2 wayPoint:ccp(116, 105)];
+    [manager addWayPoint:2 wayPoint:ccp(116, 220)];
+    [manager addWayPoint:2 wayPoint:ccp(229, 220)];
+    [manager addWayPoint:2 wayPoint:ccp(229, 321)];
     
-    [manager addWayPoint:3 wayPoint:ccp(-1, 92) z:17];
-    [manager addWayPoint:3 wayPoint:ccp(130, 92) z:17];
-    [manager addWayPoint:3 wayPoint:ccp(130, 208) z:17];
-    [manager addWayPoint:3 wayPoint:ccp(246, 208) z:17];
-    [manager addWayPoint:3 wayPoint:ccp(246, 321) z:17];
+    [manager addWayPoint:3 wayPoint:ccp(-1, 92)];
+    [manager addWayPoint:3 wayPoint:ccp(130, 92)];
+    [manager addWayPoint:3 wayPoint:ccp(130, 208)];
+    [manager addWayPoint:3 wayPoint:ccp(246, 208)];
+    [manager addWayPoint:3 wayPoint:ccp(246, 321)];
     
-    [manager addWayPoint:4 wayPoint:ccp(481, 121) z:15];
-    [manager addWayPoint:4 wayPoint:ccp(373, 121) z:15];
-    [manager addWayPoint:4 wayPoint:ccp(373, 235) z:15];
-    [manager addWayPoint:4 wayPoint:ccp(246, 235) z:15];
-    [manager addWayPoint:4 wayPoint:ccp(246, 321) z:15];
+    [manager addWayPoint:4 wayPoint:ccp(481, 121)];
+    [manager addWayPoint:4 wayPoint:ccp(373, 121)];
+    [manager addWayPoint:4 wayPoint:ccp(373, 235)];
+    [manager addWayPoint:4 wayPoint:ccp(246, 235)];
+    [manager addWayPoint:4 wayPoint:ccp(246, 321)];
     
-    [manager addWayPoint:5 wayPoint:ccp(481, 105) z:16];
-    [manager addWayPoint:5 wayPoint:ccp(357, 105) z:16];
-    [manager addWayPoint:5 wayPoint:ccp(357, 220) z:16];
-    [manager addWayPoint:5 wayPoint:ccp(229, 220) z:16];
-    [manager addWayPoint:5 wayPoint:ccp(229, 321) z:16];
+    [manager addWayPoint:5 wayPoint:ccp(481, 105)];
+    [manager addWayPoint:5 wayPoint:ccp(357, 105)];
+    [manager addWayPoint:5 wayPoint:ccp(357, 220)];
+    [manager addWayPoint:5 wayPoint:ccp(229, 220)];
+    [manager addWayPoint:5 wayPoint:ccp(229, 321)];
     
-    [manager addWayPoint:6 wayPoint:ccp(481, 92) z:17];
-    [manager addWayPoint:6 wayPoint:ccp(343, 92) z:17];
-    [manager addWayPoint:6 wayPoint:ccp(343, 205) z:17];
-    [manager addWayPoint:6 wayPoint:ccp(214, 205) z:17];
-    [manager addWayPoint:6 wayPoint:ccp(214, 321) z:17];
+    [manager addWayPoint:6 wayPoint:ccp(481, 92)];
+    [manager addWayPoint:6 wayPoint:ccp(343, 92)];
+    [manager addWayPoint:6 wayPoint:ccp(343, 205)];
+    [manager addWayPoint:6 wayPoint:ccp(214, 205)];
+    [manager addWayPoint:6 wayPoint:ccp(214, 321)];
     
-    [manager addWayPoint:7 wayPoint:ccp(216, -1) z:17];
-    [manager addWayPoint:7 wayPoint:ccp(216, 105) z:17];
-    [manager addWayPoint:7 wayPoint:ccp(116, 105) z:17];
-    [manager addWayPoint:7 wayPoint:ccp(116, 220) z:17];
-    [manager addWayPoint:7 wayPoint:ccp(229, 220) z:17];
-    [manager addWayPoint:7 wayPoint:ccp(229, 321) z:17];
+    [manager addWayPoint:7 wayPoint:ccp(216, -1)];
+    [manager addWayPoint:7 wayPoint:ccp(216, 105)];
+    [manager addWayPoint:7 wayPoint:ccp(116, 105)];
+    [manager addWayPoint:7 wayPoint:ccp(116, 220)];
+    [manager addWayPoint:7 wayPoint:ccp(229, 220)];
+    [manager addWayPoint:7 wayPoint:ccp(229, 321)];
 
-    [manager addWayPoint:8 wayPoint:ccp(238, -1) z:17];
-    [manager addWayPoint:8 wayPoint:ccp(238, 105) z:17];
-    [manager addWayPoint:8 wayPoint:ccp(357, 105) z:17];
-    [manager addWayPoint:8 wayPoint:ccp(357, 220) z:17];
-    [manager addWayPoint:8 wayPoint:ccp(229, 220) z:17];
-    [manager addWayPoint:8 wayPoint:ccp(229, 321) z:17];
+    [manager addWayPoint:8 wayPoint:ccp(238, -1)];
+    [manager addWayPoint:8 wayPoint:ccp(238, 105)];
+    [manager addWayPoint:8 wayPoint:ccp(357, 105)];
+    [manager addWayPoint:8 wayPoint:ccp(357, 220)];
+    [manager addWayPoint:8 wayPoint:ccp(229, 220)];
+    [manager addWayPoint:8 wayPoint:ccp(229, 321)];
 }
 
 - (void) initFriendly:(NSMutableArray*)array

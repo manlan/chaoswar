@@ -28,15 +28,15 @@
     [dicWay removeAllObjects];
 }
 
-- (void) addWayPoint:(int)roadNum wayPoint:(CGPoint)wayPoint z:(int)z
+- (void) addWayPoint:(int)roadNum wayPoint:(CGPoint)wayPoint
 {
     NSMutableArray *way = [dicWay objectForKey:[NSString stringWithFormat:@"%d", roadNum]];
     if (!way) {
         [dicWay setObject:[NSMutableArray array] forKey:[NSString stringWithFormat:@"%d", roadNum]];
-        [self addWayPoint:roadNum wayPoint:wayPoint z:z];
+        [self addWayPoint:roadNum wayPoint:wayPoint];
         return;
     }
-    [way addObject:[WayPoint getWayPoint:wayPoint z:z]];
+    [way addObject:[WayPoint getWayPoint:wayPoint]];
 }
 
 - (NSMutableArray*) getWay:(int)roadNum

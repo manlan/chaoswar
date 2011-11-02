@@ -28,10 +28,11 @@
 
 - (void) addTower:(NSMutableArray*)a t:(TDTower*)t p:(CGPoint)p
 {
+    CGSize size = [[CCDirector sharedDirector] winSize];
     GameController *gc = [GameController getGameController];
-    t.bottomPoint = p;
-    t.position = ccp(p.x, p.y + t.contentSize.height / 2);
-    [gc.gameBackground addChild:t z:TOWER_BUILDING_Z];
+    t.position = p;
+    t.anchorPoint = ccp(0.5, 0);
+    [gc.gameBackground addChild:t z:size.height - p.y + 100];
     [t run];
     [a addObject:t];
 }
@@ -98,19 +99,24 @@
 }
 
 - (void)dealloc {
-    for (int i = 0; i < [_waveArray count]; i++) {
-        Wave *wave = (Wave*) [_waveArray objectAtIndex:i];
-        [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:wave];
-    }
-    [_waveArray removeAllObjects];
+    [self stopController];
     [_waveArray release];
-    [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
 	[super dealloc];
 }
 
 - (BOOL) isWhite:(CGPoint)point
 {
     return YES;
+}
+
+- (void) stopController
+{
+    [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
+    for (int i = 0; i < [_waveArray count]; i++) {
+        Wave *wave = (Wave*) [_waveArray objectAtIndex:i];
+        [wave stopWave];
+    }
+    [_waveArray removeAllObjects];
 }
 
 @end

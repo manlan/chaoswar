@@ -46,6 +46,7 @@
 {
 	if( (self=[super init])) {
         [self setIsTouchEnabled:YES];
+        [GameController initGameController];
 	}
 	return self;
 }
@@ -169,7 +170,43 @@
 
 - (void) sceneTouchBegan:(NSSet*)touches operateType:(TOperateType)operateType
 {
-	
+    CGPoint point = [self convertTouchToNodeSpace:[touches anyObject]];
+    switch (operateType) {
+        case OT_NORMAL:
+            NSLog(@"OperateType is Nomal");
+            break;
+        case OT_MAGIC_FIRE:
+            NSLog(@"OperateType is Fire");
+            [[GameController getGameController] doMagicFire:point];
+            break;
+        case OT_MAGIC_FRIENDLY:
+            NSLog(@"OperateType is Friendly");
+            [[GameController getGameController] doMagicFriendly:point];
+            break;
+        case OT_MAGIC_STOP:
+            NSLog(@"OperateType is Stop");
+            break;
+        case OT_MAGIC_THUNDER:
+            NSLog(@"OperateType is Thunder");
+            break;
+        case OT_BUILDING:
+            NSLog(@"OperateType is Building");
+            break;
+        case OT_SELL:
+            NSLog(@"OperateType is Sell");
+            break;
+        case OT_UPDATE:
+            NSLog(@"OperateType is Update");
+            break;
+        case OT_SETSEARCHPOINT:
+            NSLog(@"OperateType is SearchPoint");
+            break;
+        case OT_NONE:
+            NSLog(@"OperateType is None");
+            break;
+        default:
+            break;
+    }
 }
 
 - (void) sceneTouchMoved:(NSSet*)touches operateType:(TOperateType)operateType
@@ -184,7 +221,7 @@
 
 - (void) dealloc
 {
-    [GameController delGameController];
+    [GameController releaseGameController];
 	[super dealloc];
 }
 

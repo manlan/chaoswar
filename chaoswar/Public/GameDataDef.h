@@ -23,11 +23,9 @@
 // 塔的建造时间
 #define TOWER_BUILDING_TIME 0.8f
 // 塔的建造层次
-#define TOWER_BUILDING_Z 6
-// 塔的背景层次
-#define TOWER_BACKGROUND_Z 5
+#define TOWER_BUILDING_Z 20
 // 塔的层次
-#define TOWER_Z 6
+#define TOWER_Z 20
 
 //血条比例
 #define TDS_BLOOD_SCALE 0.4

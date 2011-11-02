@@ -48,11 +48,13 @@
 + (void) initMagic01
 {
     [AnimateManager initAnimate:@"mc01"];
+    [AnimateManager initAnimate:@"mcspef"];
 }
 
 + (void) initMagic02
 {
     [AnimateManager initAnimate:@"mc01"];
+    [AnimateManager initAnimate:@"mclfef"];
 }
 
 + (void) initFoot01
@@ -186,6 +188,47 @@
 + (void) initMagicTower03
 {
     [AnimateManager initAnimate:@"mt03"];
+}
+
++ (void) initMagicFriendly01
+{
+    [AnimateManager initAnimate:@"mcf01"];
+}
+
++ (void) initMagicFriendly02
+{
+    [AnimateManager initAnimate:@"mcf02"];
+    [AnimateManager initAnimate:@"mcf02bu"];
+}
+
++ (void) initForeverFriendly01
+{
+    [AnimateManager initAnimate:@"fcf03"];
+}
+
++ (void) initMagicFire
+{
+    [AnimateManager initAnimate:@"mcfire"];
+}
+
++ (void) initMagicThunder
+{
+    [AnimateManager initAnimate:@"mcthunder"];
+}
+
++ (void) initMagicStone
+{
+    [AnimateManager initAnimate:@"mcstone"];
+}
+
++ (void) initAllEffect
+{
+    //魔法效果
+    [AnimateManager initAnimate:@"mcef"];
+    //选择框
+    [AnimateManager initAnimate:@"spSel"];
+    //聚集位置
+    [AnimateManager initAnimate:@"dtpo"];
 }
 
 @end

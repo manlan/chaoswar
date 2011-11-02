@@ -36,13 +36,23 @@
 
 + (GameController*) getGameController;
 
-+ (void) delGameController;
++ (void) initGameController;
+
++ (void) releaseGameController;
+
+- (void) initScene;
+
+- (void) releaseScene;
 
 - (void) initController:(int)p;
 
 - (void) start;
 
 - (void) restart;
+
+- (void) doMagicFire:(CGPoint)point;
+
+- (void) doMagicFriendly:(CGPoint)point;
 
 - (void) stopGame;
 

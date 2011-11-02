@@ -17,7 +17,5 @@
 @property int attact;
 //攻击模式
 @property TAcctactType attactMode;
-//底部坐标
-@property CGPoint bottomPoint;
 
 @end

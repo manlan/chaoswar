@@ -48,30 +48,25 @@ static GameController *_sharedController = nil;
 
 + (GameController*) getGameController
 {
-	if (!_sharedController) {
-		_sharedController = [[self alloc] init];
-	}
 	return _sharedController;
 }
 
-+ (void) delGameController
++ (void) initGameController
+{
+    if (!_sharedController) {
+		_sharedController = [[self alloc] init];
+	}
+	if (_sharedController) {
+		[_sharedController initScene];
+	}
+}
+
++ (void) releaseGameController
 {
 	if (_sharedController) {
 		[_sharedController release];
         _sharedController = nil;
 	}
-}
-
-- (id) init
-{
-	if ((self = [super init])) {
-        _enemyArray = [[NSMutableArray alloc] init];
-        _towerArray = [[NSMutableArray alloc] init];
-        _bulletArray = [[NSMutableArray alloc] init];
-        _frientlyArray = [[NSMutableArray alloc] init];
-        _wayManager = [[WayManager alloc] init];
-	}
-	return self;
 }
 
 - (Pointer*) getPointer:(int)p
@@ -145,7 +140,59 @@ static GameController *_sharedController = nil;
 
 - (void) restart
 {
+    [self releaseScene];
+    [self init];
+    [self start];
+}
 
+- (void) doMagicFire:(CGPoint)point
+{
+    CGPoint pt1t = point;
+    CGPoint pt2t = ccp(point.x - 15, point.y - 15);
+    CGPoint pt3t = ccp(point.x + 15, point.y + 15);
+    CGPoint pt1o = ccp(pt1t.x, pt1t.y + 100);
+    CGPoint pt2o = ccp(pt2t.x, pt2t.y + 100);
+    CGPoint pt3o = ccp(pt3t.x, pt3t.y + 100);
+	TDFireBullet1 *b1 = [TDFireBullet1 getSprite];
+    b1.firePoint = pt1t;
+    b1.position = pt1o;
+    TDFireBullet1 *b2 = [TDFireBullet1 getSprite];
+    b2.firePoint = pt2t;
+    b2.position = pt2o;
+    TDFireBullet1 *b3 = [TDFireBullet1 getSprite];
+    b3.firePoint = pt3t;
+    b3.position = pt3o;
+    [self.gameBackground addChild:b1 z:60];
+    [self.gameBackground addChild:b2 z:60];
+    [self.gameBackground addChild:b3 z:60];
+    [self.bulletArray addObject:b1];
+    [self.bulletArray addObject:b2];
+    [self.bulletArray addObject:b3];
+    [b1 run];
+    [b2 run];
+    [b3 run];
+}
+
+- (void) doMagicFriendly:(CGPoint)point
+{
+    CGPoint pt1 = point;
+    CGPoint pt2 = ccp(point.x - 15, point.y - 15);
+    CGPoint pt3 = ccp(point.x + 15, point.y + 15);
+	TDMagicFriendly1 *b1 = [TDMagicFriendly1 getSprite];
+    b1.position = pt1;
+    TDMagicFriendly1 *b2 = [TDMagicFriendly1 getSprite];
+    b2.position = pt2;
+    TDMagicFriendly1 *b3 = [TDMagicFriendly1 getSprite];
+    b3.position = pt3;
+    [self.gameBackground addChild:b1 z:60];
+    [self.gameBackground addChild:b2 z:60];
+    [self.gameBackground addChild:b3 z:60];
+    [self.frientlyArray addObject:b1];
+    [self.frientlyArray addObject:b2];
+    [self.frientlyArray addObject:b3];
+    [b1 run];
+    [b2 run];
+    [b3 run];
 }
 
 - (void) stopGame
@@ -180,26 +227,6 @@ static GameController *_sharedController = nil;
     }
 }
 
-- (void)dealloc {
-    [_enemyArray removeAllObjects];
-    [_towerArray removeAllObjects];
-    [_bulletArray removeAllObjects];
-    [_frientlyArray removeAllObjects];
-    [_enemyArray release];
-    [_towerArray release];
-    [_bulletArray release];
-    [_wayManager release];
-    [_frientlyArray release];
-    [_pt release];
-    _enemyArray = nil;
-    _towerArray = nil;
-    _bulletArray = nil;
-    _frientlyArray = nil;
-    _wayManager = nil;
-    _pt = nil;
-	[super dealloc];
-}
-
 - (void) setMaxWave:(int)maxWave
 {
     _maxWave = maxWave;
@@ -222,6 +249,78 @@ static GameController *_sharedController = nil;
 {
     _currentGold = currentGold;
     [_gameImfomation setGoldValue];
+}
+
+- (void) initScene
+{
+    [_enemyArray removeAllObjects];
+    [_towerArray removeAllObjects];
+    [_bulletArray removeAllObjects];
+    [_frientlyArray removeAllObjects];
+    [_wayManager removeAllWay];
+    _maxWave = 0;
+    _currentWave = 0;
+    _currentHealth = 0;
+    _currentGold = 0;
+    _screenClickType = SCT_ALL;
+    _operateType = OT_NORMAL;
+    _mapType = MT_GREEN;
+    _canNext = NO;   
+}
+
+- (void) releaseScene
+{
+    [_pt stopController];
+    NSMutableArray *tempEnemyArray = [NSMutableArray arrayWithArray:_enemyArray];
+    for (TDEnemy *en in tempEnemyArray) en.spriteStatus = TSS_DEAD;
+    NSMutableArray *tempTowerArray = [NSMutableArray arrayWithArray:_towerArray];
+    for (TDTower *to in tempTowerArray) to.spriteStatus = TSS_DEAD;
+    NSMutableArray *tempBulletArray = [NSMutableArray arrayWithArray:_bulletArray];
+    for (TDBullet *bu in tempBulletArray) bu.spriteStatus = TSS_DEAD;
+    NSMutableArray *tempFrientlyArray = [NSMutableArray arrayWithArray:_frientlyArray];
+    for (TDFriendly *fr in tempFrientlyArray) fr.spriteStatus = TSS_DEAD;
+    [_enemyArray removeAllObjects];
+    [_towerArray removeAllObjects];
+    [_bulletArray removeAllObjects];
+    [_frientlyArray removeAllObjects];
+    [_wayManager removeAllWay];
+    
+    _maxWave = 0;
+    _currentWave = 0;
+    _currentHealth = 0;
+    _currentGold = 0;
+    _screenClickType = SCT_ALL;
+    _operateType = OT_NORMAL;
+    _mapType = MT_GREEN;
+    _canNext = NO;    
+}
+
+- (id) init
+{
+	if ((self = [super init])) {
+        _enemyArray = [[NSMutableArray alloc] init];
+        _towerArray = [[NSMutableArray alloc] init];
+        _bulletArray = [[NSMutableArray alloc] init];
+        _frientlyArray = [[NSMutableArray alloc] init];
+        _wayManager = [[WayManager alloc] init];
+	}
+	return self;
+}
+
+- (void)dealloc {
+    [self releaseScene];
+    [_enemyArray release];
+    [_towerArray release];
+    [_bulletArray release];
+    [_frientlyArray release];
+    [_wayManager release];
+    [_pt release];
+    _gameBackground = nil;
+    _gameImfomation = nil;
+    _gameMagic = nil;
+    _gameController = nil;
+    _gameHint = nil;
+	[super dealloc];
 }
 
 @end

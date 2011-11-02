@@ -5,10 +5,9 @@
 }
 
 @property (readonly) CGPoint point;
-@property (readonly) int z;
 
-+ (WayPoint*) getWayPoint:(CGPoint)pt z:(int)z;
++ (WayPoint*) getWayPoint:(CGPoint)pt;
 
-- (void) setValue:(CGPoint)pt z:(int)z;
+- (void) setValue:(CGPoint)pt;
 
 @end

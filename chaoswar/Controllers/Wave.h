@@ -18,4 +18,6 @@
 
 - (void) start;
 
+- (void) stopWave;
+
 @end

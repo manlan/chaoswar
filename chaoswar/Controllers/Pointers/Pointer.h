@@ -41,4 +41,6 @@
 
 - (BOOL) isWhite:(CGPoint)point;
 
+- (void) stopController;
+
 @end

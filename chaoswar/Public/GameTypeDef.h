@@ -19,12 +19,14 @@ typedef enum {
     ET_FOOT16,
     ET_FLY1,  
 	ET_FLY2,
+    ET_FLY3,
     ET_MAGIC1,  
 	ET_MAGIC2,
     ET_BOSS1,  
 	ET_BOSS2,
     ET_SHOOT1
 } TEnemyType;
+
 // 敌人种类
 typedef enum {
 	//FOOT步兵
@@ -93,3 +95,10 @@ typedef enum {
 	MT_SNOW,
 	MT_SAND
 } TMapType;
+
+// 敌人属性
+typedef enum {
+	ES_NORMAL,
+	ES_WAITING,
+	ES_ATTACT
+} TEnemyStatus;

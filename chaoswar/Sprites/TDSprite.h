@@ -24,17 +24,22 @@
 // 是否已经被删除
 @property BOOL canClick;
 // 血条
-@property (nonatomic, readonly) CCSprite *bloodShowSprite;
+@property (nonatomic, assign) CCSprite *bloodShowSprite;
 // 血条
-@property (nonatomic, readonly) CCSprite *bloodBackSprite;
+@property (nonatomic, assign) CCSprite *bloodBackSprite;
 // 选中框
-@property (nonatomic, readonly) CCSprite *arrowSprite;
+@property (nonatomic, assign) CCSprite *arrowSprite;
+// 魔法效果
+@property (nonatomic, assign) CCSprite *effectSprite;
 
 // 获取当前精灵的实例
 + (id) getSprite;
 
 // 运行精灵
 - (BOOL) run;
+
+// 停止精灵
+- (BOOL) stop;
 
 // 初始化动画（声音等）
 - (void) initAnimate;

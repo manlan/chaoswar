@@ -33,11 +33,11 @@
     if (self.currentHP < 0) self.currentHP = 0;
     if (self.currentHP == 0) {
         s.killNum++;
-        self.spriteStatus = TSS_DEADING;
         [self stopAllActions];        
         id actionDead = [CCAnimate actionWithAnimation:self.ddAni restoreOriginalFrame:NO];
         id actionDeadDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterDead:)];
         [self runAction:[CCSequence actions:actionDead, actionDeadDone, nil]];
+        self.spriteStatus = TSS_DEADING;
     }
 }
 
