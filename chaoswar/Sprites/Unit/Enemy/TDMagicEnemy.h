@@ -5,11 +5,13 @@
 #import "WayPoint.h"
 
 @interface TDMagicEnemy : TDEnemy {
-    
+    TDEnemy *magicEnemy;
 }
 
-@property (nonatomic, assign) CCAnimation *atAni;
 @property (nonatomic, assign) CCAnimation *mcAni;
+@property int magicRange;
+
+- (void) doMagic;
 
 @end
 

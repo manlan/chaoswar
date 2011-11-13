@@ -25,11 +25,6 @@
 @property int defence;
 // 攻击模式：影响攻击效果 0 普通攻击 1 魔法攻击
 @property TDefenceType defenceMode;
-//四个方向的移动动画
-@property (nonatomic, assign) CCAnimation *mvuAni;
-@property (nonatomic, assign) CCAnimation *mvdAni;
-@property (nonatomic, assign) CCAnimation *mvlAni;
-@property (nonatomic, assign) CCAnimation *mvrAni;
 //死亡动画
 @property (nonatomic, assign) CCAnimation *ddAni;
 

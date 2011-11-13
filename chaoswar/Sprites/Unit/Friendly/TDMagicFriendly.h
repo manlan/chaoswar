@@ -16,6 +16,8 @@
 
 @property ccTime deadTime;
 
+- (CCAnimation*) getAnimation:(int)level kind:(NSString*)kind;
+
 @end
 
 @interface TDMagicFriendly1 : TDMagicFriendly {

@@ -4,7 +4,10 @@
 @class GameController;
 
 @interface GameMagicScene : CCLayer {
-
+    BOOL magic1Restart;
+    BOOL magic2Restart;
+    BOOL magic3Restart;
+    BOOL magic4Restart;
 }
 
 @property (nonatomic, assign) CCMenuItemImage *btnGo;
@@ -22,5 +25,10 @@
 - (void) setMagic2MenuStatus;
 - (void) setMagic3MenuStatus;
 - (void) setMagic4MenuStatus;
+
+- (void) restartMagicFire;
+- (void) restartMagicFriendly;
+- (void) restartMagicThunder;
+- (void) restartMagicStop;
 
 @end

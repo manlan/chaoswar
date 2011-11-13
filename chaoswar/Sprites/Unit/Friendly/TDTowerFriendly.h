@@ -19,6 +19,8 @@
 
 @property (nonatomic, assign) TDDefenceTower *tower;
 
+- (CCAnimation*) getAnimation:(int)level kind:(NSString*)kind;
+
 @end
 
 @interface TDTowerFriendly1 : TDTowerFriendly {

@@ -3,8 +3,6 @@
 
 @implementation TDFootEnemy
 
-@synthesize atAni = _atAni;
-
 -(id) init
 {
 	if( (self=[super init])) {
@@ -72,6 +70,7 @@
         enemy.attactMode = TDS_FT1_ATTACTMODE;
         enemy.defence = TDS_FT1_DEFENCE;
         enemy.defenceMode = TDS_FT1_DEFENCEMODE;
+        enemy.getGold = TDS_FT1_GETGOLD;
     }
     return enemy;
 }
@@ -103,6 +102,7 @@
         enemy.attactMode = TDS_FT2_ATTACTMODE;
         enemy.defence = TDS_FT2_DEFENCE;
         enemy.defenceMode = TDS_FT2_DEFENCEMODE;
+        enemy.getGold = TDS_FT2_GETGOLD;
     }
     return enemy;
 }
@@ -134,6 +134,7 @@
         enemy.attactMode = TDS_FT3_ATTACTMODE;
         enemy.defence = TDS_FT3_DEFENCE;
         enemy.defenceMode = TDS_FT3_DEFENCEMODE;
+        enemy.getGold = TDS_FT3_GETGOLD;
     }
     return enemy;
 }
@@ -165,6 +166,7 @@
         enemy.attactMode = TDS_FT4_ATTACTMODE;
         enemy.defence = TDS_FT4_DEFENCE;
         enemy.defenceMode = TDS_FT4_DEFENCEMODE;
+        enemy.getGold = TDS_FT4_GETGOLD;
     }
     return enemy;
 }
@@ -196,6 +198,7 @@
         enemy.attactMode = TDS_FT5_ATTACTMODE;
         enemy.defence = TDS_FT5_DEFENCE;
         enemy.defenceMode = TDS_FT5_DEFENCEMODE;
+        enemy.getGold = TDS_FT5_GETGOLD;
     }
     return enemy;
 }
@@ -227,6 +230,7 @@
         enemy.attactMode = TDS_FT6_ATTACTMODE;
         enemy.defence = TDS_FT6_DEFENCE;
         enemy.defenceMode = TDS_FT6_DEFENCEMODE;
+        enemy.getGold = TDS_FT6_GETGOLD;
     }
     return enemy;
 }
@@ -258,6 +262,7 @@
         enemy.attactMode = TDS_FT7_ATTACTMODE;
         enemy.defence = TDS_FT7_DEFENCE;
         enemy.defenceMode = TDS_FT7_DEFENCEMODE;
+        enemy.getGold = TDS_FT7_GETGOLD;
     }
     return enemy;
 }
@@ -289,6 +294,7 @@
         enemy.attactMode = TDS_FT8_ATTACTMODE;
         enemy.defence = TDS_FT8_DEFENCE;
         enemy.defenceMode = TDS_FT8_DEFENCEMODE;
+        enemy.getGold = TDS_FT8_GETGOLD;
     }
     return enemy;
 }
@@ -320,6 +326,7 @@
         enemy.attactMode = TDS_FT9_ATTACTMODE;
         enemy.defence = TDS_FT9_DEFENCE;
         enemy.defenceMode = TDS_FT9_DEFENCEMODE;
+        enemy.getGold = TDS_FT9_GETGOLD;
     }
     return enemy;
 }
@@ -351,6 +358,7 @@
         enemy.attactMode = TDS_FT10_ATTACTMODE;
         enemy.defence = TDS_FT10_DEFENCE;
         enemy.defenceMode = TDS_FT10_DEFENCEMODE;
+        enemy.getGold = TDS_FT10_GETGOLD;
     }
     return enemy;
 }
@@ -382,6 +390,7 @@
         enemy.attactMode = TDS_FT11_ATTACTMODE;
         enemy.defence = TDS_FT11_DEFENCE;
         enemy.defenceMode = TDS_FT11_DEFENCEMODE;
+        enemy.getGold = TDS_FT11_GETGOLD;
     }
     return enemy;
 }
@@ -413,6 +422,7 @@
         enemy.attactMode = TDS_FT12_ATTACTMODE;
         enemy.defence = TDS_FT12_DEFENCE;
         enemy.defenceMode = TDS_FT12_DEFENCEMODE;
+        enemy.getGold = TDS_FT12_GETGOLD;
     }
     return enemy;
 }
@@ -444,6 +454,7 @@
         enemy.attactMode = TDS_FT13_ATTACTMODE;
         enemy.defence = TDS_FT13_DEFENCE;
         enemy.defenceMode = TDS_FT13_DEFENCEMODE;
+        enemy.getGold = TDS_FT13_GETGOLD;
     }
     return enemy;
 }
@@ -475,6 +486,7 @@
         enemy.attactMode = TDS_FT14_ATTACTMODE;
         enemy.defence = TDS_FT14_DEFENCE;
         enemy.defenceMode = TDS_FT14_DEFENCEMODE;
+        enemy.getGold = TDS_FT14_GETGOLD;
     }
     return enemy;
 }
@@ -506,6 +518,7 @@
         enemy.attactMode = TDS_FT15_ATTACTMODE;
         enemy.defence = TDS_FT15_DEFENCE;
         enemy.defenceMode = TDS_FT15_DEFENCEMODE;
+        enemy.getGold = TDS_FT15_GETGOLD;
     }
     return enemy;
 }
@@ -537,6 +550,7 @@
         enemy.attactMode = TDS_FT16_ATTACTMODE;
         enemy.defence = TDS_FT16_DEFENCE;
         enemy.defenceMode = TDS_FT16_DEFENCEMODE;
+        enemy.getGold = TDS_FT16_GETGOLD;
     }
     return enemy;
 }

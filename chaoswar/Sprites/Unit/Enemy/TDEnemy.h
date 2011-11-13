@@ -2,6 +2,7 @@
 #import "GamePubDef.h"
 #import "WayPoint.h"
 #import "TDUnit.h"
+#import "TDMagicBullet.h"
 
 @class TDFriendly;
 
@@ -12,6 +13,9 @@
 @property int nextWayPoint;
 
 @property TEnemyStatus enemyStatus;
+
+@property TEnemyMagicStatus enemyMagicStatus;
+
 //路线集合
 @property (nonatomic, assign) NSMutableArray *way;
 //攻击的友军
@@ -28,6 +32,12 @@
 @property (nonatomic, assign) NSMutableArray *towerArray;
 //友军攻击的集合
 @property (nonatomic, assign) NSMutableArray *friendlyArray;
+//四个方向的移动动画
+@property (nonatomic, assign) CCAnimation *mvuAni;
+@property (nonatomic, assign) CCAnimation *mvdAni;
+@property (nonatomic, assign) CCAnimation *mvlAni;
+@property (nonatomic, assign) CCAnimation *mvrAni;
+@property (nonatomic, assign) CCAnimation *atAni;
 
 - (CGPoint) getPositionAfterTime:(ccTime)dt;
 
@@ -36,5 +46,19 @@
 - (void) doMagicStop;
 
 - (void) doubleAttact:(TDFriendly*)s;
+
+- (TDFriendly*) canAttactFriendly;
+
+- (void) doRunning;
+
+- (void) doWaiting;
+
+- (void) doAttact;
+
+- (void) doMagicStopStatus;
+
+- (void) doMagicSpeedStatus;
+
+- (void) doMagicLifeStatus;
 
 @end

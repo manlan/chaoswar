@@ -3,8 +3,6 @@
 
 @implementation TDShooterEnemy
 
-@synthesize atAni = _atAni;
-
 -(id) init
 {
 	if( (self=[super init])) {
@@ -69,6 +67,7 @@
         enemy.attactMode = TDS_ST1_ATTACTMODE;
         enemy.defence = TDS_ST1_DEFENCE;
         enemy.defenceMode = TDS_ST1_DEFENCEMODE;
+        enemy.getGold = TDS_ST1_GETGOLD;
     }
     return enemy;
 }

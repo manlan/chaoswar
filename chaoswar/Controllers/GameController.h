@@ -54,6 +54,8 @@
 
 - (void) doMagicFriendly:(CGPoint)point;
 
+- (void) doSetSearchPoint:(CGPoint)point;
+
 - (void) stopGame;
 
 - (void) setGameStatus;

@@ -12,6 +12,7 @@
 
 #import "TDBullet.h"
 #import "TDDefBullet.h"
+#import "TDMagicBullet.h"
 
 #import "TDEnemy.h"
 #import "TDFootEnemy.h"

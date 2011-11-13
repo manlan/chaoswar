@@ -21,10 +21,24 @@ const TDSprite *_lastSprite = nil;
 @synthesize bloodBackSprite = _bloodBackSprite;
 @synthesize arrowSprite = _arrowSprite;
 @synthesize effectSprite = _effectSprite;
+@synthesize spritePlace = _spritePlace;
 
 + (id) getSprite
 {
     return nil;
+}
+
++ (id) getCurrentSprite
+{
+    return _lastSprite;
+}
+
++ (void) delCurrentSprite
+{
+    if (_lastSprite) {
+        [_lastSprite doUnSelect];
+        _lastSprite = nil;
+    }
 }
 
 - (BOOL) run
@@ -40,7 +54,8 @@ const TDSprite *_lastSprite = nil;
 
 - (BOOL) stop
 {
-    [self unscheduleAllSelectors];
+    [self cleanup];
+    return YES;
 }
 
 -(id) init
@@ -55,6 +70,7 @@ const TDSprite *_lastSprite = nil;
         _killNum = 0;
         _canClick = YES;
         _showBlood = NO;
+        _spritePlace = SP_FOOT;
         //初始化血条，选择标记，魔法动画等
         _bloodShowSprite = [CCSprite spriteWithFile:@"showProgress.png"];
         _bloodShowSprite.anchorPoint = ccp(0, 0);
@@ -78,6 +94,7 @@ const TDSprite *_lastSprite = nil;
             }
         } while (frame != nil);
         CCAnimation *arrowAni = [CCAnimation animationWithFrames:animArray delay:0.05f];
+        [arrowAni setName:@"spSel"];
         [_arrowSprite addAnimation:arrowAni];
         [_arrowSprite runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:0.9 animation:arrowAni restoreOriginalFrame:NO]]];
         [self addChild:_arrowSprite z:3];
@@ -132,6 +149,11 @@ const TDSprite *_lastSprite = nil;
 - (void) doUnSelect
 {
     [_arrowSprite setVisible:NO];
+    if ([GameController getGameController]) {
+        if ([GameController getGameController].gameController) {
+            [[GameController getGameController].gameController clearSceneSrpite];
+        }
+    }
 }
 
 - (CGRect) tdTouchRect

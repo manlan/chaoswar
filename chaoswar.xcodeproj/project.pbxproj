@@ -232,9 +232,11 @@
 		04A0BF0814611AAE0014C6B3 /* ttb03.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A0BE7114611AAE0014C6B3 /* ttb03.png */; };
 		04A0BF0914611AAE0014C6B3 /* ttBuilding.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A0BE7214611AAE0014C6B3 /* ttBuilding.png */; };
 		04A10E771436F38E00DFEFD6 /* TDSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A10E751436F38D00DFEFD6 /* TDSprite.m */; };
+		04ACC57814659E0F0048626F /* TDMagicBullet.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACC57714659E0E0048626F /* TDMagicBullet.m */; };
 		04B4030E142DB0C3005F35EE /* MainMenuSence.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B40309142DB0C3005F35EE /* MainMenuSence.m */; };
 		04B4030F142DB0C3005F35EE /* SelectSence.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B4030B142DB0C3005F35EE /* SelectSence.m */; };
 		04B40310142DB0C3005F35EE /* UpdataSence.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B4030D142DB0C3005F35EE /* UpdataSence.m */; };
+		04B509C6146668F2005A6A06 /* GameSpriteData.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B509C5146668F2005A6A06 /* GameSpriteData.m */; };
 		04B5E3A9142CF0CE00089068 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5E3A8142CF0CE00089068 /* GameController.m */; };
 		04B5E3AC142CF10400089068 /* Wave.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5E3AB142CF10400089068 /* Wave.m */; };
 		04B5E3AF142CF11E00089068 /* WayPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5E3AE142CF11E00089068 /* WayPoint.m */; };
@@ -356,6 +358,7 @@
 		04BCCD051459A17F00D9036D /* TDTowerFriendly.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCCD041459A17F00D9036D /* TDTowerFriendly.m */; };
 		04BCCD081459A19100D9036D /* TDMagicFriendly.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCCD071459A19100D9036D /* TDMagicFriendly.m */; };
 		04BCCD0B1459A1A300D9036D /* TDForeverFriendly.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCCD0A1459A1A300D9036D /* TDForeverFriendly.m */; };
+		04C8194D146F912A0061EB24 /* DataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C8194C146F912A0061EB24 /* DataController.m */; };
 		04CDDDF21446D9B400BAFE84 /* CreditsSence.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CDDDEF1446D9B400BAFE84 /* CreditsSence.m */; };
 		04CDDDF31446D9B400BAFE84 /* HelpSence.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CDDDF11446D9B400BAFE84 /* HelpSence.m */; };
 		04CDDDFB1446D9FA00BAFE84 /* creditsBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CDDDF81446D9FA00BAFE84 /* creditsBg.png */; };
@@ -411,7 +414,6 @@
 		04DA164E143ADA0A00FF1744 /* XzSheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DA161B143ADA0A00FF1744 /* XzSheet.png */; };
 		04DE3FF9143597E3008F301D /* Pointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE3FF8143597E3008F301D /* Pointer.m */; };
 		04DE40081435AFB4008F301D /* GameHintScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE40071435AFB3008F301D /* GameHintScene.m */; };
-		04E41C13143B6CDB0040A11F /* GameSpriteDef.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E41C12143B6CDB0040A11F /* GameSpriteDef.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -680,12 +682,16 @@
 		04A4F279144175EF0094C637 /* GameTypeDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTypeDef.h; sourceTree = "<group>"; };
 		04A4F28B144176D70094C637 /* GameDataDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDataDef.h; sourceTree = "<group>"; };
 		04A4F28C144176E30094C637 /* GamePubDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePubDef.h; sourceTree = "<group>"; };
+		04ACC57614659E0E0048626F /* TDMagicBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDMagicBullet.h; sourceTree = "<group>"; };
+		04ACC57714659E0E0048626F /* TDMagicBullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDMagicBullet.m; sourceTree = "<group>"; };
 		04B40308142DB0C3005F35EE /* MainMenuSence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuSence.h; sourceTree = "<group>"; };
 		04B40309142DB0C3005F35EE /* MainMenuSence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuSence.m; sourceTree = "<group>"; };
 		04B4030A142DB0C3005F35EE /* SelectSence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectSence.h; sourceTree = "<group>"; };
 		04B4030B142DB0C3005F35EE /* SelectSence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectSence.m; sourceTree = "<group>"; };
 		04B4030C142DB0C3005F35EE /* UpdataSence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdataSence.h; sourceTree = "<group>"; };
 		04B4030D142DB0C3005F35EE /* UpdataSence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdataSence.m; sourceTree = "<group>"; };
+		04B509C4146668F2005A6A06 /* GameSpriteData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSpriteData.h; sourceTree = "<group>"; };
+		04B509C5146668F2005A6A06 /* GameSpriteData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSpriteData.m; sourceTree = "<group>"; };
 		04B5E3A7142CF0CE00089068 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
 		04B5E3A8142CF0CE00089068 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
 		04B5E3AA142CF10400089068 /* Wave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wave.h; sourceTree = "<group>"; };
@@ -934,6 +940,8 @@
 		04BCCD091459A1A300D9036D /* TDForeverFriendly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDForeverFriendly.h; sourceTree = "<group>"; };
 		04BCCD0A1459A1A300D9036D /* TDForeverFriendly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDForeverFriendly.m; sourceTree = "<group>"; };
 		04C1E5331436B552003D73B4 /* SpritesImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpritesImp.h; sourceTree = "<group>"; };
+		04C8194B146F912A0061EB24 /* DataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataController.h; sourceTree = "<group>"; };
+		04C8194C146F912A0061EB24 /* DataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataController.m; sourceTree = "<group>"; };
 		04CDDDEE1446D9B400BAFE84 /* CreditsSence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsSence.h; sourceTree = "<group>"; };
 		04CDDDEF1446D9B400BAFE84 /* CreditsSence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsSence.m; sourceTree = "<group>"; };
 		04CDDDF01446D9B400BAFE84 /* HelpSence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpSence.h; sourceTree = "<group>"; };
@@ -994,7 +1002,6 @@
 		04DE40061435AFB3008F301D /* GameHintScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHintScene.h; sourceTree = "<group>"; };
 		04DE40071435AFB3008F301D /* GameHintScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameHintScene.m; sourceTree = "<group>"; };
 		04E41C11143B6CDB0040A11F /* GameSpriteDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSpriteDef.h; sourceTree = "<group>"; };
-		04E41C12143B6CDB0040A11F /* GameSpriteDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSpriteDef.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1060,6 +1067,8 @@
 				0408591B1441DACA0006B007 /* TDBullet.m */,
 				0408591C1441DACA0006B007 /* TDDefBullet.h */,
 				0408591D1441DACA0006B007 /* TDDefBullet.m */,
+				04ACC57614659E0E0048626F /* TDMagicBullet.h */,
+				04ACC57714659E0E0048626F /* TDMagicBullet.m */,
 			);
 			path = Bullet;
 			sourceTree = "<group>";
@@ -1744,6 +1753,8 @@
 				04B5E3B0142CF55B00089068 /* Pointers */,
 				04B5E3A7142CF0CE00089068 /* GameController.h */,
 				04B5E3A8142CF0CE00089068 /* GameController.m */,
+				04C8194B146F912A0061EB24 /* DataController.h */,
+				04C8194C146F912A0061EB24 /* DataController.m */,
 				04B5E3AA142CF10400089068 /* Wave.h */,
 				04B5E3AB142CF10400089068 /* Wave.m */,
 				04B5E3AD142CF11E00089068 /* WayPoint.h */,
@@ -1796,7 +1807,8 @@
 				04A4F279144175EF0094C637 /* GameTypeDef.h */,
 				04A4F28B144176D70094C637 /* GameDataDef.h */,
 				04E41C11143B6CDB0040A11F /* GameSpriteDef.h */,
-				04E41C12143B6CDB0040A11F /* GameSpriteDef.m */,
+				04B509C4146668F2005A6A06 /* GameSpriteData.h */,
+				04B509C5146668F2005A6A06 /* GameSpriteData.m */,
 				045E89B0141E36340097B1EE /* SceneManager.h */,
 				045E89B1141E36340097B1EE /* SceneManager.m */,
 			);
@@ -2365,7 +2377,6 @@
 				04527F631436F070005A2E0F /* LoadingSence.m in Sources */,
 				04A10E771436F38E00DFEFD6 /* TDSprite.m in Sources */,
 				044921E914370FF30024AEE5 /* WayManager.m in Sources */,
-				04E41C13143B6CDB0040A11F /* GameSpriteDef.m in Sources */,
 				046CBDFC143ED32600584A8C /* AnimateManager.m in Sources */,
 				040859291441DACA0006B007 /* TDArrowTower.m in Sources */,
 				0408592A1441DACA0006B007 /* TDDefenceTower.m in Sources */,
@@ -2400,6 +2411,9 @@
 				04BCCD051459A17F00D9036D /* TDTowerFriendly.m in Sources */,
 				04BCCD081459A19100D9036D /* TDMagicFriendly.m in Sources */,
 				04BCCD0B1459A1A300D9036D /* TDForeverFriendly.m in Sources */,
+				04ACC57814659E0F0048626F /* TDMagicBullet.m in Sources */,
+				04B509C6146668F2005A6A06 /* GameSpriteData.m in Sources */,
+				04C8194D146F912A0061EB24 /* DataController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

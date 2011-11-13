@@ -13,10 +13,6 @@
 @synthesize attacttime = _attacttime;
 @synthesize defence = _defence;
 @synthesize defenceMode = _defenceMode;
-@synthesize mvuAni = _mvuAni;
-@synthesize mvdAni = _mvdAni;
-@synthesize mvlAni = _mvlAni;
-@synthesize mvrAni = _mvrAni;
 @synthesize ddAni = _ddAni;
 
 -(id) init
@@ -27,9 +23,61 @@
 	return self;
 }
 
+- (float) getAttactPercent:(TAcctactType)at
+{
+    switch (self.defenceMode) {
+        case DT_NO:
+            switch (at) {
+                case AT_NORMAL:
+                    return 1;
+                    break;
+                case AT_MAGIC:
+                    return 1;
+                    break;  
+                default:
+                    return 1;
+                    break;
+            }
+            break;
+        case DT_MAGIC:
+            switch (at) {
+                case AT_NORMAL:
+                    return 1;
+                    break;
+                case AT_MAGIC:
+                    return 0.75;
+                    break;  
+                default:
+                    return 1;
+                    break;
+            }
+            break;
+        case DT_HIGH:
+            switch (at) {
+                case AT_NORMAL:
+                    return 0.75;
+                    break;
+                case AT_MAGIC:
+                    return 1;
+                    break;  
+                default:
+                    return 1;
+                    break;
+            }
+            break;
+        default:
+            return 1;
+            break;
+    }
+    return 1;
+}
+
 - (void) beAttact:(TDSprite*)s an:(int)an at:(TAcctactType)at
 {
-    self.currentHP = self.currentHP - an;
+
+    int attactNum = an - self.defence;
+    attactNum = attactNum * [self getAttactPercent:at];
+    self.currentHP = self.currentHP - attactNum;
     if (self.currentHP < 0) self.currentHP = 0;
     if (self.currentHP == 0) {
         s.killNum++;

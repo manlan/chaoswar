@@ -8,8 +8,6 @@
     
 }
 
-@property (nonatomic, assign) CCAnimation *atAni;
-
 @end
 
 @interface TDShooterEnemy1 : TDShooterEnemy {

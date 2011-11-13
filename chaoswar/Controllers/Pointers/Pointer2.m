@@ -10,7 +10,7 @@
 	gc.maxWave = 12;
 	gc.currentWave = 0;
 	gc.currentHealth = 20;
-	gc.currentGold = 600;
+	gc.currentGold = 120;
 	gc.screenClickType = SCT_ALL;
 	gc.operateType = OT_NORMAL;
 	gc.mapType = MT_GREEN;
@@ -49,9 +49,17 @@
     [AnimateManager initTurretTower01];
     [AnimateManager initTurretTower02];
     [AnimateManager initTurretTower03];
+    [AnimateManager initTurretBullet];
     [AnimateManager initMagicTower01];
     [AnimateManager initMagicTower02];
     [AnimateManager initMagicTower03];
+    [AnimateManager initMagicFriendly01];
+    [AnimateManager initMagicFriendly02];
+    [AnimateManager initForeverFriendly01];
+    [AnimateManager initMagicFire];
+    [AnimateManager initMagicThunder];
+    [AnimateManager initMagicStone];
+    [AnimateManager initAllEffect];
 }
 
 - (void) initEnemy:(NSMutableArray*)array
@@ -76,66 +84,70 @@
     GameController *gc = [GameController getGameController];
 	switch (wave) {
 		case 1:
-            [self runWave:1 e:ET_FOOT2 s:1.2 t:5 wy:[gc.wayManager getWay:2]];
+            [self runWave:1 e:ET_FOOT2 s:2 t:3 wy:[gc.wayManager getWay:3]];
+            [self runWave:1.5 e:ET_FOOT2 s:2 t:2 wy:[gc.wayManager getWay:1]];
             [self prepareNextWave:10];
 			break;
         case 2:
-            [self runWave:1 e:ET_FOOT2 s:1.2 t:4 wy:[gc.wayManager getWay:1]];
-            [self runWave:1 e:ET_FOOT2 s:1.2 t:4 wy:[gc.wayManager getWay:3]];
+            [self runWave:1 e:ET_FOOT2 s:2 t:3 wy:[gc.wayManager getWay:1]];
+            [self runWave:1.5 e:ET_FOOT3 s:2 t:2 wy:[gc.wayManager getWay:3]];
             [self prepareNextWave:10];
 			break;
         case 3:
-            [self runWave:1.5 e:ET_FOOT2 s:1.2 t:4 wy:[gc.wayManager getWay:1]];
-            [self runWave:1 e:ET_FOOT3 s:1.2 t:3 wy:[gc.wayManager getWay:3]];
+            [self runWave:1.5 e:ET_FOOT2 s:2 t:3 wy:[gc.wayManager getWay:1]];
+            [self runWave:1 e:ET_FOOT3 s:2 t:4 wy:[gc.wayManager getWay:2]];
+            [self runWave:1.5 e:ET_FOOT2 s:2 t:3 wy:[gc.wayManager getWay:3]];
             [self prepareNextWave:10];
 			break;
         case 4:
-            [self runWave:1 e:ET_FOOT3 s:1.2 t:8 wy:[gc.wayManager getWay:2]];
+            //new enemy
+            [self runWave:1 e:ET_FOOT4 s:2 t:5 wy:[gc.wayManager getWay:2]];
             [self prepareNextWave:10];
 			break;
         case 5:
-            [self runWave:2 e:ET_FOOT2 s:1.2 t:5 wy:[gc.wayManager getWay:1]];
-            [self runWave:1.2 e:ET_FOOT3 s:1.2 t:5 wy:[gc.wayManager getWay:2]];
-            [self runWave:2 e:ET_FOOT2 s:1.2 t:5 wy:[gc.wayManager getWay:3]];
+            [self runWave:2 e:ET_FOOT2 s:2 t:3 wy:[gc.wayManager getWay:1]];
+            [self runWave:1 e:ET_FOOT4 s:2 t:5 wy:[gc.wayManager getWay:2]];
+            [self runWave:2 e:ET_FOOT2 s:2 t:3 wy:[gc.wayManager getWay:3]];
             [self prepareNextWave:10];
 			break;
         case 6:
-            [self runWave:1.5 e:ET_FOOT1 s:1.2 t:5 wy:[gc.wayManager getWay:1]];
-            [self runWave:1 e:ET_FOOT2 s:1.2 t:5 wy:[gc.wayManager getWay:2]];
-            [self runWave:1.6 e:ET_FOOT1 s:1.2 t:5 wy:[gc.wayManager getWay:3]];
+            //new enemy
+            [self runWave:1 e:ET_FOOT5 s:2 t:5 wy:[gc.wayManager getWay:2]];
             [self prepareNextWave:10];
 			break;
         case 7:
-            [self runWave:1 e:ET_FOOT4 s:1.2 t:3 wy:[gc.wayManager getWay:2]];
+            [self runWave:2 e:ET_FOOT4 s:2 t:4 wy:[gc.wayManager getWay:1]];
+            [self runWave:1 e:ET_FOOT5 s:2 t:5 wy:[gc.wayManager getWay:2]];
             [self prepareNextWave:10];
 			break;
         case 8:
-            [self runWave:1 e:ET_FOOT4 s:1.2 t:5 wy:[gc.wayManager getWay:1]];
-            [self runWave:2.4 e:ET_FOOT5 s:1.2 t:3 wy:[gc.wayManager getWay:3]];
+            //new enemy
+            [self runWave:2 e:ET_FOOT5 s:2 t:5 wy:[gc.wayManager getWay:1]];
+            [self runWave:1 e:ET_MAGIC1 s:4 t:2 wy:[gc.wayManager getWay:2]];
             [self prepareNextWave:10];
 			break;
         case 9:
-            [self runWave:1.2 e:ET_FOOT2 s:1.2 t:5 wy:[gc.wayManager getWay:1]];
-            [self runWave:1 e:ET_FOOT5 s:1.2 t:5 wy:[gc.wayManager getWay:2]];
-            [self runWave:1.5 e:ET_FOOT2 s:1.2 t:5 wy:[gc.wayManager getWay:3]];
+            [self runWave:2 e:ET_FOOT5 s:2 t:3 wy:[gc.wayManager getWay:1]];
+            [self runWave:1 e:ET_MAGIC1 s:4 t:2 wy:[gc.wayManager getWay:2]];
+            [self runWave:2 e:ET_FOOT5 s:2 t:3 wy:[gc.wayManager getWay:3]];
             [self prepareNextWave:10];
 			break;
         case 10:
-            [self runWave:1.8 e:ET_FOOT3 s:1.2 t:6 wy:[gc.wayManager getWay:1]];
-            [self runWave:1 e:ET_FOOT5 s:1.2 t:5 wy:[gc.wayManager getWay:2]];
-            [self runWave:1.5 e:ET_FOOT3 s:1.2 t:6 wy:[gc.wayManager getWay:3]];
+            [self runWave:2 e:ET_FOOT4 s:2 t:5 wy:[gc.wayManager getWay:1]];
+            [self runWave:1 e:ET_FOOT5 s:2 t:5 wy:[gc.wayManager getWay:2]];
+            [self runWave:2 e:ET_FOOT4 s:2 t:5 wy:[gc.wayManager getWay:3]];
             [self prepareNextWave:10];
 			break;
         case 11:
-            [self runWave:1 e:ET_FOOT4 s:1.2 t:5 wy:[gc.wayManager getWay:1]];
-            [self runWave:1.4 e:ET_FOOT5 s:1.2 t:5 wy:[gc.wayManager getWay:2]];
-            [self runWave:1.8 e:ET_FOOT4 s:1.2 t:5 wy:[gc.wayManager getWay:3]];
+            [self runWave:2 e:ET_FOOT5 s:2 t:5 wy:[gc.wayManager getWay:1]];
+            [self runWave:1 e:ET_MAGIC1 s:4 t:2 wy:[gc.wayManager getWay:2]];
+            [self runWave:2 e:ET_FOOT5 s:2 t:5 wy:[gc.wayManager getWay:3]];
             [self prepareNextWave:10];
 			break;
         case 12:
-            [self runWave:2 e:ET_FOOT3 s:1.2 t:8 wy:[gc.wayManager getWay:1]];
-            [self runWave:1 e:ET_FOOT5 s:1.2 t:5 wy:[gc.wayManager getWay:2]];
-            [self runWave:1.5 e:ET_FOOT3 s:1.2 t:8 wy:[gc.wayManager getWay:3]];
+            [self runWave:2 e:ET_FOOT4 s:2 t:5 wy:[gc.wayManager getWay:1]];
+            [self runWave:1 e:ET_MAGIC1 s:4 t:3 wy:[gc.wayManager getWay:2]];
+            [self runWave:2 e:ET_FOOT5 s:2 t:5 wy:[gc.wayManager getWay:3]];
             //[self prepareNextWave:22];
 			break;
 		default:
@@ -155,26 +167,26 @@
 - (void) initWayPoint:(WayManager*)manager
 {
     [manager removeAllWay];
-    [manager addWayPoint:1 wayPoint:ccp(-1, 214)];
-    [manager addWayPoint:1 wayPoint:ccp(143, 214)];
-    [manager addWayPoint:1 wayPoint:ccp(143, 128)];
-    [manager addWayPoint:1 wayPoint:ccp(293, 128)];
-    [manager addWayPoint:1 wayPoint:ccp(293, 262)];
-    [manager addWayPoint:1 wayPoint:ccp(481, 262)];
+    [manager addWayPoint:1 wayPoint:ccp(-1, 208)];
+    [manager addWayPoint:1 wayPoint:ccp(143, 208)];
+    [manager addWayPoint:1 wayPoint:ccp(143, 122)];
+    [manager addWayPoint:1 wayPoint:ccp(293, 122)];
+    [manager addWayPoint:1 wayPoint:ccp(293, 256)];
+    [manager addWayPoint:1 wayPoint:ccp(481, 256)];
     
-    [manager addWayPoint:2 wayPoint:ccp(-1, 199)];
-    [manager addWayPoint:2 wayPoint:ccp(128, 199)];
-    [manager addWayPoint:2 wayPoint:ccp(128, 113)];
-    [manager addWayPoint:2 wayPoint:ccp(308, 113)];
-    [manager addWayPoint:2 wayPoint:ccp(308, 247)];
-    [manager addWayPoint:2 wayPoint:ccp(481, 247)];
+    [manager addWayPoint:2 wayPoint:ccp(-1, 193)];
+    [manager addWayPoint:2 wayPoint:ccp(128, 193)];
+    [manager addWayPoint:2 wayPoint:ccp(128, 107)];
+    [manager addWayPoint:2 wayPoint:ccp(308, 107)];
+    [manager addWayPoint:2 wayPoint:ccp(308, 241)];
+    [manager addWayPoint:2 wayPoint:ccp(481, 241)];
     
-    [manager addWayPoint:3 wayPoint:ccp(-1, 184)];
-    [manager addWayPoint:3 wayPoint:ccp(113, 184)];
-    [manager addWayPoint:3 wayPoint:ccp(113, 98)];
-    [manager addWayPoint:3 wayPoint:ccp(323, 98)];
-    [manager addWayPoint:3 wayPoint:ccp(323, 232)];
-    [manager addWayPoint:3 wayPoint:ccp(481, 232)];
+    [manager addWayPoint:3 wayPoint:ccp(-1, 178)];
+    [manager addWayPoint:3 wayPoint:ccp(113, 178)];
+    [manager addWayPoint:3 wayPoint:ccp(113, 92)];
+    [manager addWayPoint:3 wayPoint:ccp(323, 92)];
+    [manager addWayPoint:3 wayPoint:ccp(323, 226)];
+    [manager addWayPoint:3 wayPoint:ccp(481, 226)];
 }
 
 - (void) initFriendly:(NSMutableArray*)array
@@ -184,7 +196,27 @@
 
 - (BOOL) isWhite:(CGPoint)point
 {
-    return YES;
+    if (point.x > 0 && point.x < 160 && point.y > 168 && point.y < 222) {
+        return YES;
+    }
+    
+    if (point.x > 104 && point.x < 160 && point.y > 80 && point.y < 222) {
+        return YES;
+    }
+    
+    if (point.x > 104 && point.x < 338 && point.y > 80 && point.y < 136) {
+        return YES;
+    }
+    
+    if (point.x > 282 && point.x < 338 && point.y > 80 && point.y < 270) {
+        return YES;
+    }
+    
+    if (point.x > 282 && point.x < 480 && point.y > 216 && point.y < 270) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 @end

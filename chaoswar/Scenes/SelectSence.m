@@ -158,7 +158,7 @@
                 waveStationPo = CGPointFromString([wave objectForKey:@"position"]);
                 isCanPLay = [(NSNumber*)[wave objectForKey:@"open"] intValue];
                 
-                if (isCanPLay == 1) {
+                //if (isCanPLay == 1) {
                     btnWaveStation = [[CCMenuItemImage alloc] initFromNormalImage:@"btnWaveStation.png" selectedImage:@"btnWaveStation.png" disabledImage:@"btnWaveStation.png" target:self  selector:@selector(setMagic:)];
                     btnWaveStation.scale = 0.85;
                     btnWaveStation.tag = [(NSNumber*)[wave objectForKey:@"id"] intValue];
@@ -181,7 +181,7 @@
                         waveScore.position = CGPointMake(waveStationPo.x - 15 + (i * 15), waveStationPo.y + 35);
                         [self addChild:waveScore z:2];
                     }
-                }        
+                //}        
             }
         }
 		

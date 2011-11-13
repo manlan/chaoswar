@@ -1,15 +1,18 @@
 #import <Foundation/Foundation.h>
 #import "TDEnemy.h"
 #import "GameController.h"
+#import "GameMagicScene.h"
 #import "TDFriendly.h"
 #import "TDBullet.h"
 #import "TDDefBullet.h"
+#import "TDMagicBullet.h"
 #import "TDTower.h"
 
 @implementation TDEnemy
 
 @synthesize nextWayPoint = _nextWayPoint;
 @synthesize enemyStatus = _enemyStatus;
+@synthesize enemyMagicStatus = _enemyMagicStatus;
 @synthesize way = _way;
 @synthesize friendly = _friendly;
 @synthesize shootBulletArray = _shootBulletArray;
@@ -18,11 +21,31 @@
 @synthesize magicBulletArray = _magicBulletArray;
 @synthesize towerArray = _towerArray;
 @synthesize friendlyArray = _friendlyArray;
+@synthesize mvuAni = _mvuAni;
+@synthesize mvdAni = _mvdAni;
+@synthesize mvlAni = _mvlAni;
+@synthesize mvrAni = _mvrAni;
+@synthesize atAni = _atAni;
 
 - (BOOL) run
 {
     if ([super run] == NO) return NO;
-    [self schedule:@selector(doMove:)];
+    if (_enemyMagicStatus == EMS_STOP) {
+        return NO;
+    }
+    switch (_enemyStatus) {
+        case ES_NORMAL:
+            [self doRunning];
+            break;
+        case ES_WAITING:
+            [self doWaiting];
+            break;
+        case ES_ATTACT:
+            [self doAttact];
+            break;
+        default:
+            break;
+    }
     return YES;
 }
 
@@ -30,6 +53,7 @@
 {
 	if( (self=[super init])) {
         _enemyStatus = ES_NORMAL;
+        _enemyMagicStatus = EMS_NORMAL;
         _shootBulletArray = [[NSMutableArray alloc] init];
         _towerBulletArray = [[NSMutableArray alloc] init];
         _friendlyBulletArray = [[NSMutableArray alloc] init];
@@ -41,7 +65,9 @@
 }
 
 - (void) statusToDeading {
-
+    [super statusToDeading];
+    GameController *gc = [GameController getGameController];
+    gc.currentGold = gc.currentGold + self.getGold;
 }
 
 - (void) dealloc
@@ -104,7 +130,12 @@
     }
     //移动
     double curDistance = ccpDistance(self.position, position);
-    ccTime speed = curDistance / self.moveSpeed;
+    ccTime speed = 0;
+    if (_enemyMagicStatus == EMS_SPEED) {
+        speed = curDistance / self.moveSpeed / 2;
+    } else {
+        speed = curDistance / self.moveSpeed;
+    }
     id actionMove = [CCMoveTo actionWithDuration:speed position:position];
 	id actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterMove:)];
 	[self runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
@@ -112,6 +143,9 @@
 
 - (CGPoint) getPositionAfterTime:(ccTime)dt
 {
+    if (_enemyStatus != ES_NORMAL) {
+        return self.position;
+    }
     CGFloat doDistance = self.moveSpeed * dt;
     CGPoint currentPos = self.position;
     CGPoint nextPos = self.position;
@@ -245,6 +279,9 @@
     [gc.gameBackground addChild:b z:60];
     [gc.bulletArray addObject:b];
     [b run];
+    gc.screenClickType = SCT_ALL;
+    gc.operateType = OT_NORMAL;
+    [gc.gameMagic restartMagicThunder];
 }
 
 - (void) doMagicStop
@@ -256,6 +293,10 @@
     [gc.gameBackground addChild:b z:60];
     [gc.bulletArray addObject:b];
     [b run];
+    gc.screenClickType = SCT_ALL;
+    gc.operateType = OT_NORMAL;
+    [gc.gameMagic restartMagicStop];
+    [self doMagicStopStatus];
 }
 
 - (void) doubleAttact:(TDFriendly*)s
@@ -263,6 +304,119 @@
     [self stopAllActions];
     _enemyStatus = ES_ATTACT;
     _friendly = s;
+}
+
+- (void) doRunning
+{
+    self.enemyStatus = ES_NORMAL;
+    [self schedule:@selector(doMove:)];
+}
+
+- (void) doWaiting
+{
+    self.enemyStatus = ES_WAITING;
+    [self stopAllActions];
+}
+
+- (void) doAttact
+{
+    self.enemyStatus = ES_ATTACT;
+    TDFriendly *f = [self canAttactFriendly];
+    if (f) {
+        [self schedule:@selector(startAttact:)];
+    }
+}
+
+- (TDFriendly*) canAttactFriendly
+{
+    for (TDFriendly *t in _friendlyArray) 
+    {
+        if (t) {
+            double curDistance = ccpDistance(self.position, t.position);
+            if (curDistance < 80) {
+                return t;
+            }
+        }
+    }
+    return nil;
+}
+
+- (void) startAttact:(ccTime)dt {
+    [self unschedule:@selector(startAttact:)];
+    [self doAttact:0];
+    [self schedule:@selector(doAttact:) interval:self.attacttime];
+}
+
+
+- (void) doAttact:(ccTime)dt {
+    TDFriendly *f = [self canAttactFriendly];
+    if (f) {
+        CGPoint position = f.position;
+        if (self.position.x > position.x) {
+            [self setFlipX:YES];
+        } else {
+            [self setFlipX:NO];
+        }
+        id actionAttact = [CCAnimate actionWithAnimation:_atAni restoreOriginalFrame:NO];
+        id actionAttactDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterAttact:)];
+        [self runAction:[CCSequence actions:actionAttact, actionAttactDone, nil]];
+    }
+}
+
+-(void) afterAttact:(id)sender {
+    TDFriendly *f = [self canAttactFriendly];
+    if (f) {
+        [f beAttact:self an:self.attact at:self.attactMode];
+    }
+}
+
+- (void) doMagicStopStatus
+{
+    [self schedule:@selector(afterMagicStopStatus:) interval:3];
+    _enemyMagicStatus = EMS_STOP;
+    [self stopAllActions];
+    [self run];
+}
+
+- (void) afterMagicStopStatus:(ccTime)dt {
+    [self unschedule:@selector(afterMagicStopStatus:)];
+    _enemyMagicStatus = EMS_NORMAL;
+    [self stopAllActions];
+    [self run];
+}
+
+- (void) doMagicSpeedStatus
+{
+    _enemyMagicStatus = EMS_SPEED;
+    [self stopAllActions];
+    [self schedule:@selector(afterMagicSpeedStatus:) interval:6];
+    [self run];
+}
+
+- (void) afterMagicSpeedStatus:(ccTime)dt {
+    [self unschedule:@selector(afterMagicSpeedStatus:)];
+    _enemyMagicStatus = EMS_NORMAL;
+    [self stopAllActions];
+    [self run];
+}
+
+- (void) doMagicLifeStatus
+{
+    _enemyMagicStatus = EMS_LIFE;
+    self.currentHP = self.currentHP + 20;
+    if (self.currentHP > self.maxHP) {
+        self.currentHP = self.maxHP;
+    }
+    [self stopAllActions];
+    [self schedule:@selector(afterMagicLifeStatus:)];
+    [self run];
+}
+
+- (void) afterMagicLifeStatus:(ccTime)dt {
+    [self unschedule:@selector(afterMagicLifeStatus:)];
+    _enemyMagicStatus = EMS_NORMAL;
+    [self stopAllActions];
+    [self run];
 }
 
 @end

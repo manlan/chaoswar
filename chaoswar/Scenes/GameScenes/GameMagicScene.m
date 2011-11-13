@@ -17,6 +17,10 @@
         _btnMagic2 = nil;
         _btnMagic3 = nil;
         _btnMagic4 = nil;
+        magic1Restart = NO;
+        magic2Restart = NO;
+        magic3Restart = NO;
+        magic4Restart = NO;
 		//GameController *gc = [GameController getGameController];
 		//下一波
 		_btnGo = [CCMenuItemImage itemFromNormalImage:@"go_normal.png" selectedImage:@"go_normal.png"  
@@ -159,6 +163,12 @@
 - (void) setMagic1MenuStatus
 {
     if (!_btnMagic1) return;
+    
+    if (magic1Restart) {
+        [_btnMagic1 setIsEnabled:NO];
+        return;
+    }
+
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_FRIENDLY) {
         [_btnMagic1 setIsEnabled:NO];
@@ -176,6 +186,12 @@
 - (void) setMagic2MenuStatus
 {
     if (!_btnMagic2) return;
+    
+    if (magic2Restart) {
+        [_btnMagic2 setIsEnabled:NO];
+        return;
+    }
+
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_FIRE) {
         [_btnMagic2 setIsEnabled:NO];
@@ -193,6 +209,12 @@
 - (void) setMagic3MenuStatus
 {
     if (!_btnMagic3) return;
+    
+    if (magic3Restart) {
+        [_btnMagic3 setIsEnabled:NO];
+        return;
+    }
+
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_THUNDER) {
         [_btnMagic3 setIsEnabled:NO];
@@ -210,6 +232,12 @@
 - (void) setMagic4MenuStatus
 {
     if (!_btnMagic4) return;
+    
+    if (magic4Restart) {
+        [_btnMagic4 setIsEnabled:NO];
+        return;
+    }
+
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_STOP) {
         [_btnMagic4 setIsEnabled:NO];
@@ -222,6 +250,62 @@
     }
     
     [_btnMagic4 setIsEnabled:YES];
+}
+
+- (void) restartMagicFire
+{
+    [_btnMagic2 setIsEnabled:NO];
+    magic2Restart = YES;
+    [self schedule:@selector(endRestartMagicFire:) interval:40];
+}
+
+- (void) endRestartMagicFire:(ccTime)dt {
+    [self unschedule:@selector(endRestartMagicFire:)];
+    magic2Restart = NO;
+    GameController *gc = [GameController getGameController];
+    [gc setGameStatus];
+}
+
+- (void) restartMagicFriendly
+{
+    [_btnMagic1 setIsEnabled:NO];
+    magic1Restart = YES;
+    [self schedule:@selector(endRestartMagicFriendly:) interval:4];
+}
+
+- (void) endRestartMagicFriendly:(ccTime)dt {
+    [self unschedule:@selector(endRestartMagicFriendly:)];
+    magic1Restart = NO;
+    GameController *gc = [GameController getGameController];
+    [gc setGameStatus];
+}
+
+- (void) restartMagicThunder
+{
+    [_btnMagic3 setIsEnabled:NO];
+    magic3Restart = YES;
+    [self schedule:@selector(endRestartMagicThunder:) interval:4];
+}
+
+- (void) endRestartMagicThunder:(ccTime)dt {
+    [self unschedule:@selector(endRestartMagicThunder:)];
+    magic3Restart = NO;
+    GameController *gc = [GameController getGameController];
+    [gc setGameStatus];
+}
+
+- (void) restartMagicStop
+{
+    [_btnMagic4 setIsEnabled:NO];
+    magic4Restart = YES;
+    [self schedule:@selector(endRestartMagicStop:) interval:4];
+}
+
+- (void) endRestartMagicStop:(ccTime)dt {
+    [self unschedule:@selector(endRestartMagicStop:)];
+    magic4Restart = NO;
+    GameController *gc = [GameController getGameController];
+    [gc setGameStatus];
 }
 
 @end

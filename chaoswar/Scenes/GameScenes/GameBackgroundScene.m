@@ -174,6 +174,9 @@
     switch (operateType) {
         case OT_NORMAL:
             NSLog(@"OperateType is Nomal");
+            [GameController getGameController].screenClickType = SCT_ALL;
+            [GameController getGameController].operateType = OT_NORMAL;
+            [TDSprite delCurrentSprite];
             break;
         case OT_MAGIC_FIRE:
             NSLog(@"OperateType is Fire");
@@ -200,6 +203,7 @@
             break;
         case OT_SETSEARCHPOINT:
             NSLog(@"OperateType is SearchPoint");
+            [[GameController getGameController] doSetSearchPoint:point];
             break;
         case OT_NONE:
             NSLog(@"OperateType is None");

@@ -171,6 +171,9 @@ static GameController *_sharedController = nil;
     [b1 run];
     [b2 run];
     [b3 run];
+    self.screenClickType = SCT_ALL;
+    self.operateType = OT_NORMAL;
+    [_gameMagic restartMagicFire];
 }
 
 - (void) doMagicFriendly:(CGPoint)point
@@ -184,6 +187,14 @@ static GameController *_sharedController = nil;
     b2.position = pt2;
     TDMagicFriendly1 *b3 = [TDMagicFriendly1 getSprite];
     b3.position = pt3;
+    
+    b1.anchorPoint = ccp(0.5, 0);
+    b2.anchorPoint = ccp(0.5, 0);
+    b3.anchorPoint = ccp(0.5, 0);
+    
+    b1.searchPoint = b1.position;
+    b2.searchPoint = b2.position;
+    b3.searchPoint = b3.position;
     [self.gameBackground addChild:b1 z:60];
     [self.gameBackground addChild:b2 z:60];
     [self.gameBackground addChild:b3 z:60];
@@ -193,6 +204,30 @@ static GameController *_sharedController = nil;
     [b1 run];
     [b2 run];
     [b3 run];
+    self.screenClickType = SCT_ALL;
+    self.operateType = OT_NORMAL;
+    [_gameMagic restartMagicFriendly];
+}
+
+- (void) doSetSearchPoint:(CGPoint)point
+{
+    TDSprite *s = [TDSprite getCurrentSprite];
+    TDDefenceTower *td = nil;
+    if ([s isKindOfClass:[TDDefenceTower class]]) {
+        td = (TDDefenceTower*) s;
+    }
+    if (!td) return;
+    double distance = ccpDistance(td.position, point);
+    if (td.attactRange >= distance) {
+        [td.friendly1 setSearchPoint:point];
+        [td.friendly2 setSearchPoint:point];
+        [td.friendly3 setSearchPoint:point];
+        [td.friendly1 goToHome];
+        [td.friendly2 goToHome];
+        [td.friendly3 goToHome];
+        self.screenClickType = SCT_ALL;
+        self.operateType = OT_NORMAL;
+    }
 }
 
 - (void) stopGame
@@ -231,24 +266,46 @@ static GameController *_sharedController = nil;
 {
     _maxWave = maxWave;
     [_gameImfomation setWaveValue];
+    [self setGameStatus];
 }
 
 - (void) setCurrentWave:(int)currentWave
 {
     _currentWave = currentWave;
     [_gameImfomation setWaveValue];
+    [self setGameStatus];
 }
 
 - (void) setCurrentHealth:(int)currentHealth
 {
     _currentHealth = currentHealth;
     [_gameImfomation setEnemyNumValue];
+    [self setGameStatus];
 }
 
 - (void) setCurrentGold:(int)currentGold
 {
     _currentGold = currentGold;
     [_gameImfomation setGoldValue];
+    [self setGameStatus];
+}
+
+- (void)setScreenClickType:(TScreenClickType)sct
+{
+    _screenClickType = sct;
+    [self setGameStatus];
+}
+
+-(void)setOperateType:(TOperateType)ot
+{
+    _operateType = ot;
+    [self setGameStatus];
+}
+
+-(void)setCanNext:(BOOL)canNext
+{
+    _canNext = canNext;
+    [self setGameStatus];
 }
 
 - (void) initScene

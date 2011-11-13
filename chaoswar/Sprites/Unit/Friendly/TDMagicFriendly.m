@@ -29,12 +29,28 @@
     self.spriteStatus = TSS_DEADING;
 }
 
+- (CCAnimation*) getAnimation:(int)level kind:(NSString*)kind
+{
+    CCSpriteFrameCache *cache = [CCSpriteFrameCache sharedSpriteFrameCache];
+    NSMutableArray *animArray = [NSMutableArray array];
+    CCSpriteFrame *frame = nil;
+    int i = 1;
+    do {
+        frame = [cache spriteFrameByName:[NSString stringWithFormat:@"mcf%02d%@%04d.png", level, kind, i]];
+        i++;
+        if (frame != nil) {
+            [animArray addObject:frame];
+        }
+    } while (frame != nil);
+    return [CCAnimation animationWithFrames:animArray delay:0.05f];
+}
+
 @end
 
 @implementation TDMagicFriendly1
 
 + (id) getSprite {
-    TDMagicFriendly1 *friendly = [TDMagicFriendly1 spriteWithSpriteFrameName:@"ft15mvc0001.png"];
+    TDMagicFriendly1 *friendly = [TDMagicFriendly1 spriteWithSpriteFrameName:@"mcf01mv0001.png"];
     if (friendly) {
         [friendly setScale:TDS_MFL1_SCALE];
         friendly.maxHP = TDS_MFL1_MAXHP;
@@ -52,12 +68,27 @@
     return friendly;
 }
 
+- (void) initAnimate
+{
+    [super initAnimate];
+    int level = 1;
+    self.movAni = [self getAnimation:level kind:@"mv"];
+    self.ddAni = [self getAnimation:level kind:@"dd"];
+    self.atAni = [self getAnimation:level kind:@"at"];
+    [self.movAni setName:[NSString stringWithFormat:@"mcf%02dmv", level]];
+    [self.ddAni setName:[NSString stringWithFormat:@"mcf%02ddd", level]];
+    [self.atAni setName:[NSString stringWithFormat:@"mcf%02dat", level]];
+    [self addAnimation:self.movAni];
+    [self addAnimation:self.ddAni];
+    [self addAnimation:self.atAni];
+}
+
 @end
 
 @implementation TDMagicFriendly2
 
 + (id) getSprite {
-    TDMagicFriendly2 *friendly = [TDMagicFriendly2 spriteWithSpriteFrameName:@"ft15mvc0001.png"];
+    TDMagicFriendly2 *friendly = [TDMagicFriendly2 spriteWithSpriteFrameName:@"mcf02mv0001.png"];
     if (friendly) {
         [friendly setScale:TDS_MFL2_SCALE];
         friendly.maxHP = TDS_MFL2_MAXHP;
@@ -73,6 +104,21 @@
         friendly.deadTime = TDS_MFL2_DEADTIME;
     }
     return friendly;
+}
+
+- (void) initAnimate
+{
+    [super initAnimate];
+    int level = 2;
+    self.movAni = [self getAnimation:level kind:@"mv"];
+    self.ddAni = [self getAnimation:level kind:@"dd"];
+    self.atAni = [self getAnimation:level kind:@"at"];
+    [self.movAni setName:[NSString stringWithFormat:@"mcf%02dmv", level]];
+    [self.ddAni setName:[NSString stringWithFormat:@"mcf%02ddd", level]];
+    [self.atAni setName:[NSString stringWithFormat:@"mcf%02dat", level]];
+    [self addAnimation:self.movAni];
+    [self addAnimation:self.ddAni];
+    [self addAnimation:self.atAni];
 }
 
 @end

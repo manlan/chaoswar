@@ -6,6 +6,7 @@
 -(id) init
 {
 	if( (self=[super init])) {
+        self.spritePlace = SP_AIR;
 	}
 	return self;
 }
@@ -50,12 +51,30 @@
 	[super dealloc];
 }
 
+- (void) doRunning
+{
+    self.enemyStatus = ES_NORMAL;
+    [self schedule:@selector(doMove:)];
+}
+
+- (void) doWaiting
+{
+    self.enemyStatus = ES_NORMAL;
+    [self schedule:@selector(doMove:)];
+}
+
+- (void) doAttact
+{
+    self.enemyStatus = ES_NORMAL;
+    [self schedule:@selector(doMove:)];
+}
+
 @end
 
 @implementation TDFlyEnemy1
 
 + (id) getSprite {
-    TDFlyEnemy *enemy = [TDFlyEnemy spriteWithSpriteFrameName:@"fl01mvc0001.png"];
+    TDFlyEnemy1 *enemy = [TDFlyEnemy1 spriteWithSpriteFrameName:@"fl01mvc0001.png"];
     if (enemy) {
         [enemy setScale:TDS_FL1_SCALE];
         enemy.maxHP = TDS_FL1_MAXHP;
@@ -67,6 +86,7 @@
         enemy.attactMode = TDS_FL1_ATTACTMODE;
         enemy.defence = TDS_FL1_DEFENCE;
         enemy.defenceMode = TDS_FL1_DEFENCEMODE;
+        enemy.getGold = TDS_FL1_GETGOLD;
     }
     return enemy;
 }
@@ -98,6 +118,7 @@
         enemy.attactMode = TDS_FL2_ATTACTMODE;
         enemy.defence = TDS_FL2_DEFENCE;
         enemy.defenceMode = TDS_FL2_DEFENCEMODE;
+        enemy.getGold = TDS_FL2_GETGOLD;
     }
     return enemy;
 }
@@ -129,6 +150,7 @@
         enemy.attactMode = TDS_FL3_ATTACTMODE;
         enemy.defence = TDS_FL3_DEFENCE;
         enemy.defenceMode = TDS_FL3_DEFENCEMODE;
+        enemy.getGold = TDS_FL3_GETGOLD;
     }
     return enemy;
 }

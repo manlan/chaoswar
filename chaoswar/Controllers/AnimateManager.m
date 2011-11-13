@@ -48,13 +48,11 @@
 + (void) initMagic01
 {
     [AnimateManager initAnimate:@"mc01"];
-    [AnimateManager initAnimate:@"mcspef"];
 }
 
 + (void) initMagic02
 {
-    [AnimateManager initAnimate:@"mc01"];
-    [AnimateManager initAnimate:@"mclfef"];
+    [AnimateManager initAnimate:@"mc02"];
 }
 
 + (void) initFoot01
@@ -203,7 +201,7 @@
 
 + (void) initForeverFriendly01
 {
-    [AnimateManager initAnimate:@"fcf03"];
+    [AnimateManager initAnimate:@"fcf01"];
 }
 
 + (void) initMagicFire

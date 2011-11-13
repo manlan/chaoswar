@@ -4,7 +4,11 @@
 @class GameController;
 
 @interface GameControllerScene : CCLayer {
-
+    int _build1Gold;
+    int _build2Gold;
+    int _build3Gold;
+    int _build4Gold;
+    int _updateGold;
 }
 
 @property (nonatomic, assign) CCMenuItemImage *btnBuild1;
@@ -14,6 +18,12 @@
 @property (nonatomic, assign) CCMenuItemImage *btnUpdate;
 @property (nonatomic, assign) CCMenuItemImage *btnSell;
 @property (nonatomic, assign) CCMenuItemImage *btnZone;
+
+@property int build1Gold;
+@property int build2Gold;
+@property int build3Gold;
+@property int build4Gold;
+@property int updateGold;
 
 - (void) setBuild1MenuStatus;
 - (void) setBuild2MenuStatus;

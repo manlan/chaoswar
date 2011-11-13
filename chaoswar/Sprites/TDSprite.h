@@ -4,7 +4,18 @@
 @class GameController;
 
 @interface TDSprite : CCSprite <CCTargetedTouchDelegate>{
-
+    int _costGold;
+    int _getGold;
+    TSpriteStatus _spriteStatus;
+    int _maxHP;
+    int _currentHP;
+    int _killNum;
+    BOOL _showBlood;
+    BOOL _canClick;
+    CCSprite *_bloodShowSprite;
+    CCSprite *_bloodBackSprite;
+    CCSprite *_arrowSprite;
+    CCSprite *_effectSprite;
 }
 
 // 花费金额
@@ -16,13 +27,15 @@
 // 最大生命值：HP
 @property int maxHP;
 // 当前生命值：HP
-@property (readwrite) int currentHP;
+@property int currentHP;
 // 杀敌次数
 @property int killNum;
 // 是否已经被删除
 @property BOOL showBlood;
-// 是否已经被删除
+// 是否可以被点击
 @property BOOL canClick;
+// 是否可以被点击
+@property TSpritePlace spritePlace;
 // 血条
 @property (nonatomic, assign) CCSprite *bloodShowSprite;
 // 血条
@@ -34,7 +47,8 @@
 
 // 获取当前精灵的实例
 + (id) getSprite;
-
++ (id) getCurrentSprite;
++ (void) delCurrentSprite;
 // 运行精灵
 - (BOOL) run;
 

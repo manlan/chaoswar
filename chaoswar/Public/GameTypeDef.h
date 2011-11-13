@@ -102,3 +102,21 @@ typedef enum {
 	ES_WAITING,
 	ES_ATTACT
 } TEnemyStatus;
+
+
+// 敌人属性
+typedef enum {
+	SP_FOOT,
+	SP_AIR,
+	SP_WATER
+} TSpritePlace;
+
+
+// 敌人属性
+typedef enum {
+	EMS_NORMAL,
+	EMS_STOP,
+	EMS_SPEED,
+    EMS_LIFE,
+} TEnemyMagicStatus;
+

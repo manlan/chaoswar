@@ -3,8 +3,6 @@
 
 @implementation TDBossEnemy
 
-@synthesize atAni = _atAni;
-
 -(id) init
 {
 	if( (self=[super init])) {
@@ -69,6 +67,7 @@
         enemy.attactMode = TDS_BS1_ATTACTMODE;
         enemy.defence = TDS_BS1_DEFENCE;
         enemy.defenceMode = TDS_BS1_DEFENCEMODE;
+        enemy.getGold = TDS_BS1_GETGOLD;
     }
     return enemy;
 }
@@ -100,6 +99,7 @@
         enemy.attactMode = TDS_BS2_ATTACTMODE;
         enemy.defence = TDS_BS2_DEFENCE;
         enemy.defenceMode = TDS_BS2_DEFENCEMODE;
+        enemy.getGold = TDS_BS2_GETGOLD;
     }
     return enemy;
 }
