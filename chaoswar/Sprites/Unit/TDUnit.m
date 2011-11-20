@@ -1,8 +1,10 @@
 #import "TDUnit.h"
 #import "GameController.h"
+#import "MagicController.h"
 
 @implementation TDUnit
 
+@synthesize unitStatus = _unitStatus;
 @synthesize maxMP = _maxMP;
 @synthesize currentMP = _currentMP;
 @synthesize moveSpeed = _moveSpeed;
@@ -13,16 +15,53 @@
 @synthesize attacttime = _attacttime;
 @synthesize defence = _defence;
 @synthesize defenceMode = _defenceMode;
-@synthesize ddAni = _ddAni;
+@synthesize mvuAniName = _mvuAniName;
+@synthesize mvdAniName = _mvdAniName;
+@synthesize mvcAniName = _mvcAniName;
+@synthesize atAniName = _atAniName;
+@synthesize ddAniName = _ddAniName;
+@synthesize mcAniName = _mcAniName;
+@synthesize canAction = _canAction;
+@synthesize canSchedule = _canSchedule;
+@synthesize speedUPNum = _speedUPNum;
 
 -(id) init
 {
 	if( (self=[super init])) {
         self.showBlood = YES;
+        self.canAction = YES;
+        self.canSchedule = YES;
+        self.speedUPNum = 1;
+        self.unitStatus = US_NORMAL;
+        _magicController = [[MagicController alloc] init];
+        _magicController.unit = self;
 	}
 	return self;
 }
 
+- (BOOL) run
+{
+    if ([super run] == NO) return NO;
+    [self doUnitLogic];
+    return YES;
+}
+
+- (void) doUnitLogic {
+    
+}
+
+- (void)dealloc {
+    [_mvuAniName release];
+    [_mvdAniName release];
+    [_mvcAniName release];
+    [_atAniName release];
+    [_ddAniName release];
+    [_mcAniName release];
+    [_magicController release];
+    [super dealloc];
+}
+
+//攻击力比例
 - (float) getAttactPercent:(TAcctactType)at
 {
     switch (self.defenceMode) {
@@ -74,26 +113,53 @@
 
 - (void) beAttact:(TDSprite*)s an:(int)an at:(TAcctactType)at
 {
-
     int attactNum = an - self.defence;
     attactNum = attactNum * [self getAttactPercent:at];
     self.currentHP = self.currentHP - attactNum;
     if (self.currentHP < 0) self.currentHP = 0;
     if (self.currentHP == 0) {
         s.killNum++;
-        [self stopAllActions];        
-        id actionDead = [CCAnimate actionWithAnimation:self.ddAni restoreOriginalFrame:NO];
-        id actionDeadDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterDead:)];
-        [self runAction:[CCSequence actions:actionDead, actionDeadDone, nil]];
+        [self stopAllActions];
+        [self unscheduleAllSelectors];
         self.spriteStatus = TSS_DEADING;
     }
 }
 
--(void) afterDead:(id)sender {
+- (void) statusToDeading {
+    [super statusToDeading];
     GameController *gc = [GameController getGameController];
-    self.spriteStatus = TSS_DEAD;
     gc.currentGold = gc.currentGold + self.getGold;
+    [self stopAllActions];
+    [self unscheduleAllSelectors];
+    id actionDead = [CCAnimate actionWithAnimation:[self getAnimate:self.ddAniName] restoreOriginalFrame:NO];
+    id actionDeadDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterDead:)];
+    [self runAction:[CCSequence actions:actionDead, actionDeadDone, nil]];
+}
+
+-(void) afterDead:(id)sender {
+    self.spriteStatus = TSS_DEAD;
     [self removeFromParentAndCleanup:YES];
 }
 
+- (void) showImformation {
+    
+}
+//================魔法的操作================
+
+- (void) doMagicStopStatus
+{
+    [_magicController doMagicStopStatus];
+}
+
+- (void) doMagicSpeedStatus
+{
+    [_magicController doMagicSpeedStatus];
+}
+
+- (void) doMagicLifeStatus
+{
+    [_magicController doMagicLifeStatus];
+}
+
+//================魔法的操作================
 @end

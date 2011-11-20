@@ -1,5 +1,7 @@
 #import "GameSpriteData.h"
+#import "cocos2d.h"
 #import "DataController.h"
+#import "GameController.h"
 
 float getArrowTower1AttactTime()
 {	
@@ -81,6 +83,7 @@ float getArrowTower3Attact()
 
 float getDefenceTower1AttactTime()
 {	
+    return 4;
     int level = [DataController getUpdataLevelByTagName:5];
     if(level >= 2)
     {
@@ -315,6 +318,7 @@ float getMagicTower3Attact()
 
 float getMFLAttact()
 {	
+    return 9000;
     int level = [DataController getUpdataLevelByTagName:0];
     if(level >= 2)
     {
@@ -334,6 +338,7 @@ int getMFLLevel()
 
 float getMCFireAttact()
 {	
+    return 5;
     int level = [DataController getUpdataLevelByTagName:1];
     if(level >= 2)
     {
@@ -353,6 +358,7 @@ int getMCFireLevel()
 
 float getMCLightAttact()
 {	
+    return 5;
     int level = [DataController getUpdataLevelByTagName:2];
     if(level == 1)
     {
@@ -370,6 +376,7 @@ float getMCLightAttact()
 
 float getMCStoneAttact()
 {	
+    return 1;
     int level = [DataController getUpdataLevelByTagName:3];
     if(level >= 2)
     {
@@ -392,4 +399,42 @@ float getMCStoneFanitTime()
     {
         return 2;
     }
+}
+
+ccColor3B getHintFontColor()
+{
+    GameController *gc = [GameController getGameController];
+    switch (gc.mapType) {
+		case MT_GREEN:
+            return ccc3(255,255,255);
+            break;
+        case MT_SAND:
+            return ccc3(255,204,  0);
+			break;
+        case MT_SNOW:
+            return ccc3(255,204,  0);
+			break;
+		default:
+            return ccc3(255,255,255);
+			break;
+	}
+}
+
+NSString* getEmptyName()
+{
+    GameController *gc = [GameController getGameController];
+    switch (gc.mapType) {
+		case MT_GREEN:
+            return @"et01.png";
+            break;
+        case MT_SAND:
+            return @"et03.png";
+			break;
+        case MT_SNOW:
+            return @"et02.png";
+			break;
+		default:
+            return @"et01.png";
+			break;
+	}
 }

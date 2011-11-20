@@ -1,6 +1,7 @@
 #import "GameMagicScene.h"
 #import "GameHintScene.h"
 #import "GameController.h"
+#import "SpriteInfoScene.h"
 
 @implementation GameMagicScene
 
@@ -23,7 +24,7 @@
         magic4Restart = NO;
 		//GameController *gc = [GameController getGameController];
 		//下一波
-		_btnGo = [CCMenuItemImage itemFromNormalImage:@"go_normal.png" selectedImage:@"go_normal.png"  
+		_btnGo = [NBSkillButton itemFromNormalImage:@"go_normal.png" selectedImage:@"go_normal.png"  
 									   disabledImage:@"go_black.png"  target:self selector:@selector(GoNext:)];
 		CCMenu *btnGoMenu = [CCMenu menuWithItems:_btnGo, nil];
 		btnGoMenu.position = ccp(448 , 20);
@@ -69,11 +70,11 @@
     }
 }
 
-- (CCMenuItemImage*) addButton:(int)magicNum selector:(SEL)sel point:(CGPoint)point
+- (NBSkillButton*) addButton:(int)magicNum selector:(SEL)sel point:(CGPoint)point
 {
     NSString * jn = [NSString stringWithFormat:@"jN%03d.png", magicNum];
     NSString * jnHUI = [NSString stringWithFormat:@"jN%03dHui.png", magicNum];
-    CCMenuItemImage *btnMagic = [CCMenuItemImage itemFromNormalImage:jn selectedImage:jn disabledImage:jnHUI target:self selector:sel];
+    NBSkillButton *btnMagic = [NBSkillButton itemFromNormalImage:jn selectedImage:jn disabledImage:jnHUI target:self selector:sel];
     [btnMagic setScale:0.75];
     CCMenu *btnMagicMenu = [CCMenu menuWithItems:btnMagic, nil];
     btnMagicMenu.position = point;
@@ -85,12 +86,14 @@
 -(void) Magic1:(id) sender 
 {
 	GameController *gc = [GameController getGameController];
+    [gc.spriteInfo removeAllChildrenWithCleanup:YES];
     if (gc.operateType == OT_MAGIC_FRIENDLY) {
         gc.operateType = OT_NORMAL;
         gc.screenClickType = SCT_ALL;
     } else {
         gc.operateType = OT_MAGIC_FRIENDLY;
         gc.screenClickType = SCT_ONLYWHITE;
+        //显示魔法信息
     }
     [gc setGameStatus];
 }
@@ -99,12 +102,14 @@
 -(void) Magic2:(id) sender 
 {
     GameController *gc = [GameController getGameController];
+    [gc.spriteInfo removeAllChildrenWithCleanup:YES];
     if (gc.operateType == OT_MAGIC_FIRE) {
         gc.operateType = OT_NORMAL;
         gc.screenClickType = SCT_ALL;
     } else {
         gc.operateType = OT_MAGIC_FIRE;
         gc.screenClickType = SCT_ONLYWHITE;
+        //显示魔法信息
     }
     [gc setGameStatus];
 }
@@ -113,12 +118,14 @@
 -(void) Magic3:(id) sender
 {
 	GameController *gc = [GameController getGameController];
+    [gc.spriteInfo removeAllChildrenWithCleanup:YES];
     if (gc.operateType == OT_MAGIC_THUNDER) {
         gc.operateType = OT_NORMAL;
         gc.screenClickType = SCT_ALL;
     } else {
         gc.operateType = OT_MAGIC_THUNDER;
         gc.screenClickType = SCT_ENEMY;
+        //显示魔法信息
     }
     [gc setGameStatus];
 }
@@ -127,18 +134,21 @@
 -(void) Magic4:(id) sender 
 {
 	GameController *gc = [GameController getGameController];
+    [gc.spriteInfo removeAllChildrenWithCleanup:YES];
     if (gc.operateType == OT_MAGIC_STOP) {
         gc.operateType = OT_NORMAL;
         gc.screenClickType = SCT_ALL;
     } else {
         gc.operateType = OT_MAGIC_STOP;
         gc.screenClickType = SCT_ENEMY;
+        //显示魔法信息
     }
     [gc setGameStatus];
 }
 
 -(void) GoNext:(id) sender 
 {
+    [_btnGo stopAllActions];
 	GameController *gc = [GameController getGameController];
 	[gc startNextWave];
     [gc setGameStatus];
@@ -256,7 +266,7 @@
 {
     [_btnMagic2 setIsEnabled:NO];
     magic2Restart = YES;
-    [self schedule:@selector(endRestartMagicFire:) interval:40];
+    [_btnMagic2 doProgress:0.1 from:100 to:0 t:self s:@selector(endRestartMagicFire:)];
 }
 
 - (void) endRestartMagicFire:(ccTime)dt {
@@ -270,7 +280,7 @@
 {
     [_btnMagic1 setIsEnabled:NO];
     magic1Restart = YES;
-    [self schedule:@selector(endRestartMagicFriendly:) interval:4];
+    [_btnMagic1 doProgress:0.1 from:100 to:0 t:self s:@selector(endRestartMagicFriendly:)];
 }
 
 - (void) endRestartMagicFriendly:(ccTime)dt {
@@ -284,7 +294,7 @@
 {
     [_btnMagic3 setIsEnabled:NO];
     magic3Restart = YES;
-    [self schedule:@selector(endRestartMagicThunder:) interval:4];
+    [_btnMagic3 doProgress:0.1 from:100 to:0 t:self s:@selector(endRestartMagicThunder:)];
 }
 
 - (void) endRestartMagicThunder:(ccTime)dt {
@@ -298,7 +308,7 @@
 {
     [_btnMagic4 setIsEnabled:NO];
     magic4Restart = YES;
-    [self schedule:@selector(endRestartMagicStop:) interval:4];
+    [_btnMagic4 doProgress:0.1 from:100 to:0 t:self s:@selector(endRestartMagicStop:)];
 }
 
 - (void) endRestartMagicStop:(ccTime)dt {

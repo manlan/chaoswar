@@ -5,6 +5,7 @@
 	CCSprite *selectMagicBg;
     CCMenuItemImage *btnBack;
 	CCMenuItemImage *btnUpdata;
+    CCMenuItemImage *btnFirst;
     CCSprite *btnWaveStationLight;
 	
 	CCMenuItemImage *btnPlay;

@@ -1,7 +1,10 @@
 #import <Foundation/Foundation.h>
 #import "GamePubDef.h"
+#import "NBSkillButton.h"
 
 @class GameController;
+
+//显示初始化变化位置，之后不变的信息
 
 @interface GameMagicScene : CCLayer {
     BOOL magic1Restart;
@@ -10,15 +13,15 @@
     BOOL magic4Restart;
 }
 
-@property (nonatomic, assign) CCMenuItemImage *btnGo;
-@property (nonatomic, assign) CCMenuItemImage *btnMagic1;
-@property (nonatomic, assign) CCMenuItemImage *btnMagic2;
-@property (nonatomic, assign) CCMenuItemImage *btnMagic3;
-@property (nonatomic, assign) CCMenuItemImage *btnMagic4;
+@property (nonatomic, assign) NBSkillButton *btnGo;
+@property (nonatomic, assign) NBSkillButton *btnMagic1;
+@property (nonatomic, assign) NBSkillButton *btnMagic2;
+@property (nonatomic, assign) NBSkillButton *btnMagic3;
+@property (nonatomic, assign) NBSkillButton *btnMagic4;
 
 - (void) setMagic:(int)JN1 JN2:(int)JN2;
 
-- (CCMenuItemImage*) addButton:(int)magicNum selector:(SEL)sel point:(CGPoint)point;
+- (NBSkillButton*) addButton:(int)magicNum selector:(SEL)sel point:(CGPoint)point;
 
 - (void) setGoMenuStatus;
 - (void) setMagic1MenuStatus;

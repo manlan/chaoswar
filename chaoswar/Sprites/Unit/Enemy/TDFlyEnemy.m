@@ -11,39 +11,13 @@
 	return self;
 }
 
-- (CCAnimation*) getAnimation:(int)level kind:(NSString*)kind
-{
-    CCSpriteFrameCache *cache = [CCSpriteFrameCache sharedSpriteFrameCache];
-    NSMutableArray *animArray = [NSMutableArray array];
-    CCSpriteFrame *frame = nil;
-    int i = 1;
-    do {
-        frame = [cache spriteFrameByName:[NSString stringWithFormat:@"fl%02d%@%04d.png", level, kind, i]];
-        i++;
-        if (frame != nil) {
-            [animArray addObject:frame];
-        }
-    } while (frame != nil);
-    return [CCAnimation animationWithFrames:animArray delay:0.05f];
-}
-
 - (void) addAnimate:(int)level
 {
-    self.mvuAni = [self getAnimation:level kind:@"mvu"];
-    self.mvdAni = [self getAnimation:level kind:@"mvd"];
-    self.mvlAni = [self getAnimation:level kind:@"mvc"];
-    self.mvrAni = [self getAnimation:level kind:@"mvc"];
-    self.ddAni = [self getAnimation:level kind:@"dd"];
-    [self.mvuAni setName:[NSString stringWithFormat:@"fl%02dmvu", level]];
-    [self.mvdAni setName:[NSString stringWithFormat:@"fl%02dmvd", level]];
-    [self.mvlAni setName:[NSString stringWithFormat:@"fl%02dmvl", level]];
-    [self.mvrAni setName:[NSString stringWithFormat:@"fl%02dmvr", level]];
-    [self.ddAni setName:[NSString stringWithFormat:@"fl%02ddd", level]];
-    [self addAnimation:self.mvuAni];
-    [self addAnimation:self.mvdAni];
-    [self addAnimation:self.mvlAni];
-    [self addAnimation:self.mvrAni];
-    [self addAnimation:self.ddAni];
+    self.mvuAniName = [NSString stringWithFormat:@"fl%02dmvu", level];
+    self.mvdAniName = [NSString stringWithFormat:@"fl%02dmvd", level];
+    self.mvcAniName = [NSString stringWithFormat:@"fl%02dmvc", level];
+    self.ddAniName = [NSString stringWithFormat:@"fl%02ddd", level];
+    self.atAniName = [NSString stringWithFormat:@"fl%02dat", level];
 }
 
 - (void) dealloc
@@ -51,22 +25,8 @@
 	[super dealloc];
 }
 
-- (void) doRunning
-{
-    self.enemyStatus = ES_NORMAL;
-    [self schedule:@selector(doMove:)];
-}
-
-- (void) doWaiting
-{
-    self.enemyStatus = ES_NORMAL;
-    [self schedule:@selector(doMove:)];
-}
-
-- (void) doAttact
-{
-    self.enemyStatus = ES_NORMAL;
-    [self schedule:@selector(doMove:)];
+- (void) showImformation {
+    
 }
 
 @end
@@ -87,13 +47,9 @@
         enemy.defence = TDS_FL1_DEFENCE;
         enemy.defenceMode = TDS_FL1_DEFENCEMODE;
         enemy.getGold = TDS_FL1_GETGOLD;
+        [enemy addAnimate:1];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:1]; 
 }
 
 - (void) dealloc
@@ -119,13 +75,9 @@
         enemy.defence = TDS_FL2_DEFENCE;
         enemy.defenceMode = TDS_FL2_DEFENCEMODE;
         enemy.getGold = TDS_FL2_GETGOLD;
+        [enemy addAnimate:2];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:2]; 
 }
 
 - (void) dealloc
@@ -151,13 +103,9 @@
         enemy.defence = TDS_FL3_DEFENCE;
         enemy.defenceMode = TDS_FL3_DEFENCEMODE;
         enemy.getGold = TDS_FL3_GETGOLD;
+        [enemy addAnimate:3];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:3]; 
 }
 
 - (void) dealloc

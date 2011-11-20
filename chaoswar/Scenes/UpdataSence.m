@@ -1,6 +1,7 @@
 #import "UpdataSence.h"
 #import "SelectSence.h"
 #import "SceneManager.h"
+#import "DataController.h"
 
 @implementation UpdataSence
 
@@ -38,8 +39,8 @@
 		[self addChild:scoreTip z:2];
         
         //加载分数
-        labelScore = [CCLabelTTF labelWithString:@"0" fontName:@"Georgia-Bold" fontSize:28];
-		labelScore.position = CGPointMake(380 ,280);
+        labelScore = [CCLabelTTF labelWithString:@"0" fontName:@"Georgia-Bold" fontSize:38];
+		labelScore.position = CGPointMake(380 ,283);
 		labelScore.anchorPoint = CGPointMake(0 ,0.5);
         labelScore.color = ccc3(255, 204, 0);
 		[self addChild: labelScore z:2];
@@ -98,6 +99,13 @@
         btnUpdata.visible = NO;
 		[self addChild:btnUpdataMenu z:2];
         
+        //加载初始化按钮
+		btnReset = [[CCMenuItemImage alloc] initFromNormalImage:@"btnUpdate.png" selectedImage:@"btnUpdateDown.png" disabledImage:@"btnUpdate.png" target:self selector:@selector(resetScore:)];		
+        CCMenu *btnResetMenu = [CCMenu menuWithItems:btnReset, nil];
+		btnResetMenu.position = CGPointMake(50 , 290);
+		[self addChild:btnResetMenu z:2];
+		[btnReset release];
+        
         //加载升级
         //NSString *errorDesc = nil;
         //NSPropertyListFormat format;
@@ -150,8 +158,39 @@
     if (gLock == YES) {
         return;
     }
+    
     NSString *errorDesc = nil;
     NSPropertyListFormat format;
+    ////更新分数
+    NSString *publicPlistPath = [CCFileUtils fullPathFromRelativePath:@"PublicList.plist"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:publicPlistPath]) {
+        //NSLog(@"Not exsit");
+        NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:publicPlistPath];
+        NSMutableDictionary *publicInfo = (NSMutableDictionary *)[NSPropertyListSerialization
+                                                                  propertyListFromData:plistXML
+                                                                  mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                                                  format:&format
+                                                                  errorDescription:&errorDesc];
+        
+        if (!publicInfo) {
+            NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+        }
+        
+        int scoreVal = [(NSNumber*)[publicInfo objectForKey:@"GameScore"] intValue];
+        if(scoreVal <=0 )
+        {
+             [labelScore runAction:[CCBlink actionWithDuration:0.5 blinks:2]];
+            return;
+        }
+        scoreVal--;
+        [publicInfo setObject:[NSString stringWithFormat:@"%d", scoreVal] forKey:@"GameScore" ];
+        [publicInfo writeToFile:publicPlistPath atomically:YES ];
+        
+        //[scoreAtlas setString:[NSString stringWithFormat:@"%d", scoreVal]];
+        [labelScore setString:[NSString stringWithFormat:@"%d",scoreVal]];
+    }
+    
+    
     NSString *plistPath = [CCFileUtils fullPathFromRelativePath:@"updataList.plist"];
     if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
         //NSLog(@"Not exsit");
@@ -245,29 +284,7 @@
         }
     }
 
-    ////更新分数
-    NSString *publicPlistPath = [CCFileUtils fullPathFromRelativePath:@"PublicList.plist"];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:publicPlistPath]) {
-        //NSLog(@"Not exsit");
-        NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:publicPlistPath];
-        NSMutableDictionary *publicInfo = (NSMutableDictionary *)[NSPropertyListSerialization
-                                             propertyListFromData:plistXML
-                                             mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                                             format:&format
-                                             errorDescription:&errorDesc];
-        
-        if (!publicInfo) {
-            NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
-        }
-        
-        int scoreVal = [(NSNumber*)[publicInfo objectForKey:@"GameScore"] intValue];
-        scoreVal--;
-        [publicInfo setObject:[NSString stringWithFormat:@"%d", scoreVal] forKey:@"GameScore" ];
-        [publicInfo writeToFile:publicPlistPath atomically:YES ];
-        
-        //[scoreAtlas setString:[NSString stringWithFormat:@"%d", scoreVal]];
-        [labelScore setString:[NSString stringWithFormat:@"%d",scoreVal]];
-    }
+    
     
     gLock = YES;
     [self runAction:[CCSequence actions:
@@ -375,6 +392,31 @@
     int intId = button.tag;
     itemId = intId;
     [self updataJnById:intId];  
+}
+
+-(void) resetScore:(id) sender 
+{
+    [DataController resetGameScore];
+    NSString *errorDesc = nil;
+    NSPropertyListFormat format;
+    NSString *publicPlistPath = [CCFileUtils fullPathFromRelativePath:@"PublicList.plist"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:publicPlistPath]) {
+        //NSLog(@"Not exsit");
+        NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:publicPlistPath];
+        NSMutableDictionary *publicInfo = (NSMutableDictionary *)[NSPropertyListSerialization
+                                                                  propertyListFromData:plistXML
+                                                                  mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                                                  format:&format
+                                                                  errorDescription:&errorDesc];
+        
+        if (!publicInfo) {
+            NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+        }
+        
+        int scoreVal = [(NSNumber*)[publicInfo objectForKey:@"GameScore"] intValue];
+        
+        [labelScore setString:[NSString stringWithFormat:@"%d",scoreVal]];
+    }
 }
 
 - (void) dealloc

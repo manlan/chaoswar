@@ -13,8 +13,6 @@
     
 }
 
-- (CCAnimation*) getAnimation:(int)level kind:(NSString*)kind;
-
 @end
 
 @interface TDForeverFriendly1 : TDForeverFriendly {

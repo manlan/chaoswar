@@ -7,8 +7,8 @@
 }
 
 @property int attactRange;
-@property (nonatomic, assign) CCAnimation *aniBoom;
-@property (nonatomic, assign) CCAnimation *aniEffect;
+@property (nonatomic, retain) NSString *aniBoomName;
+@property (nonatomic, retain) NSString *aniEffectName;
 
 - (void) move;
 
@@ -31,7 +31,7 @@
 }
 
 @property ccTime faintTime;
-@property (nonatomic, assign) CCAnimation *aniBoom;
+@property (nonatomic, retain) NSString *aniBoomName;
 
 - (void) move;
 

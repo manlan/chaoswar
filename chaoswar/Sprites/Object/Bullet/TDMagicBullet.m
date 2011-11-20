@@ -6,8 +6,8 @@
 @implementation TDFireBullet1
 
 @synthesize attactRange = _attactRange;
-@synthesize aniBoom = _aniBoom;
-@synthesize aniEffect = _aniEffect;
+@synthesize aniBoomName = _aniBoomName;
+@synthesize aniEffectName = _aniEffectName;
 
 + (id) getSprite {
     TDFireBullet1 *bullet = [TDFireBullet1 spriteWithSpriteFrameName:@"firebu0001.png"];
@@ -23,51 +23,9 @@
 -(id) init
 {
 	if( (self=[super init])) {
-        CCSpriteFrameCache *cache = [CCSpriteFrameCache sharedSpriteFrameCache];
-        //
-        NSMutableArray *animArrayBoom = [NSMutableArray array];
-        CCSpriteFrame *frame = nil;
-        int i = 1;
-        do {
-            frame = [cache spriteFrameByName:[NSString stringWithFormat:@"fireeb%04d.png", i]];
-            i++;
-            if (frame != nil) {
-                [animArrayBoom addObject:frame];
-            }
-        } while (frame != nil);
-        _aniBoom = [CCAnimation animationWithFrames:animArrayBoom delay:0.05f];
-        [_aniBoom setName:@"fireeb"];
-        [self addAnimation:_aniBoom];
-        //
-        NSMutableArray *animArrayEffect = [NSMutableArray array];
-        frame = nil;
-        i = 1;
-        do {
-            frame = [cache spriteFrameByName:[NSString stringWithFormat:@"fireef%04d.png", i]];
-            i++;
-            if (frame != nil) {
-                [animArrayEffect addObject:frame];
-            }
-        } while (frame != nil);
-        _aniEffect = [CCAnimation animationWithFrames:animArrayEffect delay:0.05f];
-        [_aniEffect setName:@"fireef"];
-        [self addAnimation:_aniEffect];
-        //
-        NSMutableArray *animArrayNormal = [NSMutableArray array];
-        frame = nil;
-        i = 1;
-        do {
-            frame = [cache spriteFrameByName:[NSString stringWithFormat:@"firebu%04d.png", i]];
-            i++;
-            if (frame != nil) {
-                [animArrayNormal addObject:frame];
-            }
-        } while (frame != nil);
-        CCAnimation *aniNormal = [CCAnimation animationWithFrames:animArrayNormal delay:0.05f];
-        [aniNormal setName:@"firebu"];
-        [self addAnimation:aniNormal];
-        
-        [self runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:0.9 animation:aniNormal restoreOriginalFrame:NO]]];
+        _aniBoomName = @"fireeb";
+        _aniEffectName = @"fireef";
+        [self runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:0.9 animation:[self getAnimate:@"firebu"] restoreOriginalFrame:NO]]];
 	}
 	return self;
 }
@@ -93,11 +51,10 @@
 - (void) attactEnemy
 {
     [self stopAllActions];
-    id actionBoom = [CCAnimate actionWithAnimation:_aniBoom restoreOriginalFrame:NO];
+    id actionBoom = [CCAnimate actionWithAnimation:[self getAnimate:self.aniBoomName] restoreOriginalFrame:NO];
 	id actionAttact = [CCCallFuncN actionWithTarget:self selector:@selector(afterRepeat:)];
-    id actionEffect = [CCAnimate actionWithAnimation:_aniEffect restoreOriginalFrame:NO];
+    id actionEffect = [CCAnimate actionWithAnimation:[self getAnimate:self.aniEffectName] restoreOriginalFrame:NO];
     id actionDead = [CCCallFuncN actionWithTarget:self selector:@selector(selfDead:)];
-    
 	[self runAction:[CCSequence actions:actionAttact, actionBoom, actionEffect, actionDead, nil]];
 }
 
@@ -151,23 +108,7 @@
     }
     self.anchorPoint = ccp(0.5, 0);
     self.position = ccp(self.enemy.position.x, self.enemy.position.y + self.enemy.textureRect.size.height);
-    CCSpriteFrameCache *cache = [CCSpriteFrameCache sharedSpriteFrameCache];
-    NSMutableArray *animArray = [NSMutableArray array];
-    [animArray removeAllObjects];
-    CCSpriteFrame *frame = nil;
-    int i = 1;
-    do {
-        frame = [cache spriteFrameByName:[NSString stringWithFormat:@"thunderbu%04d.png", i]];
-        i++;
-        if (frame != nil) {
-            [animArray addObject:frame];
-        }
-    } while (frame != nil);
-    CCAnimation *aniNormal = [CCAnimation animationWithFrames:animArray delay:0.05f];
-    [aniNormal setName:@"thunderbu"];
-    [self addAnimation:aniNormal];
-    
-    id actionRepeat = [CCAnimate actionWithAnimation:aniNormal restoreOriginalFrame:NO];
+    id actionRepeat = [CCAnimate actionWithAnimation:[self getAnimate:@"thunderbu"] restoreOriginalFrame:NO];
 	id actionRepeatDone = [CCCallFuncN actionWithTarget:self selector:@selector(attact:)];
 	[self runAction:[CCSequence actions:actionRepeat, actionRepeatDone, nil]];
     return YES;
@@ -186,7 +127,7 @@
 @implementation TDStoneBullet1
 
 @synthesize faintTime = _faintTime;
-@synthesize aniBoom = _aniBoom;
+@synthesize aniBoomName = _aniBoomName;
 
 + (id) getSprite {
     TDStoneBullet1 *bullet = [TDStoneBullet1 spriteWithSpriteFrameName:@"stonebu0001.png"];
@@ -202,38 +143,8 @@
 -(id) init
 {
 	if( (self=[super init])) {
-        CCSpriteFrameCache *cache = [CCSpriteFrameCache sharedSpriteFrameCache];
-        NSMutableArray *animArray = [NSMutableArray array];
-        //
-        [animArray removeAllObjects];
-        CCSpriteFrame *frame = nil;
-        int i = 1;
-        do {
-            frame = [cache spriteFrameByName:[NSString stringWithFormat:@"stoneeb%04d.png", i]];
-            i++;
-            if (frame != nil) {
-                [animArray addObject:frame];
-            }
-        } while (frame != nil);
-        _aniBoom = [CCAnimation animationWithFrames:animArray delay:0.05f];
-        [_aniBoom setName:@"stoneeb"];
-        [self addAnimation:_aniBoom];
-        //
-        [animArray removeAllObjects];
-        frame = nil;
-        i = 1;
-        do {
-            frame = [cache spriteFrameByName:[NSString stringWithFormat:@"stonebu%04d.png", i]];
-            i++;
-            if (frame != nil) {
-                [animArray addObject:frame];
-            }
-        } while (frame != nil);
-        CCAnimation *aniNormal = [CCAnimation animationWithFrames:animArray delay:0.05f];
-        [aniNormal setName:@"stonebu"];
-        [self addAnimation:aniNormal];
-        
-        [self runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:0.1 animation:aniNormal restoreOriginalFrame:NO]]];
+        _aniBoomName = @"stoneeb";
+        [self runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:0.1 animation:[self getAnimate:@"stonebu"] restoreOriginalFrame:NO]]];
 	}
 	return self;
 }
@@ -264,7 +175,7 @@
 
 - (void) attactEnemy
 {
-    id actionBoom = [CCAnimate actionWithAnimation:_aniBoom restoreOriginalFrame:NO];
+    id actionBoom = [CCAnimate actionWithAnimation:[self getAnimate:self.aniBoomName] restoreOriginalFrame:NO];
 	id actionAttact = [CCCallFuncN actionWithTarget:self selector:@selector(afterRepeat:)];
     id actionDead = [CCCallFuncN actionWithTarget:self selector:@selector(selfDead:)];
 	[self runAction:[CCSequence actions:actionAttact, actionBoom, actionDead, nil]];
@@ -274,7 +185,7 @@
     if (self.enemy && self.enemy.spriteStatus == TSS_NORMAL) {
         [self.enemy beAttact:self an:self.attact at:self.attactMode];
         if (self.enemy) {
-            //self.enemy.enemyStatus = ES_WAITING;
+            //self.enemy.enemyStatus = US_WAITING;
         }
     }
 }

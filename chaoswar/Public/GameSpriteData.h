@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "cocos2d.h"
 
 float getArrowTower1AttactTime(void);
 float getArrowTower2AttactTime(void);
@@ -42,3 +43,6 @@ float getMCLightAttact(void);
 
 float getMCStoneAttact(void);
 float getMCStoneFanitTime(void);
+
+ccColor3B getHintFontColor(void);
+NSString* getEmptyName(void);

@@ -35,6 +35,8 @@
 // 是否可以被点击
 @property BOOL canClick;
 // 是否可以被点击
+@property int baseZOrder;
+// 是否可以被点击
 @property TSpritePlace spritePlace;
 // 血条
 @property (nonatomic, assign) CCSprite *bloodShowSprite;
@@ -42,8 +44,6 @@
 @property (nonatomic, assign) CCSprite *bloodBackSprite;
 // 选中框
 @property (nonatomic, assign) CCSprite *arrowSprite;
-// 魔法效果
-@property (nonatomic, assign) CCSprite *effectSprite;
 
 // 获取当前精灵的实例
 + (id) getSprite;
@@ -87,5 +87,9 @@
 
 // 添加一个操作按钮
 - (CCMenuItemImage*) addButton:(NSString*)normal selected:(NSString*)selected disabled:(NSString*)disabled sel:(SEL)sel pos:(CGPoint)pos;
+
+- (CCAnimation*) getAnimate:(NSString*)name;
+
+- (void) showImformation;
 
 @end

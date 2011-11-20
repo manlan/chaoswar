@@ -1,4 +1,6 @@
 #import "GameController.h"
+#import "MagicController.h"
+#import "DataController.h"
 #import "SpritesImp.h"
 #import "Wave.h"
 #import "WayPoint.h"
@@ -7,7 +9,9 @@
 #import "GameImfomationScene.h"
 #import "GameMagicScene.h"
 #import "GameControllerScene.h"
+#import "SpriteInfoScene.h"
 #import "GameHintScene.h"
+#import "NBSkillButton.h"
 #import "Pointer.h"
 #import "Pointer1.h"
 #import "Pointer2.h"
@@ -28,6 +32,7 @@
 @synthesize gameImfomation = _gameImfomation;
 @synthesize gameMagic = _gameMagic;
 @synthesize gameController = _gameController;
+@synthesize spriteInfo = _spriteInfo;
 @synthesize gameHint = _gameHint;
 @synthesize enemyArray = _enemyArray;
 @synthesize towerArray = _towerArray;
@@ -35,6 +40,7 @@
 @synthesize frientlyArray = _frientlyArray;
 @synthesize wayManager = _wayManager;
 @synthesize pt = _pt;
+@synthesize ptNum = _ptNum;
 @synthesize maxWave = _maxWave;
 @synthesize currentWave = _currentWave;
 @synthesize currentHealth = _currentHealth;
@@ -67,6 +73,11 @@ static GameController *_sharedController = nil;
 		[_sharedController release];
         _sharedController = nil;
 	}
+}
+
+- (CCAnimation*) getAnimation:(NSString*)animationName
+{
+    return [_pt getAnimation:animationName];
 }
 
 - (Pointer*) getPointer:(int)p
@@ -115,6 +126,7 @@ static GameController *_sharedController = nil;
 }
 
 - (void) initController:(int)p {
+    _ptNum = p;
     _pt = [self getPointer:p];
 }
 
@@ -141,93 +153,7 @@ static GameController *_sharedController = nil;
 - (void) restart
 {
     [self releaseScene];
-    [self init];
     [self start];
-}
-
-- (void) doMagicFire:(CGPoint)point
-{
-    CGPoint pt1t = point;
-    CGPoint pt2t = ccp(point.x - 15, point.y - 15);
-    CGPoint pt3t = ccp(point.x + 15, point.y + 15);
-    CGPoint pt1o = ccp(pt1t.x, pt1t.y + 100);
-    CGPoint pt2o = ccp(pt2t.x, pt2t.y + 100);
-    CGPoint pt3o = ccp(pt3t.x, pt3t.y + 100);
-	TDFireBullet1 *b1 = [TDFireBullet1 getSprite];
-    b1.firePoint = pt1t;
-    b1.position = pt1o;
-    TDFireBullet1 *b2 = [TDFireBullet1 getSprite];
-    b2.firePoint = pt2t;
-    b2.position = pt2o;
-    TDFireBullet1 *b3 = [TDFireBullet1 getSprite];
-    b3.firePoint = pt3t;
-    b3.position = pt3o;
-    [self.gameBackground addChild:b1 z:60];
-    [self.gameBackground addChild:b2 z:60];
-    [self.gameBackground addChild:b3 z:60];
-    [self.bulletArray addObject:b1];
-    [self.bulletArray addObject:b2];
-    [self.bulletArray addObject:b3];
-    [b1 run];
-    [b2 run];
-    [b3 run];
-    self.screenClickType = SCT_ALL;
-    self.operateType = OT_NORMAL;
-    [_gameMagic restartMagicFire];
-}
-
-- (void) doMagicFriendly:(CGPoint)point
-{
-    CGPoint pt1 = point;
-    CGPoint pt2 = ccp(point.x - 15, point.y - 15);
-    CGPoint pt3 = ccp(point.x + 15, point.y + 15);
-	TDMagicFriendly1 *b1 = [TDMagicFriendly1 getSprite];
-    b1.position = pt1;
-    TDMagicFriendly1 *b2 = [TDMagicFriendly1 getSprite];
-    b2.position = pt2;
-    TDMagicFriendly1 *b3 = [TDMagicFriendly1 getSprite];
-    b3.position = pt3;
-    
-    b1.anchorPoint = ccp(0.5, 0);
-    b2.anchorPoint = ccp(0.5, 0);
-    b3.anchorPoint = ccp(0.5, 0);
-    
-    b1.searchPoint = b1.position;
-    b2.searchPoint = b2.position;
-    b3.searchPoint = b3.position;
-    [self.gameBackground addChild:b1 z:60];
-    [self.gameBackground addChild:b2 z:60];
-    [self.gameBackground addChild:b3 z:60];
-    [self.frientlyArray addObject:b1];
-    [self.frientlyArray addObject:b2];
-    [self.frientlyArray addObject:b3];
-    [b1 run];
-    [b2 run];
-    [b3 run];
-    self.screenClickType = SCT_ALL;
-    self.operateType = OT_NORMAL;
-    [_gameMagic restartMagicFriendly];
-}
-
-- (void) doSetSearchPoint:(CGPoint)point
-{
-    TDSprite *s = [TDSprite getCurrentSprite];
-    TDDefenceTower *td = nil;
-    if ([s isKindOfClass:[TDDefenceTower class]]) {
-        td = (TDDefenceTower*) s;
-    }
-    if (!td) return;
-    double distance = ccpDistance(td.position, point);
-    if (td.attactRange >= distance) {
-        [td.friendly1 setSearchPoint:point];
-        [td.friendly2 setSearchPoint:point];
-        [td.friendly3 setSearchPoint:point];
-        [td.friendly1 goToHome];
-        [td.friendly2 goToHome];
-        [td.friendly3 goToHome];
-        self.screenClickType = SCT_ALL;
-        self.operateType = OT_NORMAL;
-    }
 }
 
 - (void) stopGame
@@ -262,11 +188,19 @@ static GameController *_sharedController = nil;
     }
 }
 
+- (int) maxWave {
+    return _maxWave;
+}
+
 - (void) setMaxWave:(int)maxWave
 {
     _maxWave = maxWave;
     [_gameImfomation setWaveValue];
     [self setGameStatus];
+}
+
+- (int) currentWave {
+    return _currentWave;
 }
 
 - (void) setCurrentWave:(int)currentWave
@@ -276,11 +210,52 @@ static GameController *_sharedController = nil;
     [self setGameStatus];
 }
 
+- (int) currentHealth {
+    return _currentHealth;
+}
+
 - (void) setCurrentHealth:(int)currentHealth
 {
     _currentHealth = currentHealth;
     [_gameImfomation setEnemyNumValue];
     [self setGameStatus];
+    if (_currentHealth <= 0) {
+        //弹出失败界面
+//        [[CCDirector sharedDirector] pause];
+//        GameController *gc = [GameController getGameController];
+//        [gc.gameHint removeAllChildrenWithCleanup:YES];
+//        //背景
+//        CCSprite *pauseBg = [CCSprite spriteWithFile:@"pauseBg.png"];
+//        pauseBg.position = ccp(240 , 160);
+//        [gc.gameHint addChild:pauseBg z:1];
+//        
+//        //继续
+//        CCMenuItemImage *btnResume = [CCMenuItemImage itemFromNormalImage:@"btnResume.png" selectedImage:@"btnResume.png"  
+//                                                            disabledImage:@"btnResume.png"  target:self selector:@selector(Resume:)];
+//        CCMenu *btnResumeMenu = [CCMenu menuWithItems:btnResume, nil];
+//        btnResumeMenu.position = ccp(240 , 185);
+//        [gc.gameHint addChild:btnResumeMenu z:2];
+//        
+//        //菜单
+//        CCMenuItemImage *btnMenu = [CCMenuItemImage itemFromNormalImage:@"btnMenu.png" selectedImage:@"btnMenu.png"  
+//                                                          disabledImage:@"btnMenu.png"  target:self selector:@selector(Menu:)];
+//        CCMenu *btnMenuMenu = [CCMenu menuWithItems:btnMenu, nil];
+//        btnMenuMenu.position = ccp(240 , 135);
+//        [gc.gameHint addChild:btnMenuMenu z:2];
+//        
+//        //重来
+//        CCMenuItemImage *btnRestart = [CCMenuItemImage itemFromNormalImage:@"btnRestart.png" selectedImage:@"btnRestart.png"  
+//                                                             disabledImage:@"btnRestart.png"  target:self selector:@selector(Restart:)];
+//        CCMenu *btnRestartMenu = [CCMenu menuWithItems:btnRestart, nil];
+//        btnRestartMenu.position = ccp(240 , 85);
+//        [gc.gameHint addChild:btnRestartMenu z:2];
+//        
+//        [gc setGameStatus];
+    }
+}
+
+- (int) currentGold {
+    return _currentGold;
 }
 
 - (void) setCurrentGold:(int)currentGold
@@ -290,10 +265,18 @@ static GameController *_sharedController = nil;
     [self setGameStatus];
 }
 
+- (TScreenClickType) screenClickType {
+    return _screenClickType;
+}
+
 - (void)setScreenClickType:(TScreenClickType)sct
 {
     _screenClickType = sct;
     [self setGameStatus];
+}
+
+- (TOperateType) operateType {
+    return _operateType;
 }
 
 -(void)setOperateType:(TOperateType)ot
@@ -302,10 +285,27 @@ static GameController *_sharedController = nil;
     [self setGameStatus];
 }
 
+- (BOOL) canNext {
+    return _canNext;
+}
+
 -(void)setCanNext:(BOOL)canNext
 {
     _canNext = canNext;
     [self setGameStatus];
+}
+
+- (TMapType) mapType {
+    return _mapType;
+}
+
+- (void)setMapType:(TMapType)mapType
+{
+    _mapType = mapType;
+    if (!_gameImfomation) return;
+    _gameImfomation.lblEnemyNum.color = TDS_FONT_COLOR;
+    _gameImfomation.lblGold.color = TDS_FONT_COLOR;
+    _gameImfomation.lblWave.color = TDS_FONT_COLOR;
 }
 
 - (void) initScene
@@ -327,6 +327,7 @@ static GameController *_sharedController = nil;
 
 - (void) releaseScene
 {
+    [[CCScheduler sharedScheduler] unscheduleAllSelectors];
     [_pt stopController];
     NSMutableArray *tempEnemyArray = [NSMutableArray arrayWithArray:_enemyArray];
     for (TDEnemy *en in tempEnemyArray) en.spriteStatus = TSS_DEAD;
@@ -341,7 +342,6 @@ static GameController *_sharedController = nil;
     [_bulletArray removeAllObjects];
     [_frientlyArray removeAllObjects];
     [_wayManager removeAllWay];
-    
     _maxWave = 0;
     _currentWave = 0;
     _currentHealth = 0;
@@ -349,7 +349,7 @@ static GameController *_sharedController = nil;
     _screenClickType = SCT_ALL;
     _operateType = OT_NORMAL;
     _mapType = MT_GREEN;
-    _canNext = NO;    
+    _canNext = NO;
 }
 
 - (id) init
@@ -376,8 +376,59 @@ static GameController *_sharedController = nil;
     _gameImfomation = nil;
     _gameMagic = nil;
     _gameController = nil;
+    _spriteInfo = nil;
     _gameHint = nil;
 	[super dealloc];
+}
+
+- (void) doMagicFire:(CGPoint)point
+{
+    [[FireController getFireController:0.1 pos:point] run];
+    [[FireController getFireController:0.3 pos:ccpAdd(point, ccp(-15, -15))] run];
+    [[FireController getFireController:0.35 pos:ccpAdd(point, ccp(15, 15))] run];
+    if ([DataController getMagicFireLevel] == 3) {
+        [[FireController getFireController:0.55 pos:ccpAdd(point, ccp(-15, 15))] run];
+        [[FireController getFireController:0.65 pos:ccpAdd(point, ccp(15, -15))] run];
+    }
+    self.screenClickType = SCT_ALL;
+    self.operateType = OT_NORMAL;
+    [_gameMagic restartMagicFire];
+}
+
+- (void) doMagicFriendly:(CGPoint)point
+{
+    [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp( 0,  0))] run];
+//    if ([DataController getMagicFriendlyLevel] == 3) {
+//        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp(-15, -15))] run];
+//        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp(15, 15))] run];
+//        [[FriendlyController getFriendlyController:0.01 pos:point] run];
+//    } else {
+//        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp(-7.5, -7.5))] run];
+//        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp( 7.5,  7.5))] run];
+//    }
+    self.screenClickType = SCT_ALL;
+    self.operateType = OT_NORMAL;
+    [_gameMagic restartMagicFriendly];
+}
+
+- (void) doSetSearchPoint:(CGPoint)point
+{
+    TDSprite *s = [TDSprite getCurrentSprite];
+    TDDefenceTower *td = nil;
+    if ([s isKindOfClass:[TDDefenceTower class]]) {
+        td = (TDDefenceTower*) s;
+    }
+    if (!td) return;
+    double distance = ccpDistance(td.position, point);
+    if (td.attactRange >= distance) {
+        td.searchPoint = point;
+        [td.spSprite setVisible:YES];
+        td.spSprite.position = point;
+        [td.spSprite runAction:[CCFadeOut actionWithDuration:1.5f]];
+        [td setFriendlyPos];
+        self.screenClickType = SCT_ALL;
+        self.operateType = OT_NORMAL;
+    }
 }
 
 @end

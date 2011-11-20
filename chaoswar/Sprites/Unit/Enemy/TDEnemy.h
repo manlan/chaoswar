@@ -12,14 +12,10 @@
 
 @property int nextWayPoint;
 
-@property TEnemyStatus enemyStatus;
-
-@property TEnemyMagicStatus enemyMagicStatus;
-
 //路线集合
 @property (nonatomic, assign) NSMutableArray *way;
 //攻击的友军
-@property (nonatomic, assign) TDFriendly *friendly;
+@property (nonatomic, readonly) TDFriendly *friendly;
 //自身发射的子弹集合
 @property (nonatomic, assign) NSMutableArray *shootBulletArray;
 //塔攻击的子弹集合
@@ -32,12 +28,14 @@
 @property (nonatomic, assign) NSMutableArray *towerArray;
 //友军攻击的集合
 @property (nonatomic, assign) NSMutableArray *friendlyArray;
-//四个方向的移动动画
-@property (nonatomic, assign) CCAnimation *mvuAni;
-@property (nonatomic, assign) CCAnimation *mvdAni;
-@property (nonatomic, assign) CCAnimation *mvlAni;
-@property (nonatomic, assign) CCAnimation *mvrAni;
-@property (nonatomic, assign) CCAnimation *atAni;
+
++ (void) regFriendly:(TDFriendly*)f;
+
++ (void) unregFriendly:(TDFriendly*)f;
+
+- (void) addFriendly:(TDFriendly*)f;
+
+- (void) delFriendly:(TDFriendly*)f;
 
 - (CGPoint) getPositionAfterTime:(ccTime)dt;
 
@@ -45,20 +43,16 @@
 
 - (void) doMagicStop;
 
-- (void) doubleAttact:(TDFriendly*)s;
-
-- (TDFriendly*) canAttactFriendly;
-
 - (void) doRunning;
 
 - (void) doWaiting;
 
 - (void) doAttact;
 
-- (void) doMagicStopStatus;
+- (void) doubleAttact:(TDFriendly*)s;
 
-- (void) doMagicSpeedStatus;
+- (TDFriendly*) canAttactFriendly;
 
-- (void) doMagicLifeStatus;
+- (void) doAttact:(ccTime)dt;
 
 @end

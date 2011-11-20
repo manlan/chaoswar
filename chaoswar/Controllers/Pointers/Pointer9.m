@@ -17,51 +17,6 @@
 	gc.canNext = YES;
 }
 
-- (void) initAnimate
-{
-    [AnimateManager initBoss01];
-    [AnimateManager initBoss02];
-    [AnimateManager initFly01];
-    [AnimateManager initFly02];
-    [AnimateManager initFly03];
-    [AnimateManager initShooter01];
-    [AnimateManager initMagic01];
-    [AnimateManager initMagic02];
-    [AnimateManager initFoot01];
-    [AnimateManager initFoot02];
-    [AnimateManager initFoot03];
-    [AnimateManager initFoot04];
-    [AnimateManager initFoot05];
-    [AnimateManager initFoot06];
-    [AnimateManager initFoot07];
-    [AnimateManager initFoot08];
-    [AnimateManager initFoot09];
-    [AnimateManager initFoot10];
-    [AnimateManager initFoot11];
-    [AnimateManager initFoot12];
-    [AnimateManager initFoot13];
-    [AnimateManager initFoot14];
-    [AnimateManager initFoot15];
-    [AnimateManager initFoot16];
-    [AnimateManager initDefenceTower01];
-    [AnimateManager initDefenceTower02];
-    [AnimateManager initDefenceTower03];
-    [AnimateManager initTurretTower01];
-    [AnimateManager initTurretTower02];
-    [AnimateManager initTurretTower03];
-    [AnimateManager initTurretBullet];
-    [AnimateManager initMagicTower01];
-    [AnimateManager initMagicTower02];
-    [AnimateManager initMagicTower03];
-    [AnimateManager initMagicFriendly01];
-    [AnimateManager initMagicFriendly02];
-    [AnimateManager initForeverFriendly01];
-    [AnimateManager initMagicFire];
-    [AnimateManager initMagicThunder];
-    [AnimateManager initMagicStone];
-    [AnimateManager initAllEffect];
-}
-
 - (void) initEnemy:(NSMutableArray*)array
 {
     [array removeAllObjects];
@@ -70,15 +25,15 @@
 - (void) initTower:(NSMutableArray*)array
 {
     [array removeAllObjects];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(55, 139)];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(55, 190)];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(179, 139)];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(236, 139)];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(292, 139)];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(417, 190)];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(417, 139)];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(165, 252)];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(289, 252)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(55, 139) s:CGPointZero];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(55, 190) s:CGPointZero];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(179, 139) s:CGPointZero];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(236, 139) s:CGPointZero];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(292, 139) s:CGPointZero];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(417, 190) s:CGPointZero];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(417, 139) s:CGPointZero];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(165, 252) s:CGPointZero];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(289, 252) s:CGPointZero];
 }
 
 - (BOOL) runWaves:(int)wave
@@ -88,7 +43,7 @@
 		case 1:
             [self runWave:1 e:ET_FOOT3 s:2 t:3 wy:[gc.wayManager getWay:7]];
             [self runWave:1 e:ET_FOOT3 s:2 t:3 wy:[gc.wayManager getWay:8]];
-            [self prepareNextWave:10];
+            [self prepareNextWave:15];
 			break;
         case 2:
             [self runWave:1 e:ET_FOOT3 s:2 t:4 wy:[gc.wayManager getWay:1]];
@@ -97,7 +52,7 @@
             [self runWave:1 e:ET_FOOT3 s:2 t:4 wy:[gc.wayManager getWay:4]];
             [self runWave:1 e:ET_FOOT4 s:2 t:3 wy:[gc.wayManager getWay:6]];
 
-            [self prepareNextWave:10];
+            [self prepareNextWave:18];
 			break;
         case 3:
             [self runWave:1 e:ET_FOOT4 s:2 t:3 wy:[gc.wayManager getWay:2]];
@@ -106,38 +61,38 @@
             
             [self runWave:1 e:ET_FOOT3 s:2 t:3 wy:[gc.wayManager getWay:7]];
             [self runWave:1 e:ET_FOOT3 s:2 t:3 wy:[gc.wayManager getWay:8]];
-            [self prepareNextWave:10];
+            [self prepareNextWave:20];
 			break;
         case 4:
-            [self runWave:2 e:ET_FOOT10 s:2 t:5 wy:[gc.wayManager getWay:1]];
-            [self runWave:1 e:ET_FOOT12 s:3 t:3 wy:[gc.wayManager getWay:2]];
+            [self runWave:2 e:ET_FOOT10 s:2 t:4 wy:[gc.wayManager getWay:1]];
+            [self runWave:1 e:ET_FOOT12 s:3 t:2 wy:[gc.wayManager getWay:2]];
 
-            [self prepareNextWave:10];
+            [self prepareNextWave:21];
 			break;
         case 5:
             [self runWave:1 e:ET_FLY2 s:2 t:4 wy:[gc.wayManager getWay:2]];
             
             [self runWave:1 e:ET_FLY2 s:2 t:4 wy:[gc.wayManager getWay:5]];
             
-            [self prepareNextWave:10];
+            [self prepareNextWave:20];
 			break;
         case 6:
-            [self runWave:1 e:ET_FOOT4 s:1.5 t:8 wy:[gc.wayManager getWay:2]];
+            [self runWave:1 e:ET_FOOT4 s:1.5 t:7 wy:[gc.wayManager getWay:2]];
             
-            [self runWave:1 e:ET_FOOT4 s:1.5 t:8 wy:[gc.wayManager getWay:5]];
+            [self runWave:1 e:ET_FOOT4 s:1.5 t:7 wy:[gc.wayManager getWay:5]];
             
-            [self prepareNextWave:10];
+            [self prepareNextWave:25];
 			break;
         case 7:
             [self runWave:1 e:ET_FOOT3 s:2 t:3 wy:[gc.wayManager getWay:1]];
             [self runWave:1 e:ET_FOOT14 s:3 t:2 wy:[gc.wayManager getWay:2]];
             
-            [self runWave:1 e:ET_FOOT10 s:2 t:3 wy:[gc.wayManager getWay:4]];
-            [self runWave:1 e:ET_FOOT12 s:3 t:2 wy:[gc.wayManager getWay:5]];
+            [self runWave:1 e:ET_FOOT10 s:2 t:2 wy:[gc.wayManager getWay:4]];
+            [self runWave:1 e:ET_FOOT12 s:3 t:1 wy:[gc.wayManager getWay:5]];
             
-            [self runWave:1 e:ET_FOOT4 s:2 t:3 wy:[gc.wayManager getWay:7]];
+            [self runWave:1 e:ET_FOOT4 s:2 t:2 wy:[gc.wayManager getWay:7]];
             [self runWave:1 e:ET_FOOT11 s:3 t:2 wy:[gc.wayManager getWay:8]];
-            [self prepareNextWave:10];
+            [self prepareNextWave:25];
 			break;
         case 8:
             //new enemy
@@ -146,28 +101,28 @@
             [self runWave:1 e:ET_FOOT15 s:1 t:1 wy:[gc.wayManager getWay:5]];
             
             [self runWave:1 e:ET_FOOT15 s:3 t:1 wy:[gc.wayManager getWay:7]];
-            [self runWave:1 e:ET_FOOT15 s:3 t:1 wy:[gc.wayManager getWay:8]];
-            [self prepareNextWave:10];
+            //[self runWave:1 e:ET_FOOT15 s:3 t:1 wy:[gc.wayManager getWay:8]];
+            [self prepareNextWave:25];
 			break;
         case 9:
             [self runWave:1 e:ET_FOOT15 s:4 t:2 wy:[gc.wayManager getWay:2]];
-            [self runWave:1 e:ET_FOOT10 s:2 t:4 wy:[gc.wayManager getWay:3]];
+            [self runWave:1 e:ET_FOOT10 s:2 t:2 wy:[gc.wayManager getWay:3]];
             
             [self runWave:1 e:ET_FOOT15 s:4 t:2 wy:[gc.wayManager getWay:5]];
-            [self runWave:1 e:ET_FOOT10 s:2 t:4 wy:[gc.wayManager getWay:6]];
+            [self runWave:1 e:ET_FOOT10 s:2 t:2 wy:[gc.wayManager getWay:6]];
 
-            [self prepareNextWave:10];
+            [self prepareNextWave:25];
 			break;
         case 10:
             [self runWave:1 e:ET_FOOT15 s:4 t:1 wy:[gc.wayManager getWay:2]];
             [self runWave:1 e:ET_FOOT11 s:3 t:3 wy:[gc.wayManager getWay:3]];
             
             [self runWave:1 e:ET_FOOT15 s:4 t:1 wy:[gc.wayManager getWay:5]];
-            [self runWave:1 e:ET_FOOT12 s:3 t:3 wy:[gc.wayManager getWay:6]];
+            [self runWave:1 e:ET_FOOT12 s:3 t:2 wy:[gc.wayManager getWay:6]];
             
-            [self runWave:1 e:ET_FOOT15 s:4 t:2 wy:[gc.wayManager getWay:7]];
-            [self runWave:1 e:ET_FOOT10 s:2 t:4 wy:[gc.wayManager getWay:8]];
-            [self prepareNextWave:10];
+            [self runWave:1 e:ET_FOOT15 s:4 t:1 wy:[gc.wayManager getWay:7]];
+            [self runWave:1 e:ET_FOOT10 s:2 t:3 wy:[gc.wayManager getWay:8]];
+            [self prepareNextWave:25];
 			break;
         case 11:
             [self runWave:1 e:ET_FOOT4 s:3 t:3 wy:[gc.wayManager getWay:2]];
@@ -176,9 +131,9 @@
             [self runWave:1 e:ET_FOOT10 s:3 t:3 wy:[gc.wayManager getWay:5]];
             [self runWave:1 e:ET_FOOT12 s:3 t:3 wy:[gc.wayManager getWay:6]];
             
-            [self runWave:1 e:ET_FOOT14 s:3 t:3 wy:[gc.wayManager getWay:7]];
+            [self runWave:1 e:ET_FOOT14 s:3 t:2 wy:[gc.wayManager getWay:7]];
             [self runWave:1 e:ET_FOOT3 s:3 t:3 wy:[gc.wayManager getWay:8]];
-            [self prepareNextWave:10];
+            [self prepareNextWave:25];
 			break;
         case 12:
             [self runWave:1 e:ET_FOOT7 s:2 t:4 wy:[gc.wayManager getWay:2]];
@@ -187,9 +142,9 @@
             [self runWave:1 e:ET_MAGIC1 s:2 t:4 wy:[gc.wayManager getWay:5]];
             [self runWave:1 e:ET_FOOT5 s:2 t:5 wy:[gc.wayManager getWay:6]];
             
-            //[self runWave:1 e:ET_MAGIC2 s:2 t:4 wy:[gc.wayManager getWay:7]];
+            [self runWave:1 e:ET_MAGIC2 s:2 t:4 wy:[gc.wayManager getWay:7]];
             [self runWave:1 e:ET_FOOT9 s:2 t:5 wy:[gc.wayManager getWay:8]];
-            [self prepareNextWave:10];
+            [self prepareNextWave:25];
 			break;
         case 13:
             [self runWave:1 e:ET_FOOT4 s:1.5 t:5 wy:[gc.wayManager getWay:2]];
@@ -200,7 +155,7 @@
             
             [self runWave:1 e:ET_FOOT14 s:2 t:3 wy:[gc.wayManager getWay:7]];
             [self runWave:1 e:ET_FOOT3 s:1.5 t:5 wy:[gc.wayManager getWay:8]];
-            [self prepareNextWave:10];
+            [self prepareNextWave:25];
 			break;
         case 14:
             [self runWave:1 e:ET_FOOT15 s:4 t:3 wy:[gc.wayManager getWay:2]];
@@ -208,7 +163,7 @@
             [self runWave:1 e:ET_FOOT15 s:4 t:3 wy:[gc.wayManager getWay:5]];
             
             [self runWave:1 e:ET_FOOT15 s:4 t:3 wy:[gc.wayManager getWay:7]];
-            [self prepareNextWave:10];
+            [self prepareNextWave:25];
 			break;
         case 15:
             [self runWave:1 e:ET_FOOT15 s:4 t:2 wy:[gc.wayManager getWay:2]];
@@ -219,7 +174,7 @@
             
             [self runWave:1 e:ET_FOOT15 s:4 t:2 wy:[gc.wayManager getWay:7]];
             [self runWave:1 e:ET_FOOT10 s:2 t:4 wy:[gc.wayManager getWay:8]];
-            [self prepareNextWave:10];
+            [self prepareNextWave:28];
 			break;
         case 16:
             [self runWave:1 e:ET_FOOT15 s:4 t:3 wy:[gc.wayManager getWay:2]];
@@ -230,17 +185,17 @@
             
             [self runWave:1 e:ET_FOOT15 s:4 t:3 wy:[gc.wayManager getWay:7]];
             [self runWave:1 e:ET_FOOT10 s:2 t:4 wy:[gc.wayManager getWay:8]];
-            [self prepareNextWave:10];
+            [self prepareNextWave:28];
 			break;
         case 17:
             [self runWave:1 e:ET_BOSS1 s:2 t:1 wy:[gc.wayManager getWay:7]];
-            [self prepareNextWave:10];
+            [self prepareNextWave:30];
 			break;
         case 18:
             [self runWave:1 e:ET_BOSS1 s:2 t:1 wy:[gc.wayManager getWay:2]];
             
             [self runWave:1 e:ET_BOSS1 s:2 t:1 wy:[gc.wayManager getWay:5]];
-            [self prepareNextWave:10];
+            //[self prepareNextWave:10];
 			break;
 		default:
             [self prepareNextWave:10];
@@ -342,6 +297,120 @@
     }
     
     return NO;
+}
+
+- (void) doAutoNextWave
+{
+    [super doAutoNextWave];
+    switch ([GameController getGameController].currentWave) {
+		case 1:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(15, 107)];
+            [self addWaveTip:ccp(465, 107)];
+            //[self addWaveTip:ccp(228, 48)];
+			break;
+        case 2:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(15, 107)];
+            [self addWaveTip:ccp(465, 107)];
+            [self addWaveTip:ccp(228, 48)];
+			break;
+        case 3:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(15, 107)];
+            //[self addWaveTip:ccp(465, 107)];
+            //[self addWaveTip:ccp(228, 48)];
+			break;
+        case 4:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(15, 107)];
+            [self addWaveTip:ccp(465, 107)];
+            //[self addWaveTip:ccp(228, 48)];
+			break;
+        case 5:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(15, 107)];
+            [self addWaveTip:ccp(465, 107)];
+            //[self addWaveTip:ccp(228, 48)];
+			break;
+        case 6:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(15, 107)];
+            [self addWaveTip:ccp(465, 107)];
+            [self addWaveTip:ccp(228, 48)];
+			break;
+        case 7:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(15, 107)];
+            [self addWaveTip:ccp(465, 107)];
+            [self addWaveTip:ccp(228, 48)];
+			break;
+        case 8:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(15, 107)];
+            [self addWaveTip:ccp(465, 107)];
+            //[self addWaveTip:ccp(228, 48)];
+			break;
+        case 9:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(15, 107)];
+            [self addWaveTip:ccp(465, 107)];
+            [self addWaveTip:ccp(228, 48)];
+			break;
+        case 10:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(15, 107)];
+            [self addWaveTip:ccp(465, 107)];
+            [self addWaveTip:ccp(228, 48)];
+			break;
+        case 11:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(15, 107)];
+            [self addWaveTip:ccp(465, 107)];
+            [self addWaveTip:ccp(228, 48)];
+			break;
+        case 12:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(15, 107)];
+            [self addWaveTip:ccp(465, 107)];
+            [self addWaveTip:ccp(228, 48)];
+			break;
+        case 13:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(15, 107)];
+            [self addWaveTip:ccp(465, 107)];
+            [self addWaveTip:ccp(228, 48)];
+			break;
+        case 14:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(15, 107)];
+            [self addWaveTip:ccp(465, 107)];
+            [self addWaveTip:ccp(228, 48)];
+			break;
+        case 15:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(15, 107)];
+            [self addWaveTip:ccp(465, 107)];
+            [self addWaveTip:ccp(228, 48)];
+			break;
+        case 16:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            //[self addWaveTip:ccp(15, 107)];
+            [self addWaveTip:ccp(465, 107)];
+            //[self addWaveTip:ccp(228, 48)];
+			break;
+        case 17:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(15, 107)];
+            [self addWaveTip:ccp(465, 107)];
+            //[self addWaveTip:ccp(228, 48)];
+			break;
+        case 18:
+			break;
+		default:
+            //[self prepareNextWave:10];
+			break;
+	}
 }
 
 @end

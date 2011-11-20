@@ -8,18 +8,35 @@
 @class TDEnemy;
 @class TDFriendly;
 @class WayPoint;
+@class AnimateManager;
 
 @interface Pointer : NSObject {
-    
+    AnimateManager *animateManager;
 }
 
+@property int pointerNum;
 @property (nonatomic, retain) NSMutableArray *waveArray;
+@property (nonatomic, retain) NSMutableArray *tipsArray;
+@property int waveGold;
+@property int waveMinusGold;
 
-- (void) addTower:(NSMutableArray*)a t:(TDTower*)t p:(CGPoint)p;
+- (CCAnimation*) getAnimation:(NSString*)animationName;
+
+- (void) addTower:(NSMutableArray*)a t:(TDTower*)t p:(CGPoint)p s:(CGPoint)s;
 
 - (void) runWave:(float)b e:(TEnemyType)e s:(float)s t:(int)t wy:(NSMutableArray*)wy;
 
 - (void) prepareNextWave:(ccTime)dt;
+
+- (void) prepareEndPoint:(ccTime)dt;
+
+- (void) prepareEndGame:(ccTime)dt;
+
+- (void) doAutoNextWave;
+
+- (void) addWaveTip:(CGPoint)pos;
+
+- (void) autoNextWave:(ccTime)dt mustGold:(int)mustGold addGold:(int)addGold;
 
 - (void) endThisPoint:(ccTime)dt;
 

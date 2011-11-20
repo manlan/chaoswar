@@ -10,6 +10,11 @@
 @synthesize btnUpdate = _btnUpdate;
 @synthesize btnSell = _btnSell;
 @synthesize btnZone = _btnZone;
+@synthesize canBuild1 = _canBuild1;
+@synthesize canBuild2 = _canBuild2;
+@synthesize canBuild3 = _canBuild3;
+@synthesize canBuild4 = _canBuild4;
+@synthesize canUpdate = _canUpdate;
 
 -(id) init
 {
@@ -22,6 +27,11 @@
 - (void) setBuild1MenuStatus
 {
     if (!_btnBuild1) return;
+    if (!_canBuild1) {
+        [_btnBuild1 setIsEnabled:NO];
+        [_btnBuild1 removeAllChildrenWithCleanup:YES];
+        return;
+    }
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL) {
         [_btnBuild1 setIsEnabled:NO];
@@ -39,6 +49,11 @@
 - (void) setBuild2MenuStatus
 {
     if (!_btnBuild2) return;
+    if (!_canBuild2) {
+        [_btnBuild2 setIsEnabled:NO];
+        [_btnBuild2 removeAllChildrenWithCleanup:YES];
+        return;
+    }
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL) {
         [_btnBuild2 setIsEnabled:NO];
@@ -56,6 +71,11 @@
 - (void) setBuild3MenuStatus
 {
     if (!_btnBuild3) return;
+    if (!_canBuild3) {
+        [_btnBuild3 setIsEnabled:NO];
+        [_btnBuild3 removeAllChildrenWithCleanup:YES];
+        return;
+    }
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL) {
         [_btnBuild3 setIsEnabled:NO];
@@ -73,6 +93,11 @@
 - (void) setBuild4MenuStatus
 {
     if (!_btnBuild4) return;
+    if (!_canBuild4) {
+        [_btnBuild4 setIsEnabled:NO];
+        [_btnBuild4 removeAllChildrenWithCleanup:YES];
+        return;
+    }
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL) {
         [_btnBuild4 setIsEnabled:NO];
@@ -90,6 +115,11 @@
 - (void) setUpdateMenuStatus
 {
     if (!_btnUpdate) return;
+    if (!_canUpdate) {
+        [_btnUpdate setIsEnabled:NO];
+        //[_btnUpdate removeAllChildrenWithCleanup:NO];
+        return;
+    }
     GameController *gc = [GameController getGameController];
     if (gc.operateType != OT_NORMAL) {
         [_btnUpdate setIsEnabled:NO];
@@ -174,7 +204,7 @@
 
 -(int)updateGold
 {
-    return _build1Gold;
+    return _updateGold;
 }
 
 -(void)setUpdateGold:(int)ug

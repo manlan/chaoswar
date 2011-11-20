@@ -5,6 +5,7 @@
     CCSprite *tipImg;
     CCMenuItemImage *btnBack;
     CCMenuItemImage *btnUpdata;
+    CCMenuItemImage *btnReset;
     int itemId;
     //NSMutableDictionary *updataInfo;
     //NSMutableDictionary *publicInfo;

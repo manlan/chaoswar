@@ -4,7 +4,6 @@
 
 @implementation TDMagicEnemy
 
-@synthesize mcAni = _mcAni;
 @synthesize magicRange = _magicRange;
 
 -(id) init
@@ -52,7 +51,7 @@
     if (magicEnemy) {
         [self unscheduleAllSelectors];
         [self stopAllActions];
-        id actionAttact = [CCAnimate actionWithAnimation:_mcAni restoreOriginalFrame:NO];
+        id actionAttact = [CCAnimate actionWithAnimation:[self getAnimate:self.mcAniName] restoreOriginalFrame:NO];
         id actionAttactDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterMagic:)];
         [self runAction:[CCSequence actions:actionAttact, actionAttactDone, nil]];
     }
@@ -64,42 +63,14 @@
     [self schedule:@selector(startMagic:) interval:5];
 }
 
-- (CCAnimation*) getAnimation:(int)level kind:(NSString*)kind
-{
-    CCSpriteFrameCache *cache = [CCSpriteFrameCache sharedSpriteFrameCache];
-    NSMutableArray *animArray = [NSMutableArray array];
-    CCSpriteFrame *frame = nil;
-    int i = 1;
-    do {
-        frame = [cache spriteFrameByName:[NSString stringWithFormat:@"mc%02d%@%04d.png", level, kind, i]];
-        i++;
-        if (frame != nil) {
-            [animArray addObject:frame];
-        }
-    } while (frame != nil);
-    return [CCAnimation animationWithFrames:animArray delay:0.05f];
-}
-
 - (void) addAnimate:(int)level
 {
-    self.mvuAni = [self getAnimation:level kind:@"mvu"];
-    self.mvdAni = [self getAnimation:level kind:@"mvd"];
-    self.mvlAni = [self getAnimation:level kind:@"mvc"];
-    self.mvrAni = [self getAnimation:level kind:@"mvc"];
-    self.ddAni = [self getAnimation:level kind:@"dd"];
-    self.mcAni = [self getAnimation:level kind:@"magic"];
-    [self.mvuAni setName:[NSString stringWithFormat:@"mc%02dmvu", level]];
-    [self.mvdAni setName:[NSString stringWithFormat:@"mc%02dmvd", level]];
-    [self.mvlAni setName:[NSString stringWithFormat:@"mc%02dmvl", level]];
-    [self.mvrAni setName:[NSString stringWithFormat:@"mc%02dmvr", level]];
-    [self.ddAni setName:[NSString stringWithFormat:@"mc%02ddd", level]];
-    [self.mcAni setName:[NSString stringWithFormat:@"mc%02dmagic", level]];
-    [self addAnimation:self.mvuAni];
-    [self addAnimation:self.mvdAni];
-    [self addAnimation:self.mvlAni];
-    [self addAnimation:self.mvrAni];
-    [self addAnimation:self.ddAni];
-    [self addAnimation:self.mcAni];
+    self.mvuAniName = [NSString stringWithFormat:@"mc%02dmvu", level];
+    self.mvdAniName = [NSString stringWithFormat:@"mc%02dmvd", level];
+    self.mvcAniName = [NSString stringWithFormat:@"mc%02dmvc", level];
+    self.ddAniName = [NSString stringWithFormat:@"mc%02ddd", level];
+    self.atAniName = [NSString stringWithFormat:@"mc%02dat", level];
+    self.mcAniName = [NSString stringWithFormat:@"mc%02dmagic", level];
 }
 
 - (void) dealloc
@@ -125,13 +96,9 @@
         enemy.defence = TDS_MC1_DEFENCE;
         enemy.defenceMode = TDS_MC1_DEFENCEMODE;
         enemy.getGold = TDS_MC1_GETGOLD;
+        [enemy addAnimate:1];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:1]; 
 }
 
 -(void) afterMagic:(id)sender {
@@ -162,13 +129,9 @@
         enemy.defence = TDS_MC2_DEFENCE;
         enemy.defenceMode = TDS_MC2_DEFENCEMODE;
         enemy.getGold = TDS_MC2_GETGOLD;
+        [enemy addAnimate:2];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:2]; 
 }
 
 -(void) afterMagic:(id)sender {

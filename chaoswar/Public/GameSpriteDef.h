@@ -1,4 +1,5 @@
 #import "GameSpriteData.h"
+#import "GameSpriteDef2.h"
 
 //===================塔数据配置======================
 //箭塔的攻击时间 和 射程 卖的价格
@@ -36,8 +37,8 @@
 //炮塔的攻击时间 和 射程 卖的价格
 #define TDS_TURRET_TOWER1_ATTACTRANGE 120
 #define TDS_TURRET_TOWER1_ATTACTTIME getTurrettower1AttactTime()
-#define TDS_TURRET_TOWER1_BUYGOLD 120
-#define TDS_TURRET_TOWER1_GETGOLD 200
+#define TDS_TURRET_TOWER1_BUYGOLD 200
+#define TDS_TURRET_TOWER1_GETGOLD 120
 
 #define TDS_TURRET_TOWER2_ATTACTRANGE 120
 #define TDS_TURRET_TOWER2_ATTACTTIME getTurrettower2AttactTime()
@@ -518,3 +519,7 @@
 #define TDS_FFL2_DEFENCE 0
 #define TDS_FFL2_DEFENCEMODE DT_NO
 //===================友军数据配置======================
+
+//===================地形相关设置======================
+#define TDS_FONT_COLOR getHintFontColor()
+#define TDS_EMPTY_NAME getEmptyName()

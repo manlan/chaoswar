@@ -96,27 +96,18 @@ typedef enum {
 	MT_SAND
 } TMapType;
 
-// 敌人属性
-typedef enum {
-	ES_NORMAL,
-	ES_WAITING,
-	ES_ATTACT
-} TEnemyStatus;
 
-
-// 敌人属性
+// 单位位置
 typedef enum {
 	SP_FOOT,
 	SP_AIR,
 	SP_WATER
 } TSpritePlace;
 
-
-// 敌人属性
+// 敌人状态
 typedef enum {
-	EMS_NORMAL,
-	EMS_STOP,
-	EMS_SPEED,
-    EMS_LIFE,
-} TEnemyMagicStatus;
+	US_NORMAL,
+	US_WAITING,
+	US_ATTACT
+} TUnitStatus;
 

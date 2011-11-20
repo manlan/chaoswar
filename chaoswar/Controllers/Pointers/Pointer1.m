@@ -14,59 +14,12 @@
     //可以逃掉多少兵
 	gc.currentHealth = 20;
     //初始金币
-	gc.currentGold = 110;
+	gc.currentGold = 9110;
     //这些不管
 	gc.screenClickType = SCT_ALL;
 	gc.operateType = OT_NORMAL;
 	gc.mapType = MT_GREEN;
 	gc.canNext = YES;
-}
-
-- (void) initAnimate
-{
-    //初始话动画，可以不管，为了节省内存，可以把不需要的关掉
-    [AnimateManager initBoss01];
-    [AnimateManager initBoss02];
-    [AnimateManager initFly01];
-    [AnimateManager initFly02];
-    [AnimateManager initFly03];
-    [AnimateManager initShooter01];
-    [AnimateManager initMagic01];
-    [AnimateManager initMagic02];
-    [AnimateManager initFoot01];
-    [AnimateManager initFoot02];
-    [AnimateManager initFoot03];
-    [AnimateManager initFoot04];
-    [AnimateManager initFoot05];
-    [AnimateManager initFoot06];
-    [AnimateManager initFoot07];
-    [AnimateManager initFoot08];
-    [AnimateManager initFoot09];
-    [AnimateManager initFoot10];
-    [AnimateManager initFoot11];
-    [AnimateManager initFoot12];
-    [AnimateManager initFoot13];
-    [AnimateManager initFoot14];
-    [AnimateManager initFoot15];
-    [AnimateManager initFoot16];
-    [AnimateManager initDefenceTower01];
-    [AnimateManager initDefenceTower02];
-    [AnimateManager initDefenceTower03];
-    [AnimateManager initTurretTower01];
-    [AnimateManager initTurretTower02];
-    [AnimateManager initTurretTower03];
-    [AnimateManager initTurretBullet];
-    [AnimateManager initMagicTower01];
-    [AnimateManager initMagicTower02];
-    [AnimateManager initMagicTower03];
-    [AnimateManager initMagicFriendly01];
-    [AnimateManager initMagicFriendly02];
-    [AnimateManager initForeverFriendly01];
-    [AnimateManager initMagicFire];
-    [AnimateManager initMagicThunder];
-    [AnimateManager initMagicStone];
-    [AnimateManager initAllEffect];
-    
 }
 
 - (void) initEnemy:(NSMutableArray*)array
@@ -78,11 +31,11 @@
 {
     [array removeAllObjects];
     //初始化建塔地点，参数p是建塔地点的正下方的位置，而不是图片的中间位置
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(300, 131)];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(233, 131)];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(180, 53)];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(432, 143)];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(218, 251)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(300, 131) s:ccp(352, 162)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(233, 131) s:ccp(241, 101)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(180,  53) s:ccp(237,  71)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(432, 143) s:ccp(368, 160)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(218, 251) s:ccp(157, 269)];
 }
 
 - (BOOL) runWaves:(int)wave
@@ -99,25 +52,25 @@
     // wy:路线，路线维护在下面
 	switch (wave) {
 		case 1:
-            [self runWave:1 e:ET_FOOT1 s:2.2 t:3 wy:[gc.wayManager getWay:2]];
+            [self runWave:1 e:ET_FOOT1 s:4 t:1 wy:[gc.wayManager getWay:2]];
             //prepareNextWave函数参数，等待多少秒之后，可以点击下一波
-            [self prepareNextWave:10];
+            [self prepareNextWave:9999];
 			break;
         case 2:
             //new enemy
             [self runWave:1 e:ET_FOOT1 s:2.2 t:4 wy:[gc.wayManager getWay:2]];
             [self runWave:2 e:ET_FOOT2 s:2 t:3 wy:[gc.wayManager getWay:1]];
-            [self prepareNextWave:12];
+            [self prepareNextWave:18];
 			break;
         case 3:
             [self runWave:1 e:ET_FOOT2 s:2 t:5 wy:[gc.wayManager getWay:2]];
-            [self prepareNextWave:15];
+            [self prepareNextWave:20];
 			break;
         case 4:
             [self runWave:1.5 e:ET_FOOT1 s:2 t:3 wy:[gc.wayManager getWay:1]];
             [self runWave:1 e:ET_FOOT2 s:2 t:4 wy:[gc.wayManager getWay:2]];
             [self runWave:1.5 e:ET_FOOT1 s:2 t:3 wy:[gc.wayManager getWay:3]];
-            [self prepareNextWave:15];
+            [self prepareNextWave:18];
 			break;
         case 5:
             //new enemy
@@ -139,7 +92,7 @@
             [self runWave:1.5 e:ET_FOOT2 s:2 t:5 wy:[gc.wayManager getWay:1]];
             [self runWave:1 e:ET_FOOT3 s:2 t:8 wy:[gc.wayManager getWay:2]];
             [self runWave:2 e:ET_FOOT2 s:2 t:5 wy:[gc.wayManager getWay:3]];
-            //[self prepareNextWave:22];
+            [self prepareEndPoint:17];
 			break;
 		default:
             //[self prepareNextWave:10];
@@ -218,6 +171,46 @@
     }
     
     return NO;
+}
+
+- (void) doAutoNextWave
+{
+    [super doAutoNextWave];
+    switch ([GameController getGameController].currentWave) {
+		case 1:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(157, 308)];
+			break;
+        case 2:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(157, 308)];
+			break;
+        case 3:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(157, 308)];
+			break;
+        case 4:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(157, 308)];
+			break;
+        case 5:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(157, 308)];
+			break;
+        case 6:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(157, 308)];
+			break;
+        case 7:
+            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self addWaveTip:ccp(157, 308)];
+			break;
+        case 8:
+			break;
+		default:
+            //[self prepareNextWave:10];
+			break;
+	}
 }
 
 @end

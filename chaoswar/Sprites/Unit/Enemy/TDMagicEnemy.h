@@ -8,7 +8,6 @@
     TDEnemy *magicEnemy;
 }
 
-@property (nonatomic, assign) CCAnimation *mcAni;
 @property int magicRange;
 
 - (void) doMagic;

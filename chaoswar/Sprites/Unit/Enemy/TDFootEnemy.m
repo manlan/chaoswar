@@ -10,42 +10,13 @@
 	return self;
 }
 
-- (CCAnimation*) getAnimation:(int)level kind:(NSString*)kind
-{
-    CCSpriteFrameCache *cache = [CCSpriteFrameCache sharedSpriteFrameCache];
-    NSMutableArray *animArray = [NSMutableArray array];
-    CCSpriteFrame *frame = nil;
-    int i = 1;
-    do {
-        frame = [cache spriteFrameByName:[NSString stringWithFormat:@"ft%02d%@%04d.png", level, kind, i]];
-        i++;
-        if (frame != nil) {
-            [animArray addObject:frame];
-        }
-    } while (frame != nil);
-    return [CCAnimation animationWithFrames:animArray delay:0.05f];
-}
-
 - (void) addAnimate:(int)level
 {
-    self.mvuAni = [self getAnimation:level kind:@"mvu"];
-    self.mvdAni = [self getAnimation:level kind:@"mvd"];
-    self.mvlAni = [self getAnimation:level kind:@"mvc"];
-    self.mvrAni = [self getAnimation:level kind:@"mvc"];
-    self.ddAni = [self getAnimation:level kind:@"dd"];
-    self.atAni = [self getAnimation:level kind:@"at"];
-    [self.mvuAni setName:[NSString stringWithFormat:@"ft%02dmvu", level]];
-    [self.mvdAni setName:[NSString stringWithFormat:@"ft%02dmvd", level]];
-    [self.mvlAni setName:[NSString stringWithFormat:@"ft%02dmvl", level]];
-    [self.mvrAni setName:[NSString stringWithFormat:@"ft%02dmvr", level]];
-    [self.ddAni setName:[NSString stringWithFormat:@"ft%02ddd", level]];
-    [self.atAni setName:[NSString stringWithFormat:@"ft%02dat", level]];
-    [self addAnimation:self.mvuAni];
-    [self addAnimation:self.mvdAni];
-    [self addAnimation:self.mvlAni];
-    [self addAnimation:self.mvrAni];
-    [self addAnimation:self.ddAni];
-    [self addAnimation:self.atAni];
+    self.mvuAniName = [NSString stringWithFormat:@"ft%02dmvu", level];
+    self.mvdAniName = [NSString stringWithFormat:@"ft%02dmvd", level];
+    self.mvcAniName = [NSString stringWithFormat:@"ft%02dmvc", level];
+    self.ddAniName = [NSString stringWithFormat:@"ft%02ddd", level];
+    self.atAniName = [NSString stringWithFormat:@"ft%02dat", level];
 }
 
 - (void) dealloc
@@ -71,13 +42,9 @@
         enemy.defence = TDS_FT1_DEFENCE;
         enemy.defenceMode = TDS_FT1_DEFENCEMODE;
         enemy.getGold = TDS_FT1_GETGOLD;
+        [enemy addAnimate:1];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:1]; 
 }
 
 - (void) dealloc
@@ -103,13 +70,9 @@
         enemy.defence = TDS_FT2_DEFENCE;
         enemy.defenceMode = TDS_FT2_DEFENCEMODE;
         enemy.getGold = TDS_FT2_GETGOLD;
+        [enemy addAnimate:2];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:2]; 
 }
 
 - (void) dealloc
@@ -135,13 +98,9 @@
         enemy.defence = TDS_FT3_DEFENCE;
         enemy.defenceMode = TDS_FT3_DEFENCEMODE;
         enemy.getGold = TDS_FT3_GETGOLD;
+        [enemy addAnimate:3];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:3]; 
 }
 
 - (void) dealloc
@@ -167,13 +126,9 @@
         enemy.defence = TDS_FT4_DEFENCE;
         enemy.defenceMode = TDS_FT4_DEFENCEMODE;
         enemy.getGold = TDS_FT4_GETGOLD;
+        [enemy addAnimate:4];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:4]; 
 }
 
 - (void) dealloc
@@ -199,13 +154,9 @@
         enemy.defence = TDS_FT5_DEFENCE;
         enemy.defenceMode = TDS_FT5_DEFENCEMODE;
         enemy.getGold = TDS_FT5_GETGOLD;
+        [enemy addAnimate:5];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:5]; 
 }
 
 - (void) dealloc
@@ -231,13 +182,9 @@
         enemy.defence = TDS_FT6_DEFENCE;
         enemy.defenceMode = TDS_FT6_DEFENCEMODE;
         enemy.getGold = TDS_FT6_GETGOLD;
+        [enemy addAnimate:6];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:6]; 
 }
 
 - (void) dealloc
@@ -263,13 +210,9 @@
         enemy.defence = TDS_FT7_DEFENCE;
         enemy.defenceMode = TDS_FT7_DEFENCEMODE;
         enemy.getGold = TDS_FT7_GETGOLD;
+        [enemy addAnimate:7];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:7]; 
 }
 
 - (void) dealloc
@@ -295,13 +238,9 @@
         enemy.defence = TDS_FT8_DEFENCE;
         enemy.defenceMode = TDS_FT8_DEFENCEMODE;
         enemy.getGold = TDS_FT8_GETGOLD;
+        [enemy addAnimate:8];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:8]; 
 }
 
 - (void) dealloc
@@ -327,13 +266,9 @@
         enemy.defence = TDS_FT9_DEFENCE;
         enemy.defenceMode = TDS_FT9_DEFENCEMODE;
         enemy.getGold = TDS_FT9_GETGOLD;
+        [enemy addAnimate:9];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:9]; 
 }
 
 - (void) dealloc
@@ -359,13 +294,9 @@
         enemy.defence = TDS_FT10_DEFENCE;
         enemy.defenceMode = TDS_FT10_DEFENCEMODE;
         enemy.getGold = TDS_FT10_GETGOLD;
+        [enemy addAnimate:10];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:10]; 
 }
 
 - (void) dealloc
@@ -391,13 +322,9 @@
         enemy.defence = TDS_FT11_DEFENCE;
         enemy.defenceMode = TDS_FT11_DEFENCEMODE;
         enemy.getGold = TDS_FT11_GETGOLD;
+        [enemy addAnimate:11];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:11]; 
 }
 
 - (void) dealloc
@@ -423,13 +350,9 @@
         enemy.defence = TDS_FT12_DEFENCE;
         enemy.defenceMode = TDS_FT12_DEFENCEMODE;
         enemy.getGold = TDS_FT12_GETGOLD;
+        [enemy addAnimate:12];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:12]; 
 }
 
 - (void) dealloc
@@ -455,13 +378,9 @@
         enemy.defence = TDS_FT13_DEFENCE;
         enemy.defenceMode = TDS_FT13_DEFENCEMODE;
         enemy.getGold = TDS_FT13_GETGOLD;
+        [enemy addAnimate:13];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:13]; 
 }
 
 - (void) dealloc
@@ -487,13 +406,9 @@
         enemy.defence = TDS_FT14_DEFENCE;
         enemy.defenceMode = TDS_FT14_DEFENCEMODE;
         enemy.getGold = TDS_FT14_GETGOLD;
+        [enemy addAnimate:14];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:14]; 
 }
 
 - (void) dealloc
@@ -519,13 +434,9 @@
         enemy.defence = TDS_FT15_DEFENCE;
         enemy.defenceMode = TDS_FT15_DEFENCEMODE;
         enemy.getGold = TDS_FT15_GETGOLD;
+        [enemy addAnimate:15];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:15]; 
 }
 
 - (void) dealloc
@@ -551,13 +462,9 @@
         enemy.defence = TDS_FT16_DEFENCE;
         enemy.defenceMode = TDS_FT16_DEFENCEMODE;
         enemy.getGold = TDS_FT16_GETGOLD;
+        [enemy addAnimate:16];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:16]; 
 }
 
 - (void) dealloc

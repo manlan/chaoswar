@@ -33,6 +33,7 @@
 		[self addChild:xueTip z:1];
 		_lblEnemyNum = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:12];
 		_lblEnemyNum.position = ccp(286 , 300);
+        _lblEnemyNum.color = TDS_FONT_COLOR;
 		[self addChild:_lblEnemyNum z:1];
 		
 		//===============金额===============
@@ -41,6 +42,7 @@
 		[self addChild:qianTip z:1];
 		_lblGold = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:12];
 		_lblGold.position = ccp(342 , 300);
+        _lblGold.color = TDS_FONT_COLOR;
 		[self addChild:_lblGold z:1];
 		
 		//===============波数===============
@@ -49,6 +51,7 @@
 		[self addChild:wavesTip z:1];
 		_lblWave = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:12];
 		_lblWave.position = ccp(400 , 300);
+        _lblWave.color = TDS_FONT_COLOR;
 		[self addChild:_lblWave z:1];
 		
 		//=============技能背景===============

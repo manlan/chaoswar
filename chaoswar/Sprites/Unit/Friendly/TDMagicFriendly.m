@@ -29,20 +29,8 @@
     self.spriteStatus = TSS_DEADING;
 }
 
-- (CCAnimation*) getAnimation:(int)level kind:(NSString*)kind
-{
-    CCSpriteFrameCache *cache = [CCSpriteFrameCache sharedSpriteFrameCache];
-    NSMutableArray *animArray = [NSMutableArray array];
-    CCSpriteFrame *frame = nil;
-    int i = 1;
-    do {
-        frame = [cache spriteFrameByName:[NSString stringWithFormat:@"mcf%02d%@%04d.png", level, kind, i]];
-        i++;
-        if (frame != nil) {
-            [animArray addObject:frame];
-        }
-    } while (frame != nil);
-    return [CCAnimation animationWithFrames:animArray delay:0.05f];
+- (void) showImformation {
+    
 }
 
 @end
@@ -64,23 +52,11 @@
         friendly.defenceMode = TDS_MFL1_DEFENCEMODE;
         friendly.searchRange = TDS_MFL1_SEARCHRANGE;
         friendly.deadTime = TDS_MFL1_DEADTIME;
+        friendly.mvAniName = [NSString stringWithFormat:@"mcf%02dmv", 1];
+        friendly.ddAniName = [NSString stringWithFormat:@"mcf%02ddd", 1];
+        friendly.atAniName = [NSString stringWithFormat:@"mcf%02dat", 1];
     }
     return friendly;
-}
-
-- (void) initAnimate
-{
-    [super initAnimate];
-    int level = 1;
-    self.movAni = [self getAnimation:level kind:@"mv"];
-    self.ddAni = [self getAnimation:level kind:@"dd"];
-    self.atAni = [self getAnimation:level kind:@"at"];
-    [self.movAni setName:[NSString stringWithFormat:@"mcf%02dmv", level]];
-    [self.ddAni setName:[NSString stringWithFormat:@"mcf%02ddd", level]];
-    [self.atAni setName:[NSString stringWithFormat:@"mcf%02dat", level]];
-    [self addAnimation:self.movAni];
-    [self addAnimation:self.ddAni];
-    [self addAnimation:self.atAni];
 }
 
 @end
@@ -102,23 +78,11 @@
         friendly.defenceMode = TDS_MFL2_DEFENCEMODE;
         friendly.searchRange = TDS_MFL2_SEARCHRANGE;
         friendly.deadTime = TDS_MFL2_DEADTIME;
+        friendly.mvAniName = [NSString stringWithFormat:@"mcf%02dmv", 2];
+        friendly.ddAniName = [NSString stringWithFormat:@"mcf%02ddd", 2];
+        friendly.atAniName = [NSString stringWithFormat:@"mcf%02dat", 2];
     }
     return friendly;
-}
-
-- (void) initAnimate
-{
-    [super initAnimate];
-    int level = 2;
-    self.movAni = [self getAnimation:level kind:@"mv"];
-    self.ddAni = [self getAnimation:level kind:@"dd"];
-    self.atAni = [self getAnimation:level kind:@"at"];
-    [self.movAni setName:[NSString stringWithFormat:@"mcf%02dmv", level]];
-    [self.ddAni setName:[NSString stringWithFormat:@"mcf%02ddd", level]];
-    [self.atAni setName:[NSString stringWithFormat:@"mcf%02dat", level]];
-    [self addAnimation:self.movAni];
-    [self addAnimation:self.ddAni];
-    [self addAnimation:self.atAni];
 }
 
 @end

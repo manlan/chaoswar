@@ -1,6 +1,7 @@
 #import "TDSprite.h"
 #import "GameController.h"
 #import "GameControllerScene.h"
+#import "SpriteInfoScene.h"
 #import "TDTower.h"
 #import "TDEnemy.h"
 #import "TDFriendly.h"
@@ -17,10 +18,10 @@ const TDSprite *_lastSprite = nil;
 @synthesize killNum = _killNum;
 @synthesize canClick = _canClick;
 @synthesize showBlood = _showBlood;
+@synthesize baseZOrder = _baseZOrder;
 @synthesize bloodShowSprite = _bloodShowSprite;
 @synthesize bloodBackSprite = _bloodBackSprite;
 @synthesize arrowSprite = _arrowSprite;
-@synthesize effectSprite = _effectSprite;
 @synthesize spritePlace = _spritePlace;
 
 + (id) getSprite
@@ -70,6 +71,7 @@ const TDSprite *_lastSprite = nil;
         _killNum = 0;
         _canClick = YES;
         _showBlood = NO;
+        _baseZOrder = 100;
         _spritePlace = SP_FOOT;
         //初始化血条，选择标记，魔法动画等
         _bloodShowSprite = [CCSprite spriteWithFile:@"showProgress.png"];
@@ -80,25 +82,19 @@ const TDSprite *_lastSprite = nil;
         _bloodBackSprite.anchorPoint = ccp(0, 0);
         [self addChild:_bloodBackSprite z:1];
         
-        _arrowSprite = [CCSprite spriteWithSpriteFrameName:@"spSel0001.png"];
+        _arrowSprite = [CCSprite spriteWithFile:@"spSel.png"];
+        //[CCSprite spriteWithSpriteFrameName:@"spSel0001.png"];
         _arrowSprite.anchorPoint = ccp(0.5, 0.5);
-        CCSpriteFrameCache *cache = [CCSpriteFrameCache sharedSpriteFrameCache];
-        NSMutableArray *animArray = [NSMutableArray array];
-        CCSpriteFrame *frame = nil;
-        int i = 1;
-        do {
-            frame = [cache spriteFrameByName:[NSString stringWithFormat:@"spSel%04d.png", i]];
-            i++;
-            if (frame != nil) {
-                [animArray addObject:frame];
-            }
-        } while (frame != nil);
-        CCAnimation *arrowAni = [CCAnimation animationWithFrames:animArray delay:0.05f];
-        [arrowAni setName:@"spSel"];
-        [_arrowSprite addAnimation:arrowAni];
-        [_arrowSprite runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:0.9 animation:arrowAni restoreOriginalFrame:NO]]];
+        
+
+//        [_arrowSprite runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:0.9 animation:arrowAni restoreOriginalFrame:NO]]];
         [self addChild:_arrowSprite z:3];
         
+        _effectSprite = [CCSprite spriteWithFile:@"spSel.png"];
+        _effectSprite.anchorPoint = ccp(0.5, 0);
+        [self addChild:_effectSprite z:10];
+        
+        [_effectSprite setVisible:NO];
         [_bloodShowSprite setVisible:_showBlood];
         [_bloodBackSprite setVisible:_showBlood];
         [_arrowSprite setVisible:NO];
@@ -142,12 +138,18 @@ const TDSprite *_lastSprite = nil;
 - (void) doSelect
 {
     _arrowSprite.position = ccp(self.textureRect.size.width / 2, self.textureRect.size.height + 15);
+    _arrowSprite.scale = 0.35;
     [_arrowSprite setVisible:YES];
+    [_arrowSprite runAction:[CCRepeatForever actionWithAction:[CCBlink actionWithDuration:0.5 blinks:1]]];
     _lastSprite = self;
+    [[GameController getGameController].spriteInfo removeAllChildrenWithCleanup:YES];
+    [self showImformation];
 }
 
 - (void) doUnSelect
 {
+    [[GameController getGameController].spriteInfo removeAllChildrenWithCleanup:YES];
+    [_arrowSprite stopAllActions];
     [_arrowSprite setVisible:NO];
     if ([GameController getGameController]) {
         if ([GameController getGameController].gameController) {
@@ -158,7 +160,7 @@ const TDSprite *_lastSprite = nil;
 
 - (CGRect) tdTouchRect
 {
-	return CGRectMake(-self.textureRect.size.width / 2, -self.textureRect.size.height / 2, self.textureRect.size.width, self.textureRect.size.height);
+	return CGRectMake(-self.textureRect.size.width * self.anchorPoint.x, -self.textureRect.size.height * self.anchorPoint.y, self.textureRect.size.width, self.textureRect.size.height);
 }
 
 - (void) onEnter
@@ -189,7 +191,9 @@ const TDSprite *_lastSprite = nil;
         if (_lastSprite) {
             [_lastSprite doUnSelect];
         }
-        [self doSelect];
+        if ([GameController getGameController].operateType == OT_NORMAL) {
+            [self doSelect];
+        }
     }
 	switch ([GameController getGameController].screenClickType) {
 		case SCT_ALL:
@@ -346,21 +350,23 @@ const TDSprite *_lastSprite = nil;
 
 - (void) setSpriteStatus:(TSpriteStatus)spriteStatus
 {
-    _spriteStatus = spriteStatus;
-    switch (_spriteStatus) {
-        case TSS_NORMAL:
-            [self statusToNormal];
-            break;
-        case TSS_DEADING:
-            [self clearSpriteData];
-            [self statusToDeading];
-            break;
-        case TSS_DEAD:
-            [self clearSpriteData];
-            [self statusToDead];
-            break;
-        default:
-            break;
+    if (_spriteStatus != spriteStatus) {
+        _spriteStatus = spriteStatus;
+        switch (_spriteStatus) {
+            case TSS_NORMAL:
+                [self statusToNormal];
+                break;
+            case TSS_DEADING:
+                [self clearSpriteData];
+                [self statusToDeading];
+                break;
+            case TSS_DEAD:
+                [self clearSpriteData];
+                [self statusToDead];
+                break;
+            default:
+                break;
+        }
     }
 }
 
@@ -382,8 +388,17 @@ const TDSprite *_lastSprite = nil;
         CCNode *p = self.parent;
         CGSize size = [[CCDirector sharedDirector] winSize];
         [self removeFromParentAndCleanup:NO];
-        [p addChild:self z:size.height - newPosition.y + 100];
+        [p addChild:self z:size.height - newPosition.y + _baseZOrder];
     }
+}
+
+- (CCAnimation*) getAnimate:(NSString*)name
+{
+    return [[GameController getGameController] getAnimation:name];
+}
+
+- (void) showImformation {
+
 }
 
 @end

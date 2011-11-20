@@ -10,39 +10,14 @@
 	return self;
 }
 
-- (CCAnimation*) getAnimation:(int)level kind:(NSString*)kind
-{
-    CCSpriteFrameCache *cache = [CCSpriteFrameCache sharedSpriteFrameCache];
-    NSMutableArray *animArray = [NSMutableArray array];
-    CCSpriteFrame *frame = nil;
-    int i = 1;
-    do {
-        frame = [cache spriteFrameByName:[NSString stringWithFormat:@"st%02d%@%04d.png", level, kind, i]];
-        i++;
-        if (frame != nil) {
-            [animArray addObject:frame];
-        }
-    } while (frame != nil);
-    return [CCAnimation animationWithFrames:animArray delay:0.05f];
-}
-
 - (void) addAnimate:(int)level
 {
-    self.mvuAni = [self getAnimation:level kind:@"mvu"];
-    self.mvdAni = [self getAnimation:level kind:@"mvd"];
-    self.mvlAni = [self getAnimation:level kind:@"mvc"];
-    self.mvrAni = [self getAnimation:level kind:@"mvc"];
-    self.ddAni = [self getAnimation:level kind:@"dd"];
-    [self.mvuAni setName:[NSString stringWithFormat:@"st%02dmvu", level]];
-    [self.mvdAni setName:[NSString stringWithFormat:@"st%02dmvd", level]];
-    [self.mvlAni setName:[NSString stringWithFormat:@"st%02dmvl", level]];
-    [self.mvrAni setName:[NSString stringWithFormat:@"st%02dmvr", level]];
-    [self.ddAni setName:[NSString stringWithFormat:@"st%02ddd", level]];
-    [self addAnimation:self.mvuAni];
-    [self addAnimation:self.mvdAni];
-    [self addAnimation:self.mvlAni];
-    [self addAnimation:self.mvrAni];
-    [self addAnimation:self.ddAni];
+    self.mvuAniName = [NSString stringWithFormat:@"st%02dmvu", level];
+    self.mvdAniName = [NSString stringWithFormat:@"st%02dmvd", level];
+    self.mvcAniName = [NSString stringWithFormat:@"st%02dmvc", level];
+    self.ddAniName = [NSString stringWithFormat:@"st%02ddd", level];
+    self.atAniName = [NSString stringWithFormat:@"st%02dat", level];
+    self.mcAniName = [NSString stringWithFormat:@"st%02dmagic", level];
 }
 
 - (void) dealloc
@@ -68,13 +43,9 @@
         enemy.defence = TDS_ST1_DEFENCE;
         enemy.defenceMode = TDS_ST1_DEFENCEMODE;
         enemy.getGold = TDS_ST1_GETGOLD;
+        [enemy addAnimate:1];
     }
     return enemy;
-}
-
-- (void) initAnimate
-{
-    [self addAnimate:1]; 
 }
 
 - (void) dealloc

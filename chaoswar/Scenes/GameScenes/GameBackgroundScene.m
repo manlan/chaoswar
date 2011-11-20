@@ -3,6 +3,7 @@
 #import "GameImfomationScene.h"
 #import "GameMagicScene.h"
 #import "GameControllerScene.h"
+#import "SpriteInfoScene.h"
 #import "GameHintScene.h"
 #import "Pointer.h"
 
@@ -27,14 +28,17 @@
     [scene addChild:gameMagicScene z:3];
     GameControllerScene *gameControllerScene = [GameControllerScene node];
     [scene addChild:gameControllerScene z:4];
+	SpriteInfoScene *spriteInfoScene = [SpriteInfoScene node];
+    [scene addChild:spriteInfoScene z:5];
     GameHintScene *gameHintScene = [GameHintScene node];
-    [scene addChild:gameHintScene z:5];
+    [scene addChild:gameHintScene z:6];
     
 	GameController *gc = [GameController getGameController];
 	gc.gameBackground = gameBackgroundScene;
     gc.gameImfomation = gameImfomationScene;
     gc.gameMagic = gameMagicScene;
     gc.gameController = gameControllerScene;
+	gc.spriteInfo = spriteInfoScene;
     gc.gameHint = gameHintScene;
     //==================初始化配置=================
     [gc initController:gk];

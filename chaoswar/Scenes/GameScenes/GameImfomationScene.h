@@ -3,6 +3,8 @@
 
 @class GameController;
 
+//显示永远不会变化位置的信息
+
 @interface GameImfomationScene : CCLayer {
 
 }

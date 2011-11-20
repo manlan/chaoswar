@@ -16,32 +16,15 @@
 
 @synthesize tower = _tower;
 
-- (void) setTower:(TDDefenceTower *)tower
+- (void) setTower:(TDDefenceTower *)t
 {
     if (_tower) {
-        if (self == _tower.friendly1) {
-            _tower.friendly1 = nil;
-        }
-        if (self == _tower.friendly2) {
-            _tower.friendly2 = nil;
-        }
-        if (self == _tower.friendly3) {
-            _tower.friendly3 = nil;
-        }
+        [_tower delFriendly:self];
     }
-    _tower = tower;
+    _tower = t;
     if (_tower) {
-        if (!_tower.friendly1) {
-            _tower.friendly1 = self;
-            return;
-        }
-        if (!_tower.friendly2) {
-            _tower.friendly2 = self;
-            return;
-        }
-        if (!_tower.friendly3) {
-            _tower.friendly3 = self;
-            return;
+        if (![_tower addFriendly:self]) {
+            _tower = nil;
         }
     }
 }
@@ -51,22 +34,6 @@
     [super clearSpriteData];
     //发射的防御塔清空
     self.tower = nil;
-}
-
-- (CCAnimation*) getAnimation:(int)level kind:(NSString*)kind
-{
-    CCSpriteFrameCache *cache = [CCSpriteFrameCache sharedSpriteFrameCache];
-    NSMutableArray *animArray = [NSMutableArray array];
-    CCSpriteFrame *frame = nil;
-    int i = 1;
-    do {
-        frame = [cache spriteFrameByName:[NSString stringWithFormat:@"dtf%02d%@%04d.png", level, kind, i]];
-        i++;
-        if (frame != nil) {
-            [animArray addObject:frame];
-        }
-    } while (frame != nil);
-    return [CCAnimation animationWithFrames:animArray delay:0.05f];
 }
 
 @end
@@ -87,23 +54,11 @@
         friendly.defence = TDS_TFL1_DEFENCE;
         friendly.defenceMode = TDS_TFL1_DEFENCEMODE;
         friendly.searchRange = TDS_TFL1_SEARCHRANGE;
+        friendly.mvAniName = [NSString stringWithFormat:@"dtf%02dmv", 1];
+        friendly.ddAniName = [NSString stringWithFormat:@"dtf%02ddd", 1];
+        friendly.atAniName = [NSString stringWithFormat:@"dtf%02dat", 1];
     }
     return friendly;
-}
-
-- (void) initAnimate
-{
-    [super initAnimate];
-    int level = 1;
-    self.movAni = [self getAnimation:level kind:@"mv"];
-    self.ddAni = [self getAnimation:level kind:@"dd"];
-    self.atAni = [self getAnimation:level kind:@"at"];
-    [self.movAni setName:[NSString stringWithFormat:@"dtf%02dmv", level]];
-    [self.ddAni setName:[NSString stringWithFormat:@"dtf%02ddd", level]];
-    [self.atAni setName:[NSString stringWithFormat:@"dtf%02dat", level]];
-    [self addAnimation:self.movAni];
-    [self addAnimation:self.ddAni];
-    [self addAnimation:self.atAni];
 }
 
 @end
@@ -124,23 +79,11 @@
         friendly.defence = TDS_TFL2_DEFENCE;
         friendly.defenceMode = TDS_TFL2_DEFENCEMODE;
         friendly.searchRange = TDS_TFL2_SEARCHRANGE;
+        friendly.mvAniName = [NSString stringWithFormat:@"dtf%02dmv", 2];
+        friendly.ddAniName = [NSString stringWithFormat:@"dtf%02ddd", 2];
+        friendly.atAniName = [NSString stringWithFormat:@"dtf%02dat", 2];
     }
     return friendly;
-}
-
-- (void) initAnimate
-{
-    [super initAnimate];
-    int level = 2;
-    self.movAni = [self getAnimation:level kind:@"mv"];
-    self.ddAni = [self getAnimation:level kind:@"dd"];
-    self.atAni = [self getAnimation:level kind:@"at"];
-    [self.movAni setName:[NSString stringWithFormat:@"dtf%02dmv", level]];
-    [self.ddAni setName:[NSString stringWithFormat:@"dtf%02ddd", level]];
-    [self.atAni setName:[NSString stringWithFormat:@"dtf%02dat", level]];
-    [self addAnimation:self.movAni];
-    [self addAnimation:self.ddAni];
-    [self addAnimation:self.atAni];
 }
 
 @end
@@ -161,23 +104,11 @@
         friendly.defence = TDS_TFL3_DEFENCE;
         friendly.defenceMode = TDS_TFL3_DEFENCEMODE;
         friendly.searchRange = TDS_TFL3_SEARCHRANGE;
+        friendly.mvAniName = [NSString stringWithFormat:@"dtf%02dmv", 3];
+        friendly.ddAniName = [NSString stringWithFormat:@"dtf%02ddd", 3];
+        friendly.atAniName = [NSString stringWithFormat:@"dtf%02dat", 3];
     }
     return friendly;
-}
-
-- (void) initAnimate
-{
-    [super initAnimate];
-    int level = 3;
-    self.movAni = [self getAnimation:level kind:@"mv"];
-    self.ddAni = [self getAnimation:level kind:@"dd"];
-    self.atAni = [self getAnimation:level kind:@"at"];
-    [self.movAni setName:[NSString stringWithFormat:@"dtf%02dmv", level]];
-    [self.ddAni setName:[NSString stringWithFormat:@"dtf%02ddd", level]];
-    [self.atAni setName:[NSString stringWithFormat:@"dtf%02dat", level]];
-    [self addAnimation:self.movAni];
-    [self addAnimation:self.ddAni];
-    [self addAnimation:self.atAni];
 }
 
 @end
