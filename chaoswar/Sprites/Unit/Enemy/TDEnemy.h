@@ -7,7 +7,8 @@
 @class TDFriendly;
 
 @interface TDEnemy : TDUnit {
-
+    NSMutableArray *_friendlyArray;
+    BOOL _isAttacting;
 }
 
 @property int nextWayPoint;
@@ -16,6 +17,8 @@
 @property (nonatomic, assign) NSMutableArray *way;
 //攻击的友军
 @property (nonatomic, readonly) TDFriendly *friendly;
+//攻击的友军
+@property (nonatomic, readonly) TDFriendly *canAttactFriendly;
 //自身发射的子弹集合
 @property (nonatomic, assign) NSMutableArray *shootBulletArray;
 //塔攻击的子弹集合
@@ -26,9 +29,10 @@
 @property (nonatomic, assign) NSMutableArray *magicBulletArray;
 //塔攻击的集合
 @property (nonatomic, assign) NSMutableArray *towerArray;
-//友军攻击的集合
-@property (nonatomic, assign) NSMutableArray *friendlyArray;
 
+- (CGPoint) getPositionAfterTime:(ccTime)dt;
+
+//友军控制部分
 + (void) regFriendly:(TDFriendly*)f;
 
 + (void) unregFriendly:(TDFriendly*)f;
@@ -37,11 +41,17 @@
 
 - (void) delFriendly:(TDFriendly*)f;
 
-- (CGPoint) getPositionAfterTime:(ccTime)dt;
+- (int) friendlyCount;
+
+//魔法控制部分
 
 - (void) doMagicThunder;
 
 - (void) doMagicStop;
+
+//逻辑控制部分
+
+- (void) initUnitStatus;
 
 - (void) doRunning;
 
@@ -49,10 +59,8 @@
 
 - (void) doAttact;
 
-- (void) doubleAttact:(TDFriendly*)s;
+- (void) startAttact;
 
-- (TDFriendly*) canAttactFriendly;
-
-- (void) doAttact:(ccTime)dt;
+- (void) doAttactAction:(ccTime)dt;
 
 @end

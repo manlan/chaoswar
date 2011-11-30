@@ -87,4 +87,6 @@
 
 - (void) startNextWave;
 
+- (void) ArchieveHint:(NSString*)hint;
+
 @end

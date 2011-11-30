@@ -1,6 +1,7 @@
 #import "Pointer12.h"
 #import "GameController.h"
 #import "AnimateManager.h"
+#import "SimpleAudioEngine.h"
 
 @implementation Pointer12
 
@@ -25,14 +26,14 @@
 - (void) initTower:(NSMutableArray*)array
 {
     [array removeAllObjects];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(84, 120) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(93, 62) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(158, 48) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(222, 48) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(218, 246) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(218, 185) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(348, 128) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(415, 130) s:CGPointZero];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(84, 120) s:ccp(146, 144)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(93, 62) s:ccp(146, 135)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(158, 48) s:ccp(160, 131)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(222, 48) s:ccp(222, 131)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(218, 246) s:ccp(157, 259)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(218, 185) s:ccp(218, 146)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(348, 128) s:ccp(348, 93)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(415, 130) s:ccp(415, 93)];
 }
 
 - (BOOL) runWaves:(int)wave
@@ -175,6 +176,7 @@
             [self prepareNextWave:28];
 			break;
         case 17:
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bossBg.mp3"];
             [self runWave:1 e:ET_BOSS2 s:2 t:1 wy:[gc.wayManager getWay:5]];
             [self prepareNextWave:28];
 			break;

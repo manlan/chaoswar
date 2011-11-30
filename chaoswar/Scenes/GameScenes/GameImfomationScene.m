@@ -107,8 +107,10 @@
 -(void) Menu:(id) sender 
 {
     [[CCDirector sharedDirector] resume];
-    GameController *gc = [GameController getGameController];
-    [gc stopGame];
+    [[GameController getGameController] releaseScene];
+//    GameController *gc = [GameController getGameController];
+//    [gc.gameHint removeAllChildrenWithCleanup:YES];
+//    [gc releaseScene];
 	[[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[SelectSence scene]]];
 }
 
@@ -153,6 +155,10 @@
     if (_lblGold) {
         [_lblGold setString:[NSString stringWithFormat:@"%d", gc.currentGold]];
     }
+}
+
+- (void) dealloc {
+    [super dealloc];
 }
 
 @end

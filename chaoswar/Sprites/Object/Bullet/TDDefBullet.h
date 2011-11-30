@@ -2,66 +2,80 @@
 #import "GameTypeDef.h"
 #import "TDBullet.h"
 
-@interface TDArrowBullet1 : TDTowerBullet {
+@interface TDArrowTowerBullet : TDTowerBullet {
     
 }
 
 @end
 
-@interface TDArrowBullet2 : TDTowerBullet {
+@interface TDArrowTowerBullet1 : TDArrowTowerBullet {
     
 }
 
 @end
 
-@interface TDArrowBullet3 : TDTowerBullet {
+@interface TDArrowTowerBullet2 : TDArrowTowerBullet {
     
 }
 
 @end
 
-@interface TDTurretBullet : TDTowerBullet {
+@interface TDArrowTowerBullet3 : TDArrowTowerBullet {
+    
+}
+
+@end
+
+@interface TDTurretTowerBullet : TDTowerBullet {
 
 }
 
 @property int attactRange;
 @property (nonatomic, retain) NSString *aniBoomName;
 
--(void) afterRepeat:(id)sender;
+- (void) afterRepeat:(id)sender;
+- (void) searchClearEnemy;
+- (void) attactAEnemy:(TDEnemy*)enemy;
 
 @end
 
-@interface TDTurretBullet1 : TDTurretBullet {
+@interface TDTurretTowerBullet1 : TDTurretTowerBullet {
     
 }
 
 @end
 
-@interface TDTurretBullet2 : TDTurretBullet {
+@interface TDTurretTowerBullet2 : TDTurretTowerBullet {
     
 }
 
 @end
 
-@interface TDTurretBullet3 : TDTurretBullet {
+@interface TDTurretTowerBullet3 : TDTurretTowerBullet {
     
 }
 
 @end
 
-@interface TDMagicBullet1 : TDTowerBullet {
+@interface TDMagicTowerBullet : TDTowerBullet {
     
 }
 
 @end
 
-@interface TDMagicBullet2 : TDTowerBullet {
+@interface TDMagicTowerBullet1 : TDMagicTowerBullet {
     
 }
 
 @end
 
-@interface TDMagicBullet3 : TDTowerBullet {
+@interface TDMagicTowerBullet2 : TDMagicTowerBullet {
+    
+}
+
+@end
+
+@interface TDMagicTowerBullet3 : TDMagicTowerBullet {
     
 }
 

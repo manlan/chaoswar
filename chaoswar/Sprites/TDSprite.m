@@ -1,6 +1,7 @@
 #import "TDSprite.h"
 #import "GameController.h"
 #import "GameControllerScene.h"
+#import "DataController.h"
 #import "SpriteInfoScene.h"
 #import "TDTower.h"
 #import "TDEnemy.h"
@@ -23,6 +24,7 @@ const TDSprite *_lastSprite = nil;
 @synthesize bloodBackSprite = _bloodBackSprite;
 @synthesize arrowSprite = _arrowSprite;
 @synthesize spritePlace = _spritePlace;
+@synthesize isSelected = _isSelected;
 
 + (id) getSprite
 {
@@ -37,6 +39,7 @@ const TDSprite *_lastSprite = nil;
 + (void) delCurrentSprite
 {
     if (_lastSprite) {
+        
         [_lastSprite doUnSelect];
         _lastSprite = nil;
     }
@@ -62,6 +65,9 @@ const TDSprite *_lastSprite = nil;
 -(id) init
 {
 	if( (self=[super init])) {
+        needDoTouchDispatcher = YES;
+        [DataController setNewEnemyAddOne:[NSString stringWithUTF8String:object_getClassName(self)]];
+        _isSelected = NO;
         //初始化属性
         _costGold = 0;
         _getGold = 0;
@@ -117,7 +123,9 @@ const TDSprite *_lastSprite = nil;
 - (void) dealloc
 {
     if (_lastSprite == self) {
+        _isSelected = NO;
         _lastSprite = nil;
+        [[GameController getGameController].spriteInfo removeAllChildrenWithCleanup:YES];
     }
 //    [_bloodShowSprite removeFromParentAndCleanup:YES];
 //    [_bloodBackSprite removeFromParentAndCleanup:YES];
@@ -137,10 +145,12 @@ const TDSprite *_lastSprite = nil;
 
 - (void) doSelect
 {
+    _isSelected = YES;
     _arrowSprite.position = ccp(self.textureRect.size.width / 2, self.textureRect.size.height + 15);
     _arrowSprite.scale = 0.35;
     [_arrowSprite setVisible:YES];
     [_arrowSprite runAction:[CCRepeatForever actionWithAction:[CCBlink actionWithDuration:0.5 blinks:1]]];
+    _isSelected = YES;
     _lastSprite = self;
     [[GameController getGameController].spriteInfo removeAllChildrenWithCleanup:YES];
     [self showImformation];
@@ -148,6 +158,7 @@ const TDSprite *_lastSprite = nil;
 
 - (void) doUnSelect
 {
+    _isSelected = NO;
     [[GameController getGameController].spriteInfo removeAllChildrenWithCleanup:YES];
     [_arrowSprite stopAllActions];
     [_arrowSprite setVisible:NO];
@@ -166,14 +177,18 @@ const TDSprite *_lastSprite = nil;
 - (void) onEnter
 {
     if (_canClick) {
-        [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+        if (needDoTouchDispatcher) {
+            NSLog(@"%@ 注册了点击事件", [NSString stringWithUTF8String:object_getClassName(self)]);
+            [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+        }
     }
 	[super onEnter];
 }
 
 - (void) onExit
 {
-    if (_canClick) {
+    if (needDoTouchDispatcher) {
+        NSLog(@"%@ 注销了点击事件", [NSString stringWithUTF8String:object_getClassName(self)]);
         [[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
     }
 	[super onExit];
@@ -187,6 +202,7 @@ const TDSprite *_lastSprite = nil;
 - (BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
 	if ( ![self containsTouchLocation:touch] ) return NO;
+    if (self.spriteStatus != TSS_NORMAL) return NO;
     if (_arrowSprite) {
         if (_lastSprite) {
             [_lastSprite doUnSelect];
@@ -332,20 +348,22 @@ const TDSprite *_lastSprite = nil;
 }
 
 - (void) statusToDeading {
-
+    //[self removeAllChildrenWithCleanup:YES];
 }
 
 - (void) statusToDead {
+    [self removeAllChildrenWithCleanup:YES];
+    [self cleanup];
+    [self removeFromParentAndCleanup:YES];
     [[GameController getGameController].enemyArray removeObject:self];
     [[GameController getGameController].towerArray removeObject:self];
     [[GameController getGameController].bulletArray removeObject:self];
     [[GameController getGameController].frientlyArray removeObject:self];
-    [self removeFromParentAndCleanup:YES];
 }
 
 - (void) clearSpriteData
 {
-    
+
 }
 
 - (void) setSpriteStatus:(TSpriteStatus)spriteStatus
@@ -387,7 +405,9 @@ const TDSprite *_lastSprite = nil;
     if (self.parent) {
         CCNode *p = self.parent;
         CGSize size = [[CCDirector sharedDirector] winSize];
+        needDoTouchDispatcher = NO;
         [self removeFromParentAndCleanup:NO];
+        needDoTouchDispatcher = YES;
         [p addChild:self z:size.height - newPosition.y + _baseZOrder];
     }
 }
@@ -399,6 +419,10 @@ const TDSprite *_lastSprite = nil;
 
 - (void) showImformation {
 
+}
+
+- (void) unshowImformation {
+    [[GameController getGameController].spriteInfo removeAllChildrenWithCleanup:YES];
 }
 
 @end

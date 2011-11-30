@@ -21,6 +21,7 @@
 
 @property (nonatomic, assign) TDEnemy *enemy;
 @property (nonatomic, assign) TDTower *shooter;
+@property CGPoint enemyPoint;
 
 - (void) attact:(id)sender;
 - (void) move;

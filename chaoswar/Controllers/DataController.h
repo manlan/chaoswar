@@ -16,7 +16,9 @@
 + (int) getUpdataLevelByTagName:(int) index;
 + (void) setFirst;
 + (void) resetGameScore;
-
++(void) setSelect:(int) selectIndex s:(int)s;
++(void) setScore:(int) score;
++(void) setNewEnemyAddOne:(NSString*) keyName;
 
 +(int) getMagicFireLevel;
 +(int) getMagicFriendlyLevel;
@@ -27,5 +29,7 @@
 +(int) getDefenceTowerLevel;
 +(int) getMagicTowerLevel;
 +(int) getTurretTowerLevel;
+
++(NSString*) getDecOfEnemyByEnemyName:(NSString*) keyName;
 
 @end

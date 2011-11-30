@@ -78,11 +78,11 @@
     [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
     GameController *gc = [GameController getGameController];
 	TDMagicFriendly1 *b = [TDMagicFriendly1 getSprite];
-    b.position = _position;
     b.anchorPoint = ccp(0.5, 0);
-    b.searchPoint = b.position;
     [gc.gameBackground addChild:b z:60];
     [gc.frientlyArray addObject:b];
+    b.position = _position;
+    b.searchPoint = b.position;
     [b run];
 }
 
@@ -176,7 +176,7 @@
     [magicSprite removeFromParentAndCleanup:YES];
     unit.canSchedule = NO;
     [unit stopAllActions];
-    id actionStop = [CCAnimate actionWithDuration:8 animation:[gc getAnimation:@"mcef01"] restoreOriginalFrame:NO];
+    id actionStop = [CCAnimate actionWithDuration:8 animation:[gc getAnimation:@"mcef03"] restoreOriginalFrame:NO];
 	id actionAfterStop = [CCCallFuncN actionWithTarget:self selector:@selector(afterMagicStopStatus:)];
     magicSprite.position = ccp(unit.contentSize.width / 2, unit.contentSize.height + 2);
     [magicSprite setVisible:YES];
@@ -188,9 +188,8 @@
 - (void) afterMagicStopStatus:(id)sender {
     unit.canSchedule = YES;
     [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
-    [unit stopAllActions];
     [magicSprite stopAllActions];
-    [magicSprite removeAllChildrenWithCleanup:YES];
+    [magicSprite removeFromParentAndCleanup:YES];
     [unit doUnitLogic];
 }
 
@@ -220,7 +219,7 @@
     [magicSprite removeFromParentAndCleanup:YES];
     unit.speedUPNum = 1.5;
     [unit stopAllActions];
-    id actionSpeedEffect = [CCAnimate actionWithAnimation:[gc getAnimation:@"mcef02"] restoreOriginalFrame:NO];
+    id actionSpeedEffect = [CCAnimate actionWithAnimation:[gc getAnimation:@"mcef01"] restoreOriginalFrame:NO];
 	id actionAfterSpeed = [CCHide action];
     [[CCScheduler sharedScheduler] scheduleSelector:@selector(afterMagicSpeedStatus:) forTarget:self interval:5 paused:NO];
     magicSprite.position = ccp(unit.contentSize.width / 2, unit.contentSize.height + 2);
@@ -233,7 +232,6 @@
 - (void) afterMagicSpeedStatus:(ccTime)dt {
     unit.speedUPNum = 1;
     [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
-    [unit stopAllActions];
     [magicSprite stopAllActions];
     [magicSprite removeAllChildrenWithCleanup:YES];
     [unit doUnitLogic];
@@ -268,7 +266,7 @@
         unit.currentHP = unit.maxHP;
     }
     [unit stopAllActions];
-    id actionLifeEffect = [CCAnimate actionWithAnimation:[gc getAnimation:@"mcef03"] restoreOriginalFrame:NO];
+    id actionLifeEffect = [CCAnimate actionWithAnimation:[gc getAnimation:@"mcef02"] restoreOriginalFrame:NO];
 	id actionAfterSpeed = [CCHide action];
     [[CCScheduler sharedScheduler] scheduleSelector:@selector(afterMagicSpeedStatus:) forTarget:self interval:2 paused:NO];
     magicSprite.position = ccp(unit.contentSize.width / 2, 0);
@@ -280,7 +278,6 @@
 
 - (void) afterMagicLifeStatus:(id)sender {
     [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
-    [unit stopAllActions];
     [magicSprite stopAllActions];
     [magicSprite removeAllChildrenWithCleanup:YES];
     [unit doUnitLogic];

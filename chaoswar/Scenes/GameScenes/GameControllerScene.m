@@ -225,4 +225,8 @@
     _btnZone= nil;
 }
 
+- (void) dealloc {
+    [super dealloc];
+}
+
 @end

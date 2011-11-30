@@ -31,11 +31,11 @@
 {
     [array removeAllObjects];
     //初始化建塔地点，参数p是建塔地点的正下方的位置，而不是图片的中间位置
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(300, 131) s:ccp(352, 162)];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(233, 131) s:ccp(241, 101)];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(180,  53) s:ccp(237,  71)];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(432, 143) s:ccp(368, 160)];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(218, 251) s:ccp(157, 269)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(300, 131) s:ccp(365, 131)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(233, 131) s:ccp(233, 214)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(180, 53) s:ccp(245, 53)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(432, 143) s:ccp(365, 143)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(218, 251) s:ccp(155, 263)];
 }
 
 - (BOOL) runWaves:(int)wave
@@ -52,9 +52,10 @@
     // wy:路线，路线维护在下面
 	switch (wave) {
 		case 1:
-            [self runWave:1 e:ET_FOOT1 s:4 t:1 wy:[gc.wayManager getWay:2]];
+            [self runWave:1 e:ET_FOOT1 s:2 t:3 wy:[gc.wayManager getWay:2]];
             //prepareNextWave函数参数，等待多少秒之后，可以点击下一波
-            [self prepareNextWave:9999];
+            [self prepareEndPoint:7];
+            //[self prepareNextWave:16];
 			break;
         case 2:
             //new enemy

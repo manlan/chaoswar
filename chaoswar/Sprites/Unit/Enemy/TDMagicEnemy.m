@@ -8,7 +8,8 @@
 
 -(id) init
 {
-	if( (self=[super init])) {
+    self = [super init];
+	if(self) {
         _magicRange = 100;
 	}
 	return self;
@@ -71,11 +72,7 @@
     self.ddAniName = [NSString stringWithFormat:@"mc%02ddd", level];
     self.atAniName = [NSString stringWithFormat:@"mc%02dat", level];
     self.mcAniName = [NSString stringWithFormat:@"mc%02dmagic", level];
-}
-
-- (void) dealloc
-{
-	[super dealloc];
+    self.smallPic = [NSString stringWithFormat:@"smmc%02d.png", level];
 }
 
 @end

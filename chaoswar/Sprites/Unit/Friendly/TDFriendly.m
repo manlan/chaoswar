@@ -1,5 +1,6 @@
 #import "TDFriendly.h"
 #import "TDDefenceTower.h"
+#import "SpriteInfoScene.h"
 #import "TDFlyEnemy.h"
 
 @implementation TDFriendly
@@ -10,6 +11,7 @@
 @synthesize attactEnemyArray = _attactEnemyArray;
 @synthesize mvAniName = _mvAniName;
 @synthesize searchPoint = _searchPoint;
+@synthesize firstFrameName = _firstFrameName;
 
 -(id) init
 {
@@ -17,13 +19,19 @@
         _shootBulletArray = [[NSMutableArray alloc] init];
         _enemyBulletArray = [[NSMutableArray alloc] init];
         _attactEnemyArray = [[NSMutableArray alloc] init];
+        if (!_firstFrameName) {
+            self.firstFrameName = @"";
+        }
 	}
 	return self;
 }
 
 - (void) dealloc
 {
-    self.enemy = nil;
+    if (_enemy) {
+        [_enemy delFriendly:self];
+        _enemy = nil;
+    }
     [_shootBulletArray removeAllObjects];
     [_enemyBulletArray removeAllObjects];
     [_attactEnemyArray removeAllObjects];
@@ -38,11 +46,12 @@
 {
     if (_enemy) {
         [_enemy delFriendly:self];
-        _enemy.unitStatus = US_NORMAL;
     }
     _enemy = enemy;
     if (_enemy) {
-    } else {
+        [_enemy addFriendly:self];
+    }
+    if (self.spriteStatus == TSS_NORMAL) {
         [self doUnitLogic];
     }
 }
@@ -50,10 +59,13 @@
 - (void) clearSpriteData
 {
     [TDEnemy unregFriendly:self];
-    [super clearSpriteData];
     NSMutableArray *tmpArray = nil;
     //攻击的敌人清空
-    self.enemy = nil;
+    if (_enemy) {
+        [_enemy delFriendly:self];
+        _enemy = nil;
+    }
+    [self cleanup];
     //发射的子弹清空
     tmpArray = [NSMutableArray arrayWithArray:_shootBulletArray];
     for (TDFriendlyBullet *t in tmpArray) t.shooter = nil;
@@ -66,6 +78,7 @@
     tmpArray = [NSMutableArray arrayWithArray:_attactEnemyArray];
     for (TDEnemy *t in tmpArray) [t delFriendly:self];
     [tmpArray removeAllObjects];
+    [super clearSpriteData];
 }
 
 - (BOOL) run
@@ -76,17 +89,30 @@
 }
 
 - (void) doUnitLogic {
-    if (!_enemy) {
-        [self goToSearchPoint];
+    if (self.spriteStatus != TSS_NORMAL) return;
+    if (!_enemy) self.unitStatus = US_NORMAL;
+    switch (self.unitStatus) {
+        case US_NORMAL:
+            [self doGoHomeLogic];
+            break;
+        case US_WAITING:
+            [self doMoveToEnemy];
+            break;
+        case US_ATTACT:
+            break;
+        default:
+            break;
     }
 }
 
-//回聚集点（搜索点）
-- (void) goToSearchPoint {
+//==============回聚集点（搜索点）==============
+- (void) doGoHomeLogic {
     [self stopAllActions];
-    [self setFlipX:NO];
+    [self unscheduleAllSelectors];
+    //位置不同就移动过去
     if ((self.searchPoint.x != self.position.x)
         || (self.searchPoint.y != self.position.y)) {
+        [self setFlipX:NO];
         double curDistance = ccpDistance(self.position, self.searchPoint);
         ccTime speed = curDistance / self.moveSpeed;
         if (self.position.x > self.searchPoint.x) {
@@ -100,75 +126,54 @@
 }
 
 -(void) afterToSearchPoint:(id)sender {
+    
+    CCSpriteFrame *frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:self.firstFrameName];
+	NSAssert1(frame!=nil, @"Invalid spriteFrameName: %@", self.firstFrameName);
+	[self setDisplayFrame:frame];
     [self doUnitLogic];
 }
 
-- (void) AttactEnemy:(TDEnemy*)e
-{
-    if (e == _enemy) {
-        return;
-    }
-    if (![self canAttactEnemy:e]) {
-        return;
-    }
-    
-    if (!_enemy) {
-        [self doAttactEnemy:e];
-        return;
-    }
-    
-    if ([_enemy.friendlyArray count] > 1) {
-        if ([e.friendlyArray count] == 0) {
-            [self doAttactEnemy:e];
-            return;
+//==============回聚集点（搜索点）==============
+
+//==============攻击敌军==============
+-(void) doMoveToEnemy {
+    if (_enemy) {
+        [self stopAllActions];
+        [self unscheduleAllSelectors];
+        CGPoint position = _enemy.position;
+        ccTime speed = 0;
+        if (CCRANDOM_0_1() > 0.5f) {
+            position.x = position.x - (_enemy.contentSize.width / 2) - 6;
+            double curDistance = ccpDistance(self.position, position);
+            speed = curDistance / self.moveSpeed;
+        } else {
+            position.x = position.x + (_enemy.contentSize.width / 2) + 6;
+            double curDistance = ccpDistance(self.position, position);
+            speed = curDistance / self.moveSpeed;
         }
+        
+        if (self.position.x > position.x) {
+            [self setFlipX:YES];
+        }
+        
+        [self runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:0.9 animation:[self getAnimate:self.mvAniName] restoreOriginalFrame:NO]]];
+        id actionMoveToEnemy = [CCMoveTo actionWithDuration:speed position:position];
+        id actionAfterMoveToEnemy = [CCCallFuncN actionWithTarget:self selector:@selector(afterMoveToEnemy:)];
+        [self runAction:[CCSequence actions:actionMoveToEnemy, actionAfterMoveToEnemy, nil]];
     }
 }
 
-- (void) doAttactEnemy:(TDEnemy*)e
-{
-    [self stopAllActions];
-    [self setFlipX:NO];
-    self.enemy = e;
-    _enemy.unitStatus = US_WAITING;
-    CGPoint position = _enemy.position;
-    ccTime speed = 0;
-    if (CCRANDOM_0_1() < 0.5f) {
-        position.x = position.x - 10;
-        double curDistance = ccpDistance(self.position, position);
-        speed = curDistance / self.moveSpeed;
-        position = [_enemy getPositionAfterTime:speed];
-    } else {
-        position.x = position.x + 10;
-        double curDistance = ccpDistance(self.position, position);
-        speed = curDistance / self.moveSpeed;
-        position = [_enemy getPositionAfterTime:speed];
+-(void) afterMoveToEnemy:(id)sender {
+    if (_enemy) {
+        //移动到位，开始攻击
+        self.unitStatus = US_ATTACT;
+        [_enemy doUnitLogic];
+        [self doAttact:0];
+        [self schedule:@selector(doAttact:) interval:self.attacttime];
     }
-    
-    if (self.position.x > position.x) {
-        [self setFlipX:YES];
-    }
-    
-    [self runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:0.9 animation:[self getAnimate:self.mvAniName] restoreOriginalFrame:NO]]];
-    id actionMove = [CCMoveTo actionWithDuration:speed position:position];
-    id actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterMove:)];
-    [self runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
 }
 
-- (BOOL) canAttactEnemy:(TDEnemy*)e
-{
-    if ([e isKindOfClass:[TDFlyEnemy class]]) {
-        return NO;
-    }
-	return YES;
-}
-
--(void) afterMove:(id)sender {
-    _enemy.unitStatus = US_ATTACT;
-    [self doAttact:0];
-    [self schedule:@selector(doAttact:) interval:self.attacttime];
-}
-
+//攻击敌军
 - (void) doAttact:(ccTime)dt {
     [self stopAllActions];
     [self setFlipX:NO];
@@ -183,11 +188,61 @@
 }
 
 -(void) afterAttact:(id)sender {
-    [_enemy beAttact:self an:self.attact at:self.attactMode];
+    if (_enemy) {
+        [_enemy beAttact:self an:self.attact at:self.attactMode];
+    }
+    
     if (!_enemy) {
-        [self cleanup];
+        //无可攻击敌军时，返回营地
+        self.unitStatus = US_NORMAL;
+        //[TDEnemy regFriendly:self];
         [self doUnitLogic];
     }
+}
+
+//==============攻击敌军==============
+
+//==============敌军的通知==============
+
+- (BOOL) canAttactEnemy:(TDEnemy*)e
+{
+    if ([e isKindOfClass:[TDFlyEnemy class]]) {
+        return NO;
+    }
+	return YES;
+}
+
+- (void) AttactEnemy:(TDEnemy*)e
+{
+    if (!e) {
+        return;
+    }
+    
+    if (e == _enemy) {
+        return;
+    }
+    
+    if (![self canAttactEnemy:e]) {
+        return;
+    }
+    
+    if (_enemy && [_enemy friendlyCount] == 1) {
+        return;
+    }
+
+    self.unitStatus = US_WAITING;
+    self.enemy = e;
+}
+
+//==============敌军的通知==============
+
+- (void) showImformation {
+    [[GameController getGameController].spriteInfo showFriendlyInfo];
+    [[GameController getGameController].spriteInfo setSmallPic:self.smallPic];
+    [[GameController getGameController].spriteInfo setAttact:self.attact];
+    [[GameController getGameController].spriteInfo setAttactSpeed:self.attacttime];
+    [[GameController getGameController].spriteInfo setBloodNum:self.currentHP];
+    [[GameController getGameController].spriteInfo setMoveSpeed:self.moveSpeed];    
 }
 
 @end

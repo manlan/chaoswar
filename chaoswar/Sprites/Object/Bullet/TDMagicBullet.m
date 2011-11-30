@@ -161,6 +161,7 @@
         self.spriteStatus = TSS_DEAD;
         return;
     }
+    self.enemy.canSchedule = NO;
     CGPoint p = [self.enemy getPositionAfterTime:self.moveTime];
     self.position = ccp(p.x, p.y + 100);
     id actionMove = [CCMoveTo actionWithDuration:self.moveTime position:p];

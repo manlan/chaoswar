@@ -20,6 +20,7 @@
 + (id) getSprite {
     TDForeverFriendly1 *friendly = [TDForeverFriendly1 spriteWithSpriteFrameName:@"fcf01mv0001.png"];
     if (friendly) {
+        friendly.firstFrameName = @"fcf01mv0001.png";
         [friendly setScale:TDS_FFL1_SCALE];
         friendly.maxHP = TDS_FFL1_MAXHP;
         friendly.currentHP = TDS_FFL1_CURRENTHP;
@@ -34,6 +35,7 @@
         friendly.mvAniName = [NSString stringWithFormat:@"fcf%02dmv", 1];
         friendly.ddAniName = [NSString stringWithFormat:@"fcf%02ddd", 1];
         friendly.atAniName = [NSString stringWithFormat:@"fcf%02dat", 1];
+        friendly.smallPic = [NSString stringWithFormat:@"smmagic02.png", 1];
     }
     return friendly;
 }

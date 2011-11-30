@@ -33,6 +33,33 @@
 	return self;
 }
 
+- (void) reStart {
+    magic1Restart = NO;
+    magic2Restart = NO;
+    magic3Restart = NO;
+    magic4Restart = NO;
+    if (self.btnMagic1) {
+        [self.btnMagic1 stopProgress];
+    }
+    
+    if (self.btnMagic2) {
+        [self.btnMagic2 stopProgress];
+    }
+    
+    if (self.btnMagic3) {
+        [self.btnMagic3 stopProgress];
+    }
+    
+    if (self.btnMagic4) {
+        [self.btnMagic4 stopProgress];
+    }
+    
+    if (self.btnGo) {
+        [self.btnGo stopProgress];
+    }
+
+}
+
 - (void) setMagic:(int)JN1 JN2:(int)JN2
 {
     switch (JN1) {
@@ -266,7 +293,7 @@
 {
     [_btnMagic2 setIsEnabled:NO];
     magic2Restart = YES;
-    [_btnMagic2 doProgress:0.1 from:100 to:0 t:self s:@selector(endRestartMagicFire:)];
+    [_btnMagic2 doProgress:MIGIC_FIRE_COOLDOWN from:100 to:0 t:self s:@selector(endRestartMagicFire:)];
 }
 
 - (void) endRestartMagicFire:(ccTime)dt {
@@ -280,7 +307,7 @@
 {
     [_btnMagic1 setIsEnabled:NO];
     magic1Restart = YES;
-    [_btnMagic1 doProgress:0.1 from:100 to:0 t:self s:@selector(endRestartMagicFriendly:)];
+    [_btnMagic1 doProgress:MIGIC_FRIENDLY_COOLDOWN from:100 to:0 t:self s:@selector(endRestartMagicFriendly:)];
 }
 
 - (void) endRestartMagicFriendly:(ccTime)dt {
@@ -294,7 +321,7 @@
 {
     [_btnMagic3 setIsEnabled:NO];
     magic3Restart = YES;
-    [_btnMagic3 doProgress:0.1 from:100 to:0 t:self s:@selector(endRestartMagicThunder:)];
+    [_btnMagic3 doProgress:MIGIC_THUNDER_COOLDOWN from:100 to:0 t:self s:@selector(endRestartMagicThunder:)];
 }
 
 - (void) endRestartMagicThunder:(ccTime)dt {
@@ -308,7 +335,7 @@
 {
     [_btnMagic4 setIsEnabled:NO];
     magic4Restart = YES;
-    [_btnMagic4 doProgress:0.1 from:100 to:0 t:self s:@selector(endRestartMagicStop:)];
+    [_btnMagic4 doProgress:MIGIC_STONE_COOLDOWN from:100 to:0 t:self s:@selector(endRestartMagicStop:)];
 }
 
 - (void) endRestartMagicStop:(ccTime)dt {
@@ -316,6 +343,10 @@
     magic4Restart = NO;
     GameController *gc = [GameController getGameController];
     [gc setGameStatus];
+}
+
+- (void) dealloc {
+    [super dealloc];
 }
 
 @end

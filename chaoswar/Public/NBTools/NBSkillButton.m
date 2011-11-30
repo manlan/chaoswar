@@ -23,6 +23,18 @@
     return self;
 }
 
+- (void)removeFromParentAndCleanup:(BOOL)cleanup {
+    if (_progress) {
+        [_progress removeFromParentAndCleanup:cleanup];
+    }
+    [super removeFromParentAndCleanup:cleanup];
+}
+
+- (void) dealloc {
+    [self removeFromParentAndCleanup:YES];
+    [super dealloc];
+}
+
 - (void)setIsEnabled:(BOOL)enabled {
     [super setIsEnabled:enabled];
     if (!_doingProgress) {
@@ -59,6 +71,11 @@
 - (void) selfEnabled:(id) sender {
     _doingProgress = NO;
     [self setIsEnabled:YES];
+}
+
+- (void) stopProgress {
+    [self stopAllActions];
+    [_progress setVisible:NO];
 }
 
 @end

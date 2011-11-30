@@ -1,11 +1,14 @@
 #import "TDFlyEnemy.h"
 #import "GamePubDef.h"
+#import "GameController.h"
+#import "SpriteInfoScene.h"
 
 @implementation TDFlyEnemy
 
 -(id) init
 {
-	if( (self=[super init])) {
+    self = [super init];
+	if(self) {
         self.spritePlace = SP_AIR;
 	}
 	return self;
@@ -18,15 +21,22 @@
     self.mvcAniName = [NSString stringWithFormat:@"fl%02dmvc", level];
     self.ddAniName = [NSString stringWithFormat:@"fl%02ddd", level];
     self.atAniName = [NSString stringWithFormat:@"fl%02dat", level];
-}
-
-- (void) dealloc
-{
-	[super dealloc];
+    self.smallPic = [NSString stringWithFormat:@"smfl%02d.png", level];
 }
 
 - (void) showImformation {
-    
+    [[GameController getGameController].spriteInfo showFlyEnemyInfo];
+    [[GameController getGameController].spriteInfo setSmallPic:self.smallPic];
+    [[GameController getGameController].spriteInfo setBloodNum:self.currentHP];
+    [[GameController getGameController].spriteInfo setMoveSpeed:self.moveSpeed];
+}
+
+- (void) addFriendly:(TDFriendly*)f {
+
+}
+
+- (void) delFriendly:(TDFriendly*)f {
+
 }
 
 @end

@@ -3,9 +3,12 @@
 @interface SelectSence : CCLayer {
     CCSprite *bgImg;
 	CCSprite *selectMagicBg;
+    CCSprite *resetBg;
     CCMenuItemImage *btnBack;
 	CCMenuItemImage *btnUpdata;
-    CCMenuItemImage *btnFirst;
+    CCMenuItemImage *btnYes;
+    CCMenuItemImage *btnNo;
+    CCMenuItemImage *btnReset;
     CCSprite *btnWaveStationLight;
 	
 	CCMenuItemImage *btnPlay;

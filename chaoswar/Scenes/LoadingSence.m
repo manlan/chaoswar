@@ -31,8 +31,8 @@
 		[self addChild:bgImg z:1];
         
         //加载Loading动画
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"LoadingSheet.plist"];
-		spritebatchLoading = [CCSpriteBatchNode batchNodeWithFile:@"LoadingSheet.png"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"loadingSheet.plist"];
+		spritebatchLoading = [CCSpriteBatchNode batchNodeWithFile:@"loadingSheet.png"];
 		[self addChild:spritebatchLoading z:3];
 		
 		NSMutableArray *animFramesLoading = [NSMutableArray array];

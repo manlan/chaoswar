@@ -411,7 +411,9 @@
 
 -(void) removeFromParentAndCleanup:(BOOL)cleanup
 {
-	[parent_ removeChild:self cleanup:cleanup];
+    if (parent_) {
+        [parent_ removeChild:self cleanup:cleanup];
+    }
 }
 
 /* "remove" logic MUST only be on this method

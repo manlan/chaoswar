@@ -23,6 +23,8 @@
 
 - (NBSkillButton*) addButton:(int)magicNum selector:(SEL)sel point:(CGPoint)point;
 
+- (void) reStart;
+
 - (void) setGoMenuStatus;
 - (void) setMagic1MenuStatus;
 - (void) setMagic2MenuStatus;

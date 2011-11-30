@@ -1,6 +1,7 @@
 #import "TDUnit.h"
 #import "GameController.h"
 #import "MagicController.h"
+#import "SpriteInfoScene.h"
 
 @implementation TDUnit
 
@@ -24,6 +25,7 @@
 @synthesize canAction = _canAction;
 @synthesize canSchedule = _canSchedule;
 @synthesize speedUPNum = _speedUPNum;
+@synthesize smallPic = _smallPic;
 
 -(id) init
 {
@@ -35,6 +37,7 @@
         self.unitStatus = US_NORMAL;
         _magicController = [[MagicController alloc] init];
         _magicController.unit = self;
+        self.smallPic = @"smbs01.png";
 	}
 	return self;
 }
@@ -58,6 +61,7 @@
     [_ddAniName release];
     [_mcAniName release];
     [_magicController release];
+    [_smallPic release];
     [super dealloc];
 }
 
@@ -128,22 +132,21 @@
 - (void) statusToDeading {
     [super statusToDeading];
     GameController *gc = [GameController getGameController];
+    //获得金币奖励
     gc.currentGold = gc.currentGold + self.getGold;
-    [self stopAllActions];
-    [self unscheduleAllSelectors];
+    //防止获得多次金币
+    self.getGold = 0;
+    //执行死亡动画
     id actionDead = [CCAnimate actionWithAnimation:[self getAnimate:self.ddAniName] restoreOriginalFrame:NO];
     id actionDeadDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterDead:)];
     [self runAction:[CCSequence actions:actionDead, actionDeadDone, nil]];
 }
 
 -(void) afterDead:(id)sender {
+    //状态改为死亡
     self.spriteStatus = TSS_DEAD;
-    [self removeFromParentAndCleanup:YES];
 }
 
-- (void) showImformation {
-    
-}
 //================魔法的操作================
 
 - (void) doMagicStopStatus
@@ -162,4 +165,5 @@
 }
 
 //================魔法的操作================
+
 @end

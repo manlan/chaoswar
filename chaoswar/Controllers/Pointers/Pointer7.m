@@ -25,12 +25,12 @@
 - (void) initTower:(NSMutableArray*)array
 {
     [array removeAllObjects];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(198, 103) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(136, 103) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(75, 103) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(216, 231) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(331, 132) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(392, 132) s:CGPointZero];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(198, 103) s:ccp(198, 189)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(136, 103) s:ccp(136, 189)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(75, 103) s:ccp(75, 189)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(216, 231) s:ccp(218, 196)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(331, 132) s:ccp(331, 97)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(392, 132) s:ccp(392, 97)];
 }
 
 - (BOOL) runWaves:(int)wave

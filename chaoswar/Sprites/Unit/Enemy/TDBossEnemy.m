@@ -3,13 +3,6 @@
 
 @implementation TDBossEnemy
 
--(id) init
-{
-	if( (self=[super init])) {
-	}
-	return self;
-}
-
 - (void) addAnimate:(int)level
 {
     self.mvuAniName = [NSString stringWithFormat:@"bs%02dmvu", level];
@@ -18,11 +11,7 @@
     self.ddAniName = [NSString stringWithFormat:@"bs%02ddd", level];
     self.atAniName = [NSString stringWithFormat:@"bs%02dat", level];
     self.mcAniName = [NSString stringWithFormat:@"bs%02dmagic", level];
-}
-
-- (void) dealloc
-{
-	[super dealloc];
+    self.smallPic = [NSString stringWithFormat:@"smbs%02d.png", level];
 }
 
 @end

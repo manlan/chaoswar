@@ -4,6 +4,7 @@
 #import "SceneManager.h"
 #import "HelpSence.h"
 #import "CreditsSence.h"
+#import "SimpleAudioEngine.h"
 
 @implementation MainMenuSence
 
@@ -18,9 +19,11 @@
 -(id) init
 {
 	if( (self=[super init])) {
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"mainBg.mp3"];
+        
         CGSize size = [[CCDirector sharedDirector] winSize];
         //加载背景图片
-		bgImg = [CCSprite spriteWithFile:@"MainMenubg.png"];
+		bgImg = [CCSprite spriteWithFile:@"mainMenuBg.png"];
 		bgImg.position = CGPointMake(size.width /2 , size.height/2);
 		bgImg.scale = 1;
 		[self addChild:bgImg z:1];

@@ -83,7 +83,6 @@ float getArrowTower3Attact()
 
 float getDefenceTower1AttactTime()
 {	
-    return 4;
     int level = [DataController getUpdataLevelByTagName:5];
     if(level >= 2)
     {
@@ -318,7 +317,6 @@ float getMagicTower3Attact()
 
 float getMFLAttact()
 {	
-    return 9000;
     int level = [DataController getUpdataLevelByTagName:0];
     if(level >= 2)
     {
@@ -338,7 +336,6 @@ int getMFLLevel()
 
 float getMCFireAttact()
 {	
-    return 5;
     int level = [DataController getUpdataLevelByTagName:1];
     if(level >= 2)
     {
@@ -358,7 +355,6 @@ int getMCFireLevel()
 
 float getMCLightAttact()
 {	
-    return 5;
     int level = [DataController getUpdataLevelByTagName:2];
     if(level == 1)
     {
@@ -376,7 +372,6 @@ float getMCLightAttact()
 
 float getMCStoneAttact()
 {	
-    return 1;
     int level = [DataController getUpdataLevelByTagName:3];
     if(level >= 2)
     {

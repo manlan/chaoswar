@@ -2,6 +2,7 @@
 #import "TDEnemy.h"
 #import "GameController.h"
 #import "GameMagicScene.h"
+#import "SpriteInfoScene.h"
 #import "TDFriendly.h"
 #import "TDBullet.h"
 #import "TDDefBullet.h"
@@ -19,19 +20,50 @@ const NSMutableArray* regfriendlyArray = nil;
 @synthesize friendlyBulletArray = _friendlyBulletArray;
 @synthesize magicBulletArray = _magicBulletArray;
 @synthesize towerArray = _towerArray;
-@synthesize friendlyArray = _friendlyArray;
 
 -(id) init
 {
-	if( (self=[super init])) {
+    self = [super init];
+	if(self) {
         _shootBulletArray = [[NSMutableArray alloc] init];
         _towerBulletArray = [[NSMutableArray alloc] init];
         _friendlyBulletArray = [[NSMutableArray alloc] init];
         _magicBulletArray = [[NSMutableArray alloc] init];
         _towerArray = [[NSMutableArray alloc] init];
         _friendlyArray = [[NSMutableArray alloc] init];
+        _isAttacting = NO;
 	}
 	return self;
+}
+
+- (void) clearSpriteData
+{
+    NSMutableArray *tmpArray = nil;
+    //发射的子弹清空
+    tmpArray = [NSMutableArray arrayWithArray:_shootBulletArray];
+    for (TDEnemyBullet *t in tmpArray) t.shooter = nil;
+    [tmpArray removeAllObjects];
+    //被攻击的子弹清空
+    tmpArray = [NSMutableArray arrayWithArray:_towerBulletArray];
+    for (TDTowerBullet *t in tmpArray) t.enemy = nil;
+    [tmpArray removeAllObjects];
+    //被攻击的子弹清空
+    tmpArray = [NSMutableArray arrayWithArray:_friendlyBulletArray];
+    for (TDFriendlyBullet *t in tmpArray) t.enemy = nil;
+    [tmpArray removeAllObjects];
+    //被攻击的子弹清空
+    tmpArray = [NSMutableArray arrayWithArray:_magicBulletArray];
+    for (TDMagicBullet *t in tmpArray) t.enemy = nil;
+    [tmpArray removeAllObjects];
+    //被攻击的塔清空
+    tmpArray = [NSMutableArray arrayWithArray:_towerArray];
+    for (TDTower *t in tmpArray) t.enemy = nil;
+    [tmpArray removeAllObjects];
+    //被攻击的友军清空
+    tmpArray = [NSMutableArray arrayWithArray:_friendlyArray];
+    for (TDFriendly *t in tmpArray) t.enemy = nil;
+    [tmpArray removeAllObjects];
+    [super clearSpriteData];
 }
 
 - (void) dealloc
@@ -52,174 +84,29 @@ const NSMutableArray* regfriendlyArray = nil;
 	[super dealloc];
 }
 
-//================主要逻辑================
-- (void) doUnitLogic {
-    if (!self.canSchedule) {
-        [self unscheduleAllSelectors];
-        return;
-    }
-    if ([_friendlyArray count] == 0) {
-        self.unitStatus = US_NORMAL;
-    }
-    switch (self.unitStatus) {
-        case US_NORMAL:
-            [self doRunning];
+- (void) spriteTouchBegan:(UITouch *)touch operateType:(TOperateType)operateType
+{
+    [super spriteTouchBegan:touch operateType:operateType];
+    switch (operateType) {
+        case OT_NORMAL:
             break;
-        case US_WAITING:
-            [self doWaiting];
+        case OT_MAGIC_THUNDER:
+            [self doMagicThunder];
             break;
-        case US_ATTACT:
-            [self doAttact];
+        case OT_MAGIC_STOP:
+            [self doMagicStop];
             break;
         default:
             break;
     }
 }
 
-- (void) doRunning
-{
-    self.unitStatus = US_NORMAL;
-    [self schedule:@selector(doMove:)];
-}
-
-- (void) doWaiting
-{
-    self.unitStatus = US_WAITING;
-    [self stopAllActions];
-}
-
-- (void) doAttact
-{
-    self.unitStatus = US_ATTACT;
-    TDFriendly *f = [self canAttactFriendly];
-    if (f) {
-        [self schedule:@selector(startAttact:)];
-    }
-}
-//================主要逻辑================
-
-//================友军的操作================
-+ (void) regFriendly:(TDFriendly*)f {
-    if (!regfriendlyArray) {
-        regfriendlyArray = [[NSMutableArray alloc] init];
-    }
-    [regfriendlyArray removeObject:f];
-    [regfriendlyArray addObject:f];
-}
-
-+ (void) unregFriendly:(TDFriendly*)f {
-    if (!regfriendlyArray) {
-        regfriendlyArray = [[NSMutableArray alloc] init];
-    }
-    [regfriendlyArray removeObject:f];
-}
-
-- (void) addFriendly:(TDFriendly*)f {
-    if (!f) {
-        return;
-    }
-    if (([_friendlyArray indexOfObject:f] < INT_MAX)) {
-        return;
-    }
-    [_friendlyArray addObject:f];
-    if ([_friendlyArray count] == 1) {
-        //交战
-    }
-}
-
-- (void) delFriendly:(TDFriendly*)f {
-    if (!f) {
-        return;
-    }
-    [_friendlyArray removeObject:f];
-    if ([_friendlyArray count] == 0) {
-        //行走
-    }
-}
-
-- (TDFriendly *)friendly {
-    if ([_friendlyArray count] == 0) {
-        return nil;
-    }
-    return [_friendlyArray objectAtIndex:0];
-}
-
--(void) setPosition: (CGPoint)newPosition
-{
-    [super setPosition:newPosition];
-    if (self.spriteStatus == TSS_NORMAL) {
-        if (!regfriendlyArray) {
-            regfriendlyArray = [[NSMutableArray alloc] init];
-        }
-        for (int i = 0; i < [regfriendlyArray count]; i++) {
-            TDFriendly* f = [regfriendlyArray objectAtIndex:i];
-            if (f.spriteStatus == TSS_NORMAL) {
-                double curDistance = ccpDistance(f.searchPoint, self.position);
-                if (curDistance <= f.searchRange) {
-                    [f AttactEnemy:self];
-                }
-            }
-        }
-    }
-}
-//================友军的操作================
-
-- (void) statusToDeading {
-    [super statusToDeading];
-    GameController *gc = [GameController getGameController];
-    gc.currentGold = gc.currentGold + self.getGold;
-}
-
-- (void) doMove:(ccTime)dt {
-    [self unschedule:@selector(doMove:)];
-    [self setFlipX:NO];
-    GameController *gc = [GameController getGameController];
-    CGPoint position = self.position;
-    if (_nextWayPoint >= self.way.count) {
-        self.spriteStatus = TSS_DEAD;
-        [self stopAllActions];
-        gc.currentHealth = gc.currentHealth - 1;
-        [self removeFromParentAndCleanup:YES];
-    }
-    WayPoint *wp = [self.way objectAtIndex:_nextWayPoint];
-    position = wp.point;
-    [self removeFromParentAndCleanup:NO];
-    
-    [gc.gameBackground addChild:self z:self.zOrder];
-    //动画
-    float x_plus = position.x - self.position.x;
-    float y_plus = position.y - self.position.y;
-    if (abs(x_plus) > abs(y_plus)) {
-        //横走
-        if (x_plus > 0) {
-            //右
-            [self runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:0.9 animation:[self getAnimate:self.mvcAniName] restoreOriginalFrame:NO]]];
-        } else {
-             //左
-            [self setFlipX:YES];
-            [self runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:0.9 animation:[self getAnimate:self.mvcAniName] restoreOriginalFrame:NO]]];
-        }
-    } else {
-        //竖走
-        if (y_plus > 0) {
-            //上
-            [self runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:0.9 animation:[self getAnimate:self.mvuAniName] restoreOriginalFrame:NO]]];
-        } else {
-            //下
-            [self runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:0.9 animation:[self getAnimate:self.mvdAniName] restoreOriginalFrame:NO]]];
-        }
-    }
-    //移动
-    double curDistance = ccpDistance(self.position, position);
-    ccTime speed = curDistance / self.moveSpeed / self.speedUPNum;
-    id actionMove = [CCMoveTo actionWithDuration:speed position:position];
-	id actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterMove:)];
-	[self runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
-}
-
 - (CGPoint) getPositionAfterTime:(ccTime)dt
 {
     if (self.unitStatus != US_NORMAL) {
+        return self.position;
+    }
+    if (!self.canSchedule) {
         return self.position;
     }
     CGFloat doDistance = self.moveSpeed * dt;
@@ -248,87 +135,132 @@ const NSMutableArray* regfriendlyArray = nil;
     return currentPos;
 }
 
--(void) afterMove:(id)sender {
-    _nextWayPoint++;
-    [self schedule:@selector(doMove:)];
+//================主要逻辑================
+- (void) initUnitStatus {
+    if (self.friendly == nil) {
+        self.unitStatus = US_NORMAL;
+        return;
+    }
+    if (self.canAttactFriendly != nil) {
+        self.unitStatus = US_ATTACT;
+        return;    
+    }
+    self.unitStatus = US_WAITING;
 }
 
-- (void) clearSpriteData
-{
-    [super clearSpriteData];
-    NSMutableArray *tmpArray = nil;
-    //发射的子弹清空
-    tmpArray = [NSMutableArray arrayWithArray:_shootBulletArray];
-    for (TDEnemyBullet *t in tmpArray) t.shooter = nil;
-    [tmpArray removeAllObjects];
-    //被攻击的子弹清空
-    tmpArray = [NSMutableArray arrayWithArray:_towerBulletArray];
-    for (TDTowerBullet *t in tmpArray) t.enemy = nil;
-    [tmpArray removeAllObjects];
-    //被攻击的子弹清空
-    tmpArray = [NSMutableArray arrayWithArray:_friendlyBulletArray];
-    for (TDFriendlyBullet *t in tmpArray) t.enemy = nil;
-    [tmpArray removeAllObjects];
-    //被攻击的子弹清空
-    tmpArray = [NSMutableArray arrayWithArray:_magicBulletArray];
-    for (TDMagicBullet *t in tmpArray) t.enemy = nil;
-    [tmpArray removeAllObjects];
-    //被攻击的塔清空
-    tmpArray = [NSMutableArray arrayWithArray:_towerArray];
-    for (TDTower *t in tmpArray) t.enemy = nil;
-    [tmpArray removeAllObjects];
-    //被攻击的友军清空
-    tmpArray = [NSMutableArray arrayWithArray:_friendlyArray];
-    for (TDFriendly *t in tmpArray) t.enemy = nil;
-    [tmpArray removeAllObjects];
-}
-
-- (void) spriteTouchBegan:(UITouch *)touch operateType:(TOperateType)operateType
-{
-    [super spriteTouchBegan:touch operateType:operateType];
-    switch (operateType) {
-        case OT_NORMAL:
+- (void) doUnitLogic {
+    if (self.spriteStatus != TSS_NORMAL) return;
+    if (!self.canSchedule) {
+        [self unscheduleAllSelectors];
+        _isAttacting = NO;
+        return;
+    }
+    [self initUnitStatus];
+    switch (self.unitStatus) {
+        case US_NORMAL:
+            [self doRunning];
             break;
-        case OT_MAGIC_THUNDER:
-            [self doMagicThunder];
+        case US_WAITING:
+            [self doWaiting];
             break;
-        case OT_MAGIC_STOP:
-            [self doMagicStop];
+        case US_ATTACT:
+            [self doAttact];
             break;
         default:
             break;
     }
 }
 
-- (void) doubleAttact:(TDFriendly*)s
+- (void) doRunning
 {
     [self stopAllActions];
-    self.unitStatus = US_ATTACT;
+    [self unscheduleAllSelectors];
+    //按路线行走
+    [self schedule:@selector(doMove:)];
 }
 
-- (TDFriendly*) canAttactFriendly
+- (void) doWaiting
 {
-    for (TDFriendly *t in _friendlyArray) 
-    {
-        if (t) {
-            double curDistance = ccpDistance(self.position, t.position);
-            if (curDistance < 80) {
-                return t;
-            }
+    [self setFlipX:NO];
+    if (_nextWayPoint < self.way.count) {
+        WayPoint *wp = [self.way objectAtIndex:_nextWayPoint];
+        CGPoint position = wp.point;
+        if (position.x - self.position.x) {
+            [self setFlipX:YES];
         }
     }
-    return nil;
+    [self stopAllActions];
+    [self unscheduleAllSelectors];
 }
 
-- (void) startAttact:(ccTime)dt {
-    [self unschedule:@selector(startAttact:)];
-    [self doAttact:0];
-    [self schedule:@selector(doAttact:) interval:self.attacttime];
+- (void) doAttact
+{
+    if (!_isAttacting) {
+        TDFriendly *f = self.canAttactFriendly;
+        if (f) {
+            _isAttacting = YES;
+            [self startAttact];
+        }
+    }
 }
 
+- (void) doMove:(ccTime)dt {
+    [self stopAllActions];
+    [self unscheduleAllSelectors];
+    [self setFlipX:NO];
+    GameController *gc = [GameController getGameController];
+    CGPoint position = self.position;
+    if (_nextWayPoint >= self.way.count) {
+        self.spriteStatus = TSS_DEAD;
+        gc.currentHealth = gc.currentHealth - 1;
+    }
+    WayPoint *wp = [self.way objectAtIndex:_nextWayPoint];
+    position = wp.point;
+    //动画
+    float x_plus = position.x - self.position.x;
+    float y_plus = position.y - self.position.y;
+    if (abs(x_plus) > abs(y_plus)) {
+        //横走
+        if (x_plus > 0) {
+            //右
+            [self runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:0.9 animation:[self getAnimate:self.mvcAniName] restoreOriginalFrame:NO]]];
+        } else {
+            //左
+            [self setFlipX:YES];
+            [self runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:0.9 animation:[self getAnimate:self.mvcAniName] restoreOriginalFrame:NO]]];
+        }
+    } else {
+        //竖走
+        if (y_plus > 0) {
+            //上
+            [self runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:0.9 animation:[self getAnimate:self.mvuAniName] restoreOriginalFrame:NO]]];
+        } else {
+            //下
+            [self runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:0.9 animation:[self getAnimate:self.mvdAniName] restoreOriginalFrame:NO]]];
+        }
+    }
+    //移动
+    double curDistance = ccpDistance(self.position, position);
+    ccTime speed = curDistance / self.moveSpeed / self.speedUPNum;
+    id actionMove = [CCMoveTo actionWithDuration:speed position:position];
+	id actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterMove:)];
+	[self runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
+}
 
-- (void) doAttact:(ccTime)dt {
-    TDFriendly *f = [self canAttactFriendly];
+-(void) afterMove:(id)sender {
+    _nextWayPoint++;
+    [self doUnitLogic];
+}
+
+- (void) startAttact {
+    [self stopAllActions];
+    [self unscheduleAllSelectors];
+    [self doAttactAction:0];
+    [self schedule:@selector(doAttactAction:) interval:self.attacttime];
+}
+
+- (void) doAttactAction:(ccTime)dt {
+    TDFriendly *f = self.canAttactFriendly;
     if (f) {
         CGPoint position = f.position;
         if (self.position.x > position.x) {
@@ -339,18 +271,113 @@ const NSMutableArray* regfriendlyArray = nil;
         id actionAttact = [CCAnimate actionWithAnimation:[self getAnimate:self.atAniName] restoreOriginalFrame:NO];
         id actionAttactDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterAttact:)];
         [self runAction:[CCSequence actions:actionAttact, actionAttactDone, nil]];
+    } else {
+        _isAttacting = NO;
+        [self stopAllActions];
+        [self unscheduleAllSelectors];
+        [self doUnitLogic];
     }
 }
 
 -(void) afterAttact:(id)sender {
-    TDFriendly *f = [self canAttactFriendly];
+    TDFriendly *f = self.canAttactFriendly;
     if (f) {
         [f beAttact:self an:self.attact at:self.attactMode];
         if (self.friendly == nil) {
-            [self unschedule:@selector(doAttact:)];
+            _isAttacting = NO;
+            [self stopAllActions];
+            [self unscheduleAllSelectors];
+            [self doUnitLogic];
         }
     }
 }
+
+//================主要逻辑================
+
+//================友军的操作================
++ (void) regFriendly:(TDFriendly*)f {
+    if (!regfriendlyArray) {
+        regfriendlyArray = [[NSMutableArray alloc] init];
+    }
+    [regfriendlyArray removeObject:f];
+    [regfriendlyArray addObject:f];
+    GameController *gc = [GameController getGameController];
+    for (TDEnemy* e in gc.enemyArray) {
+        if (e.spriteStatus == TSS_NORMAL) {
+            e.position = e.position;
+        }
+    }
+}
+
++ (void) unregFriendly:(TDFriendly*)f {
+    if (!regfriendlyArray) {
+        regfriendlyArray = [[NSMutableArray alloc] init];
+    }
+    [regfriendlyArray removeObject:f];
+}
+
+- (void) addFriendly:(TDFriendly*)f {
+    if (!f) {
+        return;
+    }
+    if (([_friendlyArray indexOfObject:f] < INT_MAX)) {
+        return;
+    }
+    [_friendlyArray addObject:f];
+    [self doUnitLogic];
+}
+
+- (void) delFriendly:(TDFriendly*)f {
+    if (!f) {
+        return;
+    }
+    [_friendlyArray removeObject:f];
+    [self doUnitLogic];
+}
+
+- (int) friendlyCount {
+    return [_friendlyArray count];
+}
+
+- (TDFriendly *)friendly {
+    if ([_friendlyArray count] == 0) {
+        return nil;
+    }
+    return [_friendlyArray objectAtIndex:0];
+}
+
+- (TDFriendly *) canAttactFriendly
+{
+    for (TDFriendly *f in _friendlyArray) {
+        if (f && f.unitStatus == US_ATTACT) {
+            return f;
+        }
+    }
+    return nil;
+}
+
+-(void) setPosition: (CGPoint)newPosition
+{
+    [super setPosition:newPosition];
+    if (self.spriteStatus == TSS_NORMAL) {
+        if (!regfriendlyArray) {
+            regfriendlyArray = [[NSMutableArray alloc] init];
+        }
+        for (int i = 0; i < [regfriendlyArray count]; i++) {
+            TDFriendly* f = [regfriendlyArray objectAtIndex:i];
+            if (f.spriteStatus == TSS_NORMAL) {
+                double curDistance = ccpDistance(f.searchPoint, self.position);
+                if (curDistance <= f.searchRange) {
+                    [f AttactEnemy:self];
+                }
+            }
+        }
+    }
+}
+
+//================友军的操作================
+
+//================魔法的操作================
 - (void) doMagicThunder
 {
     GameController *gc = [GameController getGameController];
@@ -378,6 +405,17 @@ const NSMutableArray* regfriendlyArray = nil;
     gc.operateType = OT_NORMAL;
     [gc.gameMagic restartMagicStop];
     [self doMagicStopStatus];
+}
+
+//================魔法的操作================
+
+- (void) showImformation {
+    [[GameController getGameController].spriteInfo showEnemyInfo];
+    [[GameController getGameController].spriteInfo setSmallPic:self.smallPic];
+    [[GameController getGameController].spriteInfo setAttact:self.attact];
+    [[GameController getGameController].spriteInfo setAttactSpeed:self.attacttime];
+    [[GameController getGameController].spriteInfo setBloodNum:self.currentHP];
+    [[GameController getGameController].spriteInfo setMoveSpeed:self.moveSpeed];    
 }
 
 @end

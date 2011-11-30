@@ -1,6 +1,7 @@
 #import "Pointer9.h"
 #import "GameController.h"
 #import "AnimateManager.h"
+#import "SimpleAudioEngine.h"
 
 @implementation Pointer9
 
@@ -25,15 +26,15 @@
 - (void) initTower:(NSMutableArray*)array
 {
     [array removeAllObjects];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(55, 139) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(55, 190) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(179, 139) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(236, 139) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(292, 139) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(417, 190) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(417, 139) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(165, 252) s:CGPointZero];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(289, 252) s:CGPointZero];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(55, 139) s:ccp(55, 111)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(55, 190) s:ccp(111, 203)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(179, 139) s:ccp(179, 111)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(236, 139) s:ccp(236, 111)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(292, 139) s:ccp(292, 111)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(417, 190) s:ccp(357, 194)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(417, 139) s:ccp(417, 111)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(165, 252) s:ccp(166, 223)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(289, 252) s:ccp(290, 223)];
 }
 
 - (BOOL) runWaves:(int)wave
@@ -188,6 +189,7 @@
             [self prepareNextWave:28];
 			break;
         case 17:
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bossBg.mp3"];
             [self runWave:1 e:ET_BOSS1 s:2 t:1 wy:[gc.wayManager getWay:7]];
             [self prepareNextWave:30];
 			break;

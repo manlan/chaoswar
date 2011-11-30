@@ -9,7 +9,7 @@
     CCLayer *parentScene;
 }
 
-@property (nonatomic, retain) CCLayer *parentScene;
+@property (nonatomic, assign) CCLayer *parentScene;
 
 - (void) initAnimate:(NSString*)fileName;
 

@@ -3,13 +3,6 @@
 
 @implementation TDFootEnemy
 
--(id) init
-{
-	if( (self=[super init])) {
-	}
-	return self;
-}
-
 - (void) addAnimate:(int)level
 {
     self.mvuAniName = [NSString stringWithFormat:@"ft%02dmvu", level];
@@ -17,11 +10,7 @@
     self.mvcAniName = [NSString stringWithFormat:@"ft%02dmvc", level];
     self.ddAniName = [NSString stringWithFormat:@"ft%02ddd", level];
     self.atAniName = [NSString stringWithFormat:@"ft%02dat", level];
-}
-
-- (void) dealloc
-{
-	[super dealloc];
+    self.smallPic = [NSString stringWithFormat:@"smft%02d.png", level];
 }
 
 @end

@@ -31,9 +31,10 @@
 
 - (void) clearSpriteData
 {
-    [super clearSpriteData];
     //发射的防御塔清空
     self.tower = nil;
+    self.enemy = nil;
+    [super clearSpriteData];
 }
 
 @end
@@ -43,6 +44,7 @@
 + (id) getSprite {
     TDTowerFriendly1 *friendly = [TDTowerFriendly1 spriteWithSpriteFrameName:@"dtf01mv0001.png"];
     if (friendly) {
+        friendly.firstFrameName = @"dtf01mv0001.png";
         [friendly setScale:TDS_TFL1_SCALE];
         friendly.maxHP = TDS_TFL1_MAXHP;
         friendly.currentHP = TDS_TFL1_CURRENTHP;
@@ -57,6 +59,7 @@
         friendly.mvAniName = [NSString stringWithFormat:@"dtf%02dmv", 1];
         friendly.ddAniName = [NSString stringWithFormat:@"dtf%02ddd", 1];
         friendly.atAniName = [NSString stringWithFormat:@"dtf%02dat", 1];
+        friendly.smallPic = [NSString stringWithFormat:@"smdtf%02d.png", 1];
     }
     return friendly;
 }
@@ -68,6 +71,7 @@
 + (id) getSprite {
     TDTowerFriendly2 *friendly = [TDTowerFriendly2 spriteWithSpriteFrameName:@"dtf02mv0001.png"];
     if (friendly) {
+        friendly.firstFrameName = @"dtf02mv0001.png";
         [friendly setScale:TDS_TFL2_SCALE];
         friendly.maxHP = TDS_TFL2_MAXHP;
         friendly.currentHP = TDS_TFL2_CURRENTHP;
@@ -82,6 +86,7 @@
         friendly.mvAniName = [NSString stringWithFormat:@"dtf%02dmv", 2];
         friendly.ddAniName = [NSString stringWithFormat:@"dtf%02ddd", 2];
         friendly.atAniName = [NSString stringWithFormat:@"dtf%02dat", 2];
+        friendly.smallPic = [NSString stringWithFormat:@"smdtf%02d.png", 2];
     }
     return friendly;
 }
@@ -93,6 +98,7 @@
 + (id) getSprite {
     TDTowerFriendly3 *friendly = [TDTowerFriendly3 spriteWithSpriteFrameName:@"dtf03mv0001.png"];
     if (friendly) {
+        friendly.firstFrameName = @"dtf03mv0001.png";
         [friendly setScale:TDS_TFL3_SCALE];
         friendly.maxHP = TDS_TFL3_MAXHP;
         friendly.currentHP = TDS_TFL3_CURRENTHP;
@@ -107,6 +113,7 @@
         friendly.mvAniName = [NSString stringWithFormat:@"dtf%02dmv", 3];
         friendly.ddAniName = [NSString stringWithFormat:@"dtf%02ddd", 3];
         friendly.atAniName = [NSString stringWithFormat:@"dtf%02dat", 3];
+        friendly.smallPic = [NSString stringWithFormat:@"smdtf%02d.png", 3];
     }
     return friendly;
 }

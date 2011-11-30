@@ -16,6 +16,8 @@
     CCSprite *_bloodBackSprite;
     CCSprite *_arrowSprite;
     CCSprite *_effectSprite;
+    
+    BOOL needDoTouchDispatcher;
 }
 
 // 花费金额
@@ -34,6 +36,8 @@
 @property BOOL showBlood;
 // 是否可以被点击
 @property BOOL canClick;
+// 是否被选中
+@property (readonly) BOOL isSelected;
 // 是否可以被点击
 @property int baseZOrder;
 // 是否可以被点击

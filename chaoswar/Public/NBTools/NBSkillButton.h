@@ -18,4 +18,6 @@
 
 - (void) doProgress:(ccTime)duration from:(float)from to:(float)to t:(id)t s:(SEL)s;
 
+- (void) stopProgress;
+
 @end

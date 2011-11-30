@@ -9,6 +9,7 @@
 #import "GameImfomationScene.h"
 #import "GameMagicScene.h"
 #import "GameControllerScene.h"
+#import "SimpleAudioEngine.h"
 #import "SpriteInfoScene.h"
 #import "GameHintScene.h"
 #import "NBSkillButton.h"
@@ -25,6 +26,8 @@
 #import "Pointer10.h"
 #import "Pointer11.h"
 #import "Pointer12.h"
+#import "SceneManager.h"
+#import "SelectSence.h"
 
 @implementation GameController
 
@@ -134,6 +137,8 @@ static GameController *_sharedController = nil;
 {
     self.screenClickType = SCT_ALL;
     self.operateType = OT_NORMAL;
+    [_gameMagic reStart];
+
     //=========初始化设置
     [_pt initController];
     //=========初始化动画
@@ -221,37 +226,41 @@ static GameController *_sharedController = nil;
     [self setGameStatus];
     if (_currentHealth <= 0) {
         //弹出失败界面
-//        [[CCDirector sharedDirector] pause];
-//        GameController *gc = [GameController getGameController];
-//        [gc.gameHint removeAllChildrenWithCleanup:YES];
-//        //背景
-//        CCSprite *pauseBg = [CCSprite spriteWithFile:@"pauseBg.png"];
-//        pauseBg.position = ccp(240 , 160);
-//        [gc.gameHint addChild:pauseBg z:1];
-//        
-//        //继续
-//        CCMenuItemImage *btnResume = [CCMenuItemImage itemFromNormalImage:@"btnResume.png" selectedImage:@"btnResume.png"  
-//                                                            disabledImage:@"btnResume.png"  target:self selector:@selector(Resume:)];
-//        CCMenu *btnResumeMenu = [CCMenu menuWithItems:btnResume, nil];
-//        btnResumeMenu.position = ccp(240 , 185);
-//        [gc.gameHint addChild:btnResumeMenu z:2];
-//        
-//        //菜单
-//        CCMenuItemImage *btnMenu = [CCMenuItemImage itemFromNormalImage:@"btnMenu.png" selectedImage:@"btnMenu.png"  
-//                                                          disabledImage:@"btnMenu.png"  target:self selector:@selector(Menu:)];
-//        CCMenu *btnMenuMenu = [CCMenu menuWithItems:btnMenu, nil];
-//        btnMenuMenu.position = ccp(240 , 135);
-//        [gc.gameHint addChild:btnMenuMenu z:2];
-//        
-//        //重来
-//        CCMenuItemImage *btnRestart = [CCMenuItemImage itemFromNormalImage:@"btnRestart.png" selectedImage:@"btnRestart.png"  
-//                                                             disabledImage:@"btnRestart.png"  target:self selector:@selector(Restart:)];
-//        CCMenu *btnRestartMenu = [CCMenu menuWithItems:btnRestart, nil];
-//        btnRestartMenu.position = ccp(240 , 85);
-//        [gc.gameHint addChild:btnRestartMenu z:2];
-//        
-//        [gc setGameStatus];
+        [[CCDirector sharedDirector] pause];
+        //背景
+        CCSprite *lostBg = [CCSprite spriteWithFile:@"lostBg.png"];
+        lostBg.position = ccp(240 , 175);
+        [_gameHint addChild:lostBg z:100];
+        
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"lostBg.mp3"];
+        //退出
+        CCMenuItemImage *btnMenu = [CCMenuItemImage itemFromNormalImage:@"btnQuit.png" selectedImage:@"btnQuit.png" disabledImage:@"btnQuit.png"  target:self selector:@selector(backToMenu:)];
+        CCMenu *btnMenuMenu = [CCMenu menuWithItems:btnMenu, nil];
+        btnMenuMenu.position = ccp(240 , 100);
+        [_gameHint addChild:btnMenuMenu z:101];
+        //重来
+        CCMenuItemImage *btnRestart = [CCMenuItemImage itemFromNormalImage:@"btnRestart.png" selectedImage:@"btnRestart.png"  disabledImage:@"btnRestart.png"  target:self selector:@selector(restartGame:)];
+        CCMenu *btnRestartMenu = [CCMenu menuWithItems:btnRestart, nil];
+        btnRestartMenu.position = ccp(240 , 155);
+        [_gameHint addChild:btnRestartMenu z:101];
     }
+}
+
+-(void) backToMenu:(id) sender 
+{
+    [[CCDirector sharedDirector] resume];
+    [self stopGame];
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"mainBg.mp3"];
+	[[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[SelectSence scene]]];
+}
+
+-(void) restartGame:(id) sender 
+{
+    [[CCDirector sharedDirector] resume];
+    [_gameHint removeAllChildrenWithCleanup:YES];
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"mainBg.mp3"];
+	[self restart];
+    [self setGameStatus];
 }
 
 - (int) currentGold {
@@ -327,7 +336,7 @@ static GameController *_sharedController = nil;
 
 - (void) releaseScene
 {
-    [[CCScheduler sharedScheduler] unscheduleAllSelectors];
+    [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
     [_pt stopController];
     NSMutableArray *tempEnemyArray = [NSMutableArray arrayWithArray:_enemyArray];
     for (TDEnemy *en in tempEnemyArray) en.spriteStatus = TSS_DEAD;
@@ -397,15 +406,14 @@ static GameController *_sharedController = nil;
 
 - (void) doMagicFriendly:(CGPoint)point
 {
-    [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp( 0,  0))] run];
-//    if ([DataController getMagicFriendlyLevel] == 3) {
-//        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp(-15, -15))] run];
-//        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp(15, 15))] run];
-//        [[FriendlyController getFriendlyController:0.01 pos:point] run];
-//    } else {
-//        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp(-7.5, -7.5))] run];
-//        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp( 7.5,  7.5))] run];
-//    }
+    if ([DataController getMagicFriendlyLevel] == 3) {
+        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp(-15, -15))] run];
+        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp(15, 15))] run];
+        [[FriendlyController getFriendlyController:0.01 pos:point] run];
+    } else {
+        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp(-7.5, -7.5))] run];
+        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp( 7.5,  7.5))] run];
+    }
     self.screenClickType = SCT_ALL;
     self.operateType = OT_NORMAL;
     [_gameMagic restartMagicFriendly];
@@ -429,6 +437,24 @@ static GameController *_sharedController = nil;
         self.screenClickType = SCT_ALL;
         self.operateType = OT_NORMAL;
     }
+}
+
+- (void) ArchieveHint:(NSString*)hint
+{
+    CCNode *node = [_gameBackground getChildByTag:99];
+    if (node) {
+        [node cleanup];
+        [node removeFromParentAndCleanup:YES];
+        node = nil;
+    }
+    
+    CCLabelTTF *hintLabel = [CCLabelTTF labelWithString:hint fontName:@"Georgia-Bold" fontSize:10];
+    hintLabel.position = ccp(270, 40);
+    hintLabel.anchorPoint = ccp(0.5, 0);
+    hintLabel.scale = 1;
+    hintLabel.color = ccc3(0, 0, 0);
+    [hintLabel runAction:[CCSequence actions:[CCMoveTo actionWithDuration:2.0f position:hintLabel.position], [CCFadeOut actionWithDuration:1.5f], nil]];
+    [_gameBackground addChild:hintLabel z:1000 tag:99];
 }
 
 @end

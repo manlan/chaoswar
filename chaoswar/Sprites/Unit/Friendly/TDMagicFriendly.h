@@ -10,8 +10,11 @@
 #import "cocos2d.h"
 #import "TDFriendly.h"
 
+@class MFDead;
+
 @interface TDMagicFriendly : TDFriendly {
-    
+    MFDead *_mfDead;
+    ccTime _deadTime;
 }
 
 @property ccTime deadTime;
@@ -29,3 +32,17 @@
 }
 
 @end
+
+@interface MFDead : NSObject {
+
+}
+
+@property (nonatomic, assign) TDMagicFriendly *friendly;
+@property ccTime deadTime;
+
+- (BOOL) run;
+
+- (BOOL) stop;
+
+@end
+

@@ -10,6 +10,7 @@
     NSString *_atAniName;
     NSString *_ddAniName;
     NSString *_mcAniName;
+    NSString *_smallPic;
     MagicController *_magicController;
 }
 
@@ -48,6 +49,8 @@
 @property BOOL canSchedule;
 // 加速度
 @property float speedUPNum;
+
+@property (nonatomic, retain) NSString *smallPic;
 
 - (void) doUnitLogic;
 

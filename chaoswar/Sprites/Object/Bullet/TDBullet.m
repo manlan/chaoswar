@@ -21,6 +21,7 @@
 
 @synthesize enemy = _enemy;
 @synthesize shooter = _shooter;
+@synthesize enemyPoint = _enemyPoint;
 
 - (void) attact:(id)sender
 {
@@ -38,13 +39,7 @@
 }
 
 - (void) move {
-    if (!self.enemy) {
-        self.spriteStatus = TSS_DEAD;
-        return;
-    }
-    id actionMove = [CCJumpTo actionWithDuration:self.moveTime position:[self.enemy getPositionAfterTime:self.moveTime] height:30 jumps:1];
-	id actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(attact:)];
-	[self runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
+
 }
 
 - (void) setEnemy:(TDEnemy *)enemy
@@ -71,11 +66,11 @@
 
 - (void) clearSpriteData
 {
-    [super clearSpriteData];
     //攻击的敌人清空
     _enemy = nil;
     //发射的友军清空
     _shooter = nil;
+    [super clearSpriteData];
 }
 
 @end
@@ -135,11 +130,11 @@
 
 - (void) clearSpriteData
 {
-    [super clearSpriteData];
     //攻击的敌人清空
     _enemy = nil;
     //发射的友军清空
     _shooter = nil;
+    [super clearSpriteData];
 }
 
 @end
@@ -199,11 +194,11 @@
 
 - (void) clearSpriteData
 {
-    [super clearSpriteData];
     //攻击的敌人清空
     _enemy = nil;
     //发射的友军清空
     _shooter = nil;
+    [super clearSpriteData];
 }
 
 @end
@@ -225,9 +220,9 @@
 
 - (void) clearSpriteData
 {
-    [super clearSpriteData];
     //攻击的敌人清空
     _enemy = nil;
+    [super clearSpriteData];
 }
 
 @end

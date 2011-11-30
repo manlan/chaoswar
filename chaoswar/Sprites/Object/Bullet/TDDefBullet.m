@@ -3,10 +3,38 @@
 #import "GameController.h"
 #import "TDEnemy.h"
 
-@implementation TDArrowBullet1
+@implementation TDArrowTowerBullet
+
+- (void) move {
+    CGPoint p = CGPointZero;
+    float r = 0;
+    if (!self.enemy) {
+        p = self.enemyPoint;
+    } else {
+        p = [self.enemy getPositionAfterTime:self.moveTime];
+    }
+    
+    if (p.x < self.position.x) {
+        self.rotation = -10;
+        r = -170;
+    } else {
+        self.rotation = 10;
+        r = 170;
+    }
+    
+    id actionMove = [CCJumpTo actionWithDuration:self.moveTime position:p height:30 jumps:1];
+    id rotateMove = [CCRotateTo actionWithDuration:self.moveTime angle:r];
+    id spawnMove = [CCSpawn actions:actionMove, rotateMove, nil];
+	id actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(attact:)];
+	[self runAction:[CCSequence actions:spawnMove, actionMoveDone, nil]];
+}
+
+@end
+
+@implementation TDArrowTowerBullet1
 
 + (id) getSprite {
-    TDArrowBullet1 *bullet = [TDArrowBullet1 spriteWithFile:@"atb.png"];
+    TDArrowTowerBullet1 *bullet = [TDArrowTowerBullet1 spriteWithFile:@"atb.png"];
     if (bullet) {
         bullet.moveTime = TDS_ARROW_BULLET1_MOVETIME;
         bullet.attact = TDS_ARROW_BULLET1_ATTACT;
@@ -17,10 +45,10 @@
 
 @end
 
-@implementation TDArrowBullet2
+@implementation TDArrowTowerBullet2
 
 + (id) getSprite {
-    TDArrowBullet2 *bullet = [TDArrowBullet2 spriteWithFile:@"atb.png"];
+    TDArrowTowerBullet2 *bullet = [TDArrowTowerBullet2 spriteWithFile:@"atb.png"];
     if (bullet) {
         bullet.moveTime = TDS_ARROW_BULLET2_MOVETIME;
         bullet.attact = TDS_ARROW_BULLET2_ATTACT;
@@ -31,10 +59,10 @@
 
 @end
 
-@implementation TDArrowBullet3
+@implementation TDArrowTowerBullet3
 
 + (id) getSprite {
-    TDArrowBullet3 *bullet = [TDArrowBullet3 spriteWithFile:@"atb.png"];
+    TDArrowTowerBullet3 *bullet = [TDArrowTowerBullet3 spriteWithFile:@"atb.png"];
     if (bullet) {
         bullet.moveTime = TDS_ARROW_BULLET3_MOVETIME;
         bullet.attact = TDS_ARROW_BULLET3_ATTACT;
@@ -45,7 +73,7 @@
 
 @end
 
-@implementation TDTurretBullet
+@implementation TDTurretTowerBullet
 
 @synthesize attactRange = _attactRange;
 @synthesize aniBoomName = _aniBoomName;
@@ -58,11 +86,36 @@
 	return self;
 }
 
-- (void) attactAEnemy:(TDEnemy*)enemy
-{
-    if (enemy && enemy.spriteStatus == TSS_NORMAL) {
-        [enemy beAttact:self an:self.attact at:self.attactMode];
+- (void) move {
+    CGPoint p = CGPointZero;
+    float r = 0;
+    if (!self.enemy) {
+        p = self.enemyPoint;
+    } else {
+        p = [self.enemy getPositionAfterTime:self.moveTime];
     }
+    
+    if (p.x < self.position.x) {
+        self.rotation = -10;
+        r = -170;
+    } else {
+        self.rotation = 10;
+        r = 170;
+    }
+    
+    id actionMove = [CCJumpTo actionWithDuration:self.moveTime position:p height:30 jumps:1];
+    id rotateMove = [CCRotateTo actionWithDuration:self.moveTime angle:r];
+    id spawnMove = [CCSpawn actions:actionMove, rotateMove, nil];
+	id actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(attact:)];
+	[self runAction:[CCSequence actions:spawnMove, actionMoveDone, nil]];
+}
+
+- (void) attact:(id)sender
+{
+    [self searchClearEnemy];
+    id actionRepeat = [CCAnimate actionWithAnimation:[self getAnimate:self.aniBoomName] restoreOriginalFrame:NO];
+	id actionRepeatDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterRepeat:)];
+	[self runAction:[CCSequence actions:actionRepeat, actionRepeatDone, nil]];
 }
 
 - (void) searchClearEnemy {
@@ -77,12 +130,11 @@
 	}
 }
 
-- (void) attact:(id)sender
+- (void) attactAEnemy:(TDEnemy*)enemy
 {
-    [self searchClearEnemy];
-    id actionRepeat = [CCAnimate actionWithAnimation:[self getAnimate:self.aniBoomName] restoreOriginalFrame:NO];
-	id actionRepeatDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterRepeat:)];
-	[self runAction:[CCSequence actions:actionRepeat, actionRepeatDone, nil]];
+    if (enemy && enemy.spriteStatus == TSS_NORMAL) {
+        [enemy beAttact:self an:self.attact at:self.attactMode];
+    }
 }
 
 -(void) afterRepeat:(id)sender {
@@ -92,10 +144,10 @@
 
 @end
 
-@implementation TDTurretBullet1
+@implementation TDTurretTowerBullet1
 
 + (id) getSprite {
-    TDTurretBullet1 *bullet = [TDTurretBullet1 spriteWithFile:@"ttb01.png"];
+    TDTurretTowerBullet1 *bullet = [TDTurretTowerBullet1 spriteWithFile:@"ttb01.png"];
     if (bullet) {
         bullet.moveTime = TDS_TURRET_BULLET1_MOVETIME;
         bullet.attact = TDS_TURRET_BULLET1_ATTACT;
@@ -107,10 +159,10 @@
 
 @end
 
-@implementation TDTurretBullet2
+@implementation TDTurretTowerBullet2
 
 + (id) getSprite {
-    TDTurretBullet2 *bullet = [TDTurretBullet2 spriteWithFile:@"ttb02.png"];
+    TDTurretTowerBullet2 *bullet = [TDTurretTowerBullet2 spriteWithFile:@"ttb02.png"];
     if (bullet) {
         bullet.moveTime = TDS_TURRET_BULLET2_MOVETIME;
         bullet.attact = TDS_TURRET_BULLET2_ATTACT;
@@ -122,10 +174,10 @@
 
 @end
 
-@implementation TDTurretBullet3
+@implementation TDTurretTowerBullet3
 
 + (id) getSprite {
-    TDTurretBullet3 *bullet = [TDTurretBullet3 spriteWithFile:@"ttb03.png"];
+    TDTurretTowerBullet3 *bullet = [TDTurretTowerBullet3 spriteWithFile:@"ttb03.png"];
     if (bullet) {
         bullet.moveTime = TDS_TURRET_BULLET3_MOVETIME;
         bullet.attact = TDS_TURRET_BULLET3_ATTACT;
@@ -137,10 +189,26 @@
 
 @end
 
-@implementation TDMagicBullet1
+@implementation TDMagicTowerBullet
+
+- (void) move {
+    CGPoint p = CGPointZero;
+    if (!self.enemy) {
+        p = self.enemyPoint;
+    } else {
+        p = [self.enemy getPositionAfterTime:self.moveTime];
+    }
+    id actionMove = [CCMoveTo actionWithDuration:self.moveTime position:p];
+	id actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(attact:)];
+	[self runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
+}
+
+@end
+
+@implementation TDMagicTowerBullet1
 
 + (id) getSprite {
-    TDMagicBullet1 *bullet = [TDMagicBullet1 spriteWithFile:@"mtb.png"];
+    TDMagicTowerBullet1 *bullet = [TDMagicTowerBullet1 spriteWithFile:@"mtb.png"];
     if (bullet) {
         bullet.moveTime = TDS_MAGIC_BULLET1_MOVETIME;
         bullet.attact = TDS_MAGIC_BULLET1_ATTACT;
@@ -151,10 +219,10 @@
 
 @end
 
-@implementation TDMagicBullet2
+@implementation TDMagicTowerBullet2
 
 + (id) getSprite {
-    TDMagicBullet2 *bullet = [TDMagicBullet2 spriteWithFile:@"mtb.png"];
+    TDMagicTowerBullet2 *bullet = [TDMagicTowerBullet2 spriteWithFile:@"mtb.png"];
     if (bullet) {
         bullet.moveTime = TDS_MAGIC_BULLET2_MOVETIME;
         bullet.attact = TDS_MAGIC_BULLET2_ATTACT;
@@ -165,10 +233,10 @@
 
 @end
 
-@implementation TDMagicBullet3
+@implementation TDMagicTowerBullet3
 
 + (id) getSprite {
-    TDMagicBullet3 *bullet = [TDMagicBullet3 spriteWithFile:@"mtb.png"];
+    TDMagicTowerBullet3 *bullet = [TDMagicTowerBullet3 spriteWithFile:@"mtb.png"];
     if (bullet) {
         bullet.moveTime = TDS_MAGIC_BULLET3_MOVETIME;
         bullet.attact = TDS_MAGIC_BULLET3_ATTACT;

@@ -16,16 +16,17 @@
 {
     [dicAnimates removeAllObjects];
     [dicAnimates release];
-    [parentScene release];
     [super dealloc];
 }
 
 - (void) initAnimate:(NSString*)fileName
 {
-    CCSpriteFrameCache *cache = [CCSpriteFrameCache sharedSpriteFrameCache];
-    [cache addSpriteFramesWithFile:[NSString stringWithFormat:@"%@.plist", fileName]];        
-    CCSpriteBatchNode *sheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", fileName]];
-    [parentScene addChild:sheet];
+    if (parentScene) {
+        CCSpriteFrameCache *cache = [CCSpriteFrameCache sharedSpriteFrameCache];
+        [cache addSpriteFramesWithFile:[NSString stringWithFormat:@"%@.plist", fileName]];        
+        CCSpriteBatchNode *sheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", fileName]];
+        [parentScene addChild:sheet];
+    }
 }
 
 - (void) addAnimation:(NSString*)frameName animationName:(NSString*)animationName

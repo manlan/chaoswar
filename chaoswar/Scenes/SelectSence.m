@@ -4,6 +4,7 @@
 #import "SceneManager.h"
 #import "GameBackgroundScene.h"
 #import "LoadingSence.h"
+#import "DataController.h"
 
 @implementation SelectSence
 
@@ -29,6 +30,12 @@
 		bgImg.position = CGPointMake(size.width /2 , size.height/2);
 		bgImg.scale = 1;
 		[self addChild:bgImg z:1];
+        
+        resetBg = [CCSprite spriteWithFile:@"resetBg.png"];
+		resetBg.position = CGPointMake(size.width /2 , size.height/2);
+		resetBg.scale = 1;
+        resetBg.visible = NO;
+		[self addChild:resetBg z:100];
 		
 		//加载魔法背景图片
         btnWaveStationLight = [CCSprite spriteWithFile:@"waveStationLight.png"];
@@ -128,6 +135,30 @@
 		[self addChild:btnUpdataMenu z:2];
 		[btnUpdata release];
         
+        //加载重置按钮
+        btnReset = [[CCMenuItemImage alloc] initFromNormalImage:@"btnReset.png" selectedImage:@"btnResetDown.png" disabledImage:@"btnReset.png" target:self selector:@selector(resetGame:)];		
+        CCMenu *btnResetMenu = [CCMenu menuWithItems:btnReset, nil];
+        btnResetMenu.position = CGPointMake(36 , 289);
+        btnReset.scale = 0.85;
+        [self addChild:btnResetMenu z:2];
+        [btnReset release];
+        
+        //加载重置YES按钮
+        btnYes = [[CCMenuItemImage alloc] initFromNormalImage:@"btnYes.png" selectedImage:@"btnYes.png" disabledImage:@"btnYes.png" target:self selector:@selector(yesToResetGame:)];		
+        CCMenu *btnYesMenu = [CCMenu menuWithItems:btnYes, nil];
+        btnYesMenu.position = CGPointMake(185 , 105);
+        [self addChild:btnYesMenu z:101];
+        btnYes.visible = NO;
+        [btnYes release];
+        
+        //加载重置NO按钮
+        btnNo = [[CCMenuItemImage alloc] initFromNormalImage:@"btnNo.png" selectedImage:@"btnNo.png" disabledImage:@"btnNo.png" target:self selector:@selector(noToResetGame:)];		
+        CCMenu *btnNoMenu = [CCMenu menuWithItems:btnNo, nil];
+        btnNoMenu.position = CGPointMake(295 , 105);
+        [self addChild:btnNoMenu z:101];
+        btnNo.visible = NO;
+        [btnNo release];
+        
         //加载关卡及分数
         NSString *errorDesc = nil;
         NSPropertyListFormat format;
@@ -144,7 +175,7 @@
             if (!wavesInfo) {
                 NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
             }
-
+			
             NSDictionary* waves = [wavesInfo objectForKey:@"Waves" ];
             NSDictionary *wave;
             CGPoint waveStationPo;
@@ -158,7 +189,7 @@
                 waveStationPo = CGPointFromString([wave objectForKey:@"position"]);
                 isCanPLay = [(NSNumber*)[wave objectForKey:@"open"] intValue];
                 
-                //if (isCanPLay == 1) {
+                if (isCanPLay == 1) {
                     btnWaveStation = [[CCMenuItemImage alloc] initFromNormalImage:@"btnWaveStation.png" selectedImage:@"btnWaveStation.png" disabledImage:@"btnWaveStation.png" target:self  selector:@selector(setMagic:)];
                     btnWaveStation.scale = 0.85;
                     btnWaveStation.tag = [(NSNumber*)[wave objectForKey:@"id"] intValue];
@@ -181,7 +212,7 @@
                         waveScore.position = CGPointMake(waveStationPo.x - 15 + (i * 15), waveStationPo.y + 35);
                         [self addChild:waveScore z:2];
                     }
-                //}        
+                }        
             }
         }
 		
@@ -217,7 +248,7 @@
 	else {
 		btnPlay.isEnabled = NO;
 	}
-
+	
 }
 
 -(void) removeJn1:(id) sender 
@@ -341,6 +372,32 @@
     btnWaveStationLight.position = po;
     btnWaveStationLight.visible = YES;
 	[self setMagicShow];
+}
+
+-(void) resetGame:(id) sender 
+{
+    resetBg.visible = YES;
+    btnYes.visible =YES;
+    btnNo.visible = YES;
+    btnTouMing.visible = YES;
+}
+
+-(void) yesToResetGame:(id) sender 
+{
+    btnTouMing.visible = NO;
+    resetBg.visible = NO;
+    btnYes.visible =NO;
+    btnNo.visible = NO;
+    [DataController setFirst];
+    [[CCDirector sharedDirector] replaceScene: [SceneManager TransFadeDown:0.56f layer:[MainMenuSence node]]];
+}
+
+-(void) noToResetGame:(id) sender 
+{
+    resetBg.visible = NO;
+    btnYes.visible =NO;
+    btnNo.visible = NO;
+    btnTouMing.visible = NO;
 }
 
 -(void) goToMainMenuSence:(id) sender 

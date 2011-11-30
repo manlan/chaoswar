@@ -18,4 +18,6 @@
 //攻击模式
 @property TAcctactType attactMode;
 
+@property (nonatomic, retain) NSString *smallPic;
+
 @end
