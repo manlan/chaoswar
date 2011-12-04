@@ -161,7 +161,6 @@
         self.spriteStatus = TSS_DEAD;
         return;
     }
-    self.enemy.canSchedule = NO;
     CGPoint p = [self.enemy getPositionAfterTime:self.moveTime];
     self.position = ccp(p.x, p.y + 100);
     id actionMove = [CCMoveTo actionWithDuration:self.moveTime position:p];
@@ -184,6 +183,8 @@
 
 -(void) afterRepeat:(id)sender {    
     if (self.enemy && self.enemy.spriteStatus == TSS_NORMAL) {
+        self.enemy.canSchedule = NO;
+        [self.enemy doMagicStopStatus];
         [self.enemy beAttact:self an:self.attact at:self.attactMode];
         if (self.enemy) {
             //self.enemy.enemyStatus = US_WAITING;

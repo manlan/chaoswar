@@ -43,6 +43,8 @@
 
 - (int) friendlyCount;
 
+- (void) tellFriendly;
+
 //魔法控制部分
 
 - (void) doMagicThunder;

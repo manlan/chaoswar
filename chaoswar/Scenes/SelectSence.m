@@ -5,6 +5,7 @@
 #import "GameBackgroundScene.h"
 #import "LoadingSence.h"
 #import "DataController.h"
+#import "SimpleAudioEngine.h"
 
 @implementation SelectSence
 
@@ -189,7 +190,7 @@
                 waveStationPo = CGPointFromString([wave objectForKey:@"position"]);
                 isCanPLay = [(NSNumber*)[wave objectForKey:@"open"] intValue];
                 
-                if (isCanPLay == 1) {
+                //if (isCanPLay == 0) {
                     btnWaveStation = [[CCMenuItemImage alloc] initFromNormalImage:@"btnWaveStation.png" selectedImage:@"btnWaveStation.png" disabledImage:@"btnWaveStation.png" target:self  selector:@selector(setMagic:)];
                     btnWaveStation.scale = 0.85;
                     btnWaveStation.tag = [(NSNumber*)[wave objectForKey:@"id"] intValue];
@@ -212,7 +213,7 @@
                         waveScore.position = CGPointMake(waveStationPo.x - 15 + (i * 15), waveStationPo.y + 35);
                         [self addChild:waveScore z:2];
                     }
-                }        
+                //}        
             }
         }
 		
@@ -356,6 +357,7 @@
 
 -(void) goToLoadingSence:(id) sender 
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     [[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[LoadingSence scene:guanKa JN1:intJN001 JN2:intJN002]]];
 }
 
@@ -376,6 +378,7 @@
 
 -(void) resetGame:(id) sender 
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     resetBg.visible = YES;
     btnYes.visible =YES;
     btnNo.visible = YES;
@@ -384,6 +387,7 @@
 
 -(void) yesToResetGame:(id) sender 
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     btnTouMing.visible = NO;
     resetBg.visible = NO;
     btnYes.visible =NO;
@@ -394,6 +398,7 @@
 
 -(void) noToResetGame:(id) sender 
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     resetBg.visible = NO;
     btnYes.visible =NO;
     btnNo.visible = NO;
@@ -402,11 +407,13 @@
 
 -(void) goToMainMenuSence:(id) sender 
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     [[CCDirector sharedDirector] replaceScene: [SceneManager TransFadeDown:0.56f layer:[MainMenuSence node]]];
 }
 
 -(void) goToUpdataSence:(id) sender 
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     [[CCDirector sharedDirector] replaceScene: [SceneManager TransZoomFlipX:0.56f layer:[UpdataSence node]]];
 }
 

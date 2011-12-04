@@ -2,66 +2,143 @@
 #import "GameController.h"
 #import "GamePubDef.h"
 
+@implementation MEMagic
+
+@synthesize enemy = _enemy;
+@synthesize magicTime = _magicTime;
+
+- (id) init {
+    self = [super init];
+    if (self) {
+       arrayMagicEnemy = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+- (BOOL) run {
+    if (!_enemy) {
+        return NO;
+    }
+    [[CCScheduler sharedScheduler] scheduleSelector:@selector(doingMagic:) forTarget:self interval:_magicTime paused:NO];
+    return YES;
+}
+
+- (void) doingMagic:(ccTime)dt {
+    [arrayMagicEnemy removeAllObjects];
+    [arrayMagicEnemy addObjectsFromArray:[_enemy searchMagicEnemy]];
+    if ([arrayMagicEnemy count] > 0) {
+        [_enemy unscheduleAllSelectors];
+        [_enemy stopAllActions];
+        _enemy.doMagic = YES;
+        id actionAttact = [CCAnimate actionWithAnimation:[_enemy getAnimate:_enemy.mcAniName] restoreOriginalFrame:NO];
+        id actionAttactDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterMagic:)];
+        [_enemy runAction:[CCSequence actions:actionAttact, actionAttactDone, nil]];
+    }
+}
+
+-(void) afterMagic:(id)sender {
+    [_enemy doMagicLogic:arrayMagicEnemy];
+    _enemy.doMagic = NO;
+    [_enemy doUnitLogic];
+}
+
+- (BOOL) stop {
+    [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
+    return YES;
+}
+
+- (void)dealloc {
+    [self stop];
+    [arrayMagicEnemy release];
+    [super dealloc];
+}
+
+@end;
+
 @implementation TDMagicEnemy
 
 @synthesize magicRange = _magicRange;
+@synthesize doMagic = _doMagic;
 
 -(id) init
 {
     self = [super init];
 	if(self) {
         _magicRange = 100;
+        meMagic = [[MEMagic alloc] init];
+        meMagic.enemy = self;
+        meMagic.magicTime = 7;
+        _doMagic = NO;
 	}
 	return self;
 }
 
+- (void) clearSpriteData
+{
+    _doMagic = NO;
+    if (meMagic) {
+        [meMagic stop];
+        [meMagic release];
+        meMagic = nil;
+    }
+    [super clearSpriteData];
+}
 
 - (BOOL) run
 {
     if ([super run] == NO) return NO;
-    [self doMagic];
+    [meMagic run];
     return YES;
 }
 
-- (void) doMagic
-{
-    [self schedule:@selector(startMagic:) interval:5];
+- (void)doUnitLogic {
+    if (_doMagic) return;
+    [super doUnitLogic];
 }
 
-- (void) startMagic:(ccTime)dt {
-    [self unschedule:@selector(startMagic:)];
-    [self schedule:@selector(doingMagic:)];
-}
-
-- (TDEnemy*) searchMagicEnemy {
+- (NSArray*) searchMagicEnemy {
+    NSMutableArray *array = [NSMutableArray array];
+    float x_min = self.position.x - self.magicRange;
+    float x_max = self.position.x + self.magicRange;
+    float y_min = self.position.y - self.magicRange;
+    float y_max = self.position.y + self.magicRange;
+    WayPoint *wp = [self.way objectAtIndex:self.nextWayPoint];
+    CGPoint position = wp.point;
+    float x_plus = position.x - self.position.x;
+    float y_plus = position.y - self.position.y;
+    if (abs(x_plus) > abs(y_plus)) {
+        if (x_plus > 0) {
+            x_min = self.position.x;
+        } else {
+            x_max = self.position.x;
+        }
+    } else {
+        if (y_plus > 0) {
+            y_min = self.position.y;
+        } else {
+            y_max = self.position.y;
+        }
+    }
     double maxDistant = self.magicRange;
 	GameController *gc = [GameController getGameController];
 	for (TDEnemy *e in gc.enemyArray) {
         if (e && e.spriteStatus == TSS_NORMAL && e != self) {
             double curDistance = ccpDistance(self.position, e.position);
             if (curDistance <= maxDistant) {
-                return e;
+                if (   e.position.x >= x_min
+                    && e.position.x <= x_max
+                    && e.position.y >= y_min
+                    && e.position.y <= y_max) {
+                    [array addObject:e];
+                }
             }
         }
 	}
-	return nil;
+	return array;
 }
 
-- (void) doingMagic:(ccTime)dt {
-    magicEnemy = [self searchMagicEnemy];
-    if (magicEnemy) {
-        [self unscheduleAllSelectors];
-        [self stopAllActions];
-        id actionAttact = [CCAnimate actionWithAnimation:[self getAnimate:self.mcAniName] restoreOriginalFrame:NO];
-        id actionAttactDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterMagic:)];
-        [self runAction:[CCSequence actions:actionAttact, actionAttactDone, nil]];
-    }
-}
+- (void) doMagicLogic:(NSMutableArray*)array {
 
--(void) afterMagic:(id)sender {
-    [self run];
-    magicEnemy = nil;
-    [self schedule:@selector(startMagic:) interval:5];
 }
 
 - (void) addAnimate:(int)level
@@ -98,9 +175,13 @@
     return enemy;
 }
 
--(void) afterMagic:(id)sender {
-    [magicEnemy doMagicLifeStatus];
-    [super afterMagic:sender];
+- (void) doMagicLogic:(NSMutableArray*)array {
+    if (!array) {
+        return;
+    }
+    for (TDEnemy *e in array) {
+        [e doMagicLifeStatus];
+    }
 }
 
 - (void) dealloc
@@ -131,9 +212,13 @@
     return enemy;
 }
 
--(void) afterMagic:(id)sender {
-    [magicEnemy doMagicSpeedStatus];
-    [super afterMagic:sender];
+- (void) doMagicLogic:(NSMutableArray*)array {
+    if (!array) {
+        return;
+    }
+    for (TDEnemy *e in array) {
+        [e doMagicSpeedStatus];
+    }
 }
 
 - (void) dealloc

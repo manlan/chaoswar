@@ -221,11 +221,13 @@ static GameController *_sharedController = nil;
 
 - (void) setCurrentHealth:(int)currentHealth
 {
+    if (currentHealth < _currentHealth) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"lifePlus.wav"];
+    }
     _currentHealth = currentHealth;
     [_gameImfomation setEnemyNumValue];
     [self setGameStatus];
     if (_currentHealth <= 0) {
-        //弹出失败界面
         [[CCDirector sharedDirector] pause];
         //背景
         CCSprite *lostBg = [CCSprite spriteWithFile:@"lostBg.png"];
@@ -248,6 +250,7 @@ static GameController *_sharedController = nil;
 
 -(void) backToMenu:(id) sender 
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     [[CCDirector sharedDirector] resume];
     [self stopGame];
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"mainBg.mp3"];
@@ -256,6 +259,7 @@ static GameController *_sharedController = nil;
 
 -(void) restartGame:(id) sender 
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     [[CCDirector sharedDirector] resume];
     [_gameHint removeAllChildrenWithCleanup:YES];
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"mainBg.mp3"];
@@ -449,7 +453,7 @@ static GameController *_sharedController = nil;
     }
     
     CCLabelTTF *hintLabel = [CCLabelTTF labelWithString:hint fontName:@"Georgia-Bold" fontSize:10];
-    hintLabel.position = ccp(270, 40);
+    hintLabel.position = ccp(290, 40);
     hintLabel.anchorPoint = ccp(0.5, 0);
     hintLabel.scale = 1;
     hintLabel.color = ccc3(0, 0, 0);

@@ -2,6 +2,7 @@
 #import "GameHintScene.h"
 #import "GameController.h"
 #import "SpriteInfoScene.h"
+#import "SimpleAudioEngine.h"
 
 @implementation GameMagicScene
 
@@ -100,8 +101,9 @@
 - (NBSkillButton*) addButton:(int)magicNum selector:(SEL)sel point:(CGPoint)point
 {
     NSString * jn = [NSString stringWithFormat:@"jN%03d.png", magicNum];
+    NSString * jnLiang = [NSString stringWithFormat:@"jN%03dLiang.png", magicNum];
     NSString * jnHUI = [NSString stringWithFormat:@"jN%03dHui.png", magicNum];
-    NBSkillButton *btnMagic = [NBSkillButton itemFromNormalImage:jn selectedImage:jn disabledImage:jnHUI target:self selector:sel];
+    NBSkillButton *btnMagic = [NBSkillButton itemFromNormalImage:jn selectedImage:jnLiang disabledImage:jnHUI target:self selector:sel];
     [btnMagic setScale:0.75];
     CCMenu *btnMagicMenu = [CCMenu menuWithItems:btnMagic, nil];
     btnMagicMenu.position = point;
@@ -175,6 +177,7 @@
 
 -(void) GoNext:(id) sender 
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     [_btnGo stopAllActions];
 	GameController *gc = [GameController getGameController];
 	[gc startNextWave];
@@ -207,17 +210,23 @@
     }
 
     GameController *gc = [GameController getGameController];
-    if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_FRIENDLY) {
-        [_btnMagic1 setIsEnabled:NO];
-        return;
-    }
-    
+//    if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_FRIENDLY) {
+//        [_btnMagic1 setIsEnabled:NO];
+//        return;
+//    }
+//    
     if ([CCDirector sharedDirector].isPaused) {
         [_btnMagic1 setIsEnabled:NO];
         return;
     }
     
     [_btnMagic1 setIsEnabled:YES];
+    
+    if (gc.operateType == OT_MAGIC_FRIENDLY) {
+        [_btnMagic1 selected];
+    } else {
+        [_btnMagic1 unselected];
+    }
 }
 
 - (void) setMagic2MenuStatus
@@ -230,10 +239,10 @@
     }
 
     GameController *gc = [GameController getGameController];
-    if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_FIRE) {
-        [_btnMagic2 setIsEnabled:NO];
-        return;
-    }
+//    if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_FIRE) {
+//        [_btnMagic2 setIsEnabled:NO];
+//        return;
+//    }
     
     if ([CCDirector sharedDirector].isPaused) {
         [_btnMagic2 setIsEnabled:NO];
@@ -241,6 +250,12 @@
     }
     
     [_btnMagic2 setIsEnabled:YES];
+    
+    if (gc.operateType == OT_MAGIC_FIRE) {
+        [_btnMagic2 selected];
+    } else {
+        [_btnMagic2 unselected];
+    }
 }
 
 - (void) setMagic3MenuStatus
@@ -253,10 +268,10 @@
     }
 
     GameController *gc = [GameController getGameController];
-    if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_THUNDER) {
-        [_btnMagic3 setIsEnabled:NO];
-        return;
-    }
+//    if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_THUNDER) {
+//        [_btnMagic3 setIsEnabled:NO];
+//        return;
+//    }
     
     if ([CCDirector sharedDirector].isPaused) {
         [_btnMagic3 setIsEnabled:NO];
@@ -264,6 +279,12 @@
     }
     
     [_btnMagic3 setIsEnabled:YES];
+    
+    if (gc.operateType == OT_MAGIC_THUNDER) {
+        [_btnMagic3 selected];
+    } else {
+        [_btnMagic3 unselected];
+    }
 }
 
 - (void) setMagic4MenuStatus
@@ -276,10 +297,10 @@
     }
 
     GameController *gc = [GameController getGameController];
-    if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_STOP) {
-        [_btnMagic4 setIsEnabled:NO];
-        return;
-    }
+//    if (gc.operateType != OT_NORMAL && gc.operateType != OT_MAGIC_STOP) {
+//        [_btnMagic4 setIsEnabled:NO];
+//        return;
+//    }
     
     if ([CCDirector sharedDirector].isPaused) {
         [_btnMagic4 setIsEnabled:NO];
@@ -287,6 +308,12 @@
     }
     
     [_btnMagic4 setIsEnabled:YES];
+    
+    if (gc.operateType == OT_MAGIC_STOP) {
+        [_btnMagic4 selected];
+    } else {
+        [_btnMagic4 unselected];
+    }
 }
 
 - (void) restartMagicFire

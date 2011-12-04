@@ -65,7 +65,6 @@ const TDSprite *_lastSprite = nil;
 -(id) init
 {
 	if( (self=[super init])) {
-        needDoTouchDispatcher = YES;
         [DataController setNewEnemyAddOne:[NSString stringWithUTF8String:object_getClassName(self)]];
         _isSelected = NO;
         //初始化属性
@@ -146,7 +145,7 @@ const TDSprite *_lastSprite = nil;
 - (void) doSelect
 {
     _isSelected = YES;
-    _arrowSprite.position = ccp(self.textureRect.size.width / 2, self.textureRect.size.height + 15);
+    _arrowSprite.position = ccp(self.textureRect.size.width / 2, self.textureRect.size.height + 20);
     _arrowSprite.scale = 0.35;
     [_arrowSprite setVisible:YES];
     [_arrowSprite runAction:[CCRepeatForever actionWithAction:[CCBlink actionWithDuration:0.5 blinks:1]]];
@@ -177,20 +176,14 @@ const TDSprite *_lastSprite = nil;
 - (void) onEnter
 {
     if (_canClick) {
-        if (needDoTouchDispatcher) {
-            NSLog(@"%@ 注册了点击事件", [NSString stringWithUTF8String:object_getClassName(self)]);
-            [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
-        }
+        [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
     }
 	[super onEnter];
 }
 
 - (void) onExit
 {
-    if (needDoTouchDispatcher) {
-        NSLog(@"%@ 注销了点击事件", [NSString stringWithUTF8String:object_getClassName(self)]);
-        [[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
-    }
+    [[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
 	[super onExit];
 }	
 
@@ -337,6 +330,9 @@ const TDSprite *_lastSprite = nil;
 - (void) setCurrentHP:(int)currentHP
 {
     _currentHP = currentHP;
+    if (_spriteStatus != TSS_NORMAL) {
+        return;
+    }
     float scalex = self.textureRect.size.width / 100;
     [_bloodBackSprite setScaleX:scalex];
     scalex = scalex * _currentHP / _maxHP;
@@ -405,9 +401,7 @@ const TDSprite *_lastSprite = nil;
     if (self.parent) {
         CCNode *p = self.parent;
         CGSize size = [[CCDirector sharedDirector] winSize];
-        needDoTouchDispatcher = NO;
         [self removeFromParentAndCleanup:NO];
-        needDoTouchDispatcher = YES;
         [p addChild:self z:size.height - newPosition.y + _baseZOrder];
     }
 }
@@ -423,6 +417,10 @@ const TDSprite *_lastSprite = nil;
 
 - (void) unshowImformation {
     [[GameController getGameController].spriteInfo removeAllChildrenWithCleanup:YES];
+}
+
+- (CGPoint)headPoint {
+    return ccp(self.position.x + self.textureRect.size.width / 2, self.position.y + self.textureRect.size.height);
 }
 
 @end

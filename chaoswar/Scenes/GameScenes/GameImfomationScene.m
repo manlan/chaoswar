@@ -3,6 +3,7 @@
 #import "GameController.h"
 #import "SceneManager.h"
 #import "SelectSence.h"
+#import "SimpleAudioEngine.h"
 
 @implementation GameImfomationScene
 
@@ -98,6 +99,7 @@
 
 -(void) Resume:(id) sender 
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     [[CCDirector sharedDirector] resume];
 	GameController *gc = [GameController getGameController];
 	[gc.gameHint removeAllChildrenWithCleanup:YES];
@@ -106,6 +108,7 @@
 
 -(void) Menu:(id) sender 
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     [[CCDirector sharedDirector] resume];
     [[GameController getGameController] releaseScene];
 //    GameController *gc = [GameController getGameController];
@@ -116,9 +119,11 @@
 
 -(void) Restart:(id) sender 
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     [[CCDirector sharedDirector] resume];
 	GameController *gc = [GameController getGameController];
     [gc.gameHint removeAllChildrenWithCleanup:YES];
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"mainBg.mp3"];
 	[gc restart];
     [gc setGameStatus];
 }

@@ -61,7 +61,7 @@
     [_ddAniName release];
     [_mcAniName release];
     [_magicController release];
-    [_smallPic release];
+    [self.smallPic release];
     [super dealloc];
 }
 
@@ -151,17 +151,23 @@
 
 - (void) doMagicStopStatus
 {
-    [_magicController doMagicStopStatus];
+    if (self.spriteStatus == TSS_NORMAL) {
+        [_magicController doMagicStopStatus];
+    }
 }
 
 - (void) doMagicSpeedStatus
 {
-    [_magicController doMagicSpeedStatus];
+    if (self.spriteStatus == TSS_NORMAL) {
+        [_magicController doMagicSpeedStatus];
+    }
 }
 
 - (void) doMagicLifeStatus
 {
-    [_magicController doMagicLifeStatus];
+    if (self.spriteStatus == TSS_NORMAL) {
+        [_magicController doMagicLifeStatus];
+    }
 }
 
 //================魔法的操作================

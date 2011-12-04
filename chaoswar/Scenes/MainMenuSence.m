@@ -57,17 +57,20 @@
 
 -(void) goToSelectSence:(id) sender 
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     [[CCDirector sharedDirector] replaceScene: [SceneManager TransFadeUp:0.56f layer:[SelectSence node]]];
     //[[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[GameBackgroundScene scene:0 JN1:1 JN2:2]]];
 }
 
 -(void) goToHelpSence:(id) sender 
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     [[CCDirector sharedDirector] replaceScene: [SceneManager TransFadeUp:0.56f layer:[HelpSence node]]];
 }
 
 -(void) goToCreditsSence:(id) sender 
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     [[CCDirector sharedDirector] replaceScene: [SceneManager TransFadeUp:0.56f layer:[CreditsSence node]]];
 }
 

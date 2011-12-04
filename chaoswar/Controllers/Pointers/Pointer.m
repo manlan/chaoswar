@@ -17,6 +17,7 @@
 #import "SelectSence.h"
 #import "SceneManager.h"
 #import "DataController.h"
+#import "GameEndSence.h"
 
 @implementation Pointer
 
@@ -155,50 +156,50 @@
         
         //评价
         int score = 0;
-        if (gc.currentHealth < 10) {
+        if (gc.currentHealth < 5) {
             score = 1;
-        } else if (gc.currentHealth < 18) {
+        } else if (gc.currentHealth < 9) {
             score = 2;
         } else {
             score = 3;
         }
         
-        //        CCSprite *xing;
-        //        int y = 200;
-        //        for (int i= 1; i <= score; i++) {
-        //            xing = [CCSprite spriteWithFile:@"bigStar.png"];
-        //            xing.position = ccp(y , 155);
-        //            [gc.gameHint addChild:xing z:101];
-        //            y= y+40;
-        //        }
-		
-		int y = 200;
-        
+        CCSprite *xing;
+        int y = 200;
         for (int i= 1; i <= score; i++) {
-            CCSpriteBatchNode *spritebatchBigStar;
-            CCSprite *spriteBigStar;
-            CCAnimation *animationBigStar;
-            
-            [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"bigStarSheet.plist"];
-            spritebatchBigStar = [CCSpriteBatchNode batchNodeWithFile:@"bigStarSheet.png"];
-            [gc.gameHint addChild:spritebatchBigStar z:101];
-            
-            NSMutableArray *animFramesBigStar = [NSMutableArray array];
-            for(int i = 1; i < 6; i++) {
-                CCSpriteFrame *frameBigStar = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"bigStar%04d.png",i]];
-                if (i==1) {
-                    spriteBigStar = [[CCSprite alloc] initWithSpriteFrame:frameBigStar];
-                }
-                [animFramesBigStar addObject:frameBigStar];
-            }
-            animationBigStar = [CCAnimation animationWithFrames:animFramesBigStar delay:0.05f];
-            [spritebatchBigStar addChild:spriteBigStar];
-            [spriteBigStar release];
-            spriteBigStar.position = ccp(y , 155);
-            [spriteBigStar runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:1.5 animation:animationBigStar restoreOriginalFrame:NO] ]];
-            
+            xing = [CCSprite spriteWithFile:@"bigStar.png"];
+            xing.position = ccp(y , 155);
+            [gc.gameHint addChild:xing z:101];
             y= y+40;
         }
+		
+        //		int y = 200;
+        //        
+        //        for (int i= 1; i <= score; i++) {
+        //            CCSpriteBatchNode *spritebatchBigStar;
+        //            CCSprite *spriteBigStar;
+        //            CCAnimation *animationBigStar;
+        //            
+        //            [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"bigStarSheet.plist"];
+        //            spritebatchBigStar = [CCSpriteBatchNode batchNodeWithFile:@"bigStarSheet.png"];
+        //            [gc.gameHint addChild:spritebatchBigStar z:101];
+        //            
+        //            NSMutableArray *animFramesBigStar = [NSMutableArray array];
+        //            for(int i = 1; i < 6; i++) {
+        //                CCSpriteFrame *frameBigStar = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"bigStar%04d.png",i]];
+        //                if (i==1) {
+        //                    spriteBigStar = [[CCSprite alloc] initWithSpriteFrame:frameBigStar];
+        //                }
+        //                [animFramesBigStar addObject:frameBigStar];
+        //            }
+        //            animationBigStar = [CCAnimation animationWithFrames:animFramesBigStar delay:0.05f];
+        //            [spritebatchBigStar addChild:spriteBigStar];
+        //            [spriteBigStar release];
+        //            spriteBigStar.position = ccp(y , 155);
+        //            [spriteBigStar runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:1.5 animation:animationBigStar restoreOriginalFrame:NO] ]];
+        //            
+        //            y= y+40;
+        //}
 		
         [gc setGameStatus];
     }
@@ -206,19 +207,19 @@
 
 -(void) winAndEnd:(id) sender 
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     [[CCDirector sharedDirector] resume];
     GameController *gc = [GameController getGameController];
-    [gc stopGame];
     //更新得分和开通下关关卡
     int score = 0;
-    if (gc.currentHealth < 10) {
+    if (gc.currentHealth < 5) {
         score = 1;
-    } else if (gc.currentHealth < 18) {
+    } else if (gc.currentHealth < 9) {
         score = 2;
     } else {
         score = 3;
     }
-    
+    [gc releaseScene];
     [DataController setSelect:gc.ptNum s:score];
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"mainBg.mp3"];
 	[[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[SelectSence scene]]];
@@ -228,6 +229,7 @@
 {
     GameController *gc = [GameController getGameController];
     if ([gc.enemyArray count] == 0) {
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"winBg.wav" loop:NO];
         [[CCScheduler sharedScheduler] unscheduleSelector:@selector(endGameReady:) forTarget:self];
         [[CCDirector sharedDirector] pause];
         GameController *gc = [GameController getGameController];
@@ -242,27 +244,46 @@
         btnWinMenu.position = ccp(240 , 110);
         [gc.gameHint addChild:btnWinMenu z:101];
         
+        //评价
+        int score = 0;
+        if (gc.currentHealth < 5) {
+            score = 1;
+        } else if (gc.currentHealth < 9) {
+            score = 2;
+        } else {
+            score = 3;
+        }
+        
+        CCSprite *xing;
+        int y = 200;
+        for (int i= 1; i <= score; i++) {
+            xing = [CCSprite spriteWithFile:@"bigStar.png"];
+            xing.position = ccp(y , 155);
+            [gc.gameHint addChild:xing z:101];
+            y= y+40;
+        }
+        
         [gc setGameStatus];
     }
 }
 
 -(void) winAndGameEnd:(id) sender 
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     [[CCDirector sharedDirector] resume];
     GameController *gc = [GameController getGameController];
-    [gc stopGame];
     //更新得分和开通下关关卡
     int score = 0;
-    if (gc.currentHealth < 10) {
+    if (gc.currentHealth < 5) {
         score = 1;
-    } else if (gc.currentHealth < 18) {
+    } else if (gc.currentHealth < 9) {
         score = 2;
     } else {
         score = 3;
     }
-    
+    [gc releaseScene];
     [DataController setSelect:gc.ptNum s:score];
-	[[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[SelectSence scene]]];
+	[[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[GameEndSence scene]]];
 }
 
 - (void) addWaveTip:(CGPoint)pos
@@ -318,6 +339,7 @@
 
 - (BOOL) runWaves:(int)wave
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"waveSound.wav"];
     GameController *gc = [GameController getGameController];
     [gc.gameMagic.btnGo stopAllActions];
     [[CCScheduler sharedScheduler] unscheduleSelector:@selector(minusNextWave:) forTarget:self];

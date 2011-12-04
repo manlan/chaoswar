@@ -104,10 +104,10 @@ const NSMutableArray* regfriendlyArray = nil;
 - (CGPoint) getPositionAfterTime:(ccTime)dt
 {
     if (self.unitStatus != US_NORMAL) {
-        return self.position;
+        return ccp(self.position.x, self.position.y + self.textureRect.size.height);
     }
     if (!self.canSchedule) {
-        return self.position;
+        return ccp(self.position.x, self.position.y + self.textureRect.size.height);
     }
     CGFloat doDistance = self.moveSpeed * dt;
     CGPoint currentPos = self.position;
@@ -126,13 +126,13 @@ const NSMutableArray* regfriendlyArray = nil;
             y = y * doDistance;
             y = y / curDistance;
             y = currentPos.y + y;
-            return ccp(x, y);
+            return ccp(x, y + self.textureRect.size.height);
         }
         doDistance = doDistance - curDistance;
         currentPos = nextPos;
         iWave++;
     }
-    return currentPos;
+    return ccp(currentPos.x, currentPos.y + self.textureRect.size.height);
 }
 
 //================主要逻辑================
@@ -304,7 +304,7 @@ const NSMutableArray* regfriendlyArray = nil;
     GameController *gc = [GameController getGameController];
     for (TDEnemy* e in gc.enemyArray) {
         if (e.spriteStatus == TSS_NORMAL) {
-            e.position = e.position;
+            [e tellFriendly];
         }
     }
 }
@@ -360,21 +360,24 @@ const NSMutableArray* regfriendlyArray = nil;
 {
     [super setPosition:newPosition];
     if (self.spriteStatus == TSS_NORMAL) {
-        if (!regfriendlyArray) {
-            regfriendlyArray = [[NSMutableArray alloc] init];
-        }
-        for (int i = 0; i < [regfriendlyArray count]; i++) {
-            TDFriendly* f = [regfriendlyArray objectAtIndex:i];
-            if (f.spriteStatus == TSS_NORMAL) {
-                double curDistance = ccpDistance(f.searchPoint, self.position);
-                if (curDistance <= f.searchRange) {
-                    [f AttactEnemy:self];
-                }
+        [self tellFriendly];
+    }
+}
+
+- (void) tellFriendly {
+    if (!regfriendlyArray) {
+        regfriendlyArray = [[NSMutableArray alloc] init];
+    }
+    for (int i = 0; i < [regfriendlyArray count]; i++) {
+        TDFriendly* f = [regfriendlyArray objectAtIndex:i];
+        if (f.spriteStatus == TSS_NORMAL) {
+            double curDistance = ccpDistance(f.searchPoint, self.position);
+            if (curDistance <= f.searchRange) {
+                [f AttactEnemy:self];
             }
         }
     }
 }
-
 //================友军的操作================
 
 //================魔法的操作================
@@ -404,7 +407,6 @@ const NSMutableArray* regfriendlyArray = nil;
     gc.screenClickType = SCT_ALL;
     gc.operateType = OT_NORMAL;
     [gc.gameMagic restartMagicStop];
-    [self doMagicStopStatus];
 }
 
 //================魔法的操作================

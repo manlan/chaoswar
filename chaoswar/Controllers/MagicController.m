@@ -176,12 +176,19 @@
     [magicSprite removeFromParentAndCleanup:YES];
     unit.canSchedule = NO;
     [unit stopAllActions];
-    id actionStop = [CCAnimate actionWithDuration:8 animation:[gc getAnimation:@"mcef03"] restoreOriginalFrame:NO];
+    id actionStop = [CCAnimate actionWithAnimation:[gc getAnimation:@"mcef03"] restoreOriginalFrame:NO];
 	id actionAfterStop = [CCCallFuncN actionWithTarget:self selector:@selector(afterMagicStopStatus:)];
     magicSprite.position = ccp(unit.contentSize.width / 2, unit.contentSize.height + 2);
     [magicSprite setVisible:YES];
+    magicSprite.scale = 0.6;
     [unit addChild:magicSprite z:5];
-	[magicSprite runAction:[CCSequence actions:actionStop, actionAfterStop, nil]];
+    NSMutableArray *arrayAction = [NSMutableArray array];
+    for (int i = 0; i < 23; i++) {
+        [arrayAction addObject:actionStop];
+    }
+    [arrayAction addObject:actionAfterStop];
+	[magicSprite runAction:[CCSequence actionsWithArray:arrayAction]];
+    [arrayAction removeAllObjects];
     [unit doUnitLogic];
 }
 
@@ -268,7 +275,7 @@
     [unit stopAllActions];
     id actionLifeEffect = [CCAnimate actionWithAnimation:[gc getAnimation:@"mcef02"] restoreOriginalFrame:NO];
 	id actionAfterSpeed = [CCHide action];
-    [[CCScheduler sharedScheduler] scheduleSelector:@selector(afterMagicSpeedStatus:) forTarget:self interval:2 paused:NO];
+    [[CCScheduler sharedScheduler] scheduleSelector:@selector(afterMagicLifeStatus:) forTarget:self interval:2 paused:NO];
     magicSprite.position = ccp(unit.contentSize.width / 2, 0);
     [magicSprite setVisible:YES];
     [unit addChild:magicSprite z:5];

@@ -2,6 +2,7 @@
 #import "SelectSence.h"
 #import "SceneManager.h"
 #import "DataController.h"
+#import "SimpleAudioEngine.h"
 
 @implementation UpdataSence
 
@@ -149,6 +150,7 @@
 
 -(void) goToSelectSence:(id) sender 
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     [[CCDirector sharedDirector] replaceScene: [SceneManager TransZoomFlipX:0.56f layer:[SelectSence node]]];
 }
 
@@ -157,6 +159,10 @@
     if (gLock == YES) {
         return;
     }
+//    [[SimpleAudioEngine sharedEngine] setEffectsVolume:2.0f];
+//    [[SimpleAudioEngine sharedEngine] playEffect:@"jinBi.wav"];
+    //[[SimpleAudioEngine sharedEngine] setEffectsVolume:1.0f];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"shengJi.wav"];
     
     NSString *errorDesc = nil;
     NSPropertyListFormat format;
@@ -305,6 +311,7 @@
     if (gLock == YES) {
         return;
     }
+    
     int intId = jnId;
     itemId = intId;
     

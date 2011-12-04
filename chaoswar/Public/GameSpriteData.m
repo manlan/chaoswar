@@ -47,19 +47,6 @@ float getArrowTower1Attact()
     int level = [DataController getUpdataLevelByTagName:4];
     if(level >= 2)
     {
-        return 6;
-    }
-	else
-    {
-        return 5;
-    }
-}
-
-float getArrowTower2Attact()
-{	
-    int level = [DataController getUpdataLevelByTagName:4];
-    if(level >= 2)
-    {
         return 10;
     }
 	else
@@ -68,16 +55,29 @@ float getArrowTower2Attact()
     }
 }
 
+float getArrowTower2Attact()
+{	
+    int level = [DataController getUpdataLevelByTagName:4];
+    if(level >= 2)
+    {
+        return 14;
+    }
+	else
+    {
+        return 12;
+    }
+}
+
 float getArrowTower3Attact()
 {	
     int level = [DataController getUpdataLevelByTagName:4];
     if(level >= 2)
     {
-        return 15;
+        return 18;
     }
 	else
     {
-        return 12;
+        return 15;
     }
 }
 
@@ -125,15 +125,28 @@ float getDefenceTower1HP()
     int level = [DataController getUpdataLevelByTagName:5];
     if(level == 3)
     {
-        return 60;
+        return 50;
     }
 	else
     {
-        return 40;
+        return 35;
     }
 }
 
 float getDefenceTower2HP()
+{	
+    int level = [DataController getUpdataLevelByTagName:5];
+    if(level == 3)
+    {
+        return 70;
+    }
+	else
+    {
+        return 50;
+    }
+}
+
+float getDefenceTower3HP()
 {	
     int level = [DataController getUpdataLevelByTagName:5];
     if(level == 3)
@@ -143,19 +156,6 @@ float getDefenceTower2HP()
 	else
     {
         return 70;
-    }
-}
-
-float getDefenceTower3HP()
-{	
-    int level = [DataController getUpdataLevelByTagName:5];
-    if(level == 3)
-    {
-        return 150;
-    }
-	else
-    {
-        return 100;
     }
 }
 
@@ -190,11 +190,11 @@ float getTurrettower3Attact()
     int level = [DataController getUpdataLevelByTagName:6];
     if(level >= 2)
     {
-        return 33;
+        return 30;
     }
 	else
     {
-        return 28;
+        return 25;
     }
 }
 
@@ -203,7 +203,7 @@ float getTurrettower1AttactTime()
     int level = [DataController getUpdataLevelByTagName:6];
     if(level == 3)
     {
-        return 2.2;
+        return 2.3;
     }
 	else
     {
@@ -216,11 +216,11 @@ float getTurrettower2AttactTime()
     int level = [DataController getUpdataLevelByTagName:6];
     if(level == 3)
     {
-        return 2;
+        return 2.2;
     }
 	else
     {
-        return 2.2;
+        return 2.3;
     }
 }
 
@@ -229,11 +229,11 @@ float getTurrettower3AttactTime()
     int level = [DataController getUpdataLevelByTagName:6];
     if(level == 3)
     {
-        return 1.9;
+        return 2.1;
     }
 	else
     {
-        return 2;
+        return 2.2;
     }
 }
 
@@ -281,11 +281,11 @@ float getMagicTower1Attact()
     int level = [DataController getUpdataLevelByTagName:7];
     if(level >= 2)
     {
-        return 25;
+        return 22;
     }
 	else
     {
-        return 20;
+        return 17;
     }
 }
 
@@ -294,11 +294,11 @@ float getMagicTower2Attact()
     int level = [DataController getUpdataLevelByTagName:7];
     if(level >= 2)
     {
-        return 35;
+        return 33;
     }
 	else
     {
-        return 30;
+        return 28;
     }
 }
 
@@ -320,11 +320,11 @@ float getMFLAttact()
     int level = [DataController getUpdataLevelByTagName:0];
     if(level >= 2)
     {
-        return 100;
+        return 60;
     }
 	else
     {
-        return 60;
+        return 45;
     }
 }
 
@@ -366,7 +366,7 @@ float getMCLightAttact()
     }
     else
     {
-        return 250;
+        return 200;
     }
 }
 

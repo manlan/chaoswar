@@ -9,12 +9,13 @@
     GameController *gc = [GameController getGameController];
 	gc.maxWave = 14;
 	gc.currentWave = 0;
-	gc.currentHealth = 20;
+	gc.currentHealth = 10;
 	gc.currentGold = 320;
 	gc.screenClickType = SCT_ALL;
 	gc.operateType = OT_NORMAL;
 	gc.mapType = MT_SAND;
 	gc.canNext = YES;
+    self.waveGold = 0;
 }
 
 - (void) initEnemy:(NSMutableArray*)array
@@ -35,6 +36,7 @@
 
 - (BOOL) runWaves:(int)wave
 {
+    [super runWaves:wave];
     GameController *gc = [GameController getGameController];
 	switch (wave) {
 		case 1:
@@ -123,7 +125,7 @@
             
             [self runWave:1 e:ET_FOOT14 s:3 t:5 wy:[gc.wayManager getWay:5]];
             [self runWave:1 e:ET_FOOT3 s:2 t:5 wy:[gc.wayManager getWay:6]];
-            //[self prepareNextWave:10];
+            [self prepareEndPoint:16];
 			break;
 		default:
             [self prepareNextWave:10];
@@ -248,67 +250,67 @@
     [super doAutoNextWave];
     switch ([GameController getGameController].currentWave) {
 		case 1:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(15, 231)];
             [self addWaveTip:ccp(15, 102)];
 			break;
         case 2:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(15, 231)];
             //[self addWaveTip:ccp(15, 102)];
 			break;
         case 3:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(15, 231)];
             [self addWaveTip:ccp(15, 102)];
 			break;
         case 4:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(15, 231)];
             [self addWaveTip:ccp(15, 102)];
 			break;
         case 5:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(15, 231)];
             [self addWaveTip:ccp(15, 102)];
 			break;
         case 6:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(15, 231)];
             [self addWaveTip:ccp(15, 102)];
 			break;
         case 7:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(15, 231)];
             //[self addWaveTip:ccp(15, 102)];
 			break;
         case 8:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(15, 231)];
             [self addWaveTip:ccp(15, 102)];
 			break;
         case 9:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(15, 231)];
             [self addWaveTip:ccp(15, 102)];
 			break;
         case 10:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(15, 231)];
             //[self addWaveTip:ccp(15, 102)];
 			break;
         case 11:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(15, 231)];
             [self addWaveTip:ccp(15, 102)];
 			break;
         case 12:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(15, 231)];
             [self addWaveTip:ccp(15, 102)];
 			break;
         case 13:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(15, 231)];
             [self addWaveTip:ccp(15, 102)];
 			break;

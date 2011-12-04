@@ -2,6 +2,42 @@
 #import "TDDefenceTower.h"
 #import "SpriteInfoScene.h"
 #import "TDFlyEnemy.h"
+#import "SimpleAudioEngine.h"
+
+@implementation MFLife
+
+@synthesize friendly = _friendly;
+@synthesize lifeTime = _lifeTime;
+
+- (BOOL) run {
+    if (!_friendly) {
+        return NO;
+    }
+    [[CCScheduler sharedScheduler] scheduleSelector:@selector(autoAddLife:) forTarget:self interval:_lifeTime paused:NO];
+    return YES;
+}
+
+- (BOOL) stop {
+    [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
+    return YES;
+}
+
+//自动死亡
+- (void) autoAddLife:(ccTime)dt {
+    if (_friendly) {
+        _friendly.currentHP = _friendly.currentHP + 2;
+        if (_friendly.currentHP > _friendly.maxHP) {
+            _friendly.currentHP = _friendly.maxHP;
+        }
+    }
+}
+
+- (void)dealloc {
+    [self stop];
+    [super dealloc];
+}
+
+@end;
 
 @implementation TDFriendly
 
@@ -22,12 +58,20 @@
         if (!_firstFrameName) {
             self.firstFrameName = @"";
         }
+        _mfLife = [[MFLife alloc] init];
+        _mfLife.friendly = self;
+        _mfLife.lifeTime = 1;
 	}
 	return self;
 }
 
 - (void) dealloc
 {
+    if (_mfLife) {
+        [_mfLife stop];
+        [_mfLife release];
+        _mfLife = nil;
+    }
     if (_enemy) {
         [_enemy delFriendly:self];
         _enemy = nil;
@@ -58,6 +102,11 @@
 
 - (void) clearSpriteData
 {
+    if (_mfLife) {
+        [_mfLife stop];
+        [_mfLife release];
+        _mfLife = nil;
+    }
     [TDEnemy unregFriendly:self];
     NSMutableArray *tmpArray = nil;
     //攻击的敌人清空
@@ -81,10 +130,16 @@
     [super clearSpriteData];
 }
 
+- (void) statusToDeading {
+    [super statusToDeading];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"friendlyDead.wav"];
+}
+
 - (BOOL) run
 {
     if ([super run] == NO) return NO;
     [TDEnemy regFriendly:self];
+    [_mfLife run];
     return YES;
 }
 

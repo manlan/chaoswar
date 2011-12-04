@@ -105,6 +105,10 @@ static CCTouchDispatcher *sharedDispatcher = nil;
 		if( h.priority < handler.priority )
 			i++;
 		
+//        if (h.delegate == handler.delegate) {
+//            return;
+//        }
+            
 		NSAssert( h.delegate != handler.delegate, @"Delegate already added to touch dispatcher.");
 	}
 	[array insertObject:handler atIndex:i];		

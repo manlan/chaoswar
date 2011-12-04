@@ -2,6 +2,7 @@
 #import "TDUnit.h"
 #import "GameController.h"
 #import "TDEnemy.h"
+#import "SimpleAudioEngine.h"
 
 @implementation TDArrowTowerBullet
 
@@ -116,6 +117,7 @@
     id actionRepeat = [CCAnimate actionWithAnimation:[self getAnimate:self.aniBoomName] restoreOriginalFrame:NO];
 	id actionRepeatDone = [CCCallFuncN actionWithTarget:self selector:@selector(afterRepeat:)];
 	[self runAction:[CCSequence actions:actionRepeat, actionRepeatDone, nil]];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"ttbullet.wav"];
 }
 
 - (void) searchClearEnemy {

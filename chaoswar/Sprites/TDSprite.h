@@ -16,8 +16,6 @@
     CCSprite *_bloodBackSprite;
     CCSprite *_arrowSprite;
     CCSprite *_effectSprite;
-    
-    BOOL needDoTouchDispatcher;
 }
 
 // 花费金额
@@ -48,6 +46,8 @@
 @property (nonatomic, assign) CCSprite *bloodBackSprite;
 // 选中框
 @property (nonatomic, assign) CCSprite *arrowSprite;
+
+@property (readonly) CGPoint headPoint;
 
 // 获取当前精灵的实例
 + (id) getSprite;

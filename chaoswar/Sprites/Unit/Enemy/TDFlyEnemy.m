@@ -2,6 +2,7 @@
 #import "GamePubDef.h"
 #import "GameController.h"
 #import "SpriteInfoScene.h"
+#import "SimpleAudioEngine.h"
 
 @implementation TDFlyEnemy
 
@@ -62,6 +63,13 @@
     return enemy;
 }
 
+- (BOOL) run
+{
+    if ([super run] == NO) return NO;
+    [[SimpleAudioEngine sharedEngine] playEffect:@"flyEnemy.wav"];
+    return YES;
+}
+
 - (void) dealloc
 {  
     [super dealloc];
@@ -88,6 +96,13 @@
         [enemy addAnimate:2];
     }
     return enemy;
+}
+
+- (BOOL) run
+{
+    if ([super run] == NO) return NO;
+    [[SimpleAudioEngine sharedEngine] playEffect:@"flyEnemy.wav"];
+    return YES;
 }
 
 - (void) dealloc

@@ -3,8 +3,10 @@
 #import "TDSprite.h"
 #import "TDEnemy.h"
 
-@interface TDFriendly : TDUnit {
+@class MFLife;
 
+@interface TDFriendly : TDUnit {
+    MFLife *_mfLife;
 }
 
 @property (nonatomic, assign) TDEnemy *enemy;
@@ -25,5 +27,18 @@
 
 
 - (void) doAttact:(ccTime)dt;
+
+@end
+
+@interface MFLife : NSObject {
+    
+}
+
+@property (nonatomic, assign) TDFriendly *friendly;
+@property ccTime lifeTime;
+
+- (BOOL) run;
+
+- (BOOL) stop;
 
 @end

@@ -33,10 +33,10 @@
         return;
     }
     GameController *gc = [GameController getGameController];
-    if (gc.operateType != OT_NORMAL) {
-        [_btnBuild1 setIsEnabled:NO];
-        return;
-    }
+//    if (gc.operateType != OT_NORMAL) {
+//        [_btnBuild1 setIsEnabled:NO];
+//        return;
+//    }
     
     if (gc.currentGold < _build1Gold) {
         [_btnBuild1 setIsEnabled:NO];
@@ -55,10 +55,10 @@
         return;
     }
     GameController *gc = [GameController getGameController];
-    if (gc.operateType != OT_NORMAL) {
-        [_btnBuild2 setIsEnabled:NO];
-        return;
-    }
+//    if (gc.operateType != OT_NORMAL) {
+//        [_btnBuild2 setIsEnabled:NO];
+//        return;
+//    }
     
     if (gc.currentGold < _build2Gold) {
         [_btnBuild2 setIsEnabled:NO];
@@ -77,10 +77,10 @@
         return;
     }
     GameController *gc = [GameController getGameController];
-    if (gc.operateType != OT_NORMAL) {
-        [_btnBuild3 setIsEnabled:NO];
-        return;
-    }
+//    if (gc.operateType != OT_NORMAL) {
+//        [_btnBuild3 setIsEnabled:NO];
+//        return;
+//    }
     
     if (gc.currentGold < _build3Gold) {
         [_btnBuild3 setIsEnabled:NO];
@@ -99,10 +99,10 @@
         return;
     }
     GameController *gc = [GameController getGameController];
-    if (gc.operateType != OT_NORMAL) {
-        [_btnBuild4 setIsEnabled:NO];
-        return;
-    }
+//    if (gc.operateType != OT_NORMAL) {
+//        [_btnBuild4 setIsEnabled:NO];
+//        return;
+//    }
     
     if (gc.currentGold < _build4Gold) {
         [_btnBuild4 setIsEnabled:NO];
@@ -121,10 +121,10 @@
         return;
     }
     GameController *gc = [GameController getGameController];
-    if (gc.operateType != OT_NORMAL) {
-        [_btnUpdate setIsEnabled:NO];
-        return;
-    }
+//    if (gc.operateType == OT_SETSEARCHPOINT) {
+//        [_btnUpdate setIsEnabled:NO];
+//        return;
+//    }
     
     if (gc.currentGold < _updateGold) {
         [_btnUpdate setIsEnabled:NO];
@@ -137,11 +137,11 @@
 - (void) setSellMenuStatus
 {
     if (!_btnSell) return;
-    GameController *gc = [GameController getGameController];
-    if (gc.operateType != OT_NORMAL) {
-        [_btnSell setIsEnabled:NO];
-        return;
-    }
+//    GameController *gc = [GameController getGameController];
+//    if (gc.operateType == OT_SETSEARCHPOINT) {
+//        [_btnSell setIsEnabled:NO];
+//        return;
+//    }
     
     [_btnSell setIsEnabled:YES];
 }
@@ -150,12 +150,18 @@
 {
     if (!_btnZone) return;
     GameController *gc = [GameController getGameController];
-    if (gc.operateType != OT_NORMAL && gc.operateType != OT_SETSEARCHPOINT) {
-        [_btnZone setIsEnabled:NO];
-        return;
-    }
+//    if (gc.operateType != OT_NORMAL && gc.operateType != OT_SETSEARCHPOINT) {
+//        [_btnZone setIsEnabled:NO];
+//        return;
+//    }
     
     [_btnZone setIsEnabled:YES];
+    
+    if (gc.operateType == OT_SETSEARCHPOINT) {
+        [_btnZone selected];
+    } else {
+        [_btnZone unselected];
+    }
 }
 
 -(int)build1Gold

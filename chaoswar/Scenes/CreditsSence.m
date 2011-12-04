@@ -1,6 +1,7 @@
 #import "CreditsSence.h"
 #import "SceneManager.h"
 #import "MainMenuSence.h"
+#import "SimpleAudioEngine.h"
 
 @implementation CreditsSence
 
@@ -34,6 +35,7 @@
 
 -(void) goToMainMenuSence:(id) sender 
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     [[CCDirector sharedDirector] replaceScene: [SceneManager TransFadeDown:0.56f layer:[MainMenuSence node]]];
 }
 

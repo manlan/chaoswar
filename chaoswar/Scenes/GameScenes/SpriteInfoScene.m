@@ -187,6 +187,20 @@
     spSmall.scale = 0.8;
     [_flyEnemyInfo addChild:spSmall z:1 tag:1];
     
+    //攻击提示图
+    CCSprite *attactTip = [CCSprite spriteWithFile:@"gongJiTip.png"];
+    attactTip.position = ccp(50, 10);
+    attactTip.anchorPoint = ccp(0.5, 0);
+    attactTip.scale = 1;
+    [_flyEnemyInfo addChild:attactTip z:1];
+    
+    //攻击数值
+    CCLabelTTF *attactNum = [CCLabelTTF labelWithString:@"0" fontName:@"Georgia-Bold" fontSize:11];
+    attactNum.position = ccp(70, 12);
+    attactNum.anchorPoint = ccp(0.5, 0);
+    attactNum.scale = 1;
+    [_flyEnemyInfo addChild:attactNum z:1];
+    
     //血值提示图
     CCSprite *bloodTip = [CCSprite spriteWithFile:@"xueTip.png"];
     bloodTip.position = ccp(90, 10);

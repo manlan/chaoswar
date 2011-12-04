@@ -1,6 +1,7 @@
 #import "Pointer1.h"
 #import "GameController.h"
 #import "AnimateManager.h"
+#import "SimpleAudioEngine.h"
 
 @implementation Pointer1
 
@@ -12,14 +13,15 @@
 	gc.maxWave = 8;
 	gc.currentWave = 0;
     //可以逃掉多少兵
-	gc.currentHealth = 20;
+	gc.currentHealth = 10;
     //初始金币
-	gc.currentGold = 9110;
+	gc.currentGold = 100;
     //这些不管
 	gc.screenClickType = SCT_ALL;
 	gc.operateType = OT_NORMAL;
 	gc.mapType = MT_GREEN;
 	gc.canNext = YES;
+    self.waveGold = 0;
 }
 
 - (void) initEnemy:(NSMutableArray*)array
@@ -54,8 +56,9 @@
 		case 1:
             [self runWave:1 e:ET_FOOT1 s:2 t:3 wy:[gc.wayManager getWay:2]];
             //prepareNextWave函数参数，等待多少秒之后，可以点击下一波
-            [self prepareEndPoint:7];
-            //[self prepareNextWave:16];
+            //[self prepareEndPoint:7];
+            //[self prepareEndGame:7];
+            [self prepareNextWave:16];
 			break;
         case 2:
             //new enemy
@@ -179,31 +182,31 @@
     [super doAutoNextWave];
     switch ([GameController getGameController].currentWave) {
 		case 1:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(157, 308)];
 			break;
         case 2:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(157, 308)];
 			break;
         case 3:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(157, 308)];
 			break;
         case 4:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(157, 308)];
 			break;
         case 5:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(157, 308)];
 			break;
         case 6:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(157, 308)];
 			break;
         case 7:
-            [self autoNextWave:10 mustGold:10 addGold:1];
+            [self autoNextWave:10 mustGold:1 addGold:1];
             [self addWaveTip:ccp(157, 308)];
 			break;
         case 8:
