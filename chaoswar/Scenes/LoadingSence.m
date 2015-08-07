@@ -23,10 +23,11 @@
 -(id) init
 {
 	if( (self=[super init])) {
+        [self shiYingIphone5];
         CGSize size = [[CCDirector sharedDirector] winSize];
         //加载背景图片
 		bgImg = [CCSprite spriteWithFile:@"loadingBg.png"];
-		bgImg.position = CGPointMake(size.width /2 , size.height/2);
+		bgImg.position = CGPointMake(240 , size.height/2);
 		bgImg.scale = 1;
 		[self addChild:bgImg z:1];
         
@@ -36,7 +37,7 @@
 		[self addChild:spritebatchLoading z:3];
 		
 		NSMutableArray *animFramesLoading = [NSMutableArray array];
-		for(int i = 1; i < 11; i++) {
+		for(int i = 1; i < 4; i++) {
 			CCSpriteFrame *frameLoading = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"1%04d.png",i]];
 			if (i==1) {
 				spriteLoading = [[CCSprite alloc] initWithSpriteFrame:frameLoading];
@@ -60,6 +61,18 @@
 -(void) goToGameSence
 {
     [[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[GameBackgroundScene scene:guanKa JN1:intJN001 JN2:intJN002]]];
+}
+
+-(void)shiYingIphone5
+{
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    if (size.width == 568) {
+        CCSprite *i5Img = [CCSprite spriteWithFile:@"i5Bg.png"];
+        i5Img.position = CGPointMake(240 , size.height/2);
+        i5Img.scale = 1;
+        [self addChild:i5Img z:1];
+        self.position = ccp(self.position.x + 44, self.position.y);
+    }
 }
 
 - (void) dealloc

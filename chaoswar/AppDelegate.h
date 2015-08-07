@@ -9,4 +9,6 @@
 
 @property (nonatomic, retain) UIWindow *window;
 
+- (void) initDataBase;
+
 @end

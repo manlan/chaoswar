@@ -6,6 +6,11 @@
 #import "MainMenuSence.h"
 #import "SceneManager.h"
 #import "TDSprite.h"
+#import "DBDataManager.h"
+#import "GamePointList.h"
+#import "UpdateInfoList.h"
+#import "GameProcessList.h"
+#import "ArchievementList.h"
 
 @implementation AppDelegate
 
@@ -33,7 +38,13 @@
 #endif // GAME_AUTOROTATION == kGameAutorotationUIViewController	
 }
 - (void) applicationDidFinishLaunching:(UIApplication*)application
-{
+{	
+	[self initDataBase];
+    [GameProcessList initAllData];
+    [ArchievementList initAllData];
+    
+    
+    isGameStop = NO;
 //    arrayTDSprite = [[NSMutableArray alloc] init];
 	// Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -65,8 +76,8 @@
 	[director setOpenGLView:glView];
 	
 //	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
-//	if( ! [director enableRetinaDisplay:YES] )
-//		CCLOG(@"Retina Display Not supported");
+	if( ! [director enableRetinaDisplay:YES] )
+		CCLOG(@"Retina Display Not supported");
 	
 	//
 	// VERY IMPORTANT:
@@ -91,7 +102,15 @@
 	[viewController setView:glView];
 	
 	// make the View Controller a child of the main window
-	[window addSubview: viewController.view];
+	//[window addSubview: viewController.view];
+    if ( [[UIDevice currentDevice].systemVersion floatValue] < 6.0)
+    { // warning: addSubView doesn't work on iOS6
+        [window addSubview: viewController.view];
+    }
+    else
+    { // use this mehod on ios6
+        [window setRootViewController:viewController];
+    }
 	
 	[window makeKeyAndVisible];
 	
@@ -110,11 +129,15 @@
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
+    [GameProcessList saveAllData];
+    [ArchievementList saveAllData];
 	[[CCDirector sharedDirector] pause];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-	[[CCDirector sharedDirector] resume];
+    if (!isGameStop) {
+        [[CCDirector sharedDirector] resume];
+    }
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
@@ -122,6 +145,8 @@
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application {
+    [GameProcessList saveAllData];
+    [ArchievementList saveAllData];
 	[[CCDirector sharedDirector] stopAnimation];
 }
 
@@ -130,6 +155,8 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+    [GameProcessList saveAllData];
+    [ArchievementList saveAllData];
 	CCDirector *director = [CCDirector sharedDirector];
 	
 	[[director openGLView] removeFromSuperview];
@@ -148,9 +175,20 @@
 }
 
 - (void)dealloc {
+    [GameProcessList saveAllData];
+    [ArchievementList saveAllData];
 	[[CCDirector sharedDirector] end];
 	[window release];
 	[super dealloc];
 }
+
+- (void) initDataBase {
+    [GamePointList initDataBase];
+    [UpdateInfoList initDataBase];
+    [GameProcessList initDataBase];
+    [ArchievementList initDataBase];
+}
+
+
 
 @end

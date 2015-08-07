@@ -89,4 +89,6 @@
 
 - (void) ArchieveHint:(NSString*)hint;
 
+- (void) TouchHint:(NSString*)hint;
+
 @end

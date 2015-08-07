@@ -1,6 +1,7 @@
 #import "Pointer.h"
 #import "SimpleAudioEngine.h"
 #import "GameController.h"
+#import "ArchievementController.h"
 #import "TDBullet.h"
 #import "TDTower.h"
 #import "TDEnemy.h"
@@ -16,8 +17,57 @@
 #import "GameHintScene.h"
 #import "SelectSence.h"
 #import "SceneManager.h"
-#import "DataController.h"
+#import "GnDataController.h"
 #import "GameEndSence.h"
+#import "GameConfig.h"
+
+static CGContextRef CreateRGBABitmapContext (CGImageRef inImage) 
+{
+	CGContextRef context = NULL; 
+	CGColorSpaceRef colorSpace; 
+	void *bitmapData; //内存空间的指针，该内存空间的大小等于图像使用RGB通道所占用的字节数。
+	int bitmapByteCount; 
+	int bitmapBytesPerRow;
+    
+	size_t pixelsWide = CGImageGetWidth(inImage); //获取横向的像素点的个数
+	size_t pixelsHigh = CGImageGetHeight(inImage); 
+    
+    
+    
+	bitmapBytesPerRow	= (pixelsWide * 4); //每一行的像素点占用的字节数，每个像素点的ARGB四个通道各占8个bit(0-255)的空间
+	bitmapByteCount	= (bitmapBytesPerRow * pixelsHigh); //计算整张图占用的字节数
+    
+	colorSpace = CGColorSpaceCreateDeviceRGB();//创建依赖于设备的RGB通道
+	//分配足够容纳图片字节数的内存空间
+	bitmapData = malloc( bitmapByteCount ); 
+    //创建CoreGraphic的图形上下文，该上下文描述了bitmaData指向的内存空间需要绘制的图像的一些绘制参数
+	context = CGBitmapContextCreate (bitmapData, 
+                                     pixelsWide, 
+                                     pixelsHigh, 
+                                     8, 
+                                     bitmapBytesPerRow, 
+                                     colorSpace, 
+                                     kCGImageAlphaPremultipliedLast);
+    //Core Foundation中通过含有Create、Alloc的方法名字创建的指针，需要使用CFRelease()函数释放
+	CGColorSpaceRelease( colorSpace ); 
+	return context;
+}
+
+static unsigned char *RequestImagePixelData(UIImage *inImage) 
+{
+	CGImageRef img = [inImage CGImage]; 
+	CGSize size = [inImage size];
+    //使用上面的函数创建上下文
+	CGContextRef cgctx = CreateRGBABitmapContext(img); 
+	
+	CGRect rect = {{0,0},{size.width, size.height}};
+    //将目标图像绘制到指定的上下文，实际为上下文内的bitmapData。
+	CGContextDrawImage(cgctx, rect, img); 
+	unsigned char *data = CGBitmapContextGetData (cgctx); 
+    //释放上面的函数创建的上下文
+	CGContextRelease(cgctx);
+	return data;
+}
 
 @implementation Pointer
 
@@ -26,6 +76,30 @@
 @synthesize waveGold = _waveGold;
 @synthesize waveMinusGold = _waveMinusGold;
 @synthesize pointerNum = _pointerNum;
+
+- (BOOL) isWhite:(CGPoint)point
+{
+    if (!imgBackground) {
+        NSLog(@"(%f,%f) is not white");
+        return NO;
+    }
+    CGPoint pt = [[CCDirector sharedDirector] convertToUI: point];
+    
+    
+    CGFloat width  = imgBackground.size.width;
+    unsigned char *imgPixel = RequestImagePixelData(imgBackground);
+    int i = 4 * width * pt.y + 4 * pt.x;
+    int r = (unsigned char)imgPixel[i];
+    int g = (unsigned char)imgPixel[i+1];
+    int b = (unsigned char)imgPixel[i+2];
+    
+    if (r == 255 && g == 255 && b == 255) {
+        NSLog(@"(%f,%f) is white");
+        return YES;
+    }
+    NSLog(@"(%f,%f) is not white");
+    return NO;
+}
 
 - (void) initController
 {
@@ -138,8 +212,10 @@
 {
     GameController *gc = [GameController getGameController];
     if ([gc.enemyArray count] == 0) {
+        [ArchievementController hasArchievement1];
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"winBg.wav" loop:NO];
         [[CCScheduler sharedScheduler] unscheduleSelector:@selector(doEndPointReady:) forTarget:self];
+        isGameStop = YES;
         [[CCDirector sharedDirector] pause];
         GameController *gc = [GameController getGameController];
         [gc.gameHint removeAllChildrenWithCleanup:YES];
@@ -149,11 +225,14 @@
         [gc.gameHint addChild:winBg z:100];
         
         //按钮
-        CCMenuItemImage *btnWin = [CCMenuItemImage itemFromNormalImage:@"btnWin.png" selectedImage:@"btnWin.png" disabledImage:@"btnWin.png"  target:self selector:@selector(winAndEnd:)];
+        CCMenuItemImage *btnWin = [CCMenuItemImage itemFromNormalImage:@"btnWin.png" selectedImage:@"btnWindown.png" disabledImage:@"btnWin.png"  target:self selector:@selector(winAndEnd:)];
         CCMenu *btnWinMenu = [CCMenu menuWithItems:btnWin, nil];
         btnWinMenu.position = ccp(240 , 110);
         [gc.gameHint addChild:btnWinMenu z:101];
         
+        if (gc.currentHealth == 10) {
+            [ArchievementController hasArchievement4];
+        }
         //评价
         int score = 0;
         if (gc.currentHealth < 5) {
@@ -208,6 +287,7 @@
 -(void) winAndEnd:(id) sender 
 {
     [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
+    isGameStop = NO;
     [[CCDirector sharedDirector] resume];
     GameController *gc = [GameController getGameController];
     //更新得分和开通下关关卡
@@ -219,8 +299,9 @@
     } else {
         score = 3;
     }
+    [GnDataController setSelect:gc.ptNum s:score];
     [gc releaseScene];
-    [DataController setSelect:gc.ptNum s:score];
+    [ArchievementController hasArchievement12];
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"mainBg.mp3"];
 	[[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[SelectSence scene]]];
 }
@@ -229,8 +310,10 @@
 {
     GameController *gc = [GameController getGameController];
     if ([gc.enemyArray count] == 0) {
+        [ArchievementController hasArchievement1];
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"winBg.wav" loop:NO];
         [[CCScheduler sharedScheduler] unscheduleSelector:@selector(endGameReady:) forTarget:self];
+        isGameStop = YES;
         [[CCDirector sharedDirector] pause];
         GameController *gc = [GameController getGameController];
         //背景
@@ -239,11 +322,14 @@
         [gc.gameHint addChild:winBg z:100];
         
         //菜单
-        CCMenuItemImage *btnWin = [CCMenuItemImage itemFromNormalImage:@"btnWin.png" selectedImage:@"btnWin.png" disabledImage:@"btnWin.png"  target:self selector:@selector(winAndGameEnd:)];
+        CCMenuItemImage *btnWin = [CCMenuItemImage itemFromNormalImage:@"btnWin.png" selectedImage:@"btnWindown.png" disabledImage:@"btnWin.png"  target:self selector:@selector(winAndGameEnd:)];
         CCMenu *btnWinMenu = [CCMenu menuWithItems:btnWin, nil];
         btnWinMenu.position = ccp(240 , 110);
         [gc.gameHint addChild:btnWinMenu z:101];
         
+        if (gc.currentHealth == 10) {
+            [ArchievementController hasArchievement4];
+        }
         //评价
         int score = 0;
         if (gc.currentHealth < 5) {
@@ -270,6 +356,7 @@
 -(void) winAndGameEnd:(id) sender 
 {
     [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
+    isGameStop = NO;
     [[CCDirector sharedDirector] resume];
     GameController *gc = [GameController getGameController];
     //更新得分和开通下关关卡
@@ -282,16 +369,18 @@
         score = 3;
     }
     [gc releaseScene];
-    [DataController setSelect:gc.ptNum s:score];
+    [GnDataController setSelect:gc.ptNum s:score];
+    [ArchievementController hasArchievement12];
 	[[CCDirector sharedDirector] replaceScene: [SceneManager TransFade:0.56f scene:[GameEndSence scene]]];
 }
 
 - (void) addWaveTip:(CGPoint)pos
 {
     CCSprite *s = [CCSprite spriteWithFile:@"enemyPoint.png"];
+    [s runAction:[CCRepeatForever actionWithAction:[CCBlink actionWithDuration:0.5 blinks:1]]];
     GameController *gc = [GameController getGameController];
     s.position = pos;
-    s.scale = 0.5;
+    s.scale = 1;
     [gc.gameBackground addChild:s z:2000];
     [_tipsArray addObject:s];
 }
@@ -384,17 +473,24 @@
 	return self;
 }
 
+- (void) setImageName:(NSString*)name {
+    if (imgBackground) {
+        [imgBackground release];
+        imgBackground = nil;
+    }
+    imgBackground = [[UIImage imageNamed:name] retain];
+}
+
 - (void)dealloc {
     [self stopController];
+    if (imgBackground) {
+        [imgBackground release];
+        imgBackground = nil;
+    }
     [_waveArray release];
     [_tipsArray release];
     [animateManager release];
 	[super dealloc];
-}
-
-- (BOOL) isWhite:(CGPoint)point
-{
-    return YES;
 }
 
 - (void) stopController

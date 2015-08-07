@@ -52,6 +52,8 @@
 
 @property (nonatomic, retain) NSString *smallPic;
 
+@property (nonatomic, retain) NSString *firstFrameName;
+
 - (void) doUnitLogic;
 
 - (void) beAttact:(TDSprite*)s an:(int)an at:(TAcctactType)at;

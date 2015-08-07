@@ -10,5 +10,5 @@
 }
 
 +(CCScene *) scene;
-
+-(void)shiYingIphone5;
 @end

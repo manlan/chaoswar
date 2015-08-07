@@ -30,10 +30,12 @@
 //塔攻击的集合
 @property (nonatomic, assign) NSMutableArray *towerArray;
 
-- (CGPoint) getPositionAfterTime:(ccTime)dt;
+- (CGPoint) getPositionAfterTime:(ccTime)dt isHead:(float)isHead;
 
 //友军控制部分
 + (void) regFriendly:(TDFriendly*)f;
+
++ (void) tellFriendlys;
 
 + (void) unregFriendly:(TDFriendly*)f;
 

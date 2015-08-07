@@ -19,7 +19,7 @@
 @implementation TDShooterEnemy1
 
 + (id) getSprite {
-    TDShooterEnemy1 *enemy = [TDShooterEnemy1 spriteWithSpriteFrameName:@"st01mvc0001.png"];
+    TDShooterEnemy1 *enemy = [TDShooterEnemy1 spriteWithSpriteFrameName:@"ft01mvc0001.png"];
     if (enemy) {
         [enemy setScale:TDS_ST1_SCALE];
         enemy.maxHP = TDS_ST1_MAXHP;

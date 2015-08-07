@@ -4,8 +4,10 @@
 #import "SceneManager.h"
 #import "GameBackgroundScene.h"
 #import "LoadingSence.h"
-#import "DataController.h"
 #import "SimpleAudioEngine.h"
+#import "GamePointList.h"
+#import "GamePoint.h"
+#import "GnDataController.h"
 
 @implementation SelectSence
 
@@ -24,37 +26,38 @@
 		intJN001 = 10;
 		intJN002 = 10;
 		guanKa = 0;
+        [self shiYingIphone5];
 		
         CGSize size = [[CCDirector sharedDirector] winSize];
         //加载背景图片
         bgImg = [CCSprite spriteWithFile:@"selectWaveBg.png"];
-		bgImg.position = CGPointMake(size.width /2 , size.height/2);
+		bgImg.position = CGPointMake(240 , size.height/2);
 		bgImg.scale = 1;
 		[self addChild:bgImg z:1];
         
         resetBg = [CCSprite spriteWithFile:@"resetBg.png"];
-		resetBg.position = CGPointMake(size.width /2 , size.height/2);
+		resetBg.position = CGPointMake(240 , size.height/2);
 		resetBg.scale = 1;
         resetBg.visible = NO;
 		[self addChild:resetBg z:100];
 		
 		//加载魔法背景图片
         btnWaveStationLight = [CCSprite spriteWithFile:@"waveStationLight.png"];
-		btnWaveStationLight.position = CGPointMake(size.width /2 , size.height/2);
+		btnWaveStationLight.position = CGPointMake(240 , size.height/2);
 		btnWaveStationLight.scale = 1;
         btnWaveStationLight.visible = NO;
 		[self addChild:btnWaveStationLight z:5];
         
         //加载魔法背景图片
         selectMagicBg = [CCSprite spriteWithFile:@"selectMagicBg.png"];
-		selectMagicBg.position = CGPointMake(size.width /2 , size.height/2);
+		selectMagicBg.position = CGPointMake(240 , size.height/2);
 		selectMagicBg.scale = 1;
 		[self addChild:selectMagicBg z:13];
         
         //加载透明按钮
         btnTouMing = [[CCMenuItemImage alloc] initFromNormalImage:@"touMingBg.png" selectedImage:@"touMingBg.png" disabledImage:@"touMingBg.png" target:self selector:@selector(doNothing:)];		
         CCMenu *btnTouMingMenu = [CCMenu menuWithItems:btnTouMing, nil];
-		btnTouMingMenu.position = CGPointMake(size.width /2 , size.height/2);
+		btnTouMingMenu.position = CGPointMake(240 , size.height/2);
         btnTouMing.visible = NO;
 		[self addChild:btnTouMingMenu z:3];
 		[btnTouMing release];
@@ -94,45 +97,45 @@
 		//加载技能1边框按钮
 		btnselectJn1 = [[CCMenuItemImage alloc] initFromNormalImage:@"selectJn.png" selectedImage:@"selectJn.png" disabledImage:@"selectJn.png" target:self selector:@selector(removeJn1:)];		
         CCMenu *btnselectJn1Menu = [CCMenu menuWithItems:btnselectJn1, nil];
-		btnselectJn1Menu.position = CGPointMake(144 , 115);
+		btnselectJn1Menu.position = CGPointMake(145 , 113);
 		[self addChild:btnselectJn1Menu z:14];
 		[btnselectJn1 release];
 		
 		//加载技能2边框按钮
 		btnselectJn2 = [[CCMenuItemImage alloc] initFromNormalImage:@"selectJn.png" selectedImage:@"selectJn.png" disabledImage:@"selectJn.png" target:self selector:@selector(removeJn2:)];		
         CCMenu *btnselectJn2Menu = [CCMenu menuWithItems:btnselectJn2, nil];
-		btnselectJn2Menu.position = CGPointMake(214 , 115);
+		btnselectJn2Menu.position = CGPointMake(217 , 113);
 		[self addChild:btnselectJn2Menu z:14];
 		[btnselectJn2 release];
 		
         //加载关闭按钮
 		btnClose = [[CCMenuItemImage alloc] initFromNormalImage:@"close.png" selectedImage:@"closeDown.png" disabledImage:@"close.png" target:self selector:@selector(closeMagic:)];		
         CCMenu *btnCloseMenu = [CCMenu menuWithItems:btnClose, nil];
-		btnCloseMenu.position = CGPointMake(385 , 224);
+		btnCloseMenu.position = CGPointMake(385 , 230);
 		[self addChild:btnCloseMenu z:15];
         btnClose.visible = NO;
 		[btnClose release];
         
 		//加载开始 按钮
-		btnPlay = [[CCMenuItemImage alloc] initFromNormalImage:@"btnPlay.png" selectedImage:@"btnPlay.png" disabledImage:@"btnPlayHui.png" target:self selector:@selector(goToLoadingSence:)];		
+		btnPlay = [[CCMenuItemImage alloc] initFromNormalImage:@"btnPlayGame.png" selectedImage:@"btnPlayGamedown.png" disabledImage:@"btnPlayGameHui.png" target:self selector:@selector(goToLoadingSence:)];		
         CCMenu *btnPlayMenu = [CCMenu menuWithItems:btnPlay, nil];
-		btnPlayMenu.position = CGPointMake(322 , 115);
+		btnPlayMenu.position = CGPointMake(322 , 93);
 		[self addChild:btnPlayMenu z:14];
-		btnPlay.scale = 0.7;
 		btnPlay.isEnabled = NO;
+        btnPlay.scale = 0.8;
 		[btnPlay release];
         
         //加载返回按钮
 		btnBack = [[CCMenuItemImage alloc] initFromNormalImage:@"btnBack.png" selectedImage:@"btnBackDown.png" disabledImage:@"btnBack.png" target:self selector:@selector(goToMainMenuSence:)];		
         CCMenu *btnBackMenu = [CCMenu menuWithItems:btnBack, nil];
-		btnBackMenu.position = CGPointMake(450 , 30);
+		btnBackMenu.position = CGPointMake(430 , 25);
 		[self addChild:btnBackMenu z:2];
 		[btnBack release];
         
         //加载升级按钮
 		btnUpdata = [[CCMenuItemImage alloc] initFromNormalImage:@"btnUpdate.png" selectedImage:@"btnUpdateDown.png" disabledImage:@"btnUpdate.png" target:self selector:@selector(goToUpdataSence:)];		
         CCMenu *btnUpdataMenu = [CCMenu menuWithItems:btnUpdata, nil];
-		btnUpdataMenu.position = CGPointMake(375 , 30);
+		btnUpdataMenu.position = CGPointMake(340 , 25);
 		[self addChild:btnUpdataMenu z:2];
 		[btnUpdata release];
         
@@ -161,59 +164,39 @@
         [btnNo release];
         
         //加载关卡及分数
-        NSString *errorDesc = nil;
-        NSPropertyListFormat format;
-        NSString *plistPath = [CCFileUtils fullPathFromRelativePath:@"WaveSelectList.plist"];
-        if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
-			//NSLog(@"Not exsit");
-            NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
-            wavesInfo = (NSMutableDictionary *)[NSPropertyListSerialization
-                                                propertyListFromData:plistXML
-                                                mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                                                format:&format
-                                                errorDescription:&errorDesc];
-            
-            if (!wavesInfo) {
-                NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
-            }
-			
-            NSDictionary* waves = [wavesInfo objectForKey:@"Waves" ];
-            NSDictionary *wave;
-            CGPoint waveStationPo;
-            CCMenuItemImage *btnWaveStation;
-            CCSprite *waveScore;
-            int score;
-            int isCanPLay;
-            
-            for (id key in waves) {
-                wave = [waves objectForKey:key];
-                waveStationPo = CGPointFromString([wave objectForKey:@"position"]);
-                isCanPLay = [(NSNumber*)[wave objectForKey:@"open"] intValue];
+        NSMutableArray *gamePointArray = [GamePointList getAllGamePoint];
+        NSMutableArray *values;
+        GamePoint *gamePoint;
+        CCMenuItemImage *btnWaveStation;
+        CCSprite *waveScore;
+        for (int i = 0; i < [gamePointArray count]; i++) {
+            values = [gamePointArray objectAtIndex:i];
+            gamePoint = [[[GamePoint alloc] init] autorelease];
+            gamePoint.Game_Point_ID = [[values objectAtIndex:0] intValue];
+            gamePoint.Is_Open = [[values objectAtIndex:1] intValue];
+            gamePoint.Position = [values objectAtIndex:2];
+            gamePoint.Score = [[values objectAtIndex:3] intValue];
+            //if (1 == 1) {
+            if (gamePoint.Is_Open == 1) {
+                btnWaveStation = [[CCMenuItemImage alloc] initFromNormalImage:@"btnWaveStation.png" selectedImage:@"btnWaveStation.png" disabledImage:@"btnWaveStation.png" target:self  selector:@selector(setMagic:)];
+                btnWaveStation.scale = 0.85;
+                btnWaveStation.tag = gamePoint.Game_Point_ID - 1;
+                CCMenu *btnWaveStationMenu = [CCMenu menuWithItems:btnWaveStation, nil];
+                btnWaveStationMenu.position = CGPointFromString(gamePoint.Position);;
+                [self addChild:btnWaveStationMenu z:2];
+                [btnWaveStation release];
                 
-                //if (isCanPLay == 0) {
-                    btnWaveStation = [[CCMenuItemImage alloc] initFromNormalImage:@"btnWaveStation.png" selectedImage:@"btnWaveStation.png" disabledImage:@"btnWaveStation.png" target:self  selector:@selector(setMagic:)];
-                    btnWaveStation.scale = 0.85;
-                    btnWaveStation.tag = [(NSNumber*)[wave objectForKey:@"id"] intValue];
-                    CCMenu *btnWaveStationMenu = [CCMenu menuWithItems:btnWaveStation, nil];
-                    btnWaveStationMenu.position = waveStationPo;
-                    //btnWaveStation.position = waveStationPo;
-                    [self addChild:btnWaveStationMenu z:2];
-                    [btnWaveStation release];
-                    
-                    score = [(NSNumber*)[wave objectForKey:@"score"] intValue];
-                    
-                    for (int i=0; i < score; i++) {
-                        waveScore = [CCSprite spriteWithFile:@"starLight.png"];
-                        waveScore.position = CGPointMake(waveStationPo.x - 15 + (i * 15), waveStationPo.y + 35);
-                        [self addChild:waveScore z:2];
-                    }
-                    
-                    for (int i=score; i < 3; i++) {
-                        waveScore = [CCSprite spriteWithFile:@"starLightHui.png"];
-                        waveScore.position = CGPointMake(waveStationPo.x - 15 + (i * 15), waveStationPo.y + 35);
-                        [self addChild:waveScore z:2];
-                    }
-                //}        
+                for (int i=0; i < gamePoint.Score; i++) {
+                    waveScore = [CCSprite spriteWithFile:@"starLight.png"];
+                    waveScore.position = CGPointMake(CGPointFromString(gamePoint.Position).x - 15 + (i * 15), CGPointFromString(gamePoint.Position).y + 40);
+                    [self addChild:waveScore z:2];
+                }
+                
+                for (int i=gamePoint.Score; i < 3; i++) {
+                    waveScore = [CCSprite spriteWithFile:@"starLightHui.png"];
+                    waveScore.position = CGPointMake(CGPointFromString(gamePoint.Position).x - 15 + (i * 15), CGPointFromString(gamePoint.Position).y + 40);
+                    [self addChild:waveScore z:2];
+                }
             }
         }
 		
@@ -228,7 +211,7 @@
     NSString *picUrl = [NSString stringWithFormat:@"jN00%d.png", button.tag];
 	if (intJN001 == 10) {
 		select1 = [CCSprite spriteWithFile:picUrl];
-		select1.position = CGPointMake(144 , 115);
+		select1.position = CGPointMake(145 , 113);
 		select1.scale = 1;
 		[self addChild:select1 z:16];
 		intJN001 = button.tag;
@@ -236,7 +219,7 @@
 	}
 	else if(intJN002 == 10){
 		select2 = [CCSprite spriteWithFile:picUrl];
-		select2.position = CGPointMake(214 , 115);
+		select2.position = CGPointMake(217 , 113);
 		select2.scale = 1;
 		[self addChild:select2 z:16];
 		intJN002 = button.tag;
@@ -392,7 +375,7 @@
     resetBg.visible = NO;
     btnYes.visible =NO;
     btnNo.visible = NO;
-    [DataController setFirst];
+    [GnDataController setFirst];
     [[CCDirector sharedDirector] replaceScene: [SceneManager TransFadeDown:0.56f layer:[MainMenuSence node]]];
 }
 
@@ -415,6 +398,18 @@
 {
     [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     [[CCDirector sharedDirector] replaceScene: [SceneManager TransZoomFlipX:0.56f layer:[UpdataSence node]]];
+}
+
+-(void)shiYingIphone5
+{
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    if (size.width == 568) {
+        CCSprite *i5Img = [CCSprite spriteWithFile:@"i5Bg.png"];
+        i5Img.position = CGPointMake(240 , size.height/2);
+        i5Img.scale = 1;
+        [self addChild:i5Img z:1];
+        self.position = ccp(self.position.x + 44, self.position.y);
+    }
 }
 
 - (void) dealloc

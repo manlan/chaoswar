@@ -47,6 +47,7 @@
 + (id) getSprite {
     TDFlyEnemy1 *enemy = [TDFlyEnemy1 spriteWithSpriteFrameName:@"fl01mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"fl01mvc0001.png";
         [enemy setScale:TDS_FL1_SCALE];
         enemy.maxHP = TDS_FL1_MAXHP;
         enemy.currentHP = TDS_FL1_CURRENTHP;
@@ -82,6 +83,7 @@
 + (id) getSprite {
     TDFlyEnemy2 *enemy = [TDFlyEnemy2 spriteWithSpriteFrameName:@"fl02mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"fl02mvc0001.png";
         [enemy setScale:TDS_FL2_SCALE];
         enemy.maxHP = TDS_FL2_MAXHP;
         enemy.currentHP = TDS_FL2_CURRENTHP;
@@ -117,6 +119,7 @@
 + (id) getSprite {
     TDFlyEnemy3 *enemy = [TDFlyEnemy3 spriteWithSpriteFrameName:@"fl03mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"fl03mvc0001.png";
         [enemy setScale:TDS_FL3_SCALE];
         enemy.maxHP = TDS_FL3_MAXHP;
         enemy.currentHP = TDS_FL3_CURRENTHP;

@@ -13,6 +13,7 @@
     
 }
 
+@property (nonatomic, retain) NSString* createTime;
 @property float startTime;
 
 - (void) run;
@@ -23,7 +24,7 @@
     
 }
 
-+ (FireController*) getFireController:(float)st pos:(CGPoint)pos;
++ (FireController*) getFireController:(float)st pos:(CGPoint)pos ct:(NSString*)ct;
 
 @property CGPoint position;
 
@@ -33,7 +34,7 @@
     
 }
 
-+ (FriendlyController*) getFriendlyController:(float)st pos:(CGPoint)pos;
++ (FriendlyController*) getFriendlyController:(float)st pos:(CGPoint)pos ct:(NSString*)ct;
 
 @property CGPoint position;
 
@@ -55,26 +56,14 @@
 
 @end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @interface StopController : NSObject {
     CCSprite *magicSprite;
     TDUnit *unit;
 }
 
 - (void) doMagic:(TDUnit*)u;
+
+- (void) stop;
 
 @end
 
@@ -85,6 +74,8 @@
 
 - (void) doMagic:(TDUnit*)u;
 
+- (void) stop;
+
 @end
 
 @interface LifeController : NSObject {
@@ -93,6 +84,8 @@
 }
 
 - (void) doMagic:(TDUnit*)u;
+
+- (void) stop;
 
 @end
 
@@ -109,5 +102,7 @@
 - (void) doMagicSpeedStatus;
 
 - (void) doMagicLifeStatus;
+
+- (void) stop;
 
 @end

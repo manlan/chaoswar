@@ -12,6 +12,7 @@
 
 @interface Pointer : NSObject {
     AnimateManager *animateManager;
+    UIImage *imgBackground;
 }
 
 @property int pointerNum;
@@ -59,5 +60,7 @@
 - (BOOL) isWhite:(CGPoint)point;
 
 - (void) stopController;
+
+- (void) setImageName:(NSString*)name;
 
 @end

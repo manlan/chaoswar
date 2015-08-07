@@ -17,5 +17,5 @@
 +(CCScene *) scene:(int)gk JN1:(int)JN1 JN2:(int)JN2;
 -(void) goToGameSence;
 
-
+-(void)shiYingIphone5;
 @end

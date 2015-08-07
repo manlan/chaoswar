@@ -109,12 +109,12 @@
 
 - (void) initShooter01
 {
-    [self initAnimate:@"st01"];
-    [self addAnimation:@"st01mvu%04d.png" animationName:@"st01mvu"];
-    [self addAnimation:@"st01mvd%04d.png" animationName:@"st01mvd"];
-    [self addAnimation:@"st01mvc%04d.png" animationName:@"st01mvc"];
-    [self addAnimation:@"st01dd%04d.png" animationName:@"st01dd"];
-    [self addAnimation:@"st01at%04d.png" animationName:@"st01at"];
+//    [self initAnimate:@"st01"];
+//    [self addAnimation:@"st01mvu%04d.png" animationName:@"st01mvu"];
+//    [self addAnimation:@"st01mvd%04d.png" animationName:@"st01mvd"];
+//    [self addAnimation:@"st01mvc%04d.png" animationName:@"st01mvc"];
+//    [self addAnimation:@"st01dd%04d.png" animationName:@"st01dd"];
+//    [self addAnimation:@"st01at%04d.png" animationName:@"st01at"];
 }
 
 - (void) initMagic01
@@ -384,10 +384,10 @@
 
 - (void) initForeverFriendly01
 {
-    [self initAnimate:@"fcf01"];
-    [self addAnimation:@"fcf01mv%04d.png" animationName:@"fcf01mv"];
-    [self addAnimation:@"fcf01dd%04d.png" animationName:@"fcf01dd"];
-    [self addAnimation:@"fcf01at%04d.png" animationName:@"fcf01at"];
+//    [self initAnimate:@"fcf01"];
+//    [self addAnimation:@"fcf01mv%04d.png" animationName:@"fcf01mv"];
+//    [self addAnimation:@"fcf01dd%04d.png" animationName:@"fcf01dd"];
+//    [self addAnimation:@"fcf01at%04d.png" animationName:@"fcf01at"];
 }
 
 - (void) initMagicFire

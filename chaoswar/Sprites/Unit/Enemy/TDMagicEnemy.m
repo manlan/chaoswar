@@ -159,6 +159,7 @@
 + (id) getSprite {
     TDMagicEnemy1 *enemy = [TDMagicEnemy1 spriteWithSpriteFrameName:@"mc01mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"mc01mvc0001.png";
         [enemy setScale:TDS_MC1_SCALE];
         enemy.maxHP = TDS_MC1_MAXHP;
         enemy.currentHP = TDS_MC1_CURRENTHP;
@@ -196,6 +197,7 @@
 + (id) getSprite {
     TDMagicEnemy2 *enemy = [TDMagicEnemy2 spriteWithSpriteFrameName:@"mc02mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"mc02mvc0001.png";
         [enemy setScale:TDS_MC2_SCALE];
         enemy.maxHP = TDS_MC2_MAXHP;
         enemy.currentHP = TDS_MC2_CURRENTHP;

@@ -101,7 +101,7 @@
         self.spriteStatus = TSS_DEAD;
         return;
     }
-    id actionMove = [CCJumpTo actionWithDuration:self.moveTime position:[self.enemy getPositionAfterTime:self.moveTime] height:30 jumps:1];
+    id actionMove = [CCJumpTo actionWithDuration:self.moveTime position:[self.enemy getPositionAfterTime:self.moveTime isHead:0] height:30 jumps:1];
 	id actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(attact:)];
 	[self runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
 }

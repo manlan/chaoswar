@@ -26,8 +26,8 @@
 - (void) initTower:(NSMutableArray*)array
 {
     [array removeAllObjects];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(115, 130) s:ccp(115, 102)];
-    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(115, 184) s:ccp(176, 205)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(115, 135) s:ccp(115, 107)];
+    [self addTower:array t:[TDEmptyTower getSprite] p:ccp(115, 189) s:ccp(176, 210)];
     [self addTower:array t:[TDEmptyTower getSprite] p:ccp(245, 143) s:ccp(245, 111)];
     [self addTower:array t:[TDEmptyTower getSprite] p:ccp(307, 143) s:ccp(307, 111)];
     [self addTower:array t:[TDEmptyTower getSprite] p:ccp(370, 143) s:ccp(328, 109)];
@@ -112,17 +112,17 @@
             [self prepareNextWave:28];
 			break;
         case 10:
-            [self runWave:1 e:ET_FLY3 s:3 t:4 wy:[gc.wayManager getWay:2]];
+            [self runWave:1 e:ET_FLY3 s:3 t:3 wy:[gc.wayManager getWay:2]];
             
-            [self runWave:1 e:ET_FLY3 s:3 t:4 wy:[gc.wayManager getWay:5]];
-            [self prepareNextWave:22];
+            [self runWave:1 e:ET_FLY3 s:3 t:3 wy:[gc.wayManager getWay:5]];
+            [self prepareNextWave:19];
 			break;
         case 11:
-            [self runWave:1 e:ET_FOOT12 s:2 t:3 wy:[gc.wayManager getWay:1]];
+            [self runWave:1 e:ET_FOOT12 s:2 t:2 wy:[gc.wayManager getWay:1]];
             [self runWave:1 e:ET_FOOT16 s:6 t:2 wy:[gc.wayManager getWay:2]];
             [self runWave:1 e:ET_FOOT6 s:2 t:4 wy:[gc.wayManager getWay:3]];
             
-            [self runWave:1 e:ET_FOOT11 s:2 t:3 wy:[gc.wayManager getWay:4]];
+            [self runWave:1 e:ET_FOOT11 s:2 t:2 wy:[gc.wayManager getWay:4]];
             [self runWave:1 e:ET_FOOT15 s:6 t:2 wy:[gc.wayManager getWay:5]];
             [self runWave:1 e:ET_FOOT8 s:2 t:3 wy:[gc.wayManager getWay:6]];
             [self prepareNextWave:25];
@@ -136,13 +136,13 @@
             [self prepareNextWave:25];
 			break;
         case 13:
-            [self runWave:2 e:ET_FOOT8 s:2 t:5 wy:[gc.wayManager getWay:1]];
+            [self runWave:2 e:ET_FOOT8 s:2 t:4 wy:[gc.wayManager getWay:1]];
             [self runWave:1 e:ET_FOOT16 s:2 t:1 wy:[gc.wayManager getWay:1]];
-            [self runWave:2 e:ET_FOOT6 s:2 t:5 wy:[gc.wayManager getWay:3]];
+            [self runWave:2 e:ET_FOOT6 s:2 t:4 wy:[gc.wayManager getWay:3]];
             
-            [self runWave:2 e:ET_FOOT6 s:2 t:5 wy:[gc.wayManager getWay:4]];
+            [self runWave:2 e:ET_FOOT6 s:2 t:4 wy:[gc.wayManager getWay:4]];
             [self runWave:1 e:ET_FOOT16 s:2 t:1 wy:[gc.wayManager getWay:5]];
-            [self runWave:2 e:ET_FOOT8 s:2 t:5 wy:[gc.wayManager getWay:6]];
+            [self runWave:2 e:ET_FOOT8 s:2 t:4 wy:[gc.wayManager getWay:6]];
             [self prepareNextWave:25];
 			break;
         case 14:
@@ -205,31 +205,6 @@
 - (void) initFriendly:(NSMutableArray*)array
 {
     [array removeAllObjects];
-}
-
-- (BOOL) isWhite:(CGPoint)point
-{
-    if (point.x > 0 && point.x < 201 && point.y > 66 && point.y < 123) {
-        return YES;
-    }
-    
-    if (point.x > 151 && point.x < 209 && point.y > 66 && point.y < 268) {
-        return YES;
-    }
-    
-    if (point.x > 200 && point.x < 361 && point.y > 76 && point.y < 135) {
-        return YES;
-    }
-    
-    if (point.x > 151 && point.x < 480 && point.y > 211 && point.y < 268) {
-        return YES;
-    }
-    
-    if (point.x > 303 && point.x < 361 && point.y > 30 && point.y < 134) {
-        return YES;
-    }
-    
-    return NO;
 }
 
 - (void) doAutoNextWave

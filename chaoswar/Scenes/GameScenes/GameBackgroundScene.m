@@ -5,7 +5,10 @@
 #import "GameControllerScene.h"
 #import "SpriteInfoScene.h"
 #import "GameHintScene.h"
+#import "ArchievementController.h"
 #import "Pointer.h"
+#import "GameProcessList.h"
+#import "ArchievementList.h"
 
 @implementation GameBackgroundScene
 
@@ -16,6 +19,13 @@
 
 + (id) scene:(int)gk JN1:(int)JN1 JN2:(int)JN2
 {
+    [GameProcessList saveAllData];
+    [GameProcessList initAllData];
+    [ArchievementList saveAllData];
+    [ArchievementList initAllData];
+    [ArchievementController initArchievementController];
+    [ArchievementController addGameOpen];
+    [ArchievementController hasArchievement2];
 	CCScene *scene = [CCScene node];
     
 	GameBackgroundScene *gameBackgroundScene = [GameBackgroundScene node];
@@ -50,6 +60,7 @@
 {
 	if( (self=[super init])) {
         [self setIsTouchEnabled:YES];
+        [self shiYingIphone5];
         [GameController initGameController];
 	}
 	return self;
@@ -62,14 +73,21 @@
     CGSize size = [[CCDirector sharedDirector] winSize];
     //背景，表示是否可以通过的
     _background = [CCSprite spriteWithFile:[NSString stringWithFormat:@"map%04db.png", self.pointNum]];
-    _background.position = CGPointMake(size.width /2 , size.height/2);
+    _background.position = CGPointMake(240 , size.height/2);
     _background.scale = 1;
     [self addChild:_background z:1];
     //前景，显示用的
     _showground = [CCSprite spriteWithFile:[NSString stringWithFormat:@"map%04ds.png", self.pointNum]];
-    _showground.position = CGPointMake(size.width /2 , size.height/2);
+    _showground.position = CGPointMake(240 , size.height/2);
     _showground.scale = 1;
     [self addChild:_showground z:2];
+    
+    CCLabelTTF *hintLabel = [CCLabelTTF labelWithString:@"" fontName:@"Helvetica-Bold" fontSize:10];
+    hintLabel.position = ccp(74, 52);
+    hintLabel.anchorPoint = ccp(0.5, 0);
+    hintLabel.scale = 1;
+    hintLabel.color = ccc3(0, 0, 0);
+    [self addChild:hintLabel z:1000 tag:100];
 }
 
 - (CGPoint)boundLayerPos:(CGPoint)newPos {
@@ -215,6 +233,18 @@
 - (void) sceneTouchEnded:(NSSet*)touches operateType:(TOperateType)operateType
 {
 
+}
+
+-(void)shiYingIphone5
+{
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    if (size.width == 568) {
+        CCSprite *i5Img = [CCSprite spriteWithFile:@"i5Bg.png"];
+        i5Img.position = CGPointMake(240 , size.height/2);
+        i5Img.scale = 1;
+        [self addChild:i5Img z:1];
+        self.position = ccp(self.position.x + 44, self.position.y);
+    }
 }
 
 - (void) dealloc

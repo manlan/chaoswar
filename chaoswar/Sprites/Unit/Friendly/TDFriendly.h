@@ -14,7 +14,7 @@
 @property (nonatomic, assign) NSMutableArray *enemyBulletArray;
 @property (nonatomic, assign) NSMutableArray *attactEnemyArray;
 @property (nonatomic, retain) NSString *mvAniName;
-@property (nonatomic, retain) NSString *firstFrameName;
+
 @property CGPoint searchPoint;
 
 - (void) doGoHomeLogic;
@@ -24,7 +24,6 @@
 - (BOOL) canAttactEnemy:(TDEnemy*)e;
 
 - (void) AttactEnemy:(TDEnemy*)e;
-
 
 - (void) doAttact:(ccTime)dt;
 

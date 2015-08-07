@@ -151,31 +151,6 @@
     [array removeAllObjects];
 }
 
-- (BOOL) isWhite:(CGPoint)point
-{
-    if (point.x > 0 && point.x < 160 && point.y > 168 && point.y < 222) {
-        return YES;
-    }
-    
-    if (point.x > 104 && point.x < 160 && point.y > 80 && point.y < 222) {
-        return YES;
-    }
-    
-    if (point.x > 104 && point.x < 338 && point.y > 80 && point.y < 136) {
-        return YES;
-    }
-    
-    if (point.x > 282 && point.x < 338 && point.y > 80 && point.y < 270) {
-        return YES;
-    }
-    
-    if (point.x > 282 && point.x < 480 && point.y > 216 && point.y < 270) {
-        return YES;
-    }
-    
-    return NO;
-}
-
 - (void) doAutoNextWave
 {
     [super doAutoNextWave];

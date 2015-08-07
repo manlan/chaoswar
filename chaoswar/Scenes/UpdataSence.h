@@ -21,13 +21,16 @@
 	CCSprite *spriteXz;
 	CCAnimation *animationXz;
     
-    CCSpriteBatchNode *spritebatchSj;
-	CCSprite *spriteSj;
-	CCAnimation *animationSj;
+    CCSprite *spriteSj;
+    CCSpriteBatchNode *sjSheet;
+	CCSpriteFrameCache *sjCache;
     
+    CGSize size;
     BOOL gLock;
 }
 
 +(CCScene *) scene;
 -(void) updataJnById:(int) jnId;
+-(void)initSenceView:(int) uId;
+-(void)shiYingIphone5;
 @end

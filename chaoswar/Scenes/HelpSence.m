@@ -16,34 +16,35 @@
 -(id) init
 {
 	if( (self=[super init])) {
+        [self shiYingIphone5];
         CGSize size = [[CCDirector sharedDirector] winSize];
         //加载背景图片
 		bgImg = [CCSprite spriteWithFile:@"helpBg.png"];
-		bgImg.position = CGPointMake(size.width /2 , size.height/2);
+		bgImg.position = CGPointMake(240 , size.height/2);
 		bgImg.scale = 1;
 		[self addChild:bgImg z:1];
         
         //加载返回按钮
 		btnBack = [[CCMenuItemImage alloc] initFromNormalImage:@"btnBack.png" selectedImage:@"btnBackDown.png" disabledImage:@"btnBack.png" target:self selector:@selector(goToMainMenuSence:)];		
         CCMenu *btnBackMenu = [CCMenu menuWithItems:btnBack, nil];
-		btnBackMenu.position = CGPointMake(415 , 275);
+		btnBackMenu.position = CGPointMake(410 , 275);
 		[self addChild:btnBackMenu z:2];
 		[btnBack release];
         
         //加载选中动画
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"XzSheet.plist"];
-		spritebatchXz = [CCSpriteBatchNode batchNodeWithFile:@"XzSheet.png"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"helpXzSheet.plist"];
+		spritebatchXz = [CCSpriteBatchNode batchNodeWithFile:@"helpXzSheet.png"];
 		[self addChild:spritebatchXz z:3];
 		
 		NSMutableArray *animFramesXz = [NSMutableArray array];
-		for(int i = 1; i < 10; i++) {
-			CCSpriteFrame *frameXz = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"1%04d.png",i]];
+		for(int i = 1; i < 9; i++) {
+			CCSpriteFrame *frameXz = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"h1%04d.png",i]];
 			if (i==1) {
 				spriteXz = [[CCSprite alloc] initWithSpriteFrame:frameXz];
 			}
 			[animFramesXz addObject:frameXz];
 		}
-		animationXz = [CCAnimation animationWithName:@"Xz" frames:animFramesXz];
+		animationXz = [CCAnimation animationWithName:@"helpXz" frames:animFramesXz];
 		[spritebatchXz addChild:spriteXz];
 		[spriteXz release];
 		spriteXz.position = ccp(85,230);
@@ -92,9 +93,9 @@
         }
         
         //加载介绍
-        labelExplain = [CCLabelTTF labelWithString:fristExplain dimensions:CGSizeMake(185,200) alignment:UITextAlignmentLeft fontName:@"Georgia" fontSize:16];
+        labelExplain = [CCLabelTTF labelWithString:fristExplain dimensions:CGSizeMake(170,220) alignment:UITextAlignmentLeft fontName:@"Helvetica-Bold" fontSize:16];
         //[CCLabelTTF labelWithString:Explain dimensions:CGSizeMake(300,300) fontName:@"Marker Felt" fontSize:18];
-		labelExplain.position = CGPointMake(250 ,30);
+		labelExplain.position = CGPointMake(260 ,30);
 		labelExplain.anchorPoint = CGPointMake(0 ,0);
         labelExplain.color = ccc3(255, 204, 0);
 		[self addChild: labelExplain z:2];
@@ -136,6 +137,18 @@
 {
     [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
     [[CCDirector sharedDirector] replaceScene: [SceneManager TransFadeDown:0.56f layer:[MainMenuSence node]]];
+}
+
+-(void)shiYingIphone5
+{
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    if (size.width == 568) {
+        CCSprite *i5Img = [CCSprite spriteWithFile:@"i5Bg.png"];
+        i5Img.position = CGPointMake(240 , size.height/2);
+        i5Img.scale = 1;
+        [self addChild:i5Img z:1];
+        self.position = ccp(self.position.x + 44, self.position.y);
+    }
 }
 
 - (void) dealloc

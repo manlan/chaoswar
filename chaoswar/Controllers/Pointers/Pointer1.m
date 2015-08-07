@@ -55,6 +55,28 @@
 	switch (wave) {
 		case 1:
             [self runWave:1 e:ET_FOOT1 s:2 t:3 wy:[gc.wayManager getWay:2]];
+            
+//            [self runWave:3 e:ET_FOOT1 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:6 e:ET_FOOT2 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:9 e:ET_FOOT3 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:12 e:ET_FOOT4 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:15 e:ET_FOOT5 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:18 e:ET_FOOT6 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:21 e:ET_FOOT7 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:24 e:ET_FOOT8 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:27 e:ET_FOOT9 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:30 e:ET_FOOT10 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:31 e:ET_FOOT11 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:35 e:ET_FOOT12 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:38 e:ET_FOOT13 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:41 e:ET_FOOT14 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:45 e:ET_FOOT15 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:48 e:ET_FOOT16 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:51 e:ET_FLY1 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:55 e:ET_FLY2 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:58 e:ET_FLY3 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:61 e:ET_MAGIC1 s:2 t:1 wy:[gc.wayManager getWay:2]];
+//            [self runWave:65 e:ET_MAGIC2 s:2 t:1 wy:[gc.wayManager getWay:2]];
             //prepareNextWave函数参数，等待多少秒之后，可以点击下一波
             //[self prepareEndPoint:7];
             //[self prepareEndGame:7];
@@ -150,31 +172,6 @@
 - (void) initFriendly:(NSMutableArray*)array
 {
     [array removeAllObjects];
-}
-
-- (BOOL) isWhite:(CGPoint)point
-{
-    if (point.x > 125 && point.x < 183 && point.y > 186 && point.y < 320) {
-        return YES;
-    }
-    
-    if (point.x > 125 && point.x < 396 && point.y > 186 && point.y < 244) {
-        return YES;
-    }
-    
-    if (point.x > 340 && point.x < 396 && point.y > 68 && point.y < 244) {
-        return YES;
-    }
-    
-    if (point.x > 220 && point.x < 396 && point.y > 68 && point.y < 122) {
-        return YES;
-    }
-    
-    if (point.x > 220 && point.x < 276 && point.y > 29 && point.y < 122) {
-        return YES;
-    }
-    
-    return NO;
 }
 
 - (void) doAutoNextWave

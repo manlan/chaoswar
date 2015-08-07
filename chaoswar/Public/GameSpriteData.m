@@ -1,11 +1,11 @@
 #import "GameSpriteData.h"
 #import "cocos2d.h"
-#import "DataController.h"
 #import "GameController.h"
+#import "UpdateInfoList.h"
 
 float getArrowTower1AttactTime()
 {	
-    int level = [DataController getUpdataLevelByTagName:4];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:5];
     if(level == 3)
     {
         return 1.1;
@@ -18,7 +18,7 @@ float getArrowTower1AttactTime()
 
 float getArrowTower2AttactTime()
 {	
-    int level = [DataController getUpdataLevelByTagName:4];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:5];
     if(level == 3)
     {
         return 0.8;
@@ -31,7 +31,7 @@ float getArrowTower2AttactTime()
 
 float getArrowTower3AttactTime()
 {	
-    int level = [DataController getUpdataLevelByTagName:4];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:5];
     if(level == 3)
     {
         return 0.65;
@@ -44,7 +44,7 @@ float getArrowTower3AttactTime()
 
 float getArrowTower1Attact()
 {	
-    int level = [DataController getUpdataLevelByTagName:4];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:5];
     if(level >= 2)
     {
         return 10;
@@ -57,7 +57,7 @@ float getArrowTower1Attact()
 
 float getArrowTower2Attact()
 {	
-    int level = [DataController getUpdataLevelByTagName:4];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:5];
     if(level >= 2)
     {
         return 14;
@@ -70,7 +70,7 @@ float getArrowTower2Attact()
 
 float getArrowTower3Attact()
 {	
-    int level = [DataController getUpdataLevelByTagName:4];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:5];
     if(level >= 2)
     {
         return 18;
@@ -83,7 +83,7 @@ float getArrowTower3Attact()
 
 float getDefenceTower1AttactTime()
 {	
-    int level = [DataController getUpdataLevelByTagName:5];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:6];
     if(level >= 2)
     {
         return 8;
@@ -96,7 +96,7 @@ float getDefenceTower1AttactTime()
 
 float getDefenceTower2AttactTime()
 {	
-    int level = [DataController getUpdataLevelByTagName:5];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:6];
     if(level >= 2)
     {
         return 7;
@@ -109,7 +109,7 @@ float getDefenceTower2AttactTime()
 
 float getDefenceTower3AttactTime()
 {	
-    int level = [DataController getUpdataLevelByTagName:5];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:6];
     if(level >= 2)
     {
         return 6;
@@ -122,7 +122,7 @@ float getDefenceTower3AttactTime()
 
 float getDefenceTower1HP()
 {	
-    int level = [DataController getUpdataLevelByTagName:5];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:6];
     if(level == 3)
     {
         return 50;
@@ -135,7 +135,7 @@ float getDefenceTower1HP()
 
 float getDefenceTower2HP()
 {	
-    int level = [DataController getUpdataLevelByTagName:5];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:6];
     if(level == 3)
     {
         return 70;
@@ -148,7 +148,7 @@ float getDefenceTower2HP()
 
 float getDefenceTower3HP()
 {	
-    int level = [DataController getUpdataLevelByTagName:5];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:6];
     if(level == 3)
     {
         return 100;
@@ -161,7 +161,7 @@ float getDefenceTower3HP()
 
 float getTurrettower1Attact()
 {	
-    int level = [DataController getUpdataLevelByTagName:6];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:7];
     if(level >= 2)
     {
         return 15;
@@ -174,7 +174,7 @@ float getTurrettower1Attact()
 
 float getTurrettower2Attact()
 {	
-    int level = [DataController getUpdataLevelByTagName:6];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:7];
     if(level >= 2)
     {
         return 22;
@@ -187,7 +187,7 @@ float getTurrettower2Attact()
 
 float getTurrettower3Attact()
 {	
-    int level = [DataController getUpdataLevelByTagName:6];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:7];
     if(level >= 2)
     {
         return 30;
@@ -200,7 +200,7 @@ float getTurrettower3Attact()
 
 float getTurrettower1AttactTime()
 {	
-    int level = [DataController getUpdataLevelByTagName:6];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:7];
     if(level == 3)
     {
         return 2.3;
@@ -213,7 +213,7 @@ float getTurrettower1AttactTime()
 
 float getTurrettower2AttactTime()
 {	
-    int level = [DataController getUpdataLevelByTagName:6];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:7];
     if(level == 3)
     {
         return 2.2;
@@ -226,7 +226,7 @@ float getTurrettower2AttactTime()
 
 float getTurrettower3AttactTime()
 {	
-    int level = [DataController getUpdataLevelByTagName:6];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:7];
     if(level == 3)
     {
         return 2.1;
@@ -239,7 +239,7 @@ float getTurrettower3AttactTime()
 
 float getMagicTower1AttactTime()
 {	
-    int level = [DataController getUpdataLevelByTagName:7];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:8];
     if(level == 3)
     {
         return 2;
@@ -252,7 +252,7 @@ float getMagicTower1AttactTime()
 
 float getMagicTower2AttactTime()
 {	
-    int level = [DataController getUpdataLevelByTagName:7];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:8];
     if(level == 3)
     {
         return 1.9;
@@ -265,7 +265,7 @@ float getMagicTower2AttactTime()
 
 float getMagicTower3AttactTime()
 {	
-    int level = [DataController getUpdataLevelByTagName:7];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:8];
     if(level == 3)
     {
         return 1.8;
@@ -278,7 +278,7 @@ float getMagicTower3AttactTime()
 
 float getMagicTower1Attact()
 {	
-    int level = [DataController getUpdataLevelByTagName:7];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:8];
     if(level >= 2)
     {
         return 22;
@@ -291,7 +291,7 @@ float getMagicTower1Attact()
 
 float getMagicTower2Attact()
 {	
-    int level = [DataController getUpdataLevelByTagName:7];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:8];
     if(level >= 2)
     {
         return 33;
@@ -304,7 +304,7 @@ float getMagicTower2Attact()
 
 float getMagicTower3Attact()
 {	
-    int level = [DataController getUpdataLevelByTagName:7];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:8];
     if(level >= 2)
     {
         return 45;
@@ -317,7 +317,7 @@ float getMagicTower3Attact()
 
 float getMFLAttact()
 {	
-    int level = [DataController getUpdataLevelByTagName:0];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:1];
     if(level >= 2)
     {
         return 60;
@@ -330,13 +330,13 @@ float getMFLAttact()
 
 int getMFLLevel()
 {
-    int level = [DataController getUpdataLevelByTagName:0];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:1];
     return  level;
 }
 
 float getMCFireAttact()
 {	
-    int level = [DataController getUpdataLevelByTagName:1];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:2];
     if(level >= 2)
     {
         return 25;
@@ -349,13 +349,13 @@ float getMCFireAttact()
 
 int getMCFireLevel()
 {
-    int level = [DataController getUpdataLevelByTagName:1];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:2];
     return  level;
 }
 
 float getMCLightAttact()
 {	
-    int level = [DataController getUpdataLevelByTagName:2];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:3];
     if(level == 1)
     {
         return 100;
@@ -372,7 +372,7 @@ float getMCLightAttact()
 
 float getMCStoneAttact()
 {	
-    int level = [DataController getUpdataLevelByTagName:3];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:4];
     if(level >= 2)
     {
         return 60;
@@ -385,7 +385,7 @@ float getMCStoneAttact()
 
 float getMCStoneFanitTime()
 {	
-    int level = [DataController getUpdataLevelByTagName:3];
+    int level = [UpdateInfoList getLevelByUpdataInfoId:4];
     if(level == 3)
     {
         return 4;
@@ -404,10 +404,10 @@ ccColor3B getHintFontColor()
             return ccc3(255,255,255);
             break;
         case MT_SAND:
-            return ccc3(255,204,  0);
+            return ccc3(255,255,255);
 			break;
         case MT_SNOW:
-            return ccc3(255,204,  0);
+            return ccc3(255,51, 0);
 			break;
 		default:
             return ccc3(255,255,255);

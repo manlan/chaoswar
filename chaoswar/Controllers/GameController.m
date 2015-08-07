@@ -1,6 +1,6 @@
 #import "GameController.h"
 #import "MagicController.h"
-#import "DataController.h"
+#import "GnDataController.h"
 #import "SpritesImp.h"
 #import "Wave.h"
 #import "WayPoint.h"
@@ -28,6 +28,7 @@
 #import "Pointer12.h"
 #import "SceneManager.h"
 #import "SelectSence.h"
+#import "GameConfig.h"
 
 @implementation GameController
 
@@ -131,6 +132,7 @@ static GameController *_sharedController = nil;
 - (void) initController:(int)p {
     _ptNum = p;
     _pt = [self getPointer:p];
+    [_pt setImageName:[NSString stringWithFormat:@"map%04db.png", _ptNum+1]];
 }
 
 - (void) start
@@ -228,6 +230,7 @@ static GameController *_sharedController = nil;
     [_gameImfomation setEnemyNumValue];
     [self setGameStatus];
     if (_currentHealth <= 0) {
+        isGameStop = YES;
         [[CCDirector sharedDirector] pause];
         //背景
         CCSprite *lostBg = [CCSprite spriteWithFile:@"lostBg.png"];
@@ -236,12 +239,12 @@ static GameController *_sharedController = nil;
         
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"lostBg.mp3"];
         //退出
-        CCMenuItemImage *btnMenu = [CCMenuItemImage itemFromNormalImage:@"btnQuit.png" selectedImage:@"btnQuit.png" disabledImage:@"btnQuit.png"  target:self selector:@selector(backToMenu:)];
+        CCMenuItemImage *btnMenu = [CCMenuItemImage itemFromNormalImage:@"btnQuit.png" selectedImage:@"btnQuitdown.png" disabledImage:@"btnQuit.png"  target:self selector:@selector(backToMenu:)];
         CCMenu *btnMenuMenu = [CCMenu menuWithItems:btnMenu, nil];
         btnMenuMenu.position = ccp(240 , 100);
         [_gameHint addChild:btnMenuMenu z:101];
         //重来
-        CCMenuItemImage *btnRestart = [CCMenuItemImage itemFromNormalImage:@"btnRestart.png" selectedImage:@"btnRestart.png"  disabledImage:@"btnRestart.png"  target:self selector:@selector(restartGame:)];
+        CCMenuItemImage *btnRestart = [CCMenuItemImage itemFromNormalImage:@"btnRestart.png" selectedImage:@"btnRestartdown.png"  disabledImage:@"btnRestart.png"  target:self selector:@selector(restartGame:)];
         CCMenu *btnRestartMenu = [CCMenu menuWithItems:btnRestart, nil];
         btnRestartMenu.position = ccp(240 , 155);
         [_gameHint addChild:btnRestartMenu z:101];
@@ -251,6 +254,7 @@ static GameController *_sharedController = nil;
 -(void) backToMenu:(id) sender 
 {
     [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
+    isGameStop = NO;
     [[CCDirector sharedDirector] resume];
     [self stopGame];
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"mainBg.mp3"];
@@ -260,6 +264,7 @@ static GameController *_sharedController = nil;
 -(void) restartGame:(id) sender 
 {
     [[SimpleAudioEngine sharedEngine] playEffect:@"btn.wav"];
+    isGameStop = NO;
     [[CCDirector sharedDirector] resume];
     [_gameHint removeAllChildrenWithCleanup:YES];
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"mainBg.mp3"];
@@ -295,6 +300,48 @@ static GameController *_sharedController = nil;
 -(void)setOperateType:(TOperateType)ot
 {
     _operateType = ot;
+    
+    CCNode *node = [_gameBackground getChildByTag:100];
+    if (node) {
+        CCLabelTTF *hintLabel = (CCLabelTTF*) node;
+        [hintLabel setColor:ccc3(255, 255, 255)];
+        if (hintLabel) {
+            switch (_operateType) {
+                case OT_NORMAL:
+                    [hintLabel setString:@""];
+                    break;
+                case OT_MAGIC_FIRE:
+                    [hintLabel setString:@"Set On Road"];
+                    break;
+                case OT_MAGIC_FRIENDLY:
+                    [hintLabel setString:@"Set On Road"];
+                    break;
+                case OT_MAGIC_STOP:
+                    [hintLabel setString:@"Set On Enemy"];
+                    break;
+                case OT_MAGIC_THUNDER:
+                    [hintLabel setString:@"Set On Enemy"];
+                    break;
+                case OT_BUILDING:
+                    [hintLabel setString:@""];
+                    break;
+                case OT_SELL:
+                    [hintLabel setString:@""];
+                    break;
+                case OT_UPDATE:
+                    [hintLabel setString:@""];
+                    break;
+                case OT_SETSEARCHPOINT:
+                    [hintLabel setString:@"Set Rallying Point"];
+                    break;
+                case OT_NONE:
+                    [hintLabel setString:@""];
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
     [self setGameStatus];
 }
 
@@ -396,12 +443,13 @@ static GameController *_sharedController = nil;
 
 - (void) doMagicFire:(CGPoint)point
 {
-    [[FireController getFireController:0.1 pos:point] run];
-    [[FireController getFireController:0.3 pos:ccpAdd(point, ccp(-15, -15))] run];
-    [[FireController getFireController:0.35 pos:ccpAdd(point, ccp(15, 15))] run];
-    if ([DataController getMagicFireLevel] == 3) {
-        [[FireController getFireController:0.55 pos:ccpAdd(point, ccp(-15, 15))] run];
-        [[FireController getFireController:0.65 pos:ccpAdd(point, ccp(15, -15))] run];
+    NSString *ct = now();
+    [[FireController getFireController:0.1 pos:point ct:ct] run];
+    [[FireController getFireController:0.3 pos:ccpAdd(point, ccp(-15, -15)) ct:ct] run];
+    [[FireController getFireController:0.35 pos:ccpAdd(point, ccp(15, 15)) ct:ct] run];
+    if ([GnDataController getMagicFireLevel] == 3) {
+        [[FireController getFireController:0.55 pos:ccpAdd(point, ccp(-15, 15)) ct:ct] run];
+        [[FireController getFireController:0.65 pos:ccpAdd(point, ccp(15, -15)) ct:ct] run];
     }
     self.screenClickType = SCT_ALL;
     self.operateType = OT_NORMAL;
@@ -410,13 +458,14 @@ static GameController *_sharedController = nil;
 
 - (void) doMagicFriendly:(CGPoint)point
 {
-    if ([DataController getMagicFriendlyLevel] == 3) {
-        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp(-15, -15))] run];
-        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp(15, 15))] run];
-        [[FriendlyController getFriendlyController:0.01 pos:point] run];
+    NSString *ct = now();
+    if ([GnDataController getMagicFriendlyLevel] == 3) {
+        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp(-15, -15)) ct:ct] run];
+        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp(15, 15)) ct:ct] run];
+        [[FriendlyController getFriendlyController:0.01 pos:point ct:ct] run];
     } else {
-        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp(-7.5, -7.5))] run];
-        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp( 7.5,  7.5))] run];
+        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp(-7.5, -7.5)) ct:ct] run];
+        [[FriendlyController getFriendlyController:0.01 pos:ccpAdd(point, ccp( 7.5,  7.5)) ct:ct] run];
     }
     self.screenClickType = SCT_ALL;
     self.operateType = OT_NORMAL;
@@ -452,7 +501,25 @@ static GameController *_sharedController = nil;
         node = nil;
     }
     
-    CCLabelTTF *hintLabel = [CCLabelTTF labelWithString:hint fontName:@"Georgia-Bold" fontSize:10];
+    CCLabelTTF *hintLabel = [CCLabelTTF labelWithString:hint fontName:@"Helvetica-Bold" fontSize:10];
+    hintLabel.position = ccp(290, 40);
+    hintLabel.anchorPoint = ccp(0.5, 0);
+    hintLabel.scale = 1;
+    hintLabel.color = ccc3(0, 0, 0);
+    [hintLabel runAction:[CCSequence actions:[CCMoveTo actionWithDuration:2.0f position:hintLabel.position], [CCFadeOut actionWithDuration:1.5f], nil]];
+    [_gameBackground addChild:hintLabel z:1000 tag:99];
+}
+
+- (void) TouchHint:(NSString*)hint {
+    CCNode *node = [_gameBackground getChildByTag:99];
+    if (node) {
+        [node cleanup];
+        [node removeFromParentAndCleanup:YES];
+        node = nil;
+    }
+    
+    CCLabelTTF *hintLabel = [CCLabelTTF labelWithString:hint fontName:@"Helvetica-Bold" fontSize:10];
+    [hintLabel setString:@""];
     hintLabel.position = ccp(290, 40);
     hintLabel.anchorPoint = ccp(0.5, 0);
     hintLabel.scale = 1;

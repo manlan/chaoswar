@@ -49,4 +49,6 @@
 
 - (void) clearSceneSrpite;
 
+-(void)shiYingIphone5;
+
 @end

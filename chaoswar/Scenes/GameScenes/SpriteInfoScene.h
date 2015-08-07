@@ -28,10 +28,11 @@
 
 - (void) setSmallPic:(NSString*)name;
 - (void) setAttact:(int)attact;
-- (void) setAttactSpeed:(int)attactSpeed;
+- (void) setAttactSpeed:(float)attactSpeed;
 - (void) setBloodNum:(int)bloodNum;
 - (void) setMoveSpeed:(int)moveSpeed;
 - (void) setFriendlyNum:(int)friendlyNum;
 - (void) setLiveTime:(int)liveTime;
 
+-(void)shiYingIphone5;
 @end

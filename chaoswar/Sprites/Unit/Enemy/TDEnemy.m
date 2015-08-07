@@ -101,13 +101,14 @@ const NSMutableArray* regfriendlyArray = nil;
     }
 }
 
-- (CGPoint) getPositionAfterTime:(ccTime)dt
+- (CGPoint) getPositionAfterTime:(ccTime)dt isHead:(float)isHead
 {
+    GLfloat headPos = self.textureRect.size.height * isHead;
     if (self.unitStatus != US_NORMAL) {
-        return ccp(self.position.x, self.position.y + self.textureRect.size.height);
+        return ccp(self.position.x, self.position.y + headPos);
     }
     if (!self.canSchedule) {
-        return ccp(self.position.x, self.position.y + self.textureRect.size.height);
+        return ccp(self.position.x, self.position.y + headPos);
     }
     CGFloat doDistance = self.moveSpeed * dt;
     CGPoint currentPos = self.position;
@@ -126,13 +127,14 @@ const NSMutableArray* regfriendlyArray = nil;
             y = y * doDistance;
             y = y / curDistance;
             y = currentPos.y + y;
-            return ccp(x, y + self.textureRect.size.height);
+
+            return ccp(x, y + headPos);
         }
         doDistance = doDistance - curDistance;
         currentPos = nextPos;
         iWave++;
     }
-    return ccp(currentPos.x, currentPos.y + self.textureRect.size.height);
+    return ccp(currentPos.x, currentPos.y + headPos);
 }
 
 //================主要逻辑================
@@ -191,6 +193,9 @@ const NSMutableArray* regfriendlyArray = nil;
     }
     [self stopAllActions];
     [self unscheduleAllSelectors];
+    CCSpriteFrame *frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:self.firstFrameName];
+	NSAssert1(frame!=nil, @"Invalid spriteFrameName: %@", self.firstFrameName);
+	[self setDisplayFrame:frame];
 }
 
 - (void) doAttact
@@ -213,6 +218,7 @@ const NSMutableArray* regfriendlyArray = nil;
     if (_nextWayPoint >= self.way.count) {
         self.spriteStatus = TSS_DEAD;
         gc.currentHealth = gc.currentHealth - 1;
+        return;
     }
     WayPoint *wp = [self.way objectAtIndex:_nextWayPoint];
     position = wp.point;
@@ -301,6 +307,10 @@ const NSMutableArray* regfriendlyArray = nil;
     }
     [regfriendlyArray removeObject:f];
     [regfriendlyArray addObject:f];
+    [TDEnemy tellFriendlys];
+}
+
++ (void) tellFriendlys {
     GameController *gc = [GameController getGameController];
     for (TDEnemy* e in gc.enemyArray) {
         if (e.spriteStatus == TSS_NORMAL) {
@@ -385,6 +395,7 @@ const NSMutableArray* regfriendlyArray = nil;
 {
     GameController *gc = [GameController getGameController];
 	TDThunderBullet1 *b = [TDThunderBullet1 getSprite];
+    b.createTime = now();
     b.enemy = self;
     b.position = ccp(self.position.x, self.position.y + 100);
     [gc.gameBackground addChild:b z:60];
@@ -399,6 +410,7 @@ const NSMutableArray* regfriendlyArray = nil;
 {
     GameController *gc = [GameController getGameController];
 	TDStoneBullet1 *b = [TDStoneBullet1 getSprite];
+    b.createTime = now();
     b.enemy = self;
     b.position = ccp(self.position.x, self.position.y + 100);
     [gc.gameBackground addChild:b z:60];

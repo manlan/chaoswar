@@ -1,5 +1,6 @@
 #import "TDUnit.h"
 #import "GameController.h"
+#import "ArchievementController.h"
 #import "MagicController.h"
 #import "SpriteInfoScene.h"
 
@@ -26,6 +27,7 @@
 @synthesize canSchedule = _canSchedule;
 @synthesize speedUPNum = _speedUPNum;
 @synthesize smallPic = _smallPic;
+@synthesize firstFrameName = _firstFrameName;
 
 -(id) init
 {
@@ -38,6 +40,9 @@
         _magicController = [[MagicController alloc] init];
         _magicController.unit = self;
         self.smallPic = @"smbs01.png";
+        if (!_firstFrameName) {
+            self.firstFrameName = @"";
+        }
 	}
 	return self;
 }
@@ -54,12 +59,14 @@
 }
 
 - (void)dealloc {
+    [_firstFrameName release];
     [_mvuAniName release];
     [_mvdAniName release];
     [_mvcAniName release];
     [_atAniName release];
     [_ddAniName release];
     [_mcAniName release];
+    [_magicController stop];
     [_magicController release];
     [self.smallPic release];
     [super dealloc];
@@ -122,6 +129,7 @@
     self.currentHP = self.currentHP - attactNum;
     if (self.currentHP < 0) self.currentHP = 0;
     if (self.currentHP == 0) {
+        [ArchievementController addSpriteBeaten:s beater:self];
         s.killNum++;
         [self stopAllActions];
         [self unscheduleAllSelectors];

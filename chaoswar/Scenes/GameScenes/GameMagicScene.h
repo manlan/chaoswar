@@ -36,4 +36,6 @@
 - (void) restartMagicThunder;
 - (void) restartMagicStop;
 
+-(void)shiYingIphone5;
+
 @end

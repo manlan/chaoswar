@@ -10,7 +10,7 @@
 	gc.maxWave = 16;
 	gc.currentWave = 0;
 	gc.currentHealth = 10;
-	gc.currentGold = 320;
+	gc.currentGold = 280;
 	gc.screenClickType = SCT_ALL;
 	gc.operateType = OT_NORMAL;
 	gc.mapType = MT_SAND;
@@ -43,103 +43,103 @@
             [self runWave:1 e:ET_FOOT4 s:2 t:3 wy:[gc.wayManager getWay:2]];
             
             [self runWave:1 e:ET_FOOT3 s:2 t:3 wy:[gc.wayManager getWay:5]];
-            [self prepareNextWave:22];
+            [self prepareNextWave:15];
 			break;
         case 2:
 			[self runWave:1 e:ET_FOOT5 s:2 t:3 wy:[gc.wayManager getWay:2]];
             
             [self runWave:1 e:ET_FOOT3 s:2 t:5 wy:[gc.wayManager getWay:5]];
-            [self prepareNextWave:22];
+            [self prepareNextWave:15];
 			break;
         case 3:
 			[self runWave:1 e:ET_FOOT5 s:2 t:4 wy:[gc.wayManager getWay:1]];
             [self runWave:1 e:ET_MAGIC1 s:4 t:2 wy:[gc.wayManager getWay:2]];
             
             [self runWave:1 e:ET_FOOT4 s:2 t:4 wy:[gc.wayManager getWay:5]];
-            [self prepareNextWave:25];
+            [self prepareNextWave:18];
 			break;
         case 4:
             //new enemy
 			[self runWave:1 e:ET_FOOT8 s:2 t:4 wy:[gc.wayManager getWay:5]];
-            [self prepareNextWave:20];
+            [self prepareNextWave:15];
 			break;
         case 5:
             [self runWave:1 e:ET_FOOT6 s:2 t:3 wy:[gc.wayManager getWay:2]];
             
             [self runWave:1 e:ET_FOOT8 s:2 t:3 wy:[gc.wayManager getWay:5]];
-            [self prepareNextWave:20];
+            [self prepareNextWave:15];
 			break;
         case 6:
-            [self runWave:1 e:ET_FOOT8 s:2 t:4 wy:[gc.wayManager getWay:2]];
+            [self runWave:1 e:ET_FOOT8 s:2 t:9 wy:[gc.wayManager getWay:2]];
             
-            [self runWave:1 e:ET_FOOT8 s:2 t:4 wy:[gc.wayManager getWay:5]];
-            [self prepareNextWave:20];
+            [self runWave:1 e:ET_FOOT8 s:2 t:9 wy:[gc.wayManager getWay:5]];
+            [self prepareNextWave:16];
 			break;
         case 7:
 			[self runWave:1 e:ET_FOOT8 s:2 t:3 wy:[gc.wayManager getWay:2]];
             
             [self runWave:1 e:ET_FOOT2 s:2 t:5 wy:[gc.wayManager getWay:4]];
             [self runWave:1 e:ET_FOOT7 s:3 t:2 wy:[gc.wayManager getWay:5]];
-            [self prepareNextWave:23];
+            [self prepareNextWave:20];
 			break;
         case 8:
 			[self runWave:1 e:ET_FOOT4 s:2 t:5 wy:[gc.wayManager getWay:1]];
-            [self runWave:1 e:ET_FOOT11 s:4 t:2 wy:[gc.wayManager getWay:2]];
+            [self runWave:1 e:ET_FOOT11 s:3 t:6 wy:[gc.wayManager getWay:2]];
 
-            [self prepareNextWave:25];
+            [self prepareNextWave:18];
 			break;
         case 9:
 			[self runWave:1 e:ET_FOOT4 s:2 t:5 wy:[gc.wayManager getWay:1]];
-            [self runWave:1 e:ET_FOOT11 s:4 t:2 wy:[gc.wayManager getWay:2]];
+            [self runWave:1 e:ET_FOOT11 s:3 t:6 wy:[gc.wayManager getWay:2]];
             
             [self runWave:1 e:ET_FOOT8 s:2 t:4 wy:[gc.wayManager getWay:5]];
-            [self prepareNextWave:25];
+            [self prepareNextWave:18];
 			break;
         case 10:
-            [self runWave:1 e:ET_FOOT10 s:2 t:4 wy:[gc.wayManager getWay:2]];
+            [self runWave:1 e:ET_FOOT10 s:2 t:6 wy:[gc.wayManager getWay:2]];
             
             [self runWave:1 e:ET_FOOT8 s:2 t:4 wy:[gc.wayManager getWay:5]];
-            [self prepareNextWave:23];
+            [self prepareNextWave:20];
 			break;
         case 11:
             //new enemy
             [self runWave:1 e:ET_FOOT12 s:3 t:4 wy:[gc.wayManager getWay:2]];
-            [self prepareNextWave:23];
+            [self prepareNextWave:18];
 			break;
         case 12:
             [self runWave:1 e:ET_FOOT10 s:2 t:5 wy:[gc.wayManager getWay:1]];
-            [self runWave:1 e:ET_FOOT12 s:3 t:2 wy:[gc.wayManager getWay:2]];
+            [self runWave:1 e:ET_FOOT12 s:3 t:6 wy:[gc.wayManager getWay:2]];
             
             [self runWave:1 e:ET_FOOT7 s:2 t:3 wy:[gc.wayManager getWay:5]];
-            [self prepareNextWave:25];
+            [self prepareNextWave:20];
 			break;
         case 13:
             [self runWave:1 e:ET_FOOT10 s:2 t:5 wy:[gc.wayManager getWay:1]];
-            [self runWave:1 e:ET_FOOT12 s:3 t:3 wy:[gc.wayManager getWay:2]];
+            [self runWave:1 e:ET_FOOT12 s:3 t:5 wy:[gc.wayManager getWay:2]];
             
             [self runWave:1 e:ET_FOOT7 s:3 t:2 wy:[gc.wayManager getWay:5]];
             [self runWave:1 e:ET_FOOT2 s:2 t:5 wy:[gc.wayManager getWay:6]];
-            [self prepareNextWave:25];
+            [self prepareNextWave:18];
 			break;
         case 14:
             [self runWave:1 e:ET_FOOT10 s:2 t:6 wy:[gc.wayManager getWay:1]];
-            [self runWave:1 e:ET_FOOT12 s:3 t:4 wy:[gc.wayManager getWay:2]];
+            [self runWave:1 e:ET_FOOT12 s:3 t:6 wy:[gc.wayManager getWay:2]];
             
             [self runWave:1 e:ET_FOOT5 s:2 t:4 wy:[gc.wayManager getWay:6]];
-            [self runWave:1 e:ET_MAGIC1 s:4 t:2 wy:[gc.wayManager getWay:5]];
-            [self prepareNextWave:25];
+            [self runWave:1 e:ET_MAGIC1 s:3 t:3 wy:[gc.wayManager getWay:5]];
+            [self prepareNextWave:18];
 			break;
         case 15:
             [self runWave:1 e:ET_FOOT10 s:2 t:7 wy:[gc.wayManager getWay:1]];
-            [self runWave:1 e:ET_FOOT12 s:3 t:4 wy:[gc.wayManager getWay:2]];
+            [self runWave:1 e:ET_FOOT12 s:3 t:5 wy:[gc.wayManager getWay:2]];
             
             [self runWave:1 e:ET_FOOT9 s:3 t:2 wy:[gc.wayManager getWay:5]];
             [self runWave:1 e:ET_FOOT6 s:2 t:4 wy:[gc.wayManager getWay:6]];
-            [self prepareNextWave:25];
+            [self prepareNextWave:18];
 			break;
         case 16:
             [self runWave:1 e:ET_FOOT10 s:2 t:8 wy:[gc.wayManager getWay:1]];
-            [self runWave:1 e:ET_FOOT12 s:3 t:5 wy:[gc.wayManager getWay:2]];
+            [self runWave:1 e:ET_FOOT12 s:3 t:6 wy:[gc.wayManager getWay:2]];
             
             [self runWave:1 e:ET_FOOT9 s:3 t:3 wy:[gc.wayManager getWay:5]];
             [self runWave:1 e:ET_FOOT8 s:2 t:5 wy:[gc.wayManager getWay:6]];
@@ -199,27 +199,6 @@
 - (void) initFriendly:(NSMutableArray*)array
 {
     [array removeAllObjects];
-}
-
-- (BOOL) isWhite:(CGPoint)point
-{
-    if (point.x > 0 && point.x < 293 && point.y > 162 && point.y < 219) {
-        return YES;
-    }
-    
-    if (point.x > 122 && point.x < 181 && point.y > 162 && point.y < 480) {
-        return YES;
-    }
-    
-    if (point.x > 235 && point.x < 294 && point.y > 62 && point.y < 219) {
-        return YES;
-    }
-    
-    if (point.x > 235 && point.x < 480 && point.y > 62 && point.y < 121) {
-        return YES;
-    }
-    
-    return NO;
 }
 
 - (void) doAutoNextWave

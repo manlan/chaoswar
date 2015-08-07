@@ -20,4 +20,6 @@
 
 - (void) sceneTouchEnded:(NSSet*)touches operateType:(TOperateType)operateType;
 
+-(void)shiYingIphone5;
+
 @end

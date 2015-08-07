@@ -60,6 +60,11 @@
 
 -(void) afterRepeat:(id)sender {    
     [self searchClearEnemy];
+    if (self.parent) {
+        CCNode *p = self.parent;
+        [self removeFromParentAndCleanup:NO];
+        [p addChild:self z:4];
+    }
 }
 
 - (void) searchClearEnemy {
@@ -161,7 +166,7 @@
         self.spriteStatus = TSS_DEAD;
         return;
     }
-    CGPoint p = [self.enemy getPositionAfterTime:self.moveTime];
+    CGPoint p = [self.enemy getPositionAfterTime:self.moveTime isHead:1];
     self.position = ccp(p.x, p.y + 100);
     id actionMove = [CCMoveTo actionWithDuration:self.moveTime position:p];
 	id actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(attact:)];

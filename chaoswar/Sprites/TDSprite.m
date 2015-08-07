@@ -1,7 +1,7 @@
 #import "TDSprite.h"
 #import "GameController.h"
+#import "ArchievementController.h"
 #import "GameControllerScene.h"
-#import "DataController.h"
 #import "SpriteInfoScene.h"
 #import "TDTower.h"
 #import "TDEnemy.h"
@@ -11,6 +11,7 @@ const TDSprite *_lastSprite = nil;
 
 @implementation TDSprite
 
+@synthesize createTime = _createTime;
 @synthesize costGold = _costGold;
 @synthesize getGold = _getGold;
 @synthesize spriteStatus = _spriteStatus;
@@ -47,12 +48,23 @@ const TDSprite *_lastSprite = nil;
 
 - (BOOL) run
 {
+    float scalex = self.textureRect.size.width / 100;
     [_bloodShowSprite setScaleY:TDS_BLOOD_SCALE];
     [_bloodBackSprite setScaleY:TDS_BLOOD_SCALE];
-    _bloodShowSprite.position = ccp(0, self.textureRect.size.height + 10);
-    _bloodBackSprite.position = ccp(0, self.textureRect.size.height + 10);
+    [_bloodBackSprite setScaleX:scalex];
+    [_bloodShowSprite setScaleX:scalex]; 
+    _bloodShowSprite.position = ccp(self.position.x, self.position.y + self.textureRect.size.height + 3);
+    _bloodBackSprite.position = ccp(self.position.x, self.position.y + self.textureRect.size.height + 3);
     [_bloodShowSprite setVisible:_showBlood];
     [_bloodBackSprite setVisible:_showBlood];
+    if (self.parent) {
+        [_bloodShowSprite removeFromParentAndCleanup:NO];
+        [_bloodBackSprite removeFromParentAndCleanup:NO];
+        [_arrowSprite removeFromParentAndCleanup:NO];
+        [self.parent addChild:_bloodShowSprite z:self.zOrder];
+        [self.parent addChild:_bloodBackSprite z:self.zOrder - 1];
+        [self.parent addChild:_arrowSprite z:self.zOrder];
+    }
     return YES;
 }
 
@@ -65,7 +77,8 @@ const TDSprite *_lastSprite = nil;
 -(id) init
 {
 	if( (self=[super init])) {
-        [DataController setNewEnemyAddOne:[NSString stringWithUTF8String:object_getClassName(self)]];
+        self.createTime = now();
+        [ArchievementController addSpriteCreate:self];
         _isSelected = NO;
         //初始化属性
         _costGold = 0;
@@ -79,27 +92,16 @@ const TDSprite *_lastSprite = nil;
         _baseZOrder = 100;
         _spritePlace = SP_FOOT;
         //初始化血条，选择标记，魔法动画等
-        _bloodShowSprite = [CCSprite spriteWithFile:@"showProgress.png"];
-        _bloodShowSprite.anchorPoint = ccp(0, 0);
-        [self addChild:_bloodShowSprite z:2];
+        _bloodShowSprite = [[CCProgressTimer progressWithFile:@"showProgress.png"] retain];
+        [_bloodShowSprite setType:kCCProgressTimerTypeHorizontalBarLR];
+        _bloodShowSprite.anchorPoint = ccp(0.5, 0.5);
         
-        _bloodBackSprite = [CCSprite spriteWithFile:@"lifeProgressBG.png"];
-        _bloodBackSprite.anchorPoint = ccp(0, 0);
-        [self addChild:_bloodBackSprite z:1];
+        _bloodBackSprite = [[CCSprite spriteWithFile:@"lifeProgressBG.png"] retain];
+        _bloodBackSprite.anchorPoint = ccp(0.5, 0.5);
         
-        _arrowSprite = [CCSprite spriteWithFile:@"spSel.png"];
-        //[CCSprite spriteWithSpriteFrameName:@"spSel0001.png"];
+        _arrowSprite = [[CCSprite spriteWithFile:@"spSel.png"] retain];
         _arrowSprite.anchorPoint = ccp(0.5, 0.5);
-        
 
-//        [_arrowSprite runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithDuration:0.9 animation:arrowAni restoreOriginalFrame:NO]]];
-        [self addChild:_arrowSprite z:3];
-        
-        _effectSprite = [CCSprite spriteWithFile:@"spSel.png"];
-        _effectSprite.anchorPoint = ccp(0.5, 0);
-        [self addChild:_effectSprite z:10];
-        
-        [_effectSprite setVisible:NO];
         [_bloodShowSprite setVisible:_showBlood];
         [_bloodBackSprite setVisible:_showBlood];
         [_arrowSprite setVisible:NO];
@@ -121,15 +123,24 @@ const TDSprite *_lastSprite = nil;
 
 - (void) dealloc
 {
+    [self.createTime release];
+    [_arrowSprite release];
+    [_bloodShowSprite release];
+    [_bloodBackSprite release];
     if (_lastSprite == self) {
         _isSelected = NO;
         _lastSprite = nil;
         [[GameController getGameController].spriteInfo removeAllChildrenWithCleanup:YES];
     }
-//    [_bloodShowSprite removeFromParentAndCleanup:YES];
-//    [_bloodBackSprite removeFromParentAndCleanup:YES];
-//    [_arrowSprite removeFromParentAndCleanup:YES];
 	[super dealloc];
+}
+
+-(void) removeFromParentAndCleanup:(BOOL)cleanup
+{
+    [super removeFromParentAndCleanup:cleanup];
+    [_bloodShowSprite removeFromParentAndCleanup:cleanup];
+    [_bloodBackSprite removeFromParentAndCleanup:cleanup];
+    [_arrowSprite removeFromParentAndCleanup:cleanup];
 }
 
 - (void) initAnimate
@@ -145,8 +156,7 @@ const TDSprite *_lastSprite = nil;
 - (void) doSelect
 {
     _isSelected = YES;
-    _arrowSprite.position = ccp(self.textureRect.size.width / 2, self.textureRect.size.height + 20);
-    _arrowSprite.scale = 0.35;
+    _arrowSprite.scale = 0.4;
     [_arrowSprite setVisible:YES];
     [_arrowSprite runAction:[CCRepeatForever actionWithAction:[CCBlink actionWithDuration:0.5 blinks:1]]];
     _isSelected = YES;
@@ -166,6 +176,7 @@ const TDSprite *_lastSprite = nil;
             [[GameController getGameController].gameController clearSceneSrpite];
         }
     }
+    _lastSprite = nil;
 }
 
 - (CGRect) tdTouchRect
@@ -175,6 +186,7 @@ const TDSprite *_lastSprite = nil;
 
 - (void) onEnter
 {
+    [[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
     if (_canClick) {
         [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
     }
@@ -330,13 +342,9 @@ const TDSprite *_lastSprite = nil;
 - (void) setCurrentHP:(int)currentHP
 {
     _currentHP = currentHP;
-    if (_spriteStatus != TSS_NORMAL) {
-        return;
-    }
-    float scalex = self.textureRect.size.width / 100;
-    [_bloodBackSprite setScaleX:scalex];
-    scalex = scalex * _currentHP / _maxHP;
-    [_bloodShowSprite setScaleX:scalex];    
+    if (_spriteStatus != TSS_NORMAL) return;
+    float percent = 100 * _currentHP / _maxHP;
+    [_bloodShowSprite setPercentage:percent];   
 }
 
 - (void) statusToNormal {
@@ -371,10 +379,16 @@ const TDSprite *_lastSprite = nil;
                 [self statusToNormal];
                 break;
             case TSS_DEADING:
+                if (_lastSprite == self) {
+                    [_lastSprite doUnSelect];
+                }
                 [self clearSpriteData];
                 [self statusToDeading];
                 break;
             case TSS_DEAD:
+                if (_lastSprite == self) {
+                    [_lastSprite doUnSelect];
+                }
                 [self clearSpriteData];
                 [self statusToDead];
                 break;
@@ -398,11 +412,17 @@ const TDSprite *_lastSprite = nil;
 -(void) setPosition: (CGPoint)newPosition
 {
     [super setPosition:newPosition];
+    _arrowSprite.position = ccp(newPosition.x, newPosition.y + self.textureRect.size.height + 5);
+    _bloodShowSprite.position = ccp(newPosition.x, newPosition.y + self.textureRect.size.height + 3);
+    _bloodBackSprite.position = ccp(newPosition.x, newPosition.y + self.textureRect.size.height + 3);
     if (self.parent) {
         CCNode *p = self.parent;
         CGSize size = [[CCDirector sharedDirector] winSize];
         [self removeFromParentAndCleanup:NO];
         [p addChild:self z:size.height - newPosition.y + _baseZOrder];
+        [p addChild:_bloodShowSprite z:self.zOrder];
+        [p addChild:_bloodBackSprite z:self.zOrder - 1];
+        [p addChild:_arrowSprite z:self.zOrder];
     }
 }
 

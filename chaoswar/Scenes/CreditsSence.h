@@ -4,5 +4,5 @@
     CCSprite *bgImg;
     CCMenuItemImage *btnBack;
 }
-
+-(void)shiYingIphone5;
 @end

@@ -134,6 +134,13 @@
     // e.g. self.myOutlet = nil;
 }
 
+-(NSUInteger) supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+- (BOOL) shouldAutorotate {
+    return YES;
+}
 
 - (void)dealloc {
     [super dealloc];

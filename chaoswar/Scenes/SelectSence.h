@@ -32,5 +32,6 @@
 +(CCScene *) scene;
 -(void) setMagicShow;
 -(void) setMagicHidden;
+-(void)shiYingIphone5;
 
 @end

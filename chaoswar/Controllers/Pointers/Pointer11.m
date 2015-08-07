@@ -44,7 +44,7 @@
             [self runWave:1 e:ET_FOOT3 s:2 t:3 wy:[gc.wayManager getWay:2]];
             
             [self runWave:1 e:ET_FOOT3 s:2 t:3 wy:[gc.wayManager getWay:5]];
-            [self prepareNextWave:18];
+            [self prepareNextWave:15];
 			break;
         case 2:
             [self runWave:1 e:ET_FOOT3 s:2 t:2 wy:[gc.wayManager getWay:2]];
@@ -52,7 +52,7 @@
             
             [self runWave:1 e:ET_FOOT3 s:2 t:2 wy:[gc.wayManager getWay:5]];
             [self runWave:3 e:ET_FOOT4 s:2 t:2 wy:[gc.wayManager getWay:6]];
-            [self prepareNextWave:20];
+            [self prepareNextWave:15];
 			break;
         case 3:
             [self runWave:1 e:ET_FOOT3 s:2 t:3 wy:[gc.wayManager getWay:2]];
@@ -60,23 +60,23 @@
             
             [self runWave:1 e:ET_FOOT3 s:2 t:3 wy:[gc.wayManager getWay:5]];
             [self runWave:3 e:ET_FOOT4 s:2 t:2 wy:[gc.wayManager getWay:6]];
-            [self prepareNextWave:20];
+            [self prepareNextWave:15];
 			break;
         case 4:
-            [self runWave:1 e:ET_FOOT14 s:3 t:3 wy:[gc.wayManager getWay:2]];
+            [self runWave:1 e:ET_FOOT14 s:2.5 t:3 wy:[gc.wayManager getWay:2]];
             [self runWave:3 e:ET_FOOT3 s:2 t:4 wy:[gc.wayManager getWay:3]];
             
             [self runWave:1 e:ET_FOOT7 s:3 t:3 wy:[gc.wayManager getWay:5]];
             [self runWave:3 e:ET_FOOT2 s:2 t:4 wy:[gc.wayManager getWay:6]];
-            [self prepareNextWave:22];
+            [self prepareNextWave:20];
 			break;
         case 5:
-            [self runWave:1 e:ET_FOOT11 s:3 t:2 wy:[gc.wayManager getWay:2]];
+            [self runWave:1 e:ET_FOOT11 s:3 t:3 wy:[gc.wayManager getWay:2]];
             [self runWave:3 e:ET_FOOT4 s:2 t:3 wy:[gc.wayManager getWay:3]];
             
             [self runWave:1 e:ET_FOOT7 s:3 t:3 wy:[gc.wayManager getWay:5]];
             [self runWave:3 e:ET_FOOT2 s:2 t:4 wy:[gc.wayManager getWay:6]];
-            [self prepareNextWave:22];
+            [self prepareNextWave:20];
 			break;
         case 6:
             [self runWave:1 e:ET_FOOT12 s:3 t:2 wy:[gc.wayManager getWay:2]];
@@ -84,13 +84,13 @@
             
             [self runWave:1 e:ET_FOOT14 s:3 t:2 wy:[gc.wayManager getWay:5]];
             [self runWave:3 e:ET_FOOT3 s:2 t:4 wy:[gc.wayManager getWay:6]];
-            [self prepareNextWave:25];
+            [self prepareNextWave:20];
 			break;
         case 7:
             [self runWave:1 e:ET_FOOT16 s:3 t:2 wy:[gc.wayManager getWay:2]];
             
             [self runWave:1 e:ET_FOOT16 s:3 t:2 wy:[gc.wayManager getWay:5]];
-            [self prepareNextWave:26];
+            [self prepareNextWave:20];
 			break;
         case 8:
             [self runWave:1 e:ET_FOOT16 s:2 t:1 wy:[gc.wayManager getWay:2]];
@@ -98,29 +98,29 @@
             
             [self runWave:1 e:ET_FOOT16 s:2 t:1 wy:[gc.wayManager getWay:5]];
             [self runWave:2 e:ET_FOOT6 s:2 t:4 wy:[gc.wayManager getWay:6]];
-            [self prepareNextWave:26];
+            [self prepareNextWave:22];
 			break;
         case 9:
             [self runWave:1 e:ET_FOOT16 s:2 t:1 wy:[gc.wayManager getWay:2]];
-            [self runWave:2 e:ET_FOOT8 s:2 t:3 wy:[gc.wayManager getWay:2]];
+            [self runWave:2 e:ET_FOOT8 s:2 t:4 wy:[gc.wayManager getWay:2]];
             
             [self runWave:1 e:ET_FOOT16 s:2 t:1 wy:[gc.wayManager getWay:5]];
-            [self runWave:2 e:ET_FOOT8 s:2 t:3 wy:[gc.wayManager getWay:6]];
-            [self prepareNextWave:26];
+            [self runWave:2 e:ET_FOOT8 s:2 t:4 wy:[gc.wayManager getWay:6]];
+            [self prepareNextWave:22];
 			break;
         case 10:
             [self runWave:1 e:ET_FOOT12 s:2 t:3 wy:[gc.wayManager getWay:2]];
-            [self runWave:1 e:ET_FOOT10 s:2 t:4 wy:[gc.wayManager getWay:3]];
+            [self runWave:1 e:ET_FOOT10 s:2 t:3 wy:[gc.wayManager getWay:3]];
             
             [self runWave:1 e:ET_FOOT11 s:2 t:3 wy:[gc.wayManager getWay:5]];
             [self runWave:1 e:ET_FOOT4 s:2 t:4 wy:[gc.wayManager getWay:6]];
-            [self prepareNextWave:26];
+            [self prepareNextWave:22];
 			break;
         case 11:
             [self runWave:1 e:ET_FLY2 s:3 t:5 wy:[gc.wayManager getWay:2]];
             
             [self runWave:1 e:ET_FLY3 s:3 t:4 wy:[gc.wayManager getWay:5]];
-            [self prepareNextWave:22];
+            [self prepareNextWave:18];
 			break;
         case 12:
             [self runWave:1 e:ET_FOOT11 s:2 t:2 wy:[gc.wayManager getWay:1]];
@@ -129,30 +129,31 @@
             
             [self runWave:1 e:ET_FOOT15 s:6 t:2 wy:[gc.wayManager getWay:5]];
             [self runWave:1 e:ET_FOOT6 s:2 t:3 wy:[gc.wayManager getWay:6]];
-            [self prepareNextWave:25];
+            [self prepareNextWave:22];
 			break;
         case 13:
-            [self runWave:1 e:ET_FOOT8 s:2 t:6 wy:[gc.wayManager getWay:1]];
-            [self runWave:1 e:ET_FOOT6 s:2 t:6 wy:[gc.wayManager getWay:3]];
+            [self runWave:1 e:ET_FOOT8 s:2 t:5 wy:[gc.wayManager getWay:1]];
+            [self runWave:1 e:ET_FOOT14 s:6 t:1 wy:[gc.wayManager getWay:2]];
+            [self runWave:1 e:ET_FOOT6 s:2 t:5 wy:[gc.wayManager getWay:3]];
             
-            [self runWave:1 e:ET_FOOT6 s:2 t:6 wy:[gc.wayManager getWay:4]];
-            [self runWave:1 e:ET_FOOT8 s:2 t:6 wy:[gc.wayManager getWay:6]];
-            [self prepareNextWave:25];
+            [self runWave:1 e:ET_FOOT6 s:2 t:5 wy:[gc.wayManager getWay:4]];
+            [self runWave:1 e:ET_FOOT8 s:2 t:5 wy:[gc.wayManager getWay:6]];
+            [self prepareNextWave:22];
 			break;
         case 14:
             [self runWave:2 e:ET_FOOT8 s:2 t:4 wy:[gc.wayManager getWay:1]];
-            [self runWave:1 e:ET_FOOT16 s:2 t:1 wy:[gc.wayManager getWay:1]];
+            [self runWave:1 e:ET_FOOT16 s:2 t:2 wy:[gc.wayManager getWay:1]];
             [self runWave:2 e:ET_FOOT6 s:2 t:4 wy:[gc.wayManager getWay:3]];
             
             [self runWave:2 e:ET_FOOT6 s:2 t:4 wy:[gc.wayManager getWay:4]];
             [self runWave:1 e:ET_FOOT13 s:3 t:3 wy:[gc.wayManager getWay:5]];
             [self runWave:2 e:ET_FOOT9 s:2 t:4 wy:[gc.wayManager getWay:6]];
-            [self prepareNextWave:26];
+            [self prepareNextWave:22];
 			break;
         case 15:
-            [self runWave:1 e:ET_FOOT16 s:3 t:3 wy:[gc.wayManager getWay:1]];
+            [self runWave:1 e:ET_FOOT16 s:3 t:4 wy:[gc.wayManager getWay:1]];
             
-            [self runWave:1 e:ET_FOOT14 s:3 t:4 wy:[gc.wayManager getWay:5]];
+            [self runWave:1 e:ET_FOOT14 s:2.5 t:4 wy:[gc.wayManager getWay:5]];
             [self runWave:3 e:ET_FOOT3 s:2 t:5 wy:[gc.wayManager getWay:6]];
             [self prepareEndPoint:13];
 			break;
@@ -219,39 +220,6 @@
 - (void) initFriendly:(NSMutableArray*)array
 {
     [array removeAllObjects];
-}
-
-- (BOOL) isWhite:(CGPoint)point
-{
-    if (point.x > 112 && point.x < 171 && point.y > 255 && point.y < 320) {
-        return YES;
-    }
-    
-    if (point.x > 321 && point.x < 380 && point.y > 255 && point.y < 320) {
-        return YES;
-    }
-    
-    if (point.x > 65 && point.x < 414 && point.y > 209 && point.y < 268) {
-        return YES;
-    }
-    
-    if (point.x > 65 && point.x < 123 && point.y > 80 && point.y < 268) {
-        return YES;
-    }
-    
-    if (point.x > 355 && point.x < 415 && point.y > 80 && point.y < 268) {
-        return YES;
-    }
-    
-    if (point.x > 65 && point.x < 415 && point.y > 80 && point.y < 139) {
-        return YES;
-    }
-    
-    if (point.x > 217 && point.x < 276 && point.y > 30 && point.y < 95) {
-        return YES;
-    }
-    
-    return NO;
 }
 
 - (void) doAutoNextWave

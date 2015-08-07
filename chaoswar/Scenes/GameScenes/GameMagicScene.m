@@ -15,6 +15,7 @@
 -(id) init
 {
 	if( (self=[super init])) {
+        [self shiYingIphone5];
         _btnMagic1 = nil;
         _btnMagic2 = nil;
         _btnMagic3 = nil;
@@ -25,7 +26,7 @@
         magic4Restart = NO;
 		//GameController *gc = [GameController getGameController];
 		//下一波
-		_btnGo = [NBSkillButton itemFromNormalImage:@"go_normal.png" selectedImage:@"go_normal.png"  
+		_btnGo = [NBSkillButton itemFromNormalImage:@"go_normal.png" selectedImage:@"go_normaldown.png"  
 									   disabledImage:@"go_black.png"  target:self selector:@selector(GoNext:)];
 		CCMenu *btnGoMenu = [CCMenu menuWithItems:_btnGo, nil];
 		btnGoMenu.position = ccp(448 , 20);
@@ -370,6 +371,14 @@
     magic4Restart = NO;
     GameController *gc = [GameController getGameController];
     [gc setGameStatus];
+}
+
+-(void)shiYingIphone5
+{
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    if (size.width == 568) {
+        self.position = ccp(self.position.x + 44, self.position.y);
+    }
 }
 
 - (void) dealloc {

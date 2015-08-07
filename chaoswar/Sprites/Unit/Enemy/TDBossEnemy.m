@@ -21,6 +21,7 @@
 + (id) getSprite {
     TDBossEnemy1 *enemy = [TDBossEnemy1 spriteWithSpriteFrameName:@"bs01mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"bs01mvc0001.png";
         [enemy setScale:TDS_BS1_SCALE];
         enemy.maxHP = TDS_BS1_MAXHP;
         enemy.currentHP = TDS_BS1_CURRENTHP;
@@ -49,6 +50,7 @@
 + (id) getSprite {
     TDBossEnemy2 *enemy = [TDBossEnemy2 spriteWithSpriteFrameName:@"bs02mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"bs02mvc0001.png";
         [enemy setScale:TDS_BS2_SCALE];
         enemy.maxHP = TDS_BS2_MAXHP;
         enemy.currentHP = TDS_BS2_CURRENTHP;

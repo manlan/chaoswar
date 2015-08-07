@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>tt01a0001.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{104, 1}, {102, 85}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {102, 85}}</string>
+			<key>sourceSize</key>
+			<string>{102, 85}</string>
+		</dict>
+		<key>tt01a0002.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {102, 79}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {102, 79}}</string>
+			<key>sourceSize</key>
+			<string>{102, 79}</string>
+		</dict>
+		<key>tt01a0003.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{104, 91}, {102, 81}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {102, 81}}</string>
+			<key>sourceSize</key>
+			<string>{102, 81}</string>
+		</dict>
+		<key>tt01a0004.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{310, 1}, {102, 84}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {102, 84}}</string>
+			<key>sourceSize</key>
+			<string>{102, 84}</string>
+		</dict>
+		<key>tt01a0005.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 91}, {102, 86}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {102, 86}}</string>
+			<key>sourceSize</key>
+			<string>{102, 86}</string>
+		</dict>
+		<key>tt01a0006.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{207, 1}, {102, 89}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {102, 89}}</string>
+			<key>sourceSize</key>
+			<string>{102, 89}</string>
+		</dict>
+		<key>tt01b0001.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{207, 91}, {102, 91}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {102, 91}}</string>
+			<key>sourceSize</key>
+			<string>{102, 91}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>1</integer>
+		<key>size</key>
+		<string>{512, 256}</string>
+	</dict>
+</dict>
+</plist>

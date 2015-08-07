@@ -18,7 +18,7 @@
 
 // 升级按钮位置
 
-#define SELL_POS CGPointMake(186, 18)
+#define SELL_POS CGPointMake(185, 22)
 
 // 塔的建造时间
 #define TOWER_BUILDING_TIME 0.8f

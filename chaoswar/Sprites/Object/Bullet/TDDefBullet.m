@@ -12,7 +12,7 @@
     if (!self.enemy) {
         p = self.enemyPoint;
     } else {
-        p = [self.enemy getPositionAfterTime:self.moveTime];
+        p = [self.enemy getPositionAfterTime:self.moveTime isHead:0.5];
     }
     
     if (p.x < self.position.x) {
@@ -93,7 +93,7 @@
     if (!self.enemy) {
         p = self.enemyPoint;
     } else {
-        p = [self.enemy getPositionAfterTime:self.moveTime];
+        p = [self.enemy getPositionAfterTime:self.moveTime isHead:0];
     }
     
     if (p.x < self.position.x) {
@@ -198,7 +198,7 @@
     if (!self.enemy) {
         p = self.enemyPoint;
     } else {
-        p = [self.enemy getPositionAfterTime:self.moveTime];
+        p = [self.enemy getPositionAfterTime:self.moveTime isHead:0.5];
     }
     id actionMove = [CCMoveTo actionWithDuration:self.moveTime position:p];
 	id actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(attact:)];

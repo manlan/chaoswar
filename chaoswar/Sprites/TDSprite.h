@@ -4,6 +4,7 @@
 @class GameController;
 
 @interface TDSprite : CCSprite <CCTargetedTouchDelegate>{
+    NSString* _createTime;
     int _costGold;
     int _getGold;
     TSpriteStatus _spriteStatus;
@@ -12,12 +13,14 @@
     int _killNum;
     BOOL _showBlood;
     BOOL _canClick;
-    CCSprite *_bloodShowSprite;
+    CCProgressTimer *_bloodShowSprite;
     CCSprite *_bloodBackSprite;
     CCSprite *_arrowSprite;
-    CCSprite *_effectSprite;
+    
+    CGRect _rectOrigin;
 }
 
+@property (nonatomic, retain) NSString* createTime;
 // 花费金额
 @property int costGold;
 // 得到金额
@@ -41,7 +44,7 @@
 // 是否可以被点击
 @property TSpritePlace spritePlace;
 // 血条
-@property (nonatomic, assign) CCSprite *bloodShowSprite;
+@property (nonatomic, assign) CCProgressTimer *bloodShowSprite;
 // 血条
 @property (nonatomic, assign) CCSprite *bloodBackSprite;
 // 选中框

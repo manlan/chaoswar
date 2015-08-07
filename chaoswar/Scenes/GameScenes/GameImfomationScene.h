@@ -10,13 +10,15 @@
 }
 
 @property (nonatomic, readonly) CCMenuItemImage *btnPause;
-@property (nonatomic, readonly) CCLabelTTF *lblEnemyNum;
-@property (nonatomic, readonly) CCLabelTTF *lblWave;
-@property (nonatomic, readonly) CCLabelTTF *lblGold;
+@property (nonatomic, readonly) CCLabelAtlas *lblEnemyNum;
+@property (nonatomic, readonly) CCLabelAtlas *lblWave;
+@property (nonatomic, readonly) CCLabelAtlas *lblGold;
 
 - (void) setPauseMenuStatus;
 - (void) setEnemyNumValue;
 - (void) setWaveValue;
 - (void) setGoldValue;
+
+-(void)shiYingIphone5;
 
 @end

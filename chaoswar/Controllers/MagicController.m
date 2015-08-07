@@ -11,6 +11,7 @@
 
 @implementation MagicC
 
+@synthesize createTime = _createTime;
 @synthesize startTime = _startTime;
 
 - (id)init 
@@ -18,8 +19,14 @@
     self = [super init];
     if (self) {
         _startTime = 0;
+        self.createTime = @"";
     }
     return self;
+}
+
+- (void)dealloc {
+    [self.createTime release];
+    [super dealloc];
 }
 
 - (void) run
@@ -38,11 +45,12 @@
 
 @synthesize position = _position;
 
-+ (FireController*) getFireController:(float)st pos:(CGPoint)pos
++ (FireController*) getFireController:(float)st pos:(CGPoint)pos ct:(NSString*)ct
 {
     FireController *fc = [[[FireController alloc] init] autorelease];
     fc.startTime = st;
     fc.position = pos;
+    fc.createTime = ct;
     return fc;
 }
 
@@ -54,6 +62,7 @@
 	TDFireBullet1 *b = [TDFireBullet1 getSprite];
     b.firePoint = _position;
     b.position = posFrom;
+    b.createTime = self.createTime;
     [gc.gameBackground addChild:b z:5000];
     [gc.bulletArray addObject:b];
     [b run];
@@ -65,11 +74,12 @@
 
 @synthesize position = _position;
 
-+ (FriendlyController*) getFriendlyController:(float)st pos:(CGPoint)pos
++ (FriendlyController*) getFriendlyController:(float)st pos:(CGPoint)pos ct:(NSString*)ct
 {
     FriendlyController *fc = [[[FriendlyController alloc] init] autorelease];
     fc.startTime = st;
     fc.position = pos;
+    fc.createTime = ct;
     return fc;
 }
 
@@ -83,6 +93,7 @@
     [gc.frientlyArray addObject:b];
     b.position = _position;
     b.searchPoint = b.position;
+    b.createTime = self.createTime;
     [b run];
 }
 
@@ -150,6 +161,12 @@
     }
 }
 
+- (void) stop {
+    [stopController stop];
+    [speedController stop];
+    [lifeController stop];
+}
+
 @end
 
 @implementation StopController
@@ -163,9 +180,7 @@
 }
 
 - (void)dealloc {
-    [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
-    [magicSprite removeFromParentAndCleanup:YES];
-    [magicSprite release];
+    [self stop];
     [super dealloc];
 }
 
@@ -200,6 +215,11 @@
     [unit doUnitLogic];
 }
 
+- (void) stop {
+    [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
+    [magicSprite removeFromParentAndCleanup:YES];
+}
+
 @end
 
 @implementation SpeedController
@@ -213,8 +233,7 @@
 }
 
 - (void)dealloc {
-    [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
-    [magicSprite removeFromParentAndCleanup:YES];
+    [self stop];
     [magicSprite release];
     [super dealloc];
 }
@@ -244,6 +263,11 @@
     [unit doUnitLogic];
 }
 
+- (void) stop {
+    [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
+    [magicSprite removeFromParentAndCleanup:YES];
+}
+
 @end
 
 @implementation LifeController
@@ -257,8 +281,7 @@
 }
 
 - (void)dealloc {
-    [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
-    [magicSprite removeFromParentAndCleanup:YES];
+    [self stop];
     [magicSprite release];
     [super dealloc];
 }
@@ -288,6 +311,11 @@
     [magicSprite stopAllActions];
     [magicSprite removeAllChildrenWithCleanup:YES];
     [unit doUnitLogic];
+}
+
+- (void) stop {
+    [[CCScheduler sharedScheduler] unscheduleAllSelectorsForTarget:self];
+    [magicSprite removeFromParentAndCleanup:YES];
 }
 
 @end

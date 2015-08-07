@@ -20,6 +20,7 @@
 + (id) getSprite {
     TDFootEnemy1 *enemy = [TDFootEnemy1 spriteWithSpriteFrameName:@"ft01mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"ft01mvc0001.png";
         [enemy setScale:TDS_FT1_SCALE];
         enemy.maxHP = TDS_FT1_MAXHP;
         enemy.currentHP = TDS_FT1_CURRENTHP;
@@ -48,6 +49,7 @@
 + (id) getSprite {
     TDFootEnemy2 *enemy = [TDFootEnemy2 spriteWithSpriteFrameName:@"ft02mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"ft02mvc0001.png";
         [enemy setScale:TDS_FT2_SCALE];
         enemy.maxHP = TDS_FT2_MAXHP;
         enemy.currentHP = TDS_FT2_CURRENTHP;
@@ -76,6 +78,7 @@
 + (id) getSprite {
     TDFootEnemy3 *enemy = [TDFootEnemy3 spriteWithSpriteFrameName:@"ft03mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"ft03mvc0001.png";
         [enemy setScale:TDS_FT3_SCALE];
         enemy.maxHP = TDS_FT3_MAXHP;
         enemy.currentHP = TDS_FT3_CURRENTHP;
@@ -104,6 +107,7 @@
 + (id) getSprite {
     TDFootEnemy4 *enemy = [TDFootEnemy4 spriteWithSpriteFrameName:@"ft04mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"ft04mvc0001.png";
         [enemy setScale:TDS_FT4_SCALE];
         enemy.maxHP = TDS_FT4_MAXHP;
         enemy.currentHP = TDS_FT4_CURRENTHP;
@@ -132,6 +136,7 @@
 + (id) getSprite {
     TDFootEnemy5 *enemy = [TDFootEnemy5 spriteWithSpriteFrameName:@"ft05mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"ft05mvc0001.png";
         [enemy setScale:TDS_FT5_SCALE];
         enemy.maxHP = TDS_FT5_MAXHP;
         enemy.currentHP = TDS_FT5_CURRENTHP;
@@ -160,6 +165,7 @@
 + (id) getSprite {
     TDFootEnemy6 *enemy = [TDFootEnemy6 spriteWithSpriteFrameName:@"ft06mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"ft06mvc0001.png";
         [enemy setScale:TDS_FT6_SCALE];
         enemy.maxHP = TDS_FT6_MAXHP;
         enemy.currentHP = TDS_FT6_CURRENTHP;
@@ -188,6 +194,7 @@
 + (id) getSprite {
     TDFootEnemy7 *enemy = [TDFootEnemy7 spriteWithSpriteFrameName:@"ft07mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"ft07mvc0001.png";
         [enemy setScale:TDS_FT7_SCALE];
         enemy.maxHP = TDS_FT7_MAXHP;
         enemy.currentHP = TDS_FT7_CURRENTHP;
@@ -216,6 +223,7 @@
 + (id) getSprite {
     TDFootEnemy8 *enemy = [TDFootEnemy8 spriteWithSpriteFrameName:@"ft08mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"ft08mvc0001.png";
         [enemy setScale:TDS_FT8_SCALE];
         enemy.maxHP = TDS_FT8_MAXHP;
         enemy.currentHP = TDS_FT8_CURRENTHP;
@@ -244,6 +252,7 @@
 + (id) getSprite {
     TDFootEnemy9 *enemy = [TDFootEnemy9 spriteWithSpriteFrameName:@"ft09mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"ft09mvc0001.png";
         [enemy setScale:TDS_FT9_SCALE];
         enemy.maxHP = TDS_FT9_MAXHP;
         enemy.currentHP = TDS_FT9_CURRENTHP;
@@ -272,6 +281,7 @@
 + (id) getSprite {
     TDFootEnemy10 *enemy = [TDFootEnemy10 spriteWithSpriteFrameName:@"ft10mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"ft10mvc0001.png";
         [enemy setScale:TDS_FT10_SCALE];
         enemy.maxHP = TDS_FT10_MAXHP;
         enemy.currentHP = TDS_FT10_CURRENTHP;
@@ -300,6 +310,7 @@
 + (id) getSprite {
     TDFootEnemy11 *enemy = [TDFootEnemy11 spriteWithSpriteFrameName:@"ft11mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"ft11mvc0001.png";
         [enemy setScale:TDS_FT11_SCALE];
         enemy.maxHP = TDS_FT11_MAXHP;
         enemy.currentHP = TDS_FT11_CURRENTHP;
@@ -328,6 +339,7 @@
 + (id) getSprite {
     TDFootEnemy12 *enemy = [TDFootEnemy12 spriteWithSpriteFrameName:@"ft12mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"ft12mvc0001.png";
         [enemy setScale:TDS_FT12_SCALE];
         enemy.maxHP = TDS_FT12_MAXHP;
         enemy.currentHP = TDS_FT12_CURRENTHP;
@@ -356,6 +368,7 @@
 + (id) getSprite {
     TDFootEnemy13 *enemy = [TDFootEnemy13 spriteWithSpriteFrameName:@"ft13mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"ft13mvc0001.png";
         [enemy setScale:TDS_FT13_SCALE];
         enemy.maxHP = TDS_FT13_MAXHP;
         enemy.currentHP = TDS_FT13_CURRENTHP;
@@ -384,6 +397,7 @@
 + (id) getSprite {
     TDFootEnemy14 *enemy = [TDFootEnemy14 spriteWithSpriteFrameName:@"ft14mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"ft14mvc0001.png";
         [enemy setScale:TDS_FT14_SCALE];
         enemy.maxHP = TDS_FT14_MAXHP;
         enemy.currentHP = TDS_FT14_CURRENTHP;
@@ -412,6 +426,7 @@
 + (id) getSprite {
     TDFootEnemy15 *enemy = [TDFootEnemy15 spriteWithSpriteFrameName:@"ft15mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"ft15mvc0001.png";
         [enemy setScale:TDS_FT15_SCALE];
         enemy.maxHP = TDS_FT15_MAXHP;
         enemy.currentHP = TDS_FT15_CURRENTHP;
@@ -440,6 +455,7 @@
 + (id) getSprite {
     TDFootEnemy16 *enemy = [TDFootEnemy16 spriteWithSpriteFrameName:@"ft16mvc0001.png"];
     if (enemy) {
+        enemy.firstFrameName = @"ft16mvc0001.png";
         [enemy setScale:TDS_FT16_SCALE];
         enemy.maxHP = TDS_FT16_MAXHP;
         enemy.currentHP = TDS_FT16_CURRENTHP;

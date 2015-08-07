@@ -154,6 +154,8 @@
 
 // free functions
 NSString * cocos2dVersion(void);
+NSString * now();
+BOOL isGameStop;
 
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 #ifndef __IPHONE_4_0

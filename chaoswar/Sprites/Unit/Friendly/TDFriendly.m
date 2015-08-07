@@ -47,7 +47,7 @@
 @synthesize attactEnemyArray = _attactEnemyArray;
 @synthesize mvAniName = _mvAniName;
 @synthesize searchPoint = _searchPoint;
-@synthesize firstFrameName = _firstFrameName;
+
 
 -(id) init
 {
@@ -55,9 +55,6 @@
         _shootBulletArray = [[NSMutableArray alloc] init];
         _enemyBulletArray = [[NSMutableArray alloc] init];
         _attactEnemyArray = [[NSMutableArray alloc] init];
-        if (!_firstFrameName) {
-            self.firstFrameName = @"";
-        }
         _mfLife = [[MFLife alloc] init];
         _mfLife.friendly = self;
         _mfLife.lifeTime = 1;
@@ -250,7 +247,7 @@
     if (!_enemy) {
         //无可攻击敌军时，返回营地
         self.unitStatus = US_NORMAL;
-        //[TDEnemy regFriendly:self];
+        [TDEnemy tellFriendlys];
         [self doUnitLogic];
     }
 }

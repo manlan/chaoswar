@@ -32,3 +32,12 @@ NSString *cocos2dVersion()
 {	
 	return version;
 }
+
+
+NSString *now()
+{
+	NSDateFormatter *nsdf2=[[[NSDateFormatter alloc] init]autorelease];
+	[nsdf2 setDateStyle:kCFDateFormatterFullStyle];
+	[nsdf2 setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+	return [nsdf2 stringFromDate:[NSDate date]];
+}

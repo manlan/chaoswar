@@ -6,6 +6,7 @@
 -(id) init
 {
 	if( (self=[super init])) {
+        [self shiYingIphone5];
         [self initTowerInfo];
         [self initDefenceTowerInfo];
         [self initEnemyInfo];
@@ -22,7 +23,14 @@
     
     //缩略图
     CCSprite *spSmall = [CCSprite node];
-    spSmall.position = ccp(30, 12);
+    CCDirector *director = [CCDirector sharedDirector];
+    if([director enableRetinaDisplay:YES])
+    {
+        spSmall.position = ccp(30, -15);
+    }
+    else{
+        spSmall.position = ccp(30, 5);
+    }
     spSmall.anchorPoint = ccp(0.5, 0);
     spSmall.scale = 0.8;
     [_towerInfo addChild:spSmall z:1 tag:1];
@@ -35,7 +43,7 @@
     [_towerInfo addChild:attactTip z:1];
     
     //攻击数值
-    CCLabelTTF *attactNum = [CCLabelTTF labelWithString:@"1" fontName:@"Georgia-Bold" fontSize:11];
+    CCLabelTTF *attactNum = [CCLabelTTF labelWithString:@"1" fontName:@"Helvetica-Bold" fontSize:11];
     attactNum.position = ccp(90, 12);
     attactNum.anchorPoint = ccp(0.5, 0);
     attactNum.scale = 1;
@@ -49,7 +57,7 @@
     [_towerInfo addChild:attactSpeedTip z:1];
     
     //攻击速度
-    CCLabelTTF *attactSpeedNum = [CCLabelTTF labelWithString:@"1" fontName:@"Georgia-Bold" fontSize:12];
+    CCLabelTTF *attactSpeedNum = [CCLabelTTF labelWithString:@"1" fontName:@"Helvetica-Bold" fontSize:12];
     attactSpeedNum.position = ccp(140, 12);
     attactSpeedNum.anchorPoint = ccp(0.5, 0);
     attactSpeedNum.scale = 1;
@@ -62,9 +70,16 @@
     
     //缩略图
     CCSprite *spSmall = [CCSprite node];
-    spSmall.position = ccp(30, 12);
+    CCDirector *director = [CCDirector sharedDirector];
+    if([director enableRetinaDisplay:YES])
+    {
+        spSmall.position = ccp(30, -12);
+    }
+    else{
+        spSmall.position = ccp(30, 8);
+    }
     spSmall.anchorPoint = ccp(0.5, 0);
-    spSmall.scale = 0.8;
+    spSmall.scale = 0.9;
     [_defenceTowerInfo addChild:spSmall z:1 tag:1];
     
     //友军提示图
@@ -75,7 +90,7 @@
     [_defenceTowerInfo addChild:friendlyTip z:1];
 	
     //友军数值
-    CCLabelTTF *friendlyNum = [CCLabelTTF labelWithString:@"1" fontName:@"Georgia-Bold" fontSize:11];
+    CCLabelTTF *friendlyNum = [CCLabelTTF labelWithString:@"1" fontName:@"Helvetica-Bold" fontSize:11];
     friendlyNum.position = ccp(80, 12);
     friendlyNum.anchorPoint = ccp(0.5, 0);
     friendlyNum.scale = 1;
@@ -88,7 +103,14 @@
     
     //缩略图
     CCSprite *spSmall = [CCSprite node];
-    spSmall.position = ccp(30, 10);
+    CCDirector *director = [CCDirector sharedDirector];
+    if([director enableRetinaDisplay:YES])
+    {
+        spSmall.position = ccp(30, -12);
+    }
+    else{
+        spSmall.position = ccp(30, 8);
+    }
     spSmall.anchorPoint = ccp(0.5, 0);
     spSmall.scale = 0.8;
     [_enemyInfo addChild:spSmall z:1 tag:1];
@@ -101,7 +123,7 @@
     [_enemyInfo addChild:attactTip z:1];
     
     //攻击数值
-    CCLabelTTF *attactNum = [CCLabelTTF labelWithString:@"1" fontName:@"Georgia-Bold" fontSize:11];
+    CCLabelTTF *attactNum = [CCLabelTTF labelWithString:@"1" fontName:@"Helvetica-Bold" fontSize:11];
     attactNum.position = ccp(70, 12);
     attactNum.anchorPoint = ccp(0.5, 0);
     attactNum.scale = 1;
@@ -111,11 +133,11 @@
     CCSprite *bloodTip = [CCSprite spriteWithFile:@"xueTip.png"];
     bloodTip.position = ccp(90, 10);
     bloodTip.anchorPoint = ccp(0.5, 0);
-    bloodTip.scale = 0.9;
+    bloodTip.scale = 0.8;
     [_enemyInfo addChild:bloodTip z:1];
     
     //血值数值
-    CCLabelTTF *bloodNum = [CCLabelTTF labelWithString:@"1" fontName:@"Georgia-Bold" fontSize:11];
+    CCLabelTTF *bloodNum = [CCLabelTTF labelWithString:@"1" fontName:@"Helvetica-Bold" fontSize:11];
     bloodNum.position = ccp(110, 12);
     bloodNum.anchorPoint = ccp(0.5, 0);
     bloodNum.scale = 1;
@@ -129,7 +151,7 @@
     [_enemyInfo addChild:speedTip z:1];
     
     //移动速度
-    CCLabelTTF *speedNum = [CCLabelTTF labelWithString:@"1" fontName:@"Georgia-Bold" fontSize:11];
+    CCLabelTTF *speedNum = [CCLabelTTF labelWithString:@"1" fontName:@"Helvetica-Bold" fontSize:11];
     speedNum.position = ccp(150, 12);
     speedNum.anchorPoint = ccp(0.5, 0);
     speedNum.scale = 1;
@@ -142,7 +164,14 @@
 
     //缩略图
     CCSprite *spSmall = [CCSprite node];
-    spSmall.position = ccp(30, 10);
+    CCDirector *director = [CCDirector sharedDirector];
+    if([director enableRetinaDisplay:YES])
+    {
+        spSmall.position = ccp(30, -12);
+    }
+    else{
+        spSmall.position = ccp(30, 8);
+    }
     spSmall.anchorPoint = ccp(0.5, 0);
     spSmall.scale = 0.8;
     [_friendlyInfo addChild:spSmall z:1 tag:1];
@@ -155,7 +184,7 @@
     [_friendlyInfo addChild:attactTip z:1];
     
     //攻击数值
-    CCLabelTTF *attactNum = [CCLabelTTF labelWithString:@"1" fontName:@"Georgia-Bold" fontSize:11];
+    CCLabelTTF *attactNum = [CCLabelTTF labelWithString:@"1" fontName:@"Helvetica-Bold" fontSize:11];
     attactNum.position = ccp(70, 12);
     attactNum.anchorPoint = ccp(0.5, 0);
     attactNum.scale = 1;
@@ -169,7 +198,7 @@
     [_friendlyInfo addChild:bloodTip z:1];
     
     //血值数值
-    CCLabelTTF *bloodNum = [CCLabelTTF labelWithString:@"1" fontName:@"Georgia-Bold" fontSize:11];
+    CCLabelTTF *bloodNum = [CCLabelTTF labelWithString:@"1" fontName:@"Helvetica-Bold" fontSize:11];
     bloodNum.position = ccp(110, 12);
     bloodNum.anchorPoint = ccp(0.5, 0);
     bloodNum.scale = 1;
@@ -182,7 +211,14 @@
     
     //缩略图
     CCSprite *spSmall = [CCSprite node];
-    spSmall.position = ccp(30, 10);
+    CCDirector *director = [CCDirector sharedDirector];
+    if([director enableRetinaDisplay:YES])
+    {
+        spSmall.position = ccp(30, -12);
+    }
+    else{
+        spSmall.position = ccp(30, 8);
+    }
     spSmall.anchorPoint = ccp(0.5, 0);
     spSmall.scale = 0.8;
     [_flyEnemyInfo addChild:spSmall z:1 tag:1];
@@ -195,7 +231,7 @@
     [_flyEnemyInfo addChild:attactTip z:1];
     
     //攻击数值
-    CCLabelTTF *attactNum = [CCLabelTTF labelWithString:@"0" fontName:@"Georgia-Bold" fontSize:11];
+    CCLabelTTF *attactNum = [CCLabelTTF labelWithString:@"0" fontName:@"Helvetica-Bold" fontSize:11];
     attactNum.position = ccp(70, 12);
     attactNum.anchorPoint = ccp(0.5, 0);
     attactNum.scale = 1;
@@ -209,7 +245,7 @@
     [_flyEnemyInfo addChild:bloodTip z:1];
     
     //血值数值
-    CCLabelTTF *bloodNum = [CCLabelTTF labelWithString:@"1" fontName:@"Georgia-Bold" fontSize:11];
+    CCLabelTTF *bloodNum = [CCLabelTTF labelWithString:@"1" fontName:@"Helvetica-Bold" fontSize:11];
     bloodNum.position = ccp(110, 12);
     bloodNum.anchorPoint = ccp(0.5, 0);
     bloodNum.scale = 1;
@@ -223,7 +259,7 @@
     [_flyEnemyInfo addChild:speedTip z:1];
     
     //移动速度
-    CCLabelTTF *speedNum = [CCLabelTTF labelWithString:@"1" fontName:@"Georgia-Bold" fontSize:11];
+    CCLabelTTF *speedNum = [CCLabelTTF labelWithString:@"1" fontName:@"Helvetica-Bold" fontSize:11];
     speedNum.position = ccp(150, 12);
     speedNum.anchorPoint = ccp(0.5, 0);
     speedNum.scale = 1;
@@ -236,7 +272,14 @@
     
     //缩略图
     CCSprite *spSmall = [CCSprite node];
-    spSmall.position = ccp(30, 10);
+    CCDirector *director = [CCDirector sharedDirector];
+    if([director enableRetinaDisplay:YES])
+    {
+        spSmall.position = ccp(30, -12);
+    }
+    else{
+        spSmall.position = ccp(30, 8);
+    }
     spSmall.anchorPoint = ccp(0.5, 0);
     spSmall.scale = 0.8;
     [_magicFriendlyInfo addChild:spSmall z:1 tag:1];
@@ -249,7 +292,7 @@
     [_magicFriendlyInfo addChild:attactTip z:1];
     
     //攻击数值
-    CCLabelTTF *attactNum = [CCLabelTTF labelWithString:@"1" fontName:@"Georgia-Bold" fontSize:11];
+    CCLabelTTF *attactNum = [CCLabelTTF labelWithString:@"1" fontName:@"Helvetica-Bold" fontSize:11];
     attactNum.position = ccp(70, 12);
     attactNum.anchorPoint = ccp(0.5, 0);
     attactNum.scale = 1;
@@ -263,7 +306,7 @@
     [_magicFriendlyInfo addChild:bloodTip z:1];
     
     //血值数值
-    CCLabelTTF *bloodNum = [CCLabelTTF labelWithString:@"1" fontName:@"Georgia-Bold" fontSize:11];
+    CCLabelTTF *bloodNum = [CCLabelTTF labelWithString:@"1" fontName:@"Helvetica-Bold" fontSize:11];
     bloodNum.position = ccp(110, 12);
     bloodNum.anchorPoint = ccp(0.5, 0);
     bloodNum.scale = 1;
@@ -277,7 +320,7 @@
     [_magicFriendlyInfo addChild:liveTip z:1];
     
     //时间
-    CCLabelTTF *liveNum = [CCLabelTTF labelWithString:@"1" fontName:@"Georgia-Bold" fontSize:11];
+    CCLabelTTF *liveNum = [CCLabelTTF labelWithString:@"1" fontName:@"Helvetica-Bold" fontSize:11];
     liveNum.position = ccp(150, 12);
     liveNum.anchorPoint = ccp(0.5, 0);
     liveNum.scale = 1;
@@ -338,13 +381,13 @@
     }
 }
 
-- (void) setAttactSpeed:(int)attactSpeed {
+- (void) setAttactSpeed:(float)attactSpeed {
     CCNode *node = [self getChildByTag:1];
     if (node) {
         CCNode *child = [node getChildByTag:11];
         if (child && [child isKindOfClass:[CCLabelTTF class]]) {
             CCLabelTTF *sprite = (CCLabelTTF*) child;
-            [sprite setString:[NSString stringWithFormat:@"%d", attactSpeed]];
+            [sprite setString:[NSString stringWithFormat:@"%.1f", attactSpeed]];
         }
     }
 }
@@ -390,6 +433,14 @@
             CCLabelTTF *sprite = (CCLabelTTF*) child;
             [sprite setString:[NSString stringWithFormat:@"%d", liveTime]];
         }
+    }
+}
+
+-(void)shiYingIphone5
+{
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    if (size.width == 568) {
+        self.position = ccp(self.position.x + 44, self.position.y);
     }
 }
 

@@ -6,5 +6,5 @@
 @interface GameHintScene : CCLayer {
     
 }
-
+-(void)shiYingIphone5;
 @end
